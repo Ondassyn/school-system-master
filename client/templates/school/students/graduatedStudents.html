@@ -1,0 +1,52 @@
+<template name="graduatedStudents">
+    <div class="row">
+        <div class="col-md-12">
+            <h4 style="text-align: center;">Graduation</h4>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-inline">
+                        <div class="form-group">
+                            {{> academicYear}}
+                            <label for="schoolId" style="margin-left: 10pt;">Іздеу:</label>
+                            <input type="text" class="form-control" id="search" placeholder="Аты" name="name_search">
+                            <input type="text" class="form-control" id="search" placeholder="Жөні" name="surname_search">
+                        </div>
+                        <div style="float: right;">
+                            <a href="#" class="btn btn-success" id='addMultipleUsers' data-toggle="tooltip" title="Парақшалар қосу">
+                              <span class="glyphicon glyphicon-th"></span> Қосу
+                            </a>
+                            <a href="#" class="btn btn-danger" id='deleteMultipleUsers' data-toggle="tooltip" title="Парақшалар жою">
+                              <span class="glyphicon glyphicon-remove"></span> Жою
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br/>
+            {{#if Template.subscriptionsReady}}
+            <div class="table table-responsive" id="out">
+              <table class="table table-striped table-hover table-condensed">
+                  <thead>
+                    <tr class="bts-header" style="text-align: center;">
+                        <th>#</th>
+                        <th>Бітірген жылы</th>
+                        <th>Аты-жөні</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each students}}
+                    <tr>
+                        <td>{{math @index "+" 1}}</td>
+                        <td>{{grade}}</td>
+                        <td>{{surname}} {{name}}</td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+              </table>
+            </div>
+            {{else}}
+            <p>Loading...</p>
+            {{/if}}
+        </div>
+    </div>
+</template>

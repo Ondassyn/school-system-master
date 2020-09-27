@@ -1,0 +1,48 @@
+<template name="adminTardieSettings">
+      <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+              <h5>Мектепке жаңа ТЖО қосу</h5>
+              <div class="form-inline">
+                <div class="form-group">
+                  <label for="schoolId">ID:</label>
+                  <input type="text" class="form-control" placeholder="3 таңбалы ID" name="schoolId">
+                </div>
+                <div class="form-group">
+                  <label for="pwd">Мектеп аты:</label>
+                  <input type="text" class="form-control" placeholder="Мектеп атауы" name="schoolName">
+                </div>
+                <button id="addNewTjo" class="btn btn-default">Қосу</button>
+              </div>
+            </div>
+        </div>
+        <div style="padding-top: 30pt" class="row">
+          <div class="col-md-8">
+            <h4 style="text-align: center;" >ТЖО Құпия сөзін жаңарту</h4>
+            {{#if Template.subscriptionsReady}}
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Мектеп аты</th>
+                        <th>Құпиясөз</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each schools}}
+                    <tr>
+                        <td>{{schoolId}}</td>
+                        <td>{{shortName}}</td>
+                        <td id="resetTjopassword"><button class="btn btn-warning">Жаңарту</button></td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+            {{else}}
+            <p>Loading...</p>
+            {{/if}}
+        </div>
+
+    </div>
+    </div> <!-- /container -->
+</template>

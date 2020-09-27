@@ -1,0 +1,101 @@
+<template name="olympiadsRating">
+    <div class="row">
+        <div class="col-md-12">
+        <h4 style="margin-bottom: 15pt">Олимпиада рейтингі</h4>
+            <div class="form-group">
+                <div class="form-inline" style="padding-bottom: 10pt">
+                    
+                    <div class="form-group" style="margin-right: 10pt">
+                        {{> academicYear}}
+                    </div>
+                    <div class="form-group">
+                        <label for="school">мектеп</label>
+                        <select class="form-control" style="width:150pt;margin-right: 10pt" name="schoolId_select" id="select">
+                                <option value="">Select All</option>
+                            {{#each schools}}
+                                <option value="{{schoolId}}" >{{shortName}}</option>
+                            {{/each}}
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="grade_select">Сынып</label>
+                        <select class="form-control" style="margin-right: 10pt" name="grade" id="select">
+                            <option value="all">Жалпы</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                       <label for="subject_select">пән</label>
+                        <select class="form-control" name="subject" id="select" style="width: 100pt; margin-right: 10pt">
+                            <option value="all">Жалпы</option>
+                        {{#each subjects}}
+                            <option value="{{subjectId}}">{{name_kz}}</option>
+                        {{/each}}
+                        </select>
+                    </div>
+                    <div style="float: right;" class="form-group"><a class="btn btn-primary" id="calculateOlympiad">Санау</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    {{#if Template.subscriptionsReady}}
+        <div class="col-md-12">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Мектеп</th>
+                        <th>Пән</th>
+                        <th id="sortRegionGold" style="text-align: center;">Облыс<br/>Алтын</th>
+                        <th id="sortRegionSilver" style="text-align: center;">Облыс<br/>Күміс</th>
+                        <th id="sortRegionBronze" style="text-align: center;">Облыс<br/>Қола</th>
+                        <th id="sortRegionTotal" style="text-align: center;">Облыс<br/>Жалпы</th>
+                        <th id="sortRegionJuniorGold" style="text-align: center;">ОблысЮниор<br/>Алтын</th>
+                        <th id="sortRegionJuniorSilver" style="text-align: center;">ОблысЮниор<br/>Күміс</th>
+                        <th id="sortRegionJuniorBronze" style="text-align: center;">ОблысЮниор<br/>Қола</th>
+                        <th id="sortRegionJuniorTotal" style="text-align: center;">ОблысЮниор<br/>Жалпы</th>
+                        <th id="sortNatGold" style="text-align: center;">Респ<br/>Алтын</th>
+                        <th id="sortNatSilver" style="text-align: center;">Респ<br/>Күміс</th>
+                        <th id="sortNatBronze" style="text-align: center;">Респ<br/>Қола</th>
+                        <th id="sortNatTotal" style="text-align: center;">Респ<br/>Жалпы</th>
+                        <th id="sortNatJuniorGold" style="text-align: center;">РеспЮниор<br/>Алтын</th>
+                        <th id="sortNatJuniorSilver" style="text-align: center;">РеспЮниор<br/>Күміс</th>
+                        <th id="sortNatJuniorBronze" style="text-align: center;">РеспЮниор<br/>Қола</th>
+                        <th id="sortNatJuniorTotal" style="text-align: center;">РеспЮниор<br/>Жалпы</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each results}}
+                    <tr>
+                        <td>{{math @index "+" 1}}</td>
+                        <td>{{schoolName schoolId}}</td>
+                        <td>{{subjectName subjectId}}</td>
+                        <td style="text-align: center;">{{regGoldOlymp}}</td>
+                        <td style="text-align: center;">{{regSilverOlymp}}</td>
+                        <td style="text-align: center;">{{regBronzeOlymp}}</td>
+                        <td style="text-align: center;">{{regTotalOlymp}}</td>
+                        <td style="text-align: center;">{{regJunGoldOlymp}}</td>
+                        <td style="text-align: center;">{{regJunSilverOlymp}}</td>
+                        <td style="text-align: center;">{{regJunBronzeOlymp}}</td>
+                        <td style="text-align: center;">{{regJunTotalOlymp}}</td>
+                        <td style="text-align: center;">{{natGoldOlymp}}</td>
+                        <td style="text-align: center;">{{natSilverOlymp}}</td>
+                        <td style="text-align: center;">{{natBronzeOlymp}}</td>
+                        <td style="text-align: center;">{{natTotalOlymp}}</td>
+                        <td style="text-align: center;">{{natJunGoldOlymp}}</td>
+                        <td style="text-align: center;">{{natJunSilverOlymp}}</td>
+                        <td style="text-align: center;">{{natJunBronzeOlymp}}</td>
+                        <td style="text-align: center;">{{natJunTotalOlymp}}</td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+        </div>
+    {{else}}
+            <p>Loading...</p>
+    {{/if}}
+    </div>
+</template>

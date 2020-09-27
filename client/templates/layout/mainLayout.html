@@ -1,0 +1,25 @@
+<template name="mainLayout">
+    {{#onlyIfLoggedIn}}
+    <head>
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="description" content="">
+      <meta name="author" content="">
+      <title>Bootstrap Dashboard by Bootstrapious.com</title>
+      <meta name="description" content="">
+      <meta name="robots" content="all,follow">
+      <meta name="viewport" content="initial-scale=1, minimal-ui, maximum-scale=1, minimum-scale=1" />
+
+      <title>Fixed Top Navbar Example for Bootstrap</title>
+    </head>
+    <body>
+      <!-- Fixed navbar -->
+      {{> Template.dynamic template=menu}}
+      <div class="container-fluid main-container" style="margin-right: 15pt; margin-left: 15pt">
+          {{> Template.dynamic template=content}}
+      </div> <!-- /container -->
+    </body>
+
+    {{/onlyIfLoggedIn}}
+
+</template>

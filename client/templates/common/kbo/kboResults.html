@@ -1,0 +1,79 @@
+<template name="kboResults">
+    <div class="row">
+        <div class="col-md-12">
+            <h4 style="text-align: center;">КБО-{{kboNo}} Нәтиже</h4>
+            <div class="form-inline" style="padding-bottom: 10pt">
+                <div class="form-group" style="margin-right: 10pt">
+                    {{> academicYear}}
+                    <label for="" style="margin-left: 10pt;">Сынып</label>
+                    <select class="form-control"  id="grade">
+                        <option value="">Барлығы</option>
+                        <option value="6">6 cынып</option>
+                        <option value="7" selected>7 cынып</option>
+                        <option value="8">8 cынып</option>
+                        <option value="9">9 cынып</option>
+                        <option value="10">10 cынып</option>
+                        <option value="11">11 cынып</option>
+                    </select>
+                    <label for="" style="margin-left: 10pt;">Пән</label>
+                    <select class="form-control"  id="subject">
+                        <option value="01" selected>Алгебра</option>
+                        <option value="02">Физика</option>
+                        <option value="03">Химия</option>
+                        <option value="04">Биология</option>
+                        <option value="05">Ағылшын тілі</option>
+                        <option value="06">География</option>
+                        <option value="07">Қазақ тілі (қазақ тобы)</option>
+                        <option value="09">Қазақ тілі (орыс тобы)</option>
+                        <option value="10">Түрік тілі</option>
+                        <option value="11">Орыс тілі</option>
+                        <option value="12">Тарих</option>
+                        <option value="15">Құқық</option>
+                        <option value="">Жалпы</option>
+                    </select>
+                  </div>
+
+                  <div class="form-group" style="float: right">
+                      <a class="btn btn-success" id="export">Export</a>
+                  </div>
+
+            </div>
+            {{#if Template.subscriptionsReady}}
+            <div class="table table-responsive" id="out">
+              <table class="table table-striped  table-bordered table-hover table-condensed"  border=1 cellpadding=0 cellspacing=0 width=100%>
+
+                <thead>
+                    <tr class="bts-header">
+                        <th>#</th>
+                        <th>Оқушы ID</th>
+                        <th>Аты</th>
+                        <th>Жөні</th>
+                        <th>Сыныбы</th>
+                        <th>Вариант</th>
+                        <th>Тобы</th>
+                        <th>Нәтиже</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each results}}
+                    <tr>
+                        <td>{{math @index "+" 1}}</td>
+                        <td>{{studentId}}</td>
+                        <td>{{studentName}}</td>
+                        <td>{{studentSurname}}</td>
+                        <td>{{grade}}{{division}}</td>
+                        <td>{{variant}}</td>
+                        <td>{{kazLanguageGroup}}</td>
+                        <td>{{result}}</td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+              </table>
+            </div>
+            {{else}}
+            <p>Loading...</p>
+            {{/if}}
+        </div>
+    </div>
+
+</template>

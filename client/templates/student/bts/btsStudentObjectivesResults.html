@@ -1,0 +1,48 @@
+<template name="btsStudentObjectivesResults">
+    <div class="row">
+        <div class="col-md-12">
+            <h4 style="text-align: center; padding-bottom: 10pt">БТС-{{btsNo}} Сабақ мақсаттар нәтижелері</h4>
+                <div class="form-inline" style="padding-bottom: 15pt">
+                    
+                    <div class="form-group">
+                        <label for="subject">Пән:</label>
+                        <select class="form-control" name="subject_select" id="select">
+                            <option value="algebra">Алгебра</option>
+                            <option value="physics">Физика</option>
+                            <option value="chemistry">Химия</option>
+                            <option value="biology">Биология</option>
+                        </select>
+                    </div>
+                </div>
+
+            {{#if Template.subscriptionsReady}}
+            <table class="table table-striped">
+                <thead>
+                    <tr class="bts-header">
+                        <th>#</th>
+                        <th>Сабақ мақсаты ID</th>
+                        <th>Сабақ мақсаты</th>
+                        <th>Тақырыбы</th>
+                        <th>Пайыз</th>
+                        
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each results}}
+                    <tr>
+                        <td>{{math @index "+" 1}}</td>
+                        <td>{{objective}}</td>
+                        <td>{{objectiveDefinition}}</td>
+                        <td>{{topic}}</td>
+                        <td>{{success}}%</td>
+                        
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+            {{else}}
+            <p>Loading...</p>
+            {{/if}}
+        </div>
+    </div>
+</template>

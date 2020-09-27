@@ -1,0 +1,213 @@
+<template name="olympiadsRatingInter">
+    <div class="row">
+        <div class="col-md-12">
+        <h4 style="margin-bottom: 15pt">Халықаралық Олимпиада рейтингі</h4>
+            <div class="form-group">
+                <div class="form-inline" style="padding-bottom: 10pt">
+                    
+                    <div class="form-group" style="margin-right: 10pt">
+                        {{> academicYear}}
+                    </div>
+                    <div class="form-group">
+                        <label for="school">мектеп</label>
+                        <select class="form-control" style="width:150pt;margin-right: 10pt" name="schoolId_select" id="select">
+                                <option value="">Select All</option>
+                            {{#each schools}}
+                                <option value="{{schoolId}}" >{{shortName}}</option>
+                            {{/each}}
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="grade_select">Сынып</label>
+                        <select class="form-control" style="margin-right: 10pt" name="grade" id="select">
+                            <option value="all">Жалпы</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                       <label for="subject_select">пән</label>
+                        <select class="form-control" name="subject" id="select" style="width: 100pt; margin-right: 10pt">
+                            <option value="all">Жалпы</option>
+                        {{#each subjects}}
+                            <option value="{{subjectId}}">{{name_kz}}</option>
+                        {{/each}}
+                        </select>
+                    </div>
+                    <div style="float: right;" class="form-group"><a class="btn btn-primary" id="calculateOlympiad">Санау</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    {{#if Template.subscriptionsReady}}
+        <div class="col-md-12">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Мектеп</th>
+                        <th>Пән</th>
+                        <th id="sortJautGold" style="text-align: center;">Жаутыков<br/>Алтын</th>
+                        <th id="sortJautSilver" style="text-align: center;">Жаутыков<br/>Күміс</th>
+                        <th id="sortJautBronze" style="text-align: center;">Жаутыков<br/>Қола</th>
+                        <th id="sortJautTotal" style="text-align: center;">Жаутыков<br/>Жалпы</th>
+                        <th id="sortMendGold" style="text-align: center;">Менделеев<br/>Алтын</th>
+                        <th id="sortMendSilver" style="text-align: center;">Менделеев<br/>Күміс</th>
+                        <th id="sortMendBronze" style="text-align: center;">Менделеев<br/>Қола</th>
+                        <th id="sortMendTotal" style="text-align: center;">Менделеев<br/>Жалпы</th>
+                        <th id="sortAphoGold" style="text-align: center;">APhO<br/>Алтын</th>
+                        <th id="sortAphoSilver" style="text-align: center;">APhO<br/>Күміс</th>
+                        <th id="sortAphoBronze" style="text-align: center;">APhO<br/>Қола</th>
+                        <th id="sortAphoTotal" style="text-align: center;">APhO<br/>Жалпы</th>
+                        <th id="sortAllRusGold" style="text-align: center;">AllRus<br/>Алтын</th>
+                        <th id="sortAllRusSilver" style="text-align: center;">AllRus<br/>Күміс</th>
+                        <th id="sortAllRusBronze" style="text-align: center;">AllRus<br/>Қола</th>
+                        <th id="sortAllRusTotal" style="text-align: center;">AllRus<br/>Жалпы</th>
+                        <th id="sortEuGirlGold" style="text-align: center;">ЕвропейскаяСредиДевушек<br/>Алтын</th>
+                        <th id="sortEuGirlSilver" style="text-align: center;">ЕвропейскаяСредиДевушек<br/>Күміс</th>
+                        <th id="sortEuGirlBronze" style="text-align: center;">ЕвропейскаяСредиДевушек<br/>Қола</th>
+                        <th id="sortEuGirlTotal" style="text-align: center;">ЕвропейскаяСредиДевушек<br/>Жалпы</th>
+                        <th id="sortWcGold" style="text-align: center;">WesternChina<br/>Алтын</th>
+                        <th id="sortWcSilver" style="text-align: center;">WesternChina<br/>Күміс</th>
+                        <th id="sortWcBronze" style="text-align: center;">WesternChina<br/>Қола</th>
+                        <th id="sortWcTotal" style="text-align: center;">WesternChina<br/>Жалпы</th>
+                        <th id="sortBmoGold" style="text-align: center;">BMO<br/>Алтын</th>
+                        <th id="sortBmoSilver" style="text-align: center;">BMO<br/>Күміс</th>
+                        <th id="sortBmoBronze" style="text-align: center;">BMO<br/>Қола</th>
+                        <th id="sortBmoTotal" style="text-align: center;">BMO<br/>Жалпы</th>
+                        <th id="sortJbmoGold" style="text-align: center;">JBMO<br/>Алтын</th>
+                        <th id="sortJbmoSilver" style="text-align: center;">JBMO<br/>Күміс</th>
+                        <th id="sortJbmoBronze" style="text-align: center;">JBMO<br/>Қола</th>
+                        <th id="sortJbmoTotal" style="text-align: center;">JBMO<br/>Жалпы</th>
+                        <th id="sortTuyGold" style="text-align: center;">Tuymada<br/>Алтын</th>
+                        <th id="sortTuySilver" style="text-align: center;">Tuymada<br/>Күміс</th>
+                        <th id="sortTuyBronze" style="text-align: center;">Tuymada<br/>Қола</th>
+                        <th id="sortTuyTotal" style="text-align: center;">Tuymada<br/>Жалпы</th>
+                        <th id="sortImoGold" style="text-align: center;">IMO<br/>Алтын</th>
+                        <th id="sortImoSilver" style="text-align: center;">IMO<br/>Күміс</th>
+                        <th id="sortImoBronze" style="text-align: center;">IMO<br/>Қола</th>
+                        <th id="sortImoTotal" style="text-align: center;">IMO<br/>Жалпы</th>
+                        <th id="sortIranGeomGold" style="text-align: center;">IranGeom<br/>Алтын</th>
+                        <th id="sortIranGeomSilver" style="text-align: center;">IranGeom<br/>Күміс</th>
+                        <th id="sortIranGeomBronze" style="text-align: center;">IranGeom<br/>Қола</th>
+                        <th id="sortIranGeomTotal" style="text-align: center;">IranGeom<br/>Жалпы</th>
+                        <th id="sortApmoGold" style="text-align: center;">APMO<br/>Алтын</th>
+                        <th id="sortApmoSilver" style="text-align: center;">APMO<br/>Күміс</th>
+                        <th id="sortApmoBronze" style="text-align: center;">APMO<br/>Қола</th>
+                        <th id="sortApmoTotal" style="text-align: center;">APMO<br/>Жалпы</th>
+                        <th id="sortSwGold" style="text-align: center;">SilkWay<br/>Алтын</th>
+                        <th id="sortSwSilver" style="text-align: center;">SilkWay<br/>Күміс</th>
+                        <th id="sortSwBronze" style="text-align: center;">SilkWay<br/>Қола</th>
+                        <th id="sortSwTotal" style="text-align: center;">SilkWay<br/>Жалпы</th>
+                        <th id="sortMegaGold" style="text-align: center;">Megapolis<br/>Алтын</th>
+                        <th id="sortMegaSilver" style="text-align: center;">Megapolis<br/>Күміс</th>
+                        <th id="sortMegaBronze" style="text-align: center;">Megapolis<br/>Қола</th>
+                        <th id="sortMegaTotal" style="text-align: center;">Megapolis<br/>Жалпы</th>
+                        <th id="sortChemGold" style="text-align: center;">ChemiCo<br/>Алтын</th>
+                        <th id="sortChemSilver" style="text-align: center;">ChemiCo<br/>Күміс</th>
+                        <th id="sortChemBronze" style="text-align: center;">ChemiCo<br/>Қола</th>
+                        <th id="sortChemTotal" style="text-align: center;">ChemiCo<br/>Жалпы</th>
+                        <th id="sortApioGold" style="text-align: center;">APIO<br/>Алтын</th>
+                        <th id="sortApioSilver" style="text-align: center;">APIO<br/>Күміс</th>
+                        <th id="sortApioBronze" style="text-align: center;">APIO<br/>Қола</th>
+                        <th id="sortApioTotal" style="text-align: center;">APIO<br/>Жалпы</th>
+                        <th id="sortEuInfGold" style="text-align: center;">ЕвразийскаяИнформатика<br/>Алтын</th>
+                        <th id="sortEuInfSilver" style="text-align: center;">ЕвразийскаяИнформатика<br/>Күміс</th>
+                        <th id="sortEuInfBronze" style="text-align: center;">ЕвразийскаяИнформатика<br/>Қола</th>
+                        <th id="sortEuInfTotal" style="text-align: center;">ЕвразийскаяИнформатика<br/>Жалпы</th>
+                        <th id="sortIjsoGold" style="text-align: center;">IJSO<br/>Алтын</th>
+                        <th id="sortIjsoSilver" style="text-align: center;">IJSO<br/>Күміс</th>
+                        <th id="sortIjsoBronze" style="text-align: center;">IJSO<br/>Қола</th>
+                        <th id="sortIjsoTotal" style="text-align: center;">IJSO<br/>Жалпы</th>   
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each results}}
+                    <tr>
+                        <td>{{math @index "+" 1}}</td>
+                        <td>{{schoolName schoolId}}</td>
+                        <td>{{subjectName subjectId}}</td>
+                        <td style="text-align: center;">{{jautGoldOlymp}}</td>
+                        <td style="text-align: center;">{{jautSilverOlymp}}</td>
+                        <td style="text-align: center;">{{jautBronzeOlymp}}</td>
+                        <td style="text-align: center;">{{jautTotalOlymp}}</td>
+                        <td style="text-align: center;">{{mendGoldOlymp}}</td>
+                        <td style="text-align: center;">{{mendSilverOlymp}}</td>
+                        <td style="text-align: center;">{{mendBronzeOlymp}}</td>
+                        <td style="text-align: center;">{{mendTotalOlymp}}</td>
+                        <td style="text-align: center;">{{aphoGoldOlymp}}</td>
+                        <td style="text-align: center;">{{aphoSilverOlymp}}</td>
+                        <td style="text-align: center;">{{aphoBronzeOlymp}}</td>
+                        <td style="text-align: center;">{{aphoTotalOlymp}}</td>
+                        <td style="text-align: center;">{{allrusGoldOlymp}}</td>
+                        <td style="text-align: center;">{{allrusSilverOlymp}}</td>
+                        <td style="text-align: center;">{{allrusBronzeOlymp}}</td>
+                        <td style="text-align: center;">{{allrusTotalOlymp}}</td>
+                        <td style="text-align: center;">{{eugGoldOlymp}}</td>
+                        <td style="text-align: center;">{{eugSilverOlymp}}</td>
+                        <td style="text-align: center;">{{eugBronzeOlymp}}</td>
+                        <td style="text-align: center;">{{eugTotalOlymp}}</td>
+                        <td style="text-align: center;">{{wcGoldOlymp}}</td>
+                        <td style="text-align: center;">{{wcSilverOlymp}}</td>
+                        <td style="text-align: center;">{{wcBronzeOlymp}}</td>
+                        <td style="text-align: center;">{{wcTotalOlymp}}</td>
+                        <td style="text-align: center;">{{bmoGoldOlymp}}</td>
+                        <td style="text-align: center;">{{bmoSilverOlymp}}</td>
+                        <td style="text-align: center;">{{bmoBronzeOlymp}}</td>
+                        <td style="text-align: center;">{{bmoTotalOlymp}}</td>
+                        <td style="text-align: center;">{{jbmoGoldOlymp}}</td>
+                        <td style="text-align: center;">{{jbmoSilverOlymp}}</td>
+                        <td style="text-align: center;">{{jbmoBronzeOlymp}}</td>
+                        <td style="text-align: center;">{{jbmoTotalOlymp}}</td>
+                        <td style="text-align: center;">{{tuyGoldOlymp}}</td>
+                        <td style="text-align: center;">{{tuySilverOlymp}}</td>
+                        <td style="text-align: center;">{{tuyBronzeOlymp}}</td>
+                        <td style="text-align: center;">{{tuyTotalOlymp}}</td>
+                        <td style="text-align: center;">{{imoGoldOlymp}}</td>
+                        <td style="text-align: center;">{{imoSilverOlymp}}</td>
+                        <td style="text-align: center;">{{imoBronzeOlymp}}</td>
+                        <td style="text-align: center;">{{imoTotalOlymp}}</td>
+                        <td style="text-align: center;">{{iranGoldOlymp}}</td>
+                        <td style="text-align: center;">{{iranSilverOlymp}}</td>
+                        <td style="text-align: center;">{{iranBronzeOlymp}}</td>
+                        <td style="text-align: center;">{{iranTotalOlymp}}</td>
+                        <td style="text-align: center;">{{apmoGoldOlymp}}</td>
+                        <td style="text-align: center;">{{apmoSilverOlymp}}</td>
+                        <td style="text-align: center;">{{apmoBronzeOlymp}}</td>
+                        <td style="text-align: center;">{{apmoTotalOlymp}}</td>
+                        <td style="text-align: center;">{{swGoldOlymp}}</td>
+                        <td style="text-align: center;">{{swSilverOlymp}}</td>
+                        <td style="text-align: center;">{{swBronzeOlymp}}</td>
+                        <td style="text-align: center;">{{swTotalOlymp}}</td>
+                        <td style="text-align: center;">{{megaGoldOlymp}}</td>
+                        <td style="text-align: center;">{{megaSilverOlymp}}</td>
+                        <td style="text-align: center;">{{megaBronzeOlymp}}</td>
+                        <td style="text-align: center;">{{megaTotalOlymp}}</td>
+                        <td style="text-align: center;">{{chemGoldOlymp}}</td>
+                        <td style="text-align: center;">{{chemSilverOlymp}}</td>
+                        <td style="text-align: center;">{{chemBronzeOlymp}}</td>
+                        <td style="text-align: center;">{{chemTotalOlymp}}</td>
+                        <td style="text-align: center;">{{apioGoldOlymp}}</td>
+                        <td style="text-align: center;">{{apioSilverOlymp}}</td>
+                        <td style="text-align: center;">{{apioBronzeOlymp}}</td>
+                        <td style="text-align: center;">{{apioTotalOlymp}}</td>
+                        <td style="text-align: center;">{{euinfGoldOlymp}}</td>
+                        <td style="text-align: center;">{{euinfSilverOlymp}}</td>
+                        <td style="text-align: center;">{{euinfBronzeOlymp}}</td>
+                        <td style="text-align: center;">{{euinfTotalOlymp}}</td>
+                        <td style="text-align: center;">{{ijsoGoldOlymp}}</td>
+                        <td style="text-align: center;">{{ijsoSilverOlymp}}</td>
+                        <td style="text-align: center;">{{ijsoBronzeOlymp}}</td>
+                        <td style="text-align: center;">{{ijsoTotalOlymp}}</td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+        </div>
+    {{else}}
+            <p>Loading...</p>
+    {{/if}}
+    </div>
+</template>

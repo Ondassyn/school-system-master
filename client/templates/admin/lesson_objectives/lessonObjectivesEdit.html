@@ -1,0 +1,46 @@
+<template name="lessonObjectivesEdit">
+	
+	<div class="row">
+		<div class="col-md-8">
+            {{#if Template.subscriptionsReady}}
+              <h4>Өзгерту: {{objectives.grade}} / {{subjectName objectives.subjectId}} / ID: {{objectives.id}}</h4>
+                    <div class="form-group">
+                <label for="name">Сынып</label>
+                <select class="form-control" name="grade_select" id="select">
+                                <option value="{{objectives.grade}}">{{objectives.grade}}</option>
+                                    <option value="7">7</option>
+                                    <option value="8">8</option>
+                                    <option value="9">9</option>
+                                    <option value="10">10</option>
+                            </select>
+              </div>
+              <div class="form-group">
+                <label for="name">Пән</label>
+                <select class="form-control" name="subject_select" id="select">
+                                <option value="{{objectives.subjectId}}">{{subjectName objectives.subjectId}}</option>
+                                {{#each subjects}}
+                                    <option value="{{subjectId}}" >{{name_kz}}</option>
+                                {{/each}}
+                            </select>
+              </div>
+              <div class="form-group">
+                <label for="name">Objective ID</label>
+                <input type="text" class="form-control" name="id" value="{{objectives.id}}">
+              </div>
+              <div class="form-group">
+                <label for="name">Definition</label>
+                <input type="text" class="form-control" name="objective" value="{{objectives.objective}}">
+              </div>
+              <div class="form-group">
+                <label for="name">Тақырып</label>
+                <input type="text" class="form-control" name="topic" value="{{objectives.topic}}">
+              </div>
+                
+                
+              <button class="btn btn-primary" id="save">Сақтау</button>
+            {{else}}
+            <p>Loading...</p>
+            {{/if}}
+        </div>
+	</div>
+</template>

@@ -1,0 +1,96 @@
+<template name="adminKetPetRatingByLevel">
+    <div class="row">
+        <div class="col-md-12">
+            <h4 style="text-align: center; padding-bottom: 15pt">KET-PET Деңгей бойынша бағалау</h4>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-inline">
+                        <div class="form-group" style="margin-right: 15pt">
+                          {{> academicYear}}
+
+                          <label style="margin-left: 10pt;">Емтихан таңдаңыз</label>
+                          <select class="form-control" name='grade' id='gradeSelect'>
+                              <option value="7">KET 7 cынып</option>
+                              <option value="8">PET 8 cынып</option>
+                          </select>
+
+                          <label style="margin-left: 10pt;">Тоқсан</label>
+                          <select class="form-control" id="examPeriod">
+                              <option value="2">2 тоқсан</option>
+                              <option value="4">4 тоқсан</option>
+                          </select>
+
+                        </div>
+
+                        <div class="form-group" style="float: right">
+                            <a class="btn btn-success" id="export">Export</a>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            {{#if Template.subscriptionsReady}}
+            <div class="table table-responsive" id="out">
+              <table style="margin-top: 15pt" class="table table-striped">
+
+                <thead>
+                    <tr class="bts-header">
+                        <th>#</th>
+                        <th>Мектеп аты</th>
+
+                        {{#if grade7}}
+                          <th style="text-align: center" id="sortFail7">Fail <i class="glyphicon glyphicon-sort"></i></th>
+                          <th style="text-align: center" id="sortA1">A1</th>
+                          <th style="text-align: center" id="sortPass_A2">Pass(A2)</th>
+                          <th style="text-align: center" id="sortMerit_A2">Pass with Merit(A2)</th>
+                          <th style="text-align: center" id="sortDistinction_B1">Pass with Distinction(B1)</th>
+
+                        {{else}}
+
+                          <th style="text-align: center" id="sortFail8">Fail <i class="glyphicon glyphicon-sort"></i></th>
+                          <th style="text-align: center" id="sortA2">A2</th>
+                          <th style="text-align: center" id="sortPass_B1">Pass(B1)</th>
+                          <th style="text-align: center" id="sortMerit_B1">Pass with Merit(B1)</th>
+                          <th style="text-align: center" id="sortDistinction_B2">Pass with Distinction(B2)</th>
+
+                        {{/if}}
+
+
+                    </tr>
+                </thead>
+
+                <tbody>
+                    {{#each results}}
+                    <tr>
+                        <td>{{math @index "+" 1}}</td>
+                        <td>{{schoolName schoolId}}</td>
+
+                        {{#if grade7}}
+                          <td style="text-align: center">{{grade7Fail}}</td>
+                          <td style="text-align: center">{{grade7A1}}</td>
+                          <td style="text-align: center">{{grade7PassA2}}</td>
+                          <td style="text-align: center">{{grade7MeritA2}}</td>
+                          <td style="text-align: center">{{grade7DistB1}}</td>
+
+                        {{else}}
+
+                          <td style="text-align: center">{{grade8Fail}}</td>
+                          <td style="text-align: center">{{grade8A2}}</td>
+                          <td style="text-align: center">{{grade8PassB1}}</td>
+                          <td style="text-align: center">{{grade8MeritB1}}</td>
+                          <td style="text-align: center">{{grade8DistB2}}</td>
+
+                        {{/if}}
+
+                    </tr>
+                    {{/each}}
+                </tbody>
+              </table>
+            </div>
+            {{else}}
+            <p>Loading...</p>
+            {{/if}}
+        </div>
+    </div>
+</template>

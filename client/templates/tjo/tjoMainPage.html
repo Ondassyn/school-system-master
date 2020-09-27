@@ -1,0 +1,126 @@
+<template name="tjoMainPage">
+    <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- <meta name="viewport" content="initial-scale=1, minimal-ui, maximum-scale=1, minimum-scale=1" /> -->
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Fixed Top Navbar Example for Bootstrap</title>
+  </head>
+  <body>
+    
+    <!-- Fixed navbar -->
+    {{> tjoMenu}}
+
+
+    {{#if Template.subscriptionsReady}}
+    <div class="container-fluid" style="padding-top: 3em">
+    <div class="col-md-12">
+        <h4 style="text-align: center; padding-bottom: 20pt">Қош келдіңіздер ТЖО!</h4>
+
+        {{#each school}}
+        <h4 style="text-align: center; padding-bottom: 20pt">Қош келдіңіздер TJO!</h4>
+        <h4 style="text-align: center; padding-bottom: 20pt">{{schoolName schoolId}}</h4>
+        {{/each}}
+
+        <div class="col-md-10">
+            <div class="form-group">
+                    <div class="form-inline">
+                        <div class="form-group" style="margin-right: 10pt">
+                        {{> academicYear}}
+                        </div>
+                        <div class="form-group">
+                            <label for="month_select">Ай:</label>
+                            <select class="form-control" name="month_select" id="select">
+                                <option value="annual">Жылдық</option>
+                                <option value="09">Қыркүйек</option>
+                                <option value="10">Қазан</option>
+                                <option value="11" >Қараша</option>
+                                <option value="12" >Желтоқсан</option>
+                                <option value="01" >Қантар</option>
+                                <option value="02" >Ақпан</option>
+                                <option value="03" >Наурыз</option>
+                                <option value="04" >Сәуір</option>
+                                <option value="05" >Мамыр</option>
+                                <option value="06" >Маусым</option>
+                                <option value="07" >Шілде</option>
+                                <option value="08" >Тамыз</option>
+                            </select>
+                        </div>
+                    </div>
+            </div>
+        <div>
+            <table class="table table-striped">
+                <thead>
+                    <tr class="bts-header">
+                        <th style="text-align: center;">Тұлғалармен <br/> кездесу <a href="/school/meeting"><span class="glyphicon glyphicon-plus"></span></a></th>
+                        <th style="text-align: center;">Іс-шаралар <br/> ұйымдастыру <a href="/school/outdoor_event"><span class="glyphicon glyphicon-plus"></span></a></th>
+                        <th style="text-align: center;">Жетілдіру <br/> семинары <a href="/school/seminar"><span class="glyphicon glyphicon-plus"></span></a></th>
+                        <th style="text-align: center;">Мектеп <br/> іс-шаралары <a href="/school/indoorEvent"><span class="glyphicon glyphicon-plus"></span></a></th>
+                        <th style="text-align: center;">PBL <a href="/school/pbl"><span class="glyphicon glyphicon-plus"></span></a></th>
+                        <th style="text-align: center;">Олимпиада <a href="/school/olympiadAssessment"><span class="glyphicon glyphicon-plus"></span></a></th>
+                        <th style="text-align: center;">ҰБТ <a href="/school/ubt"><span class="glyphicon glyphicon-plus"></span></a></th>
+                        <th style="text-align: center;">Пән <br/> апталығы <a href="/school/subject_week"><span class="glyphicon glyphicon-plus"></span></a></th>
+                        <th style="text-align: center;">Сабақтарға <br/> қатысу <a href="/school/admin_participate"><span class="glyphicon glyphicon-plus"></span></a></th>
+                        <th style="text-align: center;">Жалпы</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each schoolResults}}
+                    <tr>
+                        <td style="text-align: center;">{{meeting}} / {{meeting_points}}</td>
+                        <td style="text-align: center;">{{outdoor_event}} / {{outdoor_event_points}} </td>
+                        <td style="text-align: center;">{{seminar}} / {{seminar_points}} </td>
+                        <td style="text-align: center;">{{indoorEvent}} / {{indoorEvent_points}} </td>
+                        <td style="text-align: center;">{{pbl}} / {{pbl_points}} </td>
+                        <td style="text-align: center;">{{olympiad}} / {{olympiad_points}}  </td>
+                        <td style="text-align: center;">{{ubt}} / {{ubt_points}} </td>
+                        <td style="text-align: center;">{{subject_week}} / {{subject_week_points}} </td>
+                        <td style="text-align: center;">{{admin_participate}} / {{admin_participate_points}} </td>
+                        <td style="text-align: center;">{{total_points}}</td>
+
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+        </div>
+
+        </div>
+
+        <div class="col-md-2">
+            <h4>Пәндер тізімі</h4>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Пән</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each subjects}}
+                    <tr>
+                        <td>{{subjectId}}</td>
+                        <td>{{name_kz}}</td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+    </div><!-- /container -->
+    {{else}}
+                <p>Loading...</p>
+            {{/if}}
+
+  <script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+  </body>
+</template>

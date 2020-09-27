@@ -1,0 +1,162 @@
+<template name="olympiadRepublicJuniorResults">
+    <div class="row">
+        <div class="col-md-12">
+        <h4 style="margin-bottom: 15pt">Республикалық Юниор олимпиада нәтижелері</h4>
+            <div class="form-group">
+                <div class="form-inline" style="padding-bottom: 10pt">   
+                    <div class="form-group" style="margin-right: 10pt">
+                        {{> academicYear}}
+                    </div>
+                    <div class="form-group">
+                       <label for="subject_select">пән</label>
+                        <select class="form-control" name="subject" id="select" style="margin-right: 10pt">
+                            <option value="">Жалпы</option>
+                        {{#each subjects}}
+                            <option value="{{subjectId}}">{{name_kz}}</option>
+                        {{/each}}
+                        </select>
+                    </div>
+                    <div style="float: right;" class="btn btn-primary" id='window' data-toggle="tooltip" title="Ақпарат қосу"><span class="glyphicon glyphicon-chevron-down"></span>
+                    </div>
+                </div>
+                {{#if clickedButton}}
+                <div style="background-color: GhostWhite;" class="row">
+                    <div class="col-md-12">
+                        <div class="form-inline" style="padding-top: 10pt; padding-bottom: 10pt">
+                            <div class="form-group" style="margin-right: 15pt">
+                                <label for="olympiadToChoose">Аты</label>
+                                <select class="form-control" style="margin-right: 10pt" name="olympiadToChoose" id="select">
+                                    {{#each olympiads}}
+                                    <option value="{{olympiadId}}">{{name}}</option>
+                                    {{/each}}
+                                </select>
+                            </div>
+
+                            <div class="form-group" style="margin-right: 15pt">
+                                <label for="grade">Сынып</label>
+                                <select class="form-control"  name="grade" id="select">
+                                    <option value="7">7</option>
+                                    <option value="8">8</option>
+                                    <option value="9">9</option>
+                                    <option value="10">10</option>
+                                    <option value="11">11</option>
+                                </select>
+                            </div>
+                            <div class="form-group" style="margin-right: 15pt">
+                               <label for="subjectToChoose">Пән</label>
+                                <select class="form-control" name="subjectToChoose" id="select" style="width: 100pt">
+                                    <option value="">Жалпы</option>
+                                {{#each subjectsToChoose}}
+                                    <option value="{{subjectId}}">{{name_kz}}</option>
+                                {{/each}}
+                                </select>
+                            </div>
+                            <div class="form-group" style="margin-right: 15pt">
+                               <label for="studentToChoose">Оқушы</label>
+                                <select class="form-control" name="studentToChoose" id="select">
+                                    <option value="">тандаңыз</option>
+                                {{#each student}}
+                                    <option value="{{studentId}}">{{surname}} {{name}}</option>
+                                {{/each}}
+                                </select>
+                            </div>
+                            <div style="float: right;vertical-align:10pt" class="btn btn-success" id='save'>Қосу</div>
+                        </div>
+                    </div> 
+                </div>
+                {{/if}}
+            </div>
+        </div>      
+
+    {{#if Template.subscriptionsReady}}
+        <div class="col-md-12">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>ID</th>
+                        <th>Аты Жөні</th>
+                        <th>Пән</th>
+                        <th style="text-align: center;">Сынып</th>
+                        <th style="text-align: center;">Қатысқан<br/>сыныбы</th>
+                        <th style="text-align: center;">Орын</th>
+                        <th style="text-align: center;">Абсолюттік<br/>орын</th>
+                        <th style="text-align: center;">Мұғалім</th>
+                        <th style="text-align: center;">Өтті</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each results}}
+                    <tr>
+                        <td style="padding-top: 10pt;">{{math @index "+" 1}}</td>
+                        <td style="padding-top: 10pt;">{{studentId}}</td>
+                        <td style="padding-top: 10pt;">{{name}} {{surname}}</td>
+                        <td style="padding-top: 10pt;">{{subjectName subjectId}}</td>
+                        <td style="text-align: center; padding-top: 10pt">{{grade}}</td>
+                        <td style="text-align: center;">
+                            <select class="form-control" id="attendedFor">
+                                    <option value="">---</option>
+                                    <option value="9" {{selectedAttended "attendedFor" "9"}}>9</option>
+                                    <option value="10" {{selectedAttended "attendedFor" "10"}}>10</option>
+                                    <option value="11" {{selectedAttended "attendedFor" "11"}}>11</option>
+                            </select>
+                        </td>
+                        <td style="text-align: center;">
+                            <select class="form-control" id="medal">
+                                    <option value="">---</option>
+                                    <option value="gold" {{selectedMedal "medal" "gold"}}>Алтын</option>
+                                    <option value="silver" {{selectedMedal "medal" "silver"}}>Күміс</option>
+                                    <option value="bronze" {{selectedMedal "medal" "bronze"}}>Қола</option>
+                            </select>
+                        </td>
+                        <td class="form-inline" style="text-align: center;">
+                            <select class="form-control" id="place">
+                                    <option value="">---</option>
+                                    <option value="1" {{selectedPlace "absolutePlace" "1"}}>1</option>
+                                    <option value="2" {{selectedPlace "absolutePlace" "2"}}>2</option>
+                                    <option value="3" {{selectedPlace "absolutePlace" "3"}}>3</option>
+                                    <option value="4" {{selectedPlace "absolutePlace" "4"}}>4</option>
+                                    <option value="5" {{selectedPlace "absolutePlace" "5"}}>5</option>
+                                    <option value="6" {{selectedPlace "absolutePlace" "6"}}>6</option>
+                                    <option value="7" {{selectedPlace "absolutePlace" "7"}}>7</option>
+                                    <option value="8" {{selectedPlace "absolutePlace" "8"}}>8</option>
+                                    <option value="9" {{selectedPlace "absolutePlace" "9"}}>9</option>
+                                    <option value="10" {{selectedPlace "absolutePlace" "10"}}>10</option>
+                                    <option value="11" {{selectedPlace "absolutePlace" "11"}}>11</option>
+                                    <option value="12" {{selectedPlace "absolutePlace" "12"}}>12</option>
+                                    <option value="13" {{selectedPlace "absolutePlace" "13"}}>13</option>
+                                    <option value="14" {{selectedPlace "absolutePlace" "14"}}>14</option>
+                                    <option value="15" {{selectedPlace "absolutePlace" "15"}}>15</option>
+                                    <option value="16" {{selectedPlace "absolutePlace" "16"}}>16</option>
+                                    <option value="17" {{selectedPlace "absolutePlace" "17"}}>17</option>
+                                    <option value="18" {{selectedPlace "absolutePlace" "18"}}>18</option>
+                                    <option value="19" {{selectedPlace "absolutePlace" "19"}}>19</option>
+                                    <option value="20" {{selectedPlace "absolutePlace" "20"}}>20</option>
+                                    <option value="21" {{selectedPlace "absolutePlace" "21"}}>21</option>
+                                    <option value="22" {{selectedPlace "absolutePlace" "22"}}>22</option>
+                                    <option value="23" {{selectedPlace "absolutePlace" "23"}}>23</option>
+                                    <option value="24" {{selectedPlace "absolutePlace" "24"}}>24</option>
+                                    <option value="25" {{selectedPlace "absolutePlace" "25"}}>25</option>
+                            </select>
+                        </td>
+                        <td style="text-align: center;">
+                            <select class="form-control" name="teacherId" id="teacher">
+                                <option value="">---</option>
+                                {{#each teacher}}
+                                    <option value="{{teacherId}}" {{selected ../_id teacherId}}>
+                                        {{surname}} {{name}}
+                                    </option>
+                                {{/each}}
+                            </select>
+                        </td>
+                        <td><a class="btn btn-danger" id="delete" style="float: right;">Өшіру</a></td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+        </div>
+    {{else}}
+            <p>Loading...</p>
+            {{/if}}
+    </div>
+</template>

@@ -1,0 +1,78 @@
+<template name="generalRating">
+    <div class="row">
+        <div class="col-md-12">
+            {{#if Template.subscriptionsReady}}
+            <div>
+            <h4 style="text-align: center;">Мектептер жалпы рейтингі </h4>
+                    <div class="form-inline">
+                        <div class="form-group" style="margin-right: 15pt">
+                        {{> academicYear}}
+                        </div>
+                        <div class="form-group">
+                            <label for="month_select_general">Ай:</label>
+                            <select class="form-control" name="month_select_general" id="select">
+                                <option value="annual">Жылдық</option>
+                                <option value="09">Қыркүйек</option>
+                                <option value="10">Қазан</option>
+                                <option value="11" >Қараша</option>
+                                <option value="12" >Желтоқсан</option>
+                                <option value="01" >Қантар</option>
+                                <option value="02" >Ақпан</option>
+                                <option value="03" >Наурыз</option>
+                                <option value="04" >Сәуір</option>
+                                <option value="05" >Мамыр</option>
+                                <option value="06" >Маусым</option>
+                                <option value="07" >Шілде</option>
+                                <option value="08" >Тамыз</option>
+                            </select>
+                        </div>
+                    </div>
+            <table class="table table-striped">
+                <thead>
+                    <tr class="bts-header">
+                        <th>#</th>
+                        <th>Мектеп аты</th>
+                        <th style="text-align: center;">Тұлғалармен <br/> кездесу </th>
+                        <th style="text-align: center;">Іс-шаралар <br/> ұйымдастыру </th>
+                        <th style="text-align: center;">Жетілдіру <br/> семинары </th>
+                        <th style="text-align: center;">Мектеп <br/> іс-шаралары </th>
+                        <th style="text-align: center;">PBL </th>
+                        <th style="text-align: center;">Олимпиада </th>
+                        <th style="text-align: center;">ҰБТ </th>
+                        <th style="text-align: center;">Пән <br/> апталығы </th>
+                        <th style="text-align: center;">Сабақтарға <br/> қатысу </th>
+                        <th style="text-align: center;">Жалпы</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each allSchoolResults}}
+                    <tr>
+                        <td>{{math @index "+" 1}}</td>
+                        <td>{{schoolName schoolId}}</td>
+                        <td style="text-align: center;">{{meeting_points}}</td>
+                        <td style="text-align: center;">{{outdoor_event_points}}</td>
+                        <td style="text-align: center;">{{seminar_points}} </td>
+                        <td style="text-align: center;">{{indoorEvent_points}} </td>
+                        <td style="text-align: center;">{{pbl_points}} </td>
+                        <td style="text-align: center;">{{olympiad_points}}</td>
+                        <td style="text-align: center;">{{ubt_points}} </td>
+                        <td style="text-align: center;">{{subject_week_points}}</td>
+                        <td style="text-align: center;">{{admin_participate_points}}</td>
+                        <td style="text-align: center;">{{total_points}}</td>
+                        
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+        </div>
+            {{else}}
+            <p>Loading...</p>
+            {{/if}}
+        </div>
+    </div>
+    <script>
+    $(document).ready(function(){
+        $('[data-toggle="tooltip"]').tooltip({trigger: "hover"}); 
+    });
+    </script>
+</template>

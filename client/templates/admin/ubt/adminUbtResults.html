@@ -1,0 +1,123 @@
+<template name="adminUbtResults">
+    <div class="row">
+        <div class="col-md-12">
+            <h4 style="text-align: center; padding-bottom: 15pt">ҰБТ Нәтижелері</h4>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-inline">
+                        <div class="form-group" style="margin-right: 15pt">
+
+                          {{> academicYear}}
+                          <label style="margin-left: 10pt;">Мектепті таңдаңыз</label>
+                          <select class="form-control" style="width:150pt; margin-left: 10pt;" name="schoolId_select" id="select">
+                              <option value="">Select School</option>
+                              {{#each schools}}
+                                  <option value="{{schoolId}}" >{{shortName}}</option>
+                              {{/each}}
+                          </select>
+                        </div>
+
+                          <div class="form-group" style="float: right">
+                              <a class="btn btn-success" id="export">Export</a>
+                          </div>
+
+                    </div>
+                </div>
+            </div>
+
+            {{#if Template.subscriptionsReady}}
+            <div class="table table-responsive" id="out">
+            <table class="table table-striped table-bordered table-hover table-condensed" style="margin-top: 15pt" >
+                <thead>
+                    <tr class="bts-header">
+
+                        <th style="position: absolute; width: 200pt; background-color: white; text-align: center;">Аты - Жөні</th>
+                        <th style="padding-left: 205pt;">Сынып</th>
+                        <th style="white-space: nowrap">Орта балл</th>
+                        <th>ҰБТ1</th>
+                        <th>ҰБТ2</th>
+                        <th>ҰБТ3</th>
+                        <th>ҰБТ4</th>
+                        <th>ҰБТ5</th>
+                        <th>ҰБТ6</th>
+                        <th>ҰБТ7</th>
+                        <th>ҰБТ8</th>
+                        <th>ҰБТ9</th>
+                        <th>ҰБТ10</th>
+                        <th>ҰБТ11</th>
+                        <th>ҰБТ12</th>
+                        <th>ҰБТ13</th>
+                        <th>ҰБТ14</th>
+                        <th>ҰБТ15</th>
+                        <th>ҰБТ16</th>
+                        <th>ҰБТ17</th>
+                        <th>ҰБТ18</th>
+                        <th>ҰБТ19</th>
+                        <th>ҰБТ20</th>
+                        <th>ҰБТ21</th>
+                        <th>ҰБТ22</th>
+                        <th>ҰБТ23</th>
+                        <th>ҰБТ24</th>
+                        <th>ҰБТ25</th>
+                        <th>ҰБТ26</th>
+                        <th>ҰБТ27</th>
+                        <th>ҰБТ28</th>
+                        <th>ҰБТ29</th>
+                        <th>ҰБТ30</th>
+                        <th>ҰБТ31</th>
+                        <th>ҰБТ32</th>
+                        <th>ҰБТ33</th>
+                        <th>ҰБТ34</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each results}}
+                    <tr>
+                        <td style="position: absolute; width: 200pt; background-color: white">{{math @index "+" 1}}. {{name}} {{surname}}</td>
+                        <td style="padding-left: 205pt;text-align: center;">{{grade}}</td>
+                        <td style="text-align: center;">{{total}}</td>
+                        <td style="text-align: center;">{{ubt1}}</td>
+                        <td style="text-align: center;">{{ubt2}}</td>
+                        <td style="text-align: center;">{{ubt3}}</td>
+                        <td style="text-align: center;">{{ubt4}}</td>
+                        <td style="text-align: center;">{{ubt5}}</td>
+                        <td style="text-align: center;">{{ubt6}}</td>
+                        <td style="text-align: center;">{{ubt7}}</td>
+                        <td style="text-align: center;">{{ubt8}}</td>
+                        <td style="text-align: center;">{{ubt9}}</td>
+                        <td style="text-align: center;">{{ubt10}}</td>
+                        <td style="text-align: center;">{{ubt11}}</td>
+                        <td style="text-align: center;">{{ubt12}}</td>
+                        <td style="text-align: center;">{{ubt13}}</td>
+                        <td style="text-align: center;">{{ubt14}}</td>
+                        <td style="text-align: center;">{{ubt15}}</td>
+                        <td style="text-align: center;">{{ubt16}}</td>
+                        <td style="text-align: center;">{{ubt17}}</td>
+                        <td style="text-align: center;">{{ubt18}}</td>
+                        <td style="text-align: center;">{{ubt19}}</td>
+                        <td style="text-align: center;">{{ubt20}}</td>
+                        <td style="text-align: center;">{{ubt21}}</td>
+                        <td style="text-align: center;">{{ubt22}}</td>
+                        <td style="text-align: center;">{{ubt23}}</td>
+                        <td style="text-align: center;">{{ubt24}}</td>
+                        <td style="text-align: center;">{{ubt25}}</td>
+                        <td style="text-align: center;">{{ubt26}}</td>
+                        <td style="text-align: center;">{{ubt27}}</td>
+                        <td style="text-align: center;">{{ubt28}}</td>
+                        <td style="text-align: center;">{{ubt29}}</td>
+                        <td style="text-align: center;">{{ubt30}}</td>
+                        <td style="text-align: center;">{{ubt31}}</td>
+                        <td style="text-align: center;">{{ubt32}}</td>
+                        <td style="text-align: center;">{{ubt33}}</td>
+                        <td style="text-align: center;">{{ubt34}}</td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+            </div>
+            {{else}}
+            <p>Loading...</p>
+            {{/if}}
+        </div>
+    </div>
+</template>

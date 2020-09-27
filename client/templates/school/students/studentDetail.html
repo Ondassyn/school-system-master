@@ -1,0 +1,83 @@
+<template name="studentDetail">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            {{#if Template.subscriptionsReady}}
+              <h4>Оқушы өзгерту</h4>
+              <div class="form-group">
+                <label for="name">Аты</label>
+                <input type="text" class="form-control" placeholder="Аты" name="name" value={{student.name}}>
+              </div>
+              <div class="form-group">
+                <label for="surname">Жөні</label>
+                <input type="text" class="form-control" placeholder="Жөні" name="surname" value="{{student.surname}}">
+              </div>
+              <div class="form-group">
+                  <div class="form-inline">
+                      <div class="form-group">
+                          <label for="surname">Сыныбы:</label>
+                          <input type="text" class="form-control" placeholder="7" name="grade" value="{{student.grade}}">
+                          <label for="surname">Бөлімі:</label>
+                          <input type="text" class="form-control" placeholder="А" name="division" value="{{student.division}}">
+                      </div>
+                  </div>
+              </div>
+              <div class="form-group">
+                  <label for="surname">Тобы:</label>
+                  <select class="form-control" name="languageGroup">
+                    <option value="kaz" {{selector "languageGroup" "kaz"}}>Қазақ тобы</option>
+                    <option value="rus" {{selector "languageGroup" "rus"}}>Орыс тобы</option>
+                  </select>
+              </div>
+              <!-- adding elective course 1
+              <div class="form-group">
+                  <label for="surname">Elective 1:</label>
+                  <select class="form-control" name="elective1">
+                    <option value="02" {{selector "elective1" "02"}}>Физика</option>
+                    <option value="03" {{selector "elective1" "03"}}>Химия</option>
+                    <option value="04" {{selector "elective1" "04"}}>Биология</option>
+                    <option value="06" {{selector "elective1" "06"}}>География</option>
+                    <option value="07" {{selector "elective1" "07"}}>Дүние Тарихы</option>
+                    <option value="08" {{selector "elective1" "08"}}>Информатика</option>
+                  </select>
+              </div>
+              adding elective course 2
+              <div class="form-group">
+                  <label for="surname">Elective 2:</label>
+                  <select class="form-control" name="elective2">
+                    <option value="02" {{selector "elective2" "02"}}>Физика</option>
+                    <option value="03" {{selector "elective2" "03"}}>Химия</option>
+                    <option value="04" {{selector "elective2" "04"}}>Биология</option>
+                    <option value="06" {{selector "elective2" "06"}}>География</option>
+                    <option value="07" {{selector "elective2" "07"}}>Дүние Тарихы</option>
+                    <option value="08" {{selector "elective2" "08"}}>Информатика</option>
+                  </select>
+              </div>
+
+              <div class="form-group">
+                <label for="exampleSelect1">Олимпиада пәні</label>
+                <select class="form-control" name="olympiadSubject">
+                  <option value="free">-.-.-</option>
+                  {{#each subjects}}
+                      <option value="{{subjectId}}" {{selector "olympiad" subjectId}}>{{name}}</option>
+                  {{/each}}
+                </select>
+              </div>
+               -->
+              <div class="form-group">
+                  <div class="form-inline">
+                      <div class="form-group">
+                          <button class="btn btn-warning" id="transfer">Трансфер тізіміне қосу</button>
+                      </div>
+                      <div class="form-group">
+                          <button class="btn btn-primary" id="save">Сақтау</button>
+                      </div>
+
+                  </div>
+              </div>
+
+            {{else}}
+            <p>Loading...</p>
+            {{/if}}
+        </div>
+    </div>
+</template>

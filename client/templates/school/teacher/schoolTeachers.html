@@ -1,0 +1,65 @@
+<template name="schoolTeachers">
+    <div class="row">
+        <div class="col-md-12">
+            <h4 style="text-align: center;">Мұғалімдер тізімі</h4>
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="form-inline">
+                        <div class="form-group">
+                            <label for="schoolId">Іздеу:</label>
+                            <input type="text" class="form-control" id="search" placeholder="Аты" name="name_search">
+                            <input type="text" class="form-control" id="search" placeholder="Жөні" name="surname_search">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {{#if Template.subscriptionsReady}}
+            <table style="margin-top: 15pt" class="table table-striped">
+                <thead>
+                    <tr class="bts-header">
+                        <th>#</th>
+                        <th>Мұғалім ID</th>
+                        <th>Аты-жөні</th>
+                        <th>Пәні</th>
+                        <th>Лауазымы</th>
+                        <th style="text-align: center">Академ дәреже</th>
+                        <th style="text-align: center">Тәжірибе</th>
+                        <th style="text-align: center">Категория</th>
+                        <th style="text-align: center">IELTS</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each teachers}}
+                    <tr>
+                        <td>{{math @index "+" 1}}</td>
+                        <td>{{teacherId}}</td>
+                        <td>{{surname}} {{name}}</td>
+                        <td>{{subjectName subjectId}}</td>
+                        <th>{{position}}</th>
+                        <td style="text-align: center">{{academicDegree }}</td>
+                        <td style="text-align: center">{{workExperience}}</td>
+                        <td style="text-align: center">{{category}}</td>
+                        <td style="text-align: center">{{ielts }}</td>
+                        <!-- <a href='/school/teacher/edit/{{_id}}' class="btn btn-primary btn-sm" style="float:right">Өзгерту</a> -->
+
+                        <td class="btn-group" role="group" style="width: 80pt; float: right">
+                        <a href="#" for="btn1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        
+                        <span style="font-size: 30px" class="glyphicon glyphicon-option-horizontal"></span>
+                        </a>
+                            <ul class="dropdown-menu" id="btn1">
+                              <li><a href="/school/teacher/edit/{{_id}}">Өзгерту</a></li>
+                              <li><a href="#" id='transfer'>Трансферге қосу</a></li>
+                            </ul>
+                        </td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+            {{else}}
+            <p>Loading...</p>
+            {{/if}}
+        </div>
+    </div>
+</template>

@@ -1,0 +1,107 @@
+<template name="opeResults">
+    <div class="row">
+        <div class="col-md-12">
+            <h4 style="text-align: center; padding-bottom: 15pt">OPE Нәтижелері</h4>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-inline">
+                        <div class="form-group" style="margin-right: 15pt">
+                        {{> academicYear}}
+
+                        <label for="" style="margin-left: 10pt; ">Пән</label>
+                        <select class="form-control" id="subjectId">
+                            <option value="01">Алгебра</option>
+                            <option value="02">Физика</option>
+                            <option value="03">Химия</option>
+                            <option value="04">Биология</option>
+                            <option value="05">Ағылшын тілі</option>
+                            <option value="06">География</option>
+                            <option value="08">Информатика</option>
+                            <option value="09">Қазақ тілі</option>
+                            <option value="10">Түрік тілі</option>
+                            <option value="11">Орыс тілі</option>
+                            <option value="12">Қазақстан тарихы</option>
+                            <option value="23">Дене шынықтыру</option>
+                        </select>
+
+                        <label for="" style="margin-left: 10pt; ">Сынып</label>
+                        <select class="form-control" id="grade">
+                            <option value="7">7 сынып</option>
+                            <option value="8">8 сынып</option>
+                            <option value="9">9 сынып</option>
+                            <option value="10">10 сынып</option>
+                            <option value="11">11 сынып</option>
+                        </select>
+
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            {{#if Template.subscriptionsReady}}
+
+            <table style="margin-top: 15pt" class="table table-striped">
+                <thead>
+                    <tr class="bts-header">
+                        <th>#</th>
+                        <th>Сынып</th>
+                        <th>Аты-жөні</th>
+                        <th style="text-align: center">OPE<br>16.11 - 30.11</th>
+                        <th style="text-align: center">OPE<br>30.11 - 14.12</th>
+                        <th style="text-align: center">OPE<br>14.12 - 28.12</th>
+                        <th style="text-align: center">OPE<br>28.12 - 11.01</th>
+                        <th style="text-align: center">OPE<br>11.01 - 25.01</th>
+                        <th style="text-align: center">OPE<br>25.01 - 08.02</th>
+
+                        <th>Average</th>
+                    </tr>
+                </thead>
+                <tbody>
+                  {{#each students}}
+
+                    <tr>
+                      <td>{{math @index "+" 1}}</td>
+                      <td>{{grade}} {{division}}</td>
+                      <td>{{surname}} {{name}} </td>
+
+                    {{#if editing}}
+
+                        <td style="text-align: center"><input type="text" style="width: 30pt" id="editOpe1" value="{{ope studentId '1'}}"></td>
+                        <td style="text-align: center"><input type="text" style="width: 30pt" id="editOpe2" value="{{ope studentId '2'}}"></td>
+                        <td style="text-align: center"><input type="text" style="width: 30pt" id="editOpe3" value="{{ope studentId '3'}}"></td>
+                        <td style="text-align: center"><input type="text" style="width: 30pt" id="editOpe4" value="{{ope studentId '4'}}"></td>
+                        <td style="text-align: center"><input type="text" style="width: 30pt" id="editOpe5" value="{{ope studentId '5'}}"></td>
+                        <td style="text-align: center"><input type="text" style="width: 30pt" id="editOpe6" value="{{ope studentId '6'}}"></td>
+                        <td style="text-align: center">{{average studentId}}</td>
+                        <td>
+                          <button class="saveItem btn btn-success">Save</button>
+                          <button class="cancelItem btn btn-default">Cancel</button>
+                        </td>
+
+                    {{else}}
+
+                        <td style="text-align: center">{{ope studentId "1"}}</td>
+                        <td style="text-align: center">{{ope studentId "2"}}</td>
+                        <td style="text-align: center">{{ope studentId "3"}}</td>
+                        <td style="text-align: center">{{ope studentId "4"}}</td>
+                        <td style="text-align: center">{{ope studentId "5"}}</td>
+                        <td style="text-align: center">{{ope studentId "6"}}</td>
+                        <td style="text-align: center">{{average studentId}}</td>
+                        <!-- <td>{{ope1 studentId}}</td> -->
+                        <td><button class="editItem btn btn-primary">Edit</button>
+                        </td>
+
+                    {{/if}}
+                    </tr>
+                  {{/each}}
+
+                </tbody>
+            </table>
+
+            {{else}}
+            <p>Loading...</p>
+            {{/if}}
+        </div>
+    </div>
+</template>

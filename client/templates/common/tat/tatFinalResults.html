@@ -1,0 +1,60 @@
+<template name="tatFinalResults">
+    <div class="row">
+        <div class="col-md-12">
+            <h4 style='text-align: center'>ТАТ Жалпы</h4>
+            <div class="row">
+                    {{> academicYear}}
+                    <select class="subjectId">
+                        <option value="01">Алгебра</option>
+                        <option value="02">Физика</option>
+                        <option value="03">Химия</option>
+                        <option value="04">Биология</option>
+                        <option value="05">Ағылшын тілі</option>
+                        <option value="06">География</option>
+                        <option value="08">Информатика</option>
+                        <option value="09">Қазақ тілі</option>
+                        <option value="10">Түрік тілі</option>
+                        <option value="11">Орыс тілі</option>
+                        <option value="12">Қазақстан тарихы</option>
+                        <option value="23">Дене шынықтыру</option>
+                        <option value="28">Бастауыш</option>
+                    </select>
+            </div>
+            {{#if Template.subscriptionsReady}}
+            <table class="table table-striped">
+                <thead>
+                    <tr class="bts-header">
+                        <th>#</th>
+                        <th>Мектеп ID</th>
+                        <th>Мектеп аты</th>
+                        <th>Мұғалім ID</th>
+                        <th>Аты</th>
+                        <th>Жөні</th>
+                        <th>TAT-1</th>
+                        <th>TAT-2</th>
+                        <th>Нәтиже</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each results}}
+                    <tr>
+                        <td>{{math @index "+" 1}}</td>
+                        <td>{{schoolId}}</td>
+                        <td>{{schoolName schoolId}}</td>
+                        <td>{{teacherId}}</td>
+                        <td>{{name}}</td>
+                        <td>{{surname}}</td>
+                        <td>{{tat1}}</td>
+                        <td>{{tat2}}</td>
+                        <td>{{round 2 total}}</td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+            {{else}}
+            <p>Loading...</p>
+            {{/if}}
+        </div>
+    </div>
+
+</template>

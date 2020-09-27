@@ -1,0 +1,249 @@
+<template name="gSchoolSettings">
+
+      {{#if isAdmin}}
+      <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+              <h4>Жаңа қонақ мектеп қосу</h4>
+              <table>
+
+                <tr>
+                    <td style="width: 100pt"><label>ID:</label></td>
+                    <td style="width: 300pt"><input type="text" class="form-control" placeholder="3 таңбалы ID" name="schoolId"></td>
+                </tr>
+
+                <tr>
+                    <td style="width: 100pt"><label>Мектеп аты:</label></td>
+                    <td style="width: 300pt"><input type="text" class="form-control" placeholder="Мектеп атауы" name="schoolName"></td>
+                    <td> </td>
+                </tr>
+
+                <tr><td> <button id="addNew" class="btn btn-success">Қосу</button></td></tr>
+
+              </table>
+            </div>
+        </div>
+
+        <div style="padding-top: 30pt" class="row">
+          <div class="col-md-8">
+            <h4 style="text-align: center;" >Құпия сөзін жаңарту</h4>
+
+            {{#if Template.subscriptionsReady}}
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Мектеп аты</th>
+                        <th>Құпиясөз</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each guestSchools}}
+                      {{#if editingSchoolAccount}}
+                        <tr style="border-top: 2px solid black; border-left: 2px solid black; border-right: 2px solid black">
+                            <td>{{schoolId}}</td>
+                            <td>{{gSchoolName}}</td>
+                            <td id="editSchoolAccountClose">
+                                <button class="btn btn-warning">Жабу</button>
+                            </td>
+                        </tr>
+
+                        <tr style="background: white; border-left: 2px solid black; border-right: 2px solid black">
+                          <td><label>{{schoolAccount}}<br>{{schoolPassword}} </label></td>
+                          <td><input id="editSchoolPassword" name="{{schoolId}}" type="text" class="form-control" placeholder="enter new password"></td>
+                          <td><button class="btn btn-success" id="saveSchoolAccount">Сақтау</button></td>
+                        </tr>
+
+                      {{else}}
+
+                        <tr>
+                          <td>{{schoolId}}</td>
+                          <td>{{gSchoolName}}</td>
+                          <!-- <td id="resetpassword"><button class="btn btn-warning">Жаңарту</button></td> -->
+
+                          <td id="editSchoolAccount">
+                              <button class="btn btn-warning">Баптау</button>
+                          </td>
+                      </tr>
+                      {{/if}}
+
+                    {{/each}}
+                </tbody>
+            </table>
+            {{else}}
+            <p>Loading...</p>
+            {{/if}}
+        </div>
+
+        <div class="col-md-3">
+            <h4 style="text-align: center;">Жүктеу</h4>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Емтихан</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                          <td>TAT-1</td>
+                          <td>
+                          <select style="width: 100pt; float: right;" class="form-control" name="tat1" id="tat1">
+                              <option value="enabled" {{selected "tatUpload" "1" "enabled"}}>Ашық</option>
+                              <option value="disabled" {{selected "tatUpload" "1" "disabled"}}>Жабық</option>
+                          </select>
+                          </td>
+                      </tr>
+
+                      <tr>
+                          <td>TAT-2</td>
+                          <td>
+                          <select style="width: 100pt; float: right;" class="form-control" name="tat2" id="tat2">
+                              <option value="enabled" {{selected "tatUpload" "2" "enabled"}}>Ашық</option>
+                              <option value="disabled" {{selected "tatUpload" "2" "disabled"}}>Жабық</option>
+                          </select>
+                          </td>
+                      </tr>
+                      <!--
+                        <tr>
+                            <td>БТС-1</td>
+                            <td>
+                                <select style="width: 100pt; float: right;" class="form-control" name="bts1" id="bts1">
+                                    <option value="enabled" {{selected "btsUpload" "1" "enabled"}}>Ашық</option>
+                                    <option value="disabled" {{selected "btsUpload" "1" "disabled"}}>Жабық</option>
+                                </select>
+                            </td>
+                            <td id="reCalcTotalRating1"><button class="btn btn-primary">BTC1 Rating</button></td>
+                            <td id="reCalcSubjectRating1"><button class="btn btn-primary">BTC1 subject Rating</button></td>
+                        </tr>
+                        <tr>
+                            <td>БТС-2</td>
+                            <td>
+                                <select style="width: 100pt; float: right;" class="form-control" name="bts2" id="bts2">
+                                    <option value="enabled" {{selected "btsUpload" "2" "enabled"}}>Ашық</option>
+                                    <option value="disabled" {{selected "btsUpload" "2" "disabled"}}>Жабық</option>
+                                </select>
+                            </td>
+
+                            <td id="reCalcSubjectRating2"><button class="btn btn-primary">BTC2 subject Rating</button></td>
+                            <td id="reCalcTotalRating2"><button class="btn btn-primary">BTC2 Total Rating</button></td>
+
+                        </tr>
+                        <tr>
+                            <td>БТС-3</td>
+                            <td>
+                                <select style="width: 100pt; float: right;" class="form-control" name="bts3" id="bts3">
+                                    <option value="enabled" {{selected "btsUpload" "3" "enabled"}}>Ашық</option>
+                                    <option value="disabled" {{selected "btsUpload" "3" "disabled"}}>Жабық</option>
+                                </select>
+                            </td>
+                            <td id="reCalcTotalRating3"><button class="btn btn-primary">BTC3 Rating</button></td>
+                        </tr>
+                        <tr>
+                            <td>БТС-4</td>
+                            <td>
+                                <select style="width: 100pt; float: right;" class="form-control" name="bts4" id="bts4">
+                                    <option value="enabled" {{selected "btsUpload" "4" "enabled"}}>Ашық</option>
+                                    <option value="disabled" {{selected "btsUpload" "4" "disabled"}}>Жабық</option>
+                                </select>
+                            </td>
+                            <td id="reCalcTotalRating4"><button class="btn btn-primary">BTC4 Rating</button></td>
+                        </tr>
+                        <tr><td></td><td></td></tr>
+                        <tr>
+                            <td>КБО-1</td>
+                            <td>
+                            <select style="width: 100pt; float: right;" class="form-control" name="kbo1" id="kbo1">
+                                <option value="enabled" {{selected "kboUpload" "1" "enabled"}}>Ашық</option>
+                                <option value="disabled" {{selected "kboUpload" "1" "disabled"}}>Жабық</option>
+                            </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>КБО-2</td>
+                            <td>
+                            <select style="width: 100pt; float: right;" class="form-control" name="kbo2" id="kbo2">
+                                <option value="enabled" {{selected "kboUpload" "2" "enabled"}}>Ашық</option>
+                                <option value="disabled" {{selected "kboUpload" "2" "disabled"}}>Жабық</option>
+                            </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>КБО-3</td>
+                            <td>
+                            <select style="width: 100pt; float: right;" class="form-control" name="kbo3" id="kbo3">
+                                <option value="enabled" {{selected "kboUpload" "3" "enabled"}}>Ашық</option>
+                                <option value="disabled" {{selected "kboUpload" "3" "disabled"}}>Жабық</option>
+                            </select>
+                            </td>
+                        </tr>
+                        <tr><td></td><td></td></tr>
+
+
+
+                        <tr><td></td><td></td></tr>
+
+                        <tr>
+                            <td>KET-PET 2 тоқсан</td>
+                            <td>
+                            <select style="width: 100pt; float: right;" class="form-control" name="ketPet2" id="ketPet2">
+                                <option value="enabled" {{selected "ketPetUpload" "2" "enabled"}}>Ашық</option>
+                                <option value="disabled" {{selected "ketPetUpload" "2" "disabled"}}>Жабық</option>
+                            </select>
+                            </td>
+                            <td id="totalKetPetRating"><button class="btn btn-primary">Total Rating</button></td>
+                        </tr>
+
+                        <tr>
+                            <td>KET-PET 4 тоқсан</td>
+                            <td>
+                            <select style="width: 100pt; float: right;" class="form-control" name="ketPet4" id="ketPet4">
+                                <option value="enabled" {{selected "ketPetUpload" "4" "enabled"}}>Ашық</option>
+                                <option value="disabled" {{selected "ketPetUpload" "4" "disabled"}}>Жабық</option>
+                            </select>
+                            </td>
+
+                            <td id="reCalc"><button class="btn btn-primary">UBT Rating calc</button></td>
+                        </tr>
+
+                        <tr><td></td><td></td></tr>
+
+                        <tr>
+                            <td>OPE report</td>
+                            <td>
+                            <select style="width: 100pt; float: right;" class="form-control" name="ope" id="opePeriod">
+                                <option value="16.11 - 30.11">16.11 - 30.11</option>
+                                <option value="30.11 - 14.12">30.11 - 14.12</option>
+                                <option value="14.12 - 28.12">14.12 - 28.12</option>
+                                <option value="28.12 - 11.01">28.12 - 11.01</option>
+                                <option value="11.01 - 25.01">11.01 - 25.01</option>
+                                <option value="25.01 - 08.02">25.01 - 08.02</option>
+                                <option value="08.01 - 22.02">08.01 - 22.02</option>
+                                <option value="22.02 - 07.03">22.02 - 07.03</option>
+                            </select>
+                            </td>
+
+                            <td>
+
+                            <select style="width: 100pt; float: right;" class="form-control" id="opePeriodPermission">
+                                {{#if selectedPeriod}}
+                                  <option value="enabled" selected>Ашық</option>
+                                  <option value="disabled" >Жабық</option>
+                                {{else}}
+                                  <option value="enabled">Ашық</option>
+                                  <option value="disabled" selected>Жабық</option>
+                                {{/if}}
+                            </select>
+                            </td>
+
+                        </tr>
+                        -->
+
+                    </tbody>
+                </table>
+        </div>
+    </div>
+    </div> <!-- /container -->
+    {{else}}
+        <h4>not found</h4>
+    {{/if}}
+</template>

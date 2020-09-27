@@ -1,0 +1,1185 @@
+<template name="btsStudentResults">
+    <div class="container-fluid">
+    {{#if Template.subscriptionsReady}}
+        <h4 style="text-align: center;padding-bottom: 3%">БТС-{{btsNo}}</h4>
+            <div class="col-md-12" style="padding-bottom: 5%">
+                <div>
+                <label style="padding-right: 99pt">Аты:</label><label>{{results.name}}</label>
+                </div>
+                <div>
+                <label style="padding-right: 93pt">Жөні:</label><label>{{results.surname}}</label>
+                </div>
+                <div>
+                <label style="padding-right: 82pt">Сынып:</label><label>{{results.grade}}{{results.division}}</label>
+                </div>
+                <div>
+                <label style="padding-right: 91pt">Тобы:</label><label>{{results.languageGroup}}</label>
+                </div>
+                <div>
+                <label style="padding-right: 108pt">ID:</label><label>{{results.studentId}}</label>
+                </div>
+                <div>
+                <label style="padding-right: 45pt">Вариант 1 күн:</label><label>{{results.variant_day_1}}</label>
+                </div>
+                <div>
+                <label style="padding-right: 45pt">Вариант 2 күн:</label><label>{{results.variant_day_2}}</label>
+                </div>
+                <div>
+                <label style="padding-right: 80pt">Жалпы:</label><label>{{results.total}}</label>
+                </div>
+            </div>    
+        
+            <div class="form-inline">
+                <label>Күн: </label>
+                <select class="form-control" name='day' id='select'>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                </select>
+            </div>
+
+            
+            {{#if dayOne}}
+
+            <h5 style="text-align: center;">Алгебра</h5>
+            <h5 style="text-align: center;">{{results.algebra}} ұпай</h5>
+            <div class="table-responsive" style="background-color: #f8f8f8">  
+
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="text-align: center;"></th>
+                    <th style="text-align: center;">1</th>
+                    <th style="text-align: center;">2</th>
+                    <th style="text-align: center;">3</th>
+                    <th style="text-align: center;">4</th>
+                    <th style="text-align: center;">5</th>
+                    <th style="text-align: center;">6</th>
+                    <th style="text-align: center;">7</th>
+                    <th style="text-align: center;">8</th>
+                    <th style="text-align: center;">9</th>
+                    <th style="text-align: center;">10</th>
+                    <th style="text-align: center;">11</th>
+                    <th style="text-align: center;">12</th>
+                    <th style="text-align: center;">13</th>
+                    <th style="text-align: center;">14</th>
+                    <th style="text-align: center;">15</th>                    
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr class="success">
+                    
+                    <td>True</td>
+                    <td style="text-align: center;">{{answerAlgebraKeys.first}}</td>
+                    <td style="text-align: center;">{{answerAlgebraKeys.second}}</td>
+                    <td style="text-align: center;">{{answerAlgebraKeys.third}}</td>
+                    <td style="text-align: center;">{{answerAlgebraKeys.fourth}}</td>
+                    <td style="text-align: center;">{{answerAlgebraKeys.fifth}}</td>
+                    <td style="text-align: center;">{{answerAlgebraKeys.sixth}}</td>
+                    <td style="text-align: center;">{{answerAlgebraKeys.seventh}}</td>
+                    <td style="text-align: center;">{{answerAlgebraKeys.eighth}}</td>
+                    <td style="text-align: center;">{{answerAlgebraKeys.ninth}}</td>
+                    <td style="text-align: center;">{{answerAlgebraKeys.tenth}}</td>
+                    <td style="text-align: center;">{{answerAlgebraKeys.eleven}}</td>
+                    <td style="text-align: center;">{{answerAlgebraKeys.twelve}}</td>
+                    <td style="text-align: center;">{{answerAlgebraKeys.thirteen}}</td>
+                    <td style="text-align: center;">{{answerAlgebraKeys.fourteen}}</td>
+                    <td style="text-align: center;">{{answerAlgebraKeys.fifteen}}</td>                                        
+                  </tr>
+                  <tr class="warning">
+            
+                    <td>Yours</td>
+                    <td style="text-align: center;">{{studentAlgebraKeys.first}}</td>
+                    <td style="text-align: center;">{{studentAlgebraKeys.second}}</td>
+                    <td style="text-align: center;">{{studentAlgebraKeys.third}}</td>
+                    <td style="text-align: center;">{{studentAlgebraKeys.fourth}}</td>
+                    <td style="text-align: center;">{{studentAlgebraKeys.fifth}}</td>
+                    <td style="text-align: center;">{{studentAlgebraKeys.sixth}}</td>
+                    <td style="text-align: center;">{{studentAlgebraKeys.seventh}}</td>
+                    <td style="text-align: center;">{{studentAlgebraKeys.eighth}}</td>
+                    <td style="text-align: center;">{{studentAlgebraKeys.ninth}}</td>
+                    <td style="text-align: center;">{{studentAlgebraKeys.tenth}}</td>
+                    <td style="text-align: center;">{{studentAlgebraKeys.eleven}}</td>
+                    <td style="text-align: center;">{{studentAlgebraKeys.twelve}}</td>
+                    <td style="text-align: center;">{{studentAlgebraKeys.thirteen}}</td>
+                    <td style="text-align: center;">{{studentAlgebraKeys.fourteen}}</td>
+                    <td style="text-align: center;">{{studentAlgebraKeys.fifteen}}</td>
+                    
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <h5 style="text-align: center;">Геометрия</h5>
+            <h5 style="text-align: center;">{{results.geometry}} ұпай</h5>
+            <div class="table-responsive" style="background-color: #f8f8f8">  
+
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="text-align: center;"></th>
+                    <th style="text-align: center;">1</th>
+                    <th style="text-align: center;">2</th>
+                    <th style="text-align: center;">3</th>
+                    <th style="text-align: center;">4</th>
+                    <th style="text-align: center;">5</th>                    
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr class="success">
+                    
+                    <td>True</td>
+                    <td style="text-align: center;">{{answerGeometryKeys.first}}</td>
+                    <td style="text-align: center;">{{answerGeometryKeys.second}}</td>
+                    <td style="text-align: center;">{{answerGeometryKeys.third}}</td>
+                    <td style="text-align: center;">{{answerGeometryKeys.fourth}}</td>
+                    <td style="text-align: center;">{{answerGeometryKeys.fifth}}</td>                                       
+                  </tr>
+                  <tr class="warning">
+            
+                    <td>Yours</td>
+                    <td style="text-align: center;">{{studentGeometryKeys.first}}</td>
+                    <td style="text-align: center;">{{studentGeometryKeys.second}}</td>
+                    <td style="text-align: center;">{{studentGeometryKeys.third}}</td>
+                    <td style="text-align: center;">{{studentGeometryKeys.fourth}}</td>
+                    <td style="text-align: center;">{{studentGeometryKeys.fifth}}</td>               
+                    
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <h5 style="text-align: center;">Қазақ тілі</h5>
+            <h5 style="text-align: center;">{{results.kazakh}} ұпай</h5>
+            <div class="table-responsive" style="background-color: #f8f8f8">  
+
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="text-align: center;"></th>
+                    <th style="text-align: center;">1</th>
+                    <th style="text-align: center;">2</th>
+                    <th style="text-align: center;">3</th>
+                    <th style="text-align: center;">4</th>
+                    <th style="text-align: center;">5</th>
+                    <th style="text-align: center;">6</th>
+                    <th style="text-align: center;">7</th>
+                    <th style="text-align: center;">8</th>
+                    <th style="text-align: center;">9</th>
+                    <th style="text-align: center;">10</th>
+                    <th style="text-align: center;">11</th>
+                    <th style="text-align: center;">12</th>
+                    <th style="text-align: center;">13</th>
+                    <th style="text-align: center;">14</th>
+                    <th style="text-align: center;">15</th>
+                    <th style="text-align: center;">16</th>
+                    <th style="text-align: center;">17</th>
+                    <th style="text-align: center;">18</th>
+                    <th style="text-align: center;">19</th>
+                    <th style="text-align: center;">20</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr class="success">
+                    
+                    <td>True</td>
+                    <td style="text-align: center;">{{answerKazakhKeys.first}}</td>
+                    <td style="text-align: center;">{{answerKazakhKeys.second}}</td>
+                    <td style="text-align: center;">{{answerKazakhKeys.third}}</td>
+                    <td style="text-align: center;">{{answerKazakhKeys.fourth}}</td>
+                    <td style="text-align: center;">{{answerKazakhKeys.fifth}}</td>
+                    <td style="text-align: center;">{{answerKazakhKeys.sixth}}</td>
+                    <td style="text-align: center;">{{answerKazakhKeys.seventh}}</td>
+                    <td style="text-align: center;">{{answerKazakhKeys.eighth}}</td>
+                    <td style="text-align: center;">{{answerKazakhKeys.ninth}}</td>
+                    <td style="text-align: center;">{{answerKazakhKeys.tenth}}</td>
+                    <td style="text-align: center;">{{answerKazakhKeys.eleven}}</td>
+                    <td style="text-align: center;">{{answerKazakhKeys.twelve}}</td>
+                    <td style="text-align: center;">{{answerKazakhKeys.thirteen}}</td>
+                    <td style="text-align: center;">{{answerKazakhKeys.fourteen}}</td>
+                    <td style="text-align: center;">{{answerKazakhKeys.fifteen}}</td>
+                    <td style="text-align: center;">{{answerKazakhKeys.sixteen}}</td>
+                    <td style="text-align: center;">{{answerKazakhKeys.seventeen}}</td>
+                    <td style="text-align: center;">{{answerKazakhKeys.eighteen}}</td>
+                    <td style="text-align: center;">{{answerKazakhKeys.nineteen}}</td>
+                    <td style="text-align: center;">{{answerKazakhKeys.twenty}}</td>
+                    
+                  </tr>
+                  <tr class="warning">
+            
+                    <td>Yours</td>
+                    <td style="text-align: center;">{{studentKazakhKeys.first}}</td>
+                    <td style="text-align: center;">{{studentKazakhKeys.second}}</td>
+                    <td style="text-align: center;">{{studentKazakhKeys.third}}</td>
+                    <td style="text-align: center;">{{studentKazakhKeys.fourth}}</td>
+                    <td style="text-align: center;">{{studentKazakhKeys.fifth}}</td>
+                    <td style="text-align: center;">{{studentKazakhKeys.sixth}}</td>
+                    <td style="text-align: center;">{{studentKazakhKeys.seventh}}</td>
+                    <td style="text-align: center;">{{studentKazakhKeys.eighth}}</td>
+                    <td style="text-align: center;">{{studentKazakhKeys.ninth}}</td>
+                    <td style="text-align: center;">{{studentKazakhKeys.tenth}}</td>
+                    <td style="text-align: center;">{{studentKazakhKeys.eleven}}</td>
+                    <td style="text-align: center;">{{studentKazakhKeys.twelve}}</td>
+                    <td style="text-align: center;">{{studentKazakhKeys.thirteen}}</td>
+                    <td style="text-align: center;">{{studentKazakhKeys.fourteen}}</td>
+                    <td style="text-align: center;">{{studentKazakhKeys.fifteen}}</td>
+                    <td style="text-align: center;">{{studentKazakhKeys.sixteen}}</td>
+                    <td style="text-align: center;">{{studentKazakhKeys.seventeen}}</td>
+                    <td style="text-align: center;">{{studentKazakhKeys.eighteen}}</td>
+                    <td style="text-align: center;">{{studentKazakhKeys.nineteen}}</td>
+                    <td style="text-align: center;">{{studentKazakhKeys.twenty}}</td>
+                    
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <h5 style="text-align: center;">Ағылшын тілі</h5>
+            <h5 style="text-align: center;">{{results.english}} ұпай</h5>
+            <div class="table-responsive" style="background-color: #f8f8f8">  
+
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="text-align: center;"></th>
+                    <th style="text-align: center;">1</th>
+                    <th style="text-align: center;">2</th>
+                    <th style="text-align: center;">3</th>
+                    <th style="text-align: center;">4</th>
+                    <th style="text-align: center;">5</th>
+                    <th style="text-align: center;">6</th>
+                    <th style="text-align: center;">7</th>
+                    <th style="text-align: center;">8</th>
+                    <th style="text-align: center;">9</th>
+                    <th style="text-align: center;">10</th>
+                    
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr class="success">
+                    
+                    <td>True</td>
+                    <td style="text-align: center;">{{answerEnglishKeys.first}}</td>
+                    <td style="text-align: center;">{{answerEnglishKeys.second}}</td>
+                    <td style="text-align: center;">{{answerEnglishKeys.third}}</td>
+                    <td style="text-align: center;">{{answerEnglishKeys.fourth}}</td>
+                    <td style="text-align: center;">{{answerEnglishKeys.fifth}}</td>
+                    <td style="text-align: center;">{{answerEnglishKeys.sixth}}</td>
+                    <td style="text-align: center;">{{answerEnglishKeys.seventh}}</td>
+                    <td style="text-align: center;">{{answerEnglishKeys.eighth}}</td>
+                    <td style="text-align: center;">{{answerEnglishKeys.ninth}}</td>
+                    <td style="text-align: center;">{{answerEnglishKeys.tenth}}</td>                   
+                  </tr>
+                  <tr class="warning">
+            
+                    <td>Yours</td>
+                    <td style="text-align: center;">{{studentEnglishKeys.first}}</td>
+                    <td style="text-align: center;">{{studentEnglishKeys.second}}</td>
+                    <td style="text-align: center;">{{studentEnglishKeys.third}}</td>
+                    <td style="text-align: center;">{{studentEnglishKeys.fourth}}</td>
+                    <td style="text-align: center;">{{studentEnglishKeys.fifth}}</td>
+                    <td style="text-align: center;">{{studentEnglishKeys.sixth}}</td>
+                    <td style="text-align: center;">{{studentEnglishKeys.seventh}}</td>
+                    <td style="text-align: center;">{{studentEnglishKeys.eighth}}</td>
+                    <td style="text-align: center;">{{studentEnglishKeys.ninth}}</td>
+                    <td style="text-align: center;">{{studentEnglishKeys.tenth}}</td>                    
+                  </tr>
+                </tbody>
+              </table>
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="text-align: center;"></th>
+                    <th style="text-align: center;">11</th>
+                    <th style="text-align: center;">12</th>
+                    <th style="text-align: center;">13</th>
+                    <th style="text-align: center;">14</th>
+                    <th style="text-align: center;">15</th>
+                    <th style="text-align: center;">16</th>
+                    <th style="text-align: center;">17</th>
+                    <th style="text-align: center;">18</th>
+                    <th style="text-align: center;">19</th>
+                    <th style="text-align: center;">20</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr class="success">
+                    
+                    <td>True</td>
+                    <td style="text-align: center;">{{answerEnglishKeys.eleven}}</td>
+                    <td style="text-align: center;">{{answerEnglishKeys.twelve}}</td>
+                    <td style="text-align: center;">{{answerEnglishKeys.thirteen}}</td>
+                    <td style="text-align: center;">{{answerEnglishKeys.fourteen}}</td>
+                    <td style="text-align: center;">{{answerEnglishKeys.fifteen}}</td>
+                    <td style="text-align: center;">{{answerEnglishKeys.sixteen}}</td>
+                    <td style="text-align: center;">{{answerEnglishKeys.seventeen}}</td>
+                    <td style="text-align: center;">{{answerEnglishKeys.eighteen}}</td>
+                    <td style="text-align: center;">{{answerEnglishKeys.nineteen}}</td>
+                    <td style="text-align: center;">{{answerEnglishKeys.twenty}}</td>
+                    
+                  </tr>
+                  <tr class="warning">
+            
+                    <td>Yours</td>
+                    <td style="text-align: center;">{{studentEnglishKeys.eleven}}</td>
+                    <td style="text-align: center;">{{studentEnglishKeys.twelve}}</td>
+                    <td style="text-align: center;">{{studentEnglishKeys.thirteen}}</td>
+                    <td style="text-align: center;">{{studentEnglishKeys.fourteen}}</td>
+                    <td style="text-align: center;">{{studentEnglishKeys.fifteen}}</td>
+                    <td style="text-align: center;">{{studentEnglishKeys.sixteen}}</td>
+                    <td style="text-align: center;">{{studentEnglishKeys.seventeen}}</td>
+                    <td style="text-align: center;">{{studentEnglishKeys.eighteen}}</td>
+                    <td style="text-align: center;">{{studentEnglishKeys.nineteen}}</td>
+                    <td style="text-align: center;">{{studentEnglishKeys.twenty}}</td>
+                    
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <h5 style="text-align: center;">Қазақстан тарихы</h5>
+            <h5 style="text-align: center;">{{results.kazakh_history}} ұпай</h5>
+            <div class="table-responsive" style="background-color: #f8f8f8">  
+
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="text-align: center;"></th>
+                    <th style="text-align: center;">1</th>
+                    <th style="text-align: center;">2</th>
+                    <th style="text-align: center;">3</th>
+                    <th style="text-align: center;">4</th>
+                    <th style="text-align: center;">5</th>
+                    <th style="text-align: center;">6</th>
+                    <th style="text-align: center;">7</th>
+                    <th style="text-align: center;">8</th>
+                    <th style="text-align: center;">9</th>
+                    <th style="text-align: center;">10</th>
+                    <th style="text-align: center;">11</th>
+                    <th style="text-align: center;">12</th>
+                    <th style="text-align: center;">13</th>
+                    <th style="text-align: center;">14</th>
+                    <th style="text-align: center;">15</th>
+                    <th style="text-align: center;">16</th>
+                    <th style="text-align: center;">17</th>
+                    <th style="text-align: center;">18</th>
+                    <th style="text-align: center;">19</th>
+                    <th style="text-align: center;">20</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr class="success">
+                    
+                    <td>True</td>
+                    <td style="text-align: center;">{{answerKazHistoryKeys.first}}</td>
+                    <td style="text-align: center;">{{answerKazHistoryKeys.second}}</td>
+                    <td style="text-align: center;">{{answerKazHistoryKeys.third}}</td>
+                    <td style="text-align: center;">{{answerKazHistoryKeys.fourth}}</td>
+                    <td style="text-align: center;">{{answerKazHistoryKeys.fifth}}</td>
+                    <td style="text-align: center;">{{answerKazHistoryKeys.sixth}}</td>
+                    <td style="text-align: center;">{{answerKazHistoryKeys.seventh}}</td>
+                    <td style="text-align: center;">{{answerKazHistoryKeys.eighth}}</td>
+                    <td style="text-align: center;">{{answerKazHistoryKeys.ninth}}</td>
+                    <td style="text-align: center;">{{answerKazHistoryKeys.tenth}}</td>
+                    <td style="text-align: center;">{{answerKazHistoryKeys.eleven}}</td>
+                    <td style="text-align: center;">{{answerKazHistoryKeys.twelve}}</td>
+                    <td style="text-align: center;">{{answerKazHistoryKeys.thirteen}}</td>
+                    <td style="text-align: center;">{{answerKazHistoryKeys.fourteen}}</td>
+                    <td style="text-align: center;">{{answerKazHistoryKeys.fifteen}}</td>
+                    <td style="text-align: center;">{{answerKazHistoryKeys.sixteen}}</td>
+                    <td style="text-align: center;">{{answerKazHistoryKeys.seventeen}}</td>
+                    <td style="text-align: center;">{{answerKazHistoryKeys.eighteen}}</td>
+                    <td style="text-align: center;">{{answerKazHistoryKeys.nineteen}}</td>
+                    <td style="text-align: center;">{{answerKazHistoryKeys.twenty}}</td>
+                    
+                  </tr>
+                  <tr class="warning">
+            
+                    <td>Yours</td>
+                    <td style="text-align: center;">{{studentKazHistoryKeys.first}}</td>
+                    <td style="text-align: center;">{{studentKazHistoryKeys.second}}</td>
+                    <td style="text-align: center;">{{studentKazHistoryKeys.third}}</td>
+                    <td style="text-align: center;">{{studentKazHistoryKeys.fourth}}</td>
+                    <td style="text-align: center;">{{studentKazHistoryKeys.fifth}}</td>
+                    <td style="text-align: center;">{{studentKazHistoryKeys.sixth}}</td>
+                    <td style="text-align: center;">{{studentKazHistoryKeys.seventh}}</td>
+                    <td style="text-align: center;">{{studentKazHistoryKeys.eighth}}</td>
+                    <td style="text-align: center;">{{studentKazHistoryKeys.ninth}}</td>
+                    <td style="text-align: center;">{{studentKazHistoryKeys.tenth}}</td>
+                    <td style="text-align: center;">{{studentKazHistoryKeys.eleven}}</td>
+                    <td style="text-align: center;">{{studentKazHistoryKeys.twelve}}</td>
+                    <td style="text-align: center;">{{studentKazHistoryKeys.thirteen}}</td>
+                    <td style="text-align: center;">{{studentKazHistoryKeys.fourteen}}</td>
+                    <td style="text-align: center;">{{studentKazHistoryKeys.fifteen}}</td>
+                    <td style="text-align: center;">{{studentKazHistoryKeys.sixteen}}</td>
+                    <td style="text-align: center;">{{studentKazHistoryKeys.seventeen}}</td>
+                    <td style="text-align: center;">{{studentKazHistoryKeys.eighteen}}</td>
+                    <td style="text-align: center;">{{studentKazHistoryKeys.nineteen}}</td>
+                    <td style="text-align: center;">{{studentKazHistoryKeys.twenty}}</td>
+                    
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+             <!--<h5 style="text-align: center;">Қазақ әдебиеті</h5>
+            <h5 style="text-align: center;">{{results.kazakh_literature}} ұпай</h5>
+            <div class="table-responsive" style="background-color: #f8f8f8">  
+
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="text-align: center;"></th>
+                    <th style="text-align: center;">61</th>
+                    <th style="text-align: center;">62</th>
+                    <th style="text-align: center;">63</th>
+                    <th style="text-align: center;">64</th>
+                    <th style="text-align: center;">65</th>
+                    <th style="text-align: center;">66</th>
+                    <th style="text-align: center;">67</th>
+                    <th style="text-align: center;">68</th>
+                    <th style="text-align: center;">69</th>
+                    <th style="text-align: center;">70</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr class="success">
+                    
+                    <td>True</td>
+                    <td style="text-align: center;">{{answerKazLitKeys.first}}</td>
+                    <td style="text-align: center;">{{answerKazLitKeys.second}}</td>
+                    <td style="text-align: center;">{{answerKazLitKeys.third}}</td>
+                    <td style="text-align: center;">{{answerKazLitKeys.fourth}}</td>
+                    <td style="text-align: center;">{{answerKazLitKeys.fifth}}</td>
+                    <td style="text-align: center;">{{answerKazLitKeys.sixth}}</td>
+                    <td style="text-align: center;">{{answerKazLitKeys.seventh}}</td>
+                    <td style="text-align: center;">{{answerKazLitKeys.eighth}}</td>
+                    <td style="text-align: center;">{{answerKazLitKeys.ninth}}</td>
+                    <td style="text-align: center;">{{answerKazLitKeys.tenth}}</td>
+                    
+                  </tr>
+                  <tr class="warning">
+            
+                    <td>Yours</td>
+                    <td style="text-align: center;">{{studentKazLitKeys.first}}</td>
+                    <td style="text-align: center;">{{studentKazLitKeys.second}}</td>
+                    <td style="text-align: center;">{{studentKazLitKeys.third}}</td>
+                    <td style="text-align: center;">{{studentKazLitKeys.fourth}}</td>
+                    <td style="text-align: center;">{{studentKazLitKeys.fifth}}</td>
+                    <td style="text-align: center;">{{studentKazLitKeys.sixth}}</td>
+                    <td style="text-align: center;">{{studentKazLitKeys.seventh}}</td>
+                    <td style="text-align: center;">{{studentKazLitKeys.eighth}}</td>
+                    <td style="text-align: center;">{{studentKazLitKeys.ninth}}</td>
+                    <td style="text-align: center;">{{studentKazLitKeys.tenth}}</td>
+                    
+                  </tr>
+                </tbody>
+              </table>
+            </div>-->
+
+           
+            {{else}}
+            <h5 style="text-align: center;">Орыс тілі</h5>
+            <h5 style="text-align: center;">{{results.russian}} ұпай</h5>
+            <div class="table-responsive" style="background-color: #f8f8f8">  
+
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="text-align: center;"></th>
+                    <th style="text-align: center;">1</th>
+                    <th style="text-align: center;">2</th>
+                    <th style="text-align: center;">3</th>
+                    <th style="text-align: center;">4</th>
+                    <th style="text-align: center;">5</th>
+                    <th style="text-align: center;">6</th>
+                    <th style="text-align: center;">7</th>
+                    <th style="text-align: center;">8</th>
+                    <th style="text-align: center;">9</th>
+                    <th style="text-align: center;">10</th>
+                    <th style="text-align: center;">11</th>
+                    <th style="text-align: center;">12</th>
+                    <th style="text-align: center;">13</th>
+                    <th style="text-align: center;">14</th>
+                    <th style="text-align: center;">15</th>
+                    <th style="text-align: center;">16</th>
+                    <th style="text-align: center;">17</th>
+                    <th style="text-align: center;">18</th>
+                    <th style="text-align: center;">19</th>
+                    <th style="text-align: center;">20</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr class="success">
+                    
+                    <td>True</td>
+                    <td style="text-align: center;">{{answerRussianKeys.first}}</td>
+                    <td style="text-align: center;">{{answerRussianKeys.second}}</td>
+                    <td style="text-align: center;">{{answerRussianKeys.third}}</td>
+                    <td style="text-align: center;">{{answerRussianKeys.fourth}}</td>
+                    <td style="text-align: center;">{{answerRussianKeys.fifth}}</td>
+                    <td style="text-align: center;">{{answerRussianKeys.sixth}}</td>
+                    <td style="text-align: center;">{{answerRussianKeys.seventh}}</td>
+                    <td style="text-align: center;">{{answerRussianKeys.eighth}}</td>
+                    <td style="text-align: center;">{{answerRussianKeys.ninth}}</td>
+                    <td style="text-align: center;">{{answerRussianKeys.tenth}}</td>
+                    <td style="text-align: center;">{{answerRussianKeys.eleven}}</td>
+                    <td style="text-align: center;">{{answerRussianKeys.twelve}}</td>
+                    <td style="text-align: center;">{{answerRussianKeys.thirteen}}</td>
+                    <td style="text-align: center;">{{answerRussianKeys.fourteen}}</td>
+                    <td style="text-align: center;">{{answerRussianKeys.fifteen}}</td>
+                    <td style="text-align: center;">{{answerRussianKeys.sixteen}}</td>
+                    <td style="text-align: center;">{{answerRussianKeys.seventeen}}</td>
+                    <td style="text-align: center;">{{answerRussianKeys.eighteen}}</td>
+                    <td style="text-align: center;">{{answerRussianKeys.nineteen}}</td>
+                    <td style="text-align: center;">{{answerRussianKeys.twenty}}</td>
+                    
+                  </tr>
+                  <tr class="warning">
+            
+                    <td>Yours</td>
+                    <td style="text-align: center;">{{studentRussianKeys.first}}</td>
+                    <td style="text-align: center;">{{studentRussianKeys.second}}</td>
+                    <td style="text-align: center;">{{studentRussianKeys.third}}</td>
+                    <td style="text-align: center;">{{studentRussianKeys.fourth}}</td>
+                    <td style="text-align: center;">{{studentRussianKeys.fifth}}</td>
+                    <td style="text-align: center;">{{studentRussianKeys.sixth}}</td>
+                    <td style="text-align: center;">{{studentRussianKeys.seventh}}</td>
+                    <td style="text-align: center;">{{studentRussianKeys.eighth}}</td>
+                    <td style="text-align: center;">{{studentRussianKeys.ninth}}</td>
+                    <td style="text-align: center;">{{studentRussianKeys.tenth}}</td>
+                    <td style="text-align: center;">{{studentRussianKeys.eleven}}</td>
+                    <td style="text-align: center;">{{studentRussianKeys.twelve}}</td>
+                    <td style="text-align: center;">{{studentRussianKeys.thirteen}}</td>
+                    <td style="text-align: center;">{{studentRussianKeys.fourteen}}</td>
+                    <td style="text-align: center;">{{studentRussianKeys.fifteen}}</td>
+                    <td style="text-align: center;">{{studentRussianKeys.sixteen}}</td>
+                    <td style="text-align: center;">{{studentRussianKeys.seventeen}}</td>
+                    <td style="text-align: center;">{{studentRussianKeys.eighteen}}</td>
+                    <td style="text-align: center;">{{studentRussianKeys.nineteen}}</td>
+                    <td style="text-align: center;">{{studentRussianKeys.twenty}}</td>
+                    
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <h5 style="text-align: center;">Турік тілі</h5>
+            <h5 style="text-align: center;">{{results.turkish}} ұпай</h5>
+            <div class="table-responsive" style="background-color: #f8f8f8">  
+
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="text-align: center;"></th>
+                    <th style="text-align: center;">1</th>
+                    <th style="text-align: center;">2</th>
+                    <th style="text-align: center;">3</th>
+                    <th style="text-align: center;">4</th>
+                    <th style="text-align: center;">5</th>
+                    <th style="text-align: center;">6</th>
+                    <th style="text-align: center;">7</th>
+                    <th style="text-align: center;">8</th>
+                    <th style="text-align: center;">9</th>
+                    <th style="text-align: center;">10</th>
+                    
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr class="success">
+                    
+                    <td>True</td>
+                    <td style="text-align: center;">{{answerTurkishKeys.first}}</td>
+                    <td style="text-align: center;">{{answerTurkishKeys.second}}</td>
+                    <td style="text-align: center;">{{answerTurkishKeys.third}}</td>
+                    <td style="text-align: center;">{{answerTurkishKeys.fourth}}</td>
+                    <td style="text-align: center;">{{answerTurkishKeys.fifth}}</td>
+                    <td style="text-align: center;">{{answerTurkishKeys.sixth}}</td>
+                    <td style="text-align: center;">{{answerTurkishKeys.seventh}}</td>
+                    <td style="text-align: center;">{{answerTurkishKeys.eighth}}</td>
+                    <td style="text-align: center;">{{answerTurkishKeys.ninth}}</td>
+                    <td style="text-align: center;">{{answerTurkishKeys.tenth}}</td>
+                    
+                  </tr>
+                  <tr class="warning">
+            
+                    <td>Yours</td>
+                    <td style="text-align: center;">{{studentTurkishKeys.first}}</td>
+                    <td style="text-align: center;">{{studentTurkishKeys.second}}</td>
+                    <td style="text-align: center;">{{studentTurkishKeys.third}}</td>
+                    <td style="text-align: center;">{{studentTurkishKeys.fourth}}</td>
+                    <td style="text-align: center;">{{studentTurkishKeys.fifth}}</td>
+                    <td style="text-align: center;">{{studentTurkishKeys.sixth}}</td>
+                    <td style="text-align: center;">{{studentTurkishKeys.seventh}}</td>
+                    <td style="text-align: center;">{{studentTurkishKeys.eighth}}</td>
+                    <td style="text-align: center;">{{studentTurkishKeys.ninth}}</td>
+                    <td style="text-align: center;">{{studentTurkishKeys.tenth}}</td>
+                    
+                  </tr>
+                </tbody>
+              </table>
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="text-align: center;"></th>
+                    <th style="text-align: center;">11</th>
+                    <th style="text-align: center;">12</th>
+                    <th style="text-align: center;">13</th>
+                    <th style="text-align: center;">14</th>
+                    <th style="text-align: center;">15</th>
+                    <th style="text-align: center;">16</th>
+                    <th style="text-align: center;">17</th>
+                    <th style="text-align: center;">18</th>
+                    <th style="text-align: center;">19</th>
+                    <th style="text-align: center;">20</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr class="success">
+                    
+                    <td>True</td>
+                    <td style="text-align: center;">{{answerTurkishKeys.eleven}}</td>
+                    <td style="text-align: center;">{{answerTurkishKeys.twelve}}</td>
+                    <td style="text-align: center;">{{answerTurkishKeys.thirteen}}</td>
+                    <td style="text-align: center;">{{answerTurkishKeys.fourteen}}</td>
+                    <td style="text-align: center;">{{answerTurkishKeys.fifteen}}</td>
+                    <td style="text-align: center;">{{answerTurkishKeys.sixteen}}</td>
+                    <td style="text-align: center;">{{answerTurkishKeys.seventeen}}</td>
+                    <td style="text-align: center;">{{answerTurkishKeys.eighteen}}</td>
+                    <td style="text-align: center;">{{answerTurkishKeys.nineteen}}</td>
+                    <td style="text-align: center;">{{answerTurkishKeys.twenty}}</td>
+                    
+                  </tr>
+                  <tr class="warning">
+            
+                    <td>Yours</td>
+                    <td style="text-align: center;">{{studentTurkishKeys.eleven}}</td>
+                    <td style="text-align: center;">{{studentTurkishKeys.twelve}}</td>
+                    <td style="text-align: center;">{{studentTurkishKeys.thirteen}}</td>
+                    <td style="text-align: center;">{{studentTurkishKeys.fourteen}}</td>
+                    <td style="text-align: center;">{{studentTurkishKeys.fifteen}}</td>
+                    <td style="text-align: center;">{{studentTurkishKeys.sixteen}}</td>
+                    <td style="text-align: center;">{{studentTurkishKeys.seventeen}}</td>
+                    <td style="text-align: center;">{{studentTurkishKeys.eighteen}}</td>
+                    <td style="text-align: center;">{{studentTurkishKeys.nineteen}}</td>
+                    <td style="text-align: center;">{{studentTurkishKeys.twenty}}</td>
+                    
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <h5 style="text-align: center;">Физика</h5>
+            <h5 style="text-align: center;">{{results.physics}} ұпай</h5>
+            <div class="table-responsive" style="background-color: #f8f8f8">  
+
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="text-align: center;"></th>
+                    <th style="text-align: center;">1</th>
+                    <th style="text-align: center;">2</th>
+                    <th style="text-align: center;">3</th>
+                    <th style="text-align: center;">4</th>
+                    <th style="text-align: center;">5</th>
+                    <th style="text-align: center;">6</th>
+                    <th style="text-align: center;">7</th>
+                    <th style="text-align: center;">8</th>
+                    <th style="text-align: center;">9</th>
+                    <th style="text-align: center;">10</th>
+                    <th style="text-align: center;">11</th>
+                    <th style="text-align: center;">12</th>
+                    <th style="text-align: center;">13</th>
+                    <th style="text-align: center;">14</th>
+                    <th style="text-align: center;">15</th>
+                    <th style="text-align: center;">16</th>
+                    <th style="text-align: center;">17</th>
+                    <th style="text-align: center;">18</th>
+                    <th style="text-align: center;">19</th>
+                    <th style="text-align: center;">20</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr class="success">
+                    
+                    <td>True</td>
+                    <td style="text-align: center;">{{answerPhysicsKeys.first}}</td>
+                    <td style="text-align: center;">{{answerPhysicsKeys.second}}</td>
+                    <td style="text-align: center;">{{answerPhysicsKeys.third}}</td>
+                    <td style="text-align: center;">{{answerPhysicsKeys.fourth}}</td>
+                    <td style="text-align: center;">{{answerPhysicsKeys.fifth}}</td>
+                    <td style="text-align: center;">{{answerPhysicsKeys.sixth}}</td>
+                    <td style="text-align: center;">{{answerPhysicsKeys.seventh}}</td>
+                    <td style="text-align: center;">{{answerPhysicsKeys.eighth}}</td>
+                    <td style="text-align: center;">{{answerPhysicsKeys.ninth}}</td>
+                    <td style="text-align: center;">{{answerPhysicsKeys.tenth}}</td>
+                    <td style="text-align: center;">{{answerPhysicsKeys.eleven}}</td>
+                    <td style="text-align: center;">{{answerPhysicsKeys.twelve}}</td>
+                    <td style="text-align: center;">{{answerPhysicsKeys.thirteen}}</td>
+                    <td style="text-align: center;">{{answerPhysicsKeys.fourteen}}</td>
+                    <td style="text-align: center;">{{answerPhysicsKeys.fifteen}}</td>
+                    <td style="text-align: center;">{{answerPhysicsKeys.sixteen}}</td>
+                    <td style="text-align: center;">{{answerPhysicsKeys.seventeen}}</td>
+                    <td style="text-align: center;">{{answerPhysicsKeys.eighteen}}</td>
+                    <td style="text-align: center;">{{answerPhysicsKeys.nineteen}}</td>
+                    <td style="text-align: center;">{{answerPhysicsKeys.twenty}}</td>
+                    
+                  </tr>
+                  <tr class="warning">
+            
+                    <td>Yours</td>
+                    <td style="text-align: center;">{{studentPhysicsKeys.first}}</td>
+                    <td style="text-align: center;">{{studentPhysicsKeys.second}}</td>
+                    <td style="text-align: center;">{{studentPhysicsKeys.third}}</td>
+                    <td style="text-align: center;">{{studentPhysicsKeys.fourth}}</td>
+                    <td style="text-align: center;">{{studentPhysicsKeys.fifth}}</td>
+                    <td style="text-align: center;">{{studentPhysicsKeys.sixth}}</td>
+                    <td style="text-align: center;">{{studentPhysicsKeys.seventh}}</td>
+                    <td style="text-align: center;">{{studentPhysicsKeys.eighth}}</td>
+                    <td style="text-align: center;">{{studentPhysicsKeys.ninth}}</td>
+                    <td style="text-align: center;">{{studentPhysicsKeys.tenth}}</td>
+                    <td style="text-align: center;">{{studentPhysicsKeys.eleven}}</td>
+                    <td style="text-align: center;">{{studentPhysicsKeys.twelve}}</td>
+                    <td style="text-align: center;">{{studentPhysicsKeys.thirteen}}</td>
+                    <td style="text-align: center;">{{studentPhysicsKeys.fourteen}}</td>
+                    <td style="text-align: center;">{{studentPhysicsKeys.fifteen}}</td>
+                    <td style="text-align: center;">{{studentPhysicsKeys.sixteen}}</td>
+                    <td style="text-align: center;">{{studentPhysicsKeys.seventeen}}</td>
+                    <td style="text-align: center;">{{studentPhysicsKeys.eighteen}}</td>
+                    <td style="text-align: center;">{{studentPhysicsKeys.nineteen}}</td>
+                    <td style="text-align: center;">{{studentPhysicsKeys.twenty}}</td>
+                    
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <h5 style="text-align: center;">Химия</h5>
+            <h5 style="text-align: center;">{{results.chemistry}} ұпай</h5>
+            <div class="table-responsive" style="background-color: #f8f8f8">  
+
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="text-align: center;"></th>
+                    <th style="text-align: center;">1</th>
+                    <th style="text-align: center;">2</th>
+                    <th style="text-align: center;">3</th>
+                    <th style="text-align: center;">4</th>
+                    <th style="text-align: center;">5</th>
+                    <th style="text-align: center;">6</th>
+                    <th style="text-align: center;">7</th>
+                    <th style="text-align: center;">8</th>
+                    <th style="text-align: center;">9</th>
+                    <th style="text-align: center;">10</th>
+                    <th style="text-align: center;">11</th>
+                    <th style="text-align: center;">12</th>
+                    <th style="text-align: center;">13</th>
+                    <th style="text-align: center;">14</th>
+                    <th style="text-align: center;">15</th>
+                    <th style="text-align: center;">16</th>
+                    <th style="text-align: center;">17</th>
+                    <th style="text-align: center;">18</th>
+                    <th style="text-align: center;">19</th>
+                    <th style="text-align: center;">20</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr class="success">
+                    
+                    <td>True</td>
+                    <td style="text-align: center;">{{answerChemistryKeys.first}}</td>
+                    <td style="text-align: center;">{{answerChemistryKeys.second}}</td>
+                    <td style="text-align: center;">{{answerChemistryKeys.third}}</td>
+                    <td style="text-align: center;">{{answerChemistryKeys.fourth}}</td>
+                    <td style="text-align: center;">{{answerChemistryKeys.fifth}}</td>
+                    <td style="text-align: center;">{{answerChemistryKeys.sixth}}</td>
+                    <td style="text-align: center;">{{answerChemistryKeys.seventh}}</td>
+                    <td style="text-align: center;">{{answerChemistryKeys.eighth}}</td>
+                    <td style="text-align: center;">{{answerChemistryKeys.ninth}}</td>
+                    <td style="text-align: center;">{{answerChemistryKeys.tenth}}</td>
+                    <td style="text-align: center;">{{answerChemistryKeys.eleven}}</td>
+                    <td style="text-align: center;">{{answerChemistryKeys.twelve}}</td>
+                    <td style="text-align: center;">{{answerChemistryKeys.thirteen}}</td>
+                    <td style="text-align: center;">{{answerChemistryKeys.fourteen}}</td>
+                    <td style="text-align: center;">{{answerChemistryKeys.fifteen}}</td>
+                    <td style="text-align: center;">{{answerChemistryKeys.sixteen}}</td>
+                    <td style="text-align: center;">{{answerChemistryKeys.seventeen}}</td>
+                    <td style="text-align: center;">{{answerChemistryKeys.eighteen}}</td>
+                    <td style="text-align: center;">{{answerChemistryKeys.nineteen}}</td>
+                    <td style="text-align: center;">{{answerChemistryKeys.twenty}}</td>
+                    
+                  </tr>
+                  <tr class="warning">
+            
+                    <td>Yours</td>
+                    <td style="text-align: center;">{{studentChemistryKeys.first}}</td>
+                    <td style="text-align: center;">{{studentChemistryKeys.second}}</td>
+                    <td style="text-align: center;">{{studentChemistryKeys.third}}</td>
+                    <td style="text-align: center;">{{studentChemistryKeys.fourth}}</td>
+                    <td style="text-align: center;">{{studentChemistryKeys.fifth}}</td>
+                    <td style="text-align: center;">{{studentChemistryKeys.sixth}}</td>
+                    <td style="text-align: center;">{{studentChemistryKeys.seventh}}</td>
+                    <td style="text-align: center;">{{studentChemistryKeys.eighth}}</td>
+                    <td style="text-align: center;">{{studentChemistryKeys.ninth}}</td>
+                    <td style="text-align: center;">{{studentChemistryKeys.tenth}}</td>
+                    <td style="text-align: center;">{{studentChemistryKeys.eleven}}</td>
+                    <td style="text-align: center;">{{studentChemistryKeys.twelve}}</td>
+                    <td style="text-align: center;">{{studentChemistryKeys.thirteen}}</td>
+                    <td style="text-align: center;">{{studentChemistryKeys.fourteen}}</td>
+                    <td style="text-align: center;">{{studentChemistryKeys.fifteen}}</td>
+                    <td style="text-align: center;">{{studentChemistryKeys.sixteen}}</td>
+                    <td style="text-align: center;">{{studentChemistryKeys.seventeen}}</td>
+                    <td style="text-align: center;">{{studentChemistryKeys.eighteen}}</td>
+                    <td style="text-align: center;">{{studentChemistryKeys.nineteen}}</td>
+                    <td style="text-align: center;">{{studentChemistryKeys.twenty}}</td>
+                    
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <h5 style="text-align: center;">Биология</h5>
+            <h5 style="text-align: center;">{{results.biology}} ұпай</h5>
+            <div class="table-responsive" style="background-color: #f8f8f8">  
+
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="text-align: center;"></th>
+                    <th style="text-align: center;">1</th>
+                    <th style="text-align: center;">2</th>
+                    <th style="text-align: center;">3</th>
+                    <th style="text-align: center;">4</th>
+                    <th style="text-align: center;">5</th>
+                    <th style="text-align: center;">6</th>
+                    <th style="text-align: center;">7</th>
+                    <th style="text-align: center;">8</th>
+                    <th style="text-align: center;">9</th>
+                    <th style="text-align: center;">10</th>
+                    <th style="text-align: center;">11</th>
+                    <th style="text-align: center;">12</th>
+                    <th style="text-align: center;">13</th>
+                    <th style="text-align: center;">14</th>
+                    <th style="text-align: center;">15</th>
+                    <th style="text-align: center;">16</th>
+                    <th style="text-align: center;">17</th>
+                    <th style="text-align: center;">18</th>
+                    <th style="text-align: center;">19</th>
+                    <th style="text-align: center;">20</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr class="success">
+                    
+                    <td>True</td>
+                    <td style="text-align: center;">{{answerBiologyKeys.first}}</td>
+                    <td style="text-align: center;">{{answerBiologyKeys.second}}</td>
+                    <td style="text-align: center;">{{answerBiologyKeys.third}}</td>
+                    <td style="text-align: center;">{{answerBiologyKeys.fourth}}</td>
+                    <td style="text-align: center;">{{answerBiologyKeys.fifth}}</td>
+                    <td style="text-align: center;">{{answerBiologyKeys.sixth}}</td>
+                    <td style="text-align: center;">{{answerBiologyKeys.seventh}}</td>
+                    <td style="text-align: center;">{{answerBiologyKeys.eighth}}</td>
+                    <td style="text-align: center;">{{answerBiologyKeys.ninth}}</td>
+                    <td style="text-align: center;">{{answerBiologyKeys.tenth}}</td>
+                    <td style="text-align: center;">{{answerBiologyKeys.eleven}}</td>
+                    <td style="text-align: center;">{{answerBiologyKeys.twelve}}</td>
+                    <td style="text-align: center;">{{answerBiologyKeys.thirteen}}</td>
+                    <td style="text-align: center;">{{answerBiologyKeys.fourteen}}</td>
+                    <td style="text-align: center;">{{answerBiologyKeys.fifteen}}</td>
+                    <td style="text-align: center;">{{answerBiologyKeys.sixteen}}</td>
+                    <td style="text-align: center;">{{answerBiologyKeys.seventeen}}</td>
+                    <td style="text-align: center;">{{answerBiologyKeys.eighteen}}</td>
+                    <td style="text-align: center;">{{answerBiologyKeys.nineteen}}</td>
+                    <td style="text-align: center;">{{answerBiologyKeys.twenty}}</td>
+                    
+                  </tr>
+                  <tr class="warning">
+            
+                    <td>Yours</td>
+                    <td style="text-align: center;">{{studentBiologyKeys.first}}</td>
+                    <td style="text-align: center;">{{studentBiologyKeys.second}}</td>
+                    <td style="text-align: center;">{{studentBiologyKeys.third}}</td>
+                    <td style="text-align: center;">{{studentBiologyKeys.fourth}}</td>
+                    <td style="text-align: center;">{{studentBiologyKeys.fifth}}</td>
+                    <td style="text-align: center;">{{studentBiologyKeys.sixth}}</td>
+                    <td style="text-align: center;">{{studentBiologyKeys.seventh}}</td>
+                    <td style="text-align: center;">{{studentBiologyKeys.eighth}}</td>
+                    <td style="text-align: center;">{{studentBiologyKeys.ninth}}</td>
+                    <td style="text-align: center;">{{studentBiologyKeys.tenth}}</td>
+                    <td style="text-align: center;">{{studentBiologyKeys.eleven}}</td>
+                    <td style="text-align: center;">{{studentBiologyKeys.twelve}}</td>
+                    <td style="text-align: center;">{{studentBiologyKeys.thirteen}}</td>
+                    <td style="text-align: center;">{{studentBiologyKeys.fourteen}}</td>
+                    <td style="text-align: center;">{{studentBiologyKeys.fifteen}}</td>
+                    <td style="text-align: center;">{{studentBiologyKeys.sixteen}}</td>
+                    <td style="text-align: center;">{{studentBiologyKeys.seventeen}}</td>
+                    <td style="text-align: center;">{{studentBiologyKeys.eighteen}}</td>
+                    <td style="text-align: center;">{{studentBiologyKeys.ninteen}}</td>
+                    <td style="text-align: center;">{{studentBiologyKeys.twenty}}</td>
+                    
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            
+            <h5 style="text-align: center;">Информатика</h5>
+            <h5 style="text-align: center;">{{results.computer}} ұпай</h5>
+            <div class="table-responsive" style="background-color: #f8f8f8">  
+
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="text-align: center;"></th>
+                    <th style="text-align: center;">1</th>
+                    <th style="text-align: center;">2</th>
+                    <th style="text-align: center;">3</th>
+                    <th style="text-align: center;">4</th>
+                    <th style="text-align: center;">5</th>
+                    <th style="text-align: center;">6</th>
+                    <th style="text-align: center;">7</th>
+                    <th style="text-align: center;">8</th>
+                    <th style="text-align: center;">9</th>
+                    <th style="text-align: center;">10</th>
+                    <th style="text-align: center;">11</th>
+                    <th style="text-align: center;">12</th>
+                    <th style="text-align: center;">13</th>
+                    <th style="text-align: center;">14</th>
+                    <th style="text-align: center;">15</th>
+                    <th style="text-align: center;">16</th>
+                    <th style="text-align: center;">17</th>
+                    <th style="text-align: center;">18</th>
+                    <th style="text-align: center;">19</th>
+                    <th style="text-align: center;">20</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr class="success">
+                    
+                    <td>True</td>
+                    <td style="text-align: center;">{{answerComputerKeys.first}}</td>
+                    <td style="text-align: center;">{{answerComputerKeys.second}}</td>
+                    <td style="text-align: center;">{{answerComputerKeys.third}}</td>
+                    <td style="text-align: center;">{{answerComputerKeys.fourth}}</td>
+                    <td style="text-align: center;">{{answerComputerKeys.fifth}}</td>
+                    <td style="text-align: center;">{{answerComputerKeys.sixth}}</td>
+                    <td style="text-align: center;">{{answerComputerKeys.seventh}}</td>
+                    <td style="text-align: center;">{{answerComputerKeys.eighth}}</td>
+                    <td style="text-align: center;">{{answerComputerKeys.ninth}}</td>
+                    <td style="text-align: center;">{{answerComputerKeys.tenth}}</td>
+                    <td style="text-align: center;">{{answerComputerKeys.eleven}}</td>
+                    <td style="text-align: center;">{{answerComputerKeys.twelve}}</td>
+                    <td style="text-align: center;">{{answerComputerKeys.thirteen}}</td>
+                    <td style="text-align: center;">{{answerComputerKeys.fourteen}}</td>
+                    <td style="text-align: center;">{{answerComputerKeys.fifteen}}</td>
+                    <td style="text-align: center;">{{answerComputerKeys.sixteen}}</td>
+                    <td style="text-align: center;">{{answerComputerKeys.seventeen}}</td>
+                    <td style="text-align: center;">{{answerComputerKeys.eighteen}}</td>
+                    <td style="text-align: center;">{{answerComputerKeys.nineteen}}</td>
+                    <td style="text-align: center;">{{answerComputerKeys.twenty}}</td>
+                    
+                  </tr>
+                  <tr class="warning">
+            
+                    <td>Yours</td>
+                    <td style="text-align: center;">{{studentComputerKeys.first}}</td>
+                    <td style="text-align: center;">{{studentComputerKeys.second}}</td>
+                    <td style="text-align: center;">{{studentComputerKeys.third}}</td>
+                    <td style="text-align: center;">{{studentComputerKeys.fourth}}</td>
+                    <td style="text-align: center;">{{studentComputerKeys.fifth}}</td>
+                    <td style="text-align: center;">{{studentComputerKeys.sixth}}</td>
+                    <td style="text-align: center;">{{studentComputerKeys.seventh}}</td>
+                    <td style="text-align: center;">{{studentComputerKeys.eighth}}</td>
+                    <td style="text-align: center;">{{studentComputerKeys.ninth}}</td>
+                    <td style="text-align: center;">{{studentComputerKeys.tenth}}</td>
+                    <td style="text-align: center;">{{studentComputerKeys.eleven}}</td>
+                    <td style="text-align: center;">{{studentComputerKeys.twelve}}</td>
+                    <td style="text-align: center;">{{studentComputerKeys.thirteen}}</td>
+                    <td style="text-align: center;">{{studentComputerKeys.fourteen}}</td>
+                    <td style="text-align: center;">{{studentComputerKeys.fifteen}}</td>
+                    <td style="text-align: center;">{{studentComputerKeys.sixteen}}</td>
+                    <td style="text-align: center;">{{studentComputerKeys.seventeen}}</td>
+                    <td style="text-align: center;">{{studentComputerKeys.eighteen}}</td>
+                    <td style="text-align: center;">{{studentComputerKeys.nineteen}}</td>
+                    <td style="text-align: center;">{{studentComputerKeys.twenty}}</td>
+                    
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            
+            <h5 style="text-align: center;">Дүниежузі тарихі</h5>
+            <h5 style="text-align: center;">{{results.world_history}} ұпай</h5>
+            <div class="table-responsive" style="background-color: #f8f8f8">  
+
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="text-align: center;"></th>
+                    <th style="text-align: center;">1</th>
+                    <th style="text-align: center;">2</th>
+                    <th style="text-align: center;">3</th>
+                    <th style="text-align: center;">4</th>
+                    <th style="text-align: center;">5</th>
+                    <th style="text-align: center;">6</th>
+                    <th style="text-align: center;">7</th>
+                    <th style="text-align: center;">8</th>
+                    <th style="text-align: center;">9</th>
+                    <th style="text-align: center;">10</th>
+                    <th style="text-align: center;">11</th>
+                    <th style="text-align: center;">12</th>
+                    <th style="text-align: center;">13</th>
+                    <th style="text-align: center;">14</th>
+                    <th style="text-align: center;">15</th>
+                    <th style="text-align: center;">16</th>
+                    <th style="text-align: center;">17</th>
+                    <th style="text-align: center;">18</th>
+                    <th style="text-align: center;">19</th>
+                    <th style="text-align: center;">20</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr class="success">
+                    
+                    <td>True</td>
+                    <td style="text-align: center;">{{answerWHistoryKeys.first}}</td>
+                    <td style="text-align: center;">{{answerWHistoryKeys.second}}</td>
+                    <td style="text-align: center;">{{answerWHistoryKeys.third}}</td>
+                    <td style="text-align: center;">{{answerWHistoryKeys.fourth}}</td>
+                    <td style="text-align: center;">{{answerWHistoryKeys.fifth}}</td>
+                    <td style="text-align: center;">{{answerWHistoryKeys.sixth}}</td>
+                    <td style="text-align: center;">{{answerWHistoryKeys.seventh}}</td>
+                    <td style="text-align: center;">{{answerWHistoryKeys.eighth}}</td>
+                    <td style="text-align: center;">{{answerWHistoryKeys.ninth}}</td>
+                    <td style="text-align: center;">{{answerWHistoryKeys.tenth}}</td>
+                    <td style="text-align: center;">{{answerWHistoryKeys.eleven}}</td>
+                    <td style="text-align: center;">{{answerWHistoryKeys.twelve}}</td>
+                    <td style="text-align: center;">{{answerWHistoryKeys.thirteen}}</td>
+                    <td style="text-align: center;">{{answerWHistoryKeys.fourteen}}</td>
+                    <td style="text-align: center;">{{answerWHistoryKeys.fifteen}}</td>
+                    <td style="text-align: center;">{{answerWHistoryKeys.sixteen}}</td>
+                    <td style="text-align: center;">{{answerWHistoryKeys.seventeen}}</td>
+                    <td style="text-align: center;">{{answerWHistoryKeys.eighteen}}</td>
+                    <td style="text-align: center;">{{answerWHistoryKeys.nineteen}}</td>
+                    <td style="text-align: center;">{{answerWHistoryKeys.twenty}}</td>
+                    
+                  </tr>
+                  <tr class="warning">
+            
+                    <td>Yours</td>
+                    <td style="text-align: center;">{{studentWHistoryKeys.first}}</td>
+                    <td style="text-align: center;">{{studentWHistoryKeys.second}}</td>
+                    <td style="text-align: center;">{{studentWHistoryKeys.third}}</td>
+                    <td style="text-align: center;">{{studentWHistoryKeys.fourth}}</td>
+                    <td style="text-align: center;">{{studentWHistoryKeys.fifth}}</td>
+                    <td style="text-align: center;">{{studentWHistoryKeys.sixth}}</td>
+                    <td style="text-align: center;">{{studentWHistoryKeys.seventh}}</td>
+                    <td style="text-align: center;">{{studentWHistoryKeys.eighth}}</td>
+                    <td style="text-align: center;">{{studentWHistoryKeys.ninth}}</td>
+                    <td style="text-align: center;">{{studentWHistoryKeys.tenth}}</td>
+                    <td style="text-align: center;">{{studentWHistoryKeys.eleven}}</td>
+                    <td style="text-align: center;">{{studentWHistoryKeys.twelve}}</td>
+                    <td style="text-align: center;">{{studentWHistoryKeys.thirteen}}</td>
+                    <td style="text-align: center;">{{studentWHistoryKeys.fourteen}}</td>
+                    <td style="text-align: center;">{{studentWHistoryKeys.fifteen}}</td>
+                    <td style="text-align: center;">{{studentWHistoryKeys.sixteen}}</td>
+                    <td style="text-align: center;">{{studentWHistoryKeys.seventeen}}</td>
+                    <td style="text-align: center;">{{studentWHistoryKeys.eighteen}}</td>
+                    <td style="text-align: center;">{{studentWHistoryKeys.nineteen}}</td>
+                    <td style="text-align: center;">{{studentWHistoryKeys.twenty}}</td>
+                    
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            
+
+            <h5 style="text-align: center;">География</h5>
+            <h5 style="text-align: center;">{{results.geography}} ұпай</h5>
+            <div class="table-responsive" style="background-color: #f8f8f8">  
+
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="text-align: center;"></th>
+                    <th style="text-align: center;">1</th>
+                    <th style="text-align: center;">2</th>
+                    <th style="text-align: center;">3</th>
+                    <th style="text-align: center;">4</th>
+                    <th style="text-align: center;">5</th>
+                    <th style="text-align: center;">6</th>
+                    <th style="text-align: center;">7</th>
+                    <th style="text-align: center;">8</th>
+                    <th style="text-align: center;">9</th>
+                    <th style="text-align: center;">10</th>
+                    <th style="text-align: center;">11</th>
+                    <th style="text-align: center;">12</th>
+                    <th style="text-align: center;">13</th>
+                    <th style="text-align: center;">14</th>
+                    <th style="text-align: center;">15</th>
+                    <th style="text-align: center;">16</th>
+                    <th style="text-align: center;">17</th>
+                    <th style="text-align: center;">18</th>
+                    <th style="text-align: center;">19</th>
+                    <th style="text-align: center;">20</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr class="success">
+                    
+                    <td>True</td>
+                    <td style="text-align: center;">{{answerGeographyKeys.first}}</td>
+                    <td style="text-align: center;">{{answerGeographyKeys.second}}</td>
+                    <td style="text-align: center;">{{answerGeographyKeys.third}}</td>
+                    <td style="text-align: center;">{{answerGeographyKeys.fourth}}</td>
+                    <td style="text-align: center;">{{answerGeographyKeys.fifth}}</td>
+                    <td style="text-align: center;">{{answerGeographyKeys.sixth}}</td>
+                    <td style="text-align: center;">{{answerGeographyKeys.seventh}}</td>
+                    <td style="text-align: center;">{{answerGeographyKeys.eighth}}</td>
+                    <td style="text-align: center;">{{answerGeographyKeys.ninth}}</td>
+                    <td style="text-align: center;">{{answerGeographyKeys.tenth}}</td>
+                    <td style="text-align: center;">{{answerGeographyKeys.eleven}}</td>
+                    <td style="text-align: center;">{{answerGeographyKeys.twelve}}</td>
+                    <td style="text-align: center;">{{answerGeographyKeys.thirteen}}</td>
+                    <td style="text-align: center;">{{answerGeographyKeys.fourteen}}</td>
+                    <td style="text-align: center;">{{answerGeographyKeys.fifteen}}</td>
+                    <td style="text-align: center;">{{answerGeographyKeys.sixteen}}</td>
+                    <td style="text-align: center;">{{answerGeographyKeys.seventeen}}</td>
+                    <td style="text-align: center;">{{answerGeographyKeys.eighteen}}</td>
+                    <td style="text-align: center;">{{answerGeographyKeys.nineteen}}</td>
+                    <td style="text-align: center;">{{answerGeographyKeys.twenty}}</td>
+                    
+                  </tr>
+                  <tr class="warning">
+            
+                    <td>Yours</td>
+                    <td style="text-align: center;">{{studentGeographyKeys.first}}</td>
+                    <td style="text-align: center;">{{studentGeographyKeys.second}}</td>
+                    <td style="text-align: center;">{{studentGeographyKeys.third}}</td>
+                    <td style="text-align: center;">{{studentGeographyKeys.fourth}}</td>
+                    <td style="text-align: center;">{{studentGeographyKeys.fifth}}</td>
+                    <td style="text-align: center;">{{studentGeographyKeys.sixth}}</td>
+                    <td style="text-align: center;">{{studentGeographyKeys.seventh}}</td>
+                    <td style="text-align: center;">{{studentGeographyKeys.eighth}}</td>
+                    <td style="text-align: center;">{{studentGeographyKeys.ninth}}</td>
+                    <td style="text-align: center;">{{studentGeographyKeys.tenth}}</td>
+                    <td style="text-align: center;">{{studentGeographyKeys.eleven}}</td>
+                    <td style="text-align: center;">{{studentGeographyKeys.twelve}}</td>
+                    <td style="text-align: center;">{{studentGeographyKeys.thirteen}}</td>
+                    <td style="text-align: center;">{{studentGeographyKeys.fourteen}}</td>
+                    <td style="text-align: center;">{{studentGeographyKeys.fifteen}}</td>
+                    <td style="text-align: center;">{{studentGeographyKeys.sixteen}}</td>
+                    <td style="text-align: center;">{{studentGeographyKeys.seventeen}}</td>
+                    <td style="text-align: center;">{{studentGeographyKeys.eighteen}}</td>
+                    <td style="text-align: center;">{{studentGeographyKeys.nineteen}}</td>
+                    <td style="text-align: center;">{{studentGeographyKeys.twenty}}</td>
+                    
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            {{/if}}
+        
+            
+            {{else}}
+            <p>Loading...</p>
+    {{/if}}
+    </div>
+</template>

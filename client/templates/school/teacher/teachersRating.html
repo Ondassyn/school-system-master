@@ -1,0 +1,172 @@
+<template name="teachersRating">
+    <div class="row">
+        <div class="col-md-12">
+            <h4 style="text-align: center; padding-bottom: 15pt">Мұғалім рейтингі</h4>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-inline">
+                        <div class="form-group" style="margin-right: 15pt">
+                        {{> academicYear}}
+                        </div>
+                        <div style="margin-right: 15pt" class="form-group">
+                            <label for="quarter">Тоқсан: </label>
+                            <select class="form-control" name="quarter" id="select">
+                                <option value="">тандаңыз</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                            </select>
+                        </div>
+                        
+                        <div style="margin-right: 15pt" class="form-group">
+                            <label for="week">Апта: </label>
+                            <select class="form-control" name="week" id="select">
+                                <option value="all">жалпы</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                                <option value="10">10</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group" style="margin-left: 10pt; float: right;" data-toggle="tooltip" title="Рейтингті жою"><a id="deleteRating" class="btn btn-danger">
+                          <span class="glyphicon glyphicon-remove"></span></a>
+                        </div>
+                        <div class="form-group" style="margin-left: 10pt; float: right;" data-toggle="tooltip" title="Рейтинг құрастыру"><a id="constructRating" class="btn btn-primary">
+                          <span class="glyphicon glyphicon-list-alt"></span></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {{#if Template.subscriptionsReady}}
+            
+            <table style="margin-top: 15pt" class="table table-striped">
+                <thead>
+                    <tr class="bts-header">
+                        <th>#</th>
+                        <th>Мұғалім ID</th>
+                        <th>Аты-жөні</th>
+                        <th style="text-align: center;">Пәні</th>
+                        <th style="text-align: center;">Апта</th>
+                        <th style="text-align: center;">Қосымша<br/>сабақтар</th>
+                        <th style="text-align: center;">Олимпиадаға<br/>дайындық</th>
+                        <th style="text-align: center;">ҰБТ-ға<br/>дайындық </th>
+                        <th style="text-align: center;">Сабаққа<br/>қатысу</th>
+                        <th style="text-align: center;">Мектептік<br/>Іс-шара</th>
+                        <th style="text-align: center;">Қалалық<br/>Іс-шара</th>
+                        <th style="text-align: center;">Республика<br/>Іс-шара</th>
+                        <th style="text-align: center;">PBL<br/>дайындалды</th>
+                        <th style="text-align: center;">PBL<br/>ұсынылды</th>
+                        <th style="text-align: center;">Жалпы<br/>ұпай</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each results}}
+                    <tr>
+                        <td>{{math @index "+" 1}}</td>
+                        <td>{{teacherId}}</td>
+                        <td>{{surname}} {{name}}</td>
+                        <td style="text-align: center;">{{subjectName subjectId}}</td>
+                        <td style="text-align: center;">{{week}}</td>
+                        <td style="text-align: center;">
+                            <a href="#" id="reduceExtraLesson">
+                              <span class="glyphicon glyphicon-minus-sign"></span>
+                            </a>
+                            {{extra_lesson}} 
+                            <a href="#" id="addExtraLesson">
+                              <span class="glyphicon glyphicon-plus-sign"></span>
+                            </a> 
+                        </td>
+                        <td style="text-align: center;">
+                            <a href="#" id="reduceOlympiad">
+                              <span class="glyphicon glyphicon-minus-sign"></span>
+                            </a>
+                            {{olympiad_preparation}}
+                            <a href="#" id="addOlympiad">
+                              <span class="glyphicon glyphicon-plus-sign"></span>
+                            </a> 
+                        </td>
+                        <td style="text-align: center;">
+                            <a href="#" id="reduceUbt">
+                              <span class="glyphicon glyphicon-minus-sign"></span>
+                            </a>
+                            {{ubt_preparation}} 
+                            <a href="#" id="addUbt">
+                                  <span class="glyphicon glyphicon-plus-sign"></span>
+                            </a>
+                        </td>
+                        <td style="text-align: center;">
+                            <div class="row">
+                            <a href="#" id="reduceAttend">
+                              <span class="glyphicon glyphicon-minus-sign"></span>
+                            </a>
+                            {{lesson_attend}} 
+                            <a href="#" id="addAttend">
+                                  <span class="glyphicon glyphicon-plus-sign"></span>
+                            </a>
+                            </div>
+                        </td>
+                        <td style="text-align: center;">
+                            <a href="#" id="reduceSchoolEvent">
+                              <span class="glyphicon glyphicon-minus-sign"></span>
+                            </a>
+                            {{event_school}}
+                            <a href="#" id="addSchoolEvent">
+                                  <span class="glyphicon glyphicon-plus-sign"></span>
+                            </a>
+                        </td>
+                        <td style="text-align: center;">
+                            <a href="#" id="reduceCityEvent">
+                                  <span class="glyphicon glyphicon-minus-sign"></span>
+                            </a>
+                            {{event_city}}
+                            <a href="#" id="addCityEvent">
+                                  <span class="glyphicon glyphicon-plus-sign"></span>
+                            </a>
+                        </td>
+                        <td style="text-align: center;">
+                            <a href="#" id="reduceRepEvent">
+                                  <span class="glyphicon glyphicon-minus-sign"></span>
+                            </a>
+                            {{event_republic}} 
+                            <a href="#" id="addRepEvent">
+                                  <span class="glyphicon glyphicon-plus-sign"></span>
+                            </a>
+                        </td>
+                        <td style="text-align: center;">
+                            <a href="#" id="reducePblPrepare">
+                                  <span class="glyphicon glyphicon-minus-sign"></span>
+                            </a>
+                            {{pbl_prepare}} 
+                            <a href="#" id="addPblPrepare">
+                                  <span class="glyphicon glyphicon-plus-sign"></span>
+                            </a>
+                        </td>
+                        <td style="text-align: center;">
+                            <a href="#" id="reducePblPresent">
+                                  <span class="glyphicon glyphicon-minus-sign"></span>
+                            </a>
+                            {{pbl_present}} 
+                            <a href="#" id="addPblPresent">
+                                  <span class="glyphicon glyphicon-plus-sign"></span>
+                            </a>
+                        </td>
+                        <td style="text-align: center;">{{total}}</td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+
+            {{else}}
+            <p>Loading...</p>
+            {{/if}}
+        </div>
+    </div>
+</template>

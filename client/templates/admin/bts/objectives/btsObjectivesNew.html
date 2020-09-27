@@ -1,0 +1,81 @@
+<template name="btsObjectivesNew">
+	
+	<div class="row">
+		<div class="col-md-8">
+              <h4>БТС Сабақ мақсатын қосу</h4>
+              
+              <br/>
+              
+              <div class="form-group">
+                  <div class="form-inline">
+                      <div class="form-group">
+                        <label for="exampleSelect1">БТС #</label>
+                        <select class="form-control" name="quarter" id="select">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                        </select>
+
+                        <label for="exampleSelect1">Пән</label>
+                        <select class="form-control" name="subject" id="select">
+                            <option value="01">Алгебра</option>
+                            <option value="02">Физика</option>
+                            <option value="03">Химия</option>
+                            <option value="04">Биология</option>
+                            <option value="05">Ағылшын тілі</option>
+                            <option value="06">География</option>
+                            <option value="07">Дүниежүзі тарихы</option>
+                            <option value="08">Информатика</option>
+                            <option value="13">Геометрия</option>
+                        </select>
+
+                        <label for="exampleSelect1">Сынып</label>
+                        <select class="form-control" name="grade" id="select">
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                        </select>
+                      </div>
+                  </div>
+              </div>
+              
+              <br/>
+              
+              <div class="form-group">
+                <label for="name">Objective</label>
+                <select class="form-control" name="objectiveId" id="select">
+                  <option value="">Select objective</option>
+                    {{#each lessonObjectives}}
+                  <option value="{{id}}">{{id}}</option>
+                    {{/each}}
+                </select>
+              </div>
+              <div class="form-group">
+              <label for="name" name="objectiveDefinition" value="{{selectObjective.objective}}">Mағынасы: {{selectObjective.objective}}</label>              
+              </div>
+              <div class="form-group">
+                <label for="name" name="topic" value="{{selectObjective.topic}}">Тақырып: {{selectObjective.topic}}</label>
+              </div>
+              <div class="form-group">
+                <label for="name">Вариант 1</label>
+                <input type="text" class="form-control" name="variant1">
+              </div>
+              <div class="form-group">
+                <label for="name">Сұрақтар Вариант 1 </label>
+                <input type="text" class="form-control" name="questions1">
+              </div>
+              <div class="form-group">
+                <label for="name">Вариант 2</label>
+                <input type="text" class="form-control" name="variant2">
+              </div>
+              <div class="form-group">
+                <label for="name">Сұрақтар Вариант 2 </label>
+                <input type="text" class="form-control" name="questions2">
+              </div>
+                  
+              <button class="btn btn-primary" id="save">Сақтау</button>
+        </div>
+	</div>
+</template>

@@ -1,0 +1,36 @@
+<template name="editTatKey">
+	<div class="row">
+		<div class="col-md-12">
+			<div class="row">
+				<h4>TAT-Жауап кілтін өзгерту</h4>
+			</div>
+			<div class="row">
+				<div class="form-group">
+                  <div class="form-inline">
+                      <div class="form-group">
+                        <label for="exampleSelect1">TAT #</label>
+                        <select class="form-control" name="tatNo" id="tatNo">
+		                    <option value="1" {{selected key.tatNo "1"}}>1</option>
+		                    <option value="2" {{selected key.tatNo "2"}}>2</option>
+		                    <option value="3" {{selected key.tatNo "3"}}>3</option>
+                        </select>
+                        <label for="exampleSelect1"> Пән #</label>
+                        <select class="form-control" name="subjectId" id="subjectId">
+                            {{#each subjects}}
+                            	<option value="{{subjectId}}" {{selected key.subjectId subjectId }}>{{subjectName subjectId}}</option>
+                            {{/each}}
+                        </select>
+                        <label for="exampleSelect1">Вариант:</label>
+                        <input class="form-control" name="variant" id="variant" size="4" value="{{key.variant}}"/>
+                        <label for="exampleSelect1">Жауап кілті:</label>
+                        <input class="form-control" name="keys" id="keys" size="50" value="{{key.keys}}"/>
+                        <a class="btn btn-primary" id="save">Сақтау</a>
+              </div>
+                  </div>
+              </div>
+			</div>
+		</div>
+		
+	</div>
+	
+</template>

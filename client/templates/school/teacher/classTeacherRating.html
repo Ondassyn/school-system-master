@@ -1,0 +1,254 @@
+<template name="classTeacherRating">
+    <div class="row">
+        <div class="col-md-12">
+            <h4 style="padding-bottom: 15pt; text-align: center;">Жетекшілік рейтингі</h4>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-inline">
+                        <div class="form-group" style="margin-right: 15pt">
+                        {{> academicYear}}
+                        </div>
+                        <div style="margin-right: 15pt" class="form-group">
+                            <label for="month">Ай: </label>
+                            <select class="form-control" name="month" id="select">
+                                <option value="all">Жылдық</option>
+                                <option value="09">Қыркүйек</option>
+                                <option value="10">Қазан</option>
+                                <option value="11">Қараша</option>
+                                <option value="12">Желтоқсан</option>
+                                <option value="01">Қантар</option>
+                                <option value="02">Ақпан</option>
+                                <option value="03">Наурыз</option>
+                                <option value="04">Сәуір</option>
+                                <option value="05">Мамыр</option>
+                                <option value="06">Маусым</option>
+                                <option value="07">Шілде</option>
+                                <option value="08">Тамыз</option>
+                            </select>
+                        </div>
+                        <div class="form-group" style="float: right;">
+                            
+                            <div class="form-group"><a data-toggle="modal" data-target="#myModal" class="btn btn-primary">
+                              <span class="glyphicon glyphicon-list-alt"></span> Рейтинг</a>
+                            </div>
+                            
+                            <div class="form-group" data-toggle="tooltip" title="Рейтингті жою"><a id="deleteRating" class="btn btn-danger">
+                              <span class="glyphicon glyphicon-remove"></span></a>
+                            </div>
+
+                            <!-- Modal -->
+                            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                              <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                  <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    <h4 class="modal-title" id="myModalLabel">Класс таңдау</h4>
+                                  </div>
+                                  <div class="modal-body">
+                                    <div class="col-md-12">
+                                    <table class="table table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th>#</th>
+                                                <th>ID</th>
+                                                <th>Аты Жөні</th>
+                                                <th style="text-align: center;">Сынып</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {{#each teachers}}
+                                            <tr>
+                                                <td style="padding-top: 10pt;">{{math @index "+" 1}}</td>
+                                                <td style="padding-top: 10pt;">{{teacherId}}</td>
+                                                <td style="padding-top: 10pt;">{{surname}} {{name}}</td>
+                                                <td style="text-align: center;">
+                                                    <select class="form-control" id="grade">
+                                                            <option value="">---</option>
+                                                            <option value="yes" {{selectedClass "grade" "yes"}}>бар</option>
+                                                            <option value="no" {{selectedClass "grade" "no"}}>жоқ</option>
+                                                    </select>
+                                                </td>
+                                            </tr>
+                                            {{/each}}
+                                        </tbody>
+                                    </table>
+                                  </div>
+                                  </div>
+                                  <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Қайту</button>
+                                    <button type="button" id='constructRating' class="btn btn-primary">Құрастыру</button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {{#if Template.subscriptionsReady}}
+
+            {{#if yearResults}}
+            <table style="margin-top: 15pt" class="table table-striped">
+                <thead>
+                    <tr class="bts-header">
+                        <th>#</th>
+                        <th>Мұғалім ID</th>
+                        <th>Аты-жөні</th>
+                        <th style="text-align: center;">Пәні</th>
+                        <th style="text-align: center;">Айы</th>
+                        <th style="text-align: center;">Оқушы<br/>үйін<br/>аралау</th>
+                        <th style="text-align: center;">Ата-ана<br/>тәрбие сағаты</th>
+                        <th style="text-align: center;">11 сынып<br/>жиналысы</th>
+                        <th style="text-align: center;">Әкімшілік<br/>жиналысы</th>
+                        <th style="text-align: center;">Директордың<br/>тәрбиешілерге<br/>жиналысы</th>
+                        <th style="text-align: center;">Тәрбиешілер<br/>семинары</th>
+                        <th style="text-align: center;">Мұғалімдер<br/>семинары</th>
+                        <th style="text-align: center;">Жалпы<br/>ұпай</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each results}}
+                    <tr>
+                        <td>{{math @index "+" 1}}</td>
+                        <td>{{teacherId}}</td>
+                        <td>{{surname}} {{name}}</td>
+                        <td style="text-align: center;">{{subjectName subjectId}}</td>
+                        <td style="text-align: center;">{{monthName month}}</td>
+                        <td style="text-align: center;">
+                            <div class="row">
+                            <a href="#" id="reduceVisit">
+                              <span class="glyphicon glyphicon-minus-sign"></span>
+                            </a>
+                            {{visit}} 
+                            <a href="#" id="addVisit">
+                              <span class="glyphicon glyphicon-plus-sign"></span>
+                            </a> 
+                            </div>
+                        </td>
+                        <td style="text-align: center;">
+                            <div class="row">
+                            <a href="#" id="reduceParentHour">
+                              <span class="glyphicon glyphicon-minus-sign"></span>
+                            </a>
+                            {{parent_hour}}
+                            <a href="#" id="addParentHour">
+                              <span class="glyphicon glyphicon-plus-sign"></span>
+                            </a> 
+                            </div>
+                        </td>
+                        <td style="text-align: center;">
+                            <a href="#" id="reduce11GradeMeeting">
+                              <span class="glyphicon glyphicon-minus-sign"></span>
+                            </a>
+                            {{eleven_grade_meeting}} 
+                            <a href="#" id="add11GradeMeeting">
+                                  <span class="glyphicon glyphicon-plus-sign"></span>
+                            </a>
+                        </td>
+                        <td style="text-align: center;">
+                            <div class="row">
+                            <a href="#" id="reduceAdminMeeting">
+                              <span class="glyphicon glyphicon-minus-sign"></span>
+                            </a>
+                            {{admin_meeting}} 
+                            <a href="#" id="addAdminMeeting">
+                                  <span class="glyphicon glyphicon-plus-sign"></span>
+                            </a>
+                            </div>
+                        </td>
+                        <td style="text-align: center;">
+                            <a href="#" id="reducePrincipalMeeting">
+                              <span class="glyphicon glyphicon-minus-sign"></span>
+                            </a>
+                            {{principal_meeting}}
+                            <a href="#" id="addPrincipalMeeting">
+                                  <span class="glyphicon glyphicon-plus-sign"></span>
+                            </a>
+                        </td>
+                        <td style="text-align: center;">
+                            <a href="#" id="reduceTutorSeminar">
+                                  <span class="glyphicon glyphicon-minus-sign"></span>
+                            </a>
+                            {{tutor_seminar}}
+                            <a href="#" id="addTutorSeminar">
+                                  <span class="glyphicon glyphicon-plus-sign"></span>
+                            </a>
+                        </td>
+                        <td style="text-align: center;">
+                            <a href="#" id="reduceTeacherSeminar">
+                                  <span class="glyphicon glyphicon-minus-sign"></span>
+                            </a>
+                            {{teacher_seminar}} 
+                            <a href="#" id="addTeacherSeminar">
+                                  <span class="glyphicon glyphicon-plus-sign"></span>
+                            </a>
+                        </td>
+                        <td style="text-align: center;">{{total}}</td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+            
+            {{else}}
+            <table style="margin-top: 15pt" class="table table-striped">
+                <thead>
+                    <tr class="bts-header">
+                        <th>#</th>
+                        <th>Мұғалім ID</th>
+                        <th>Аты-жөні</th>
+                        <th style="text-align: center;">Пәні</th>
+                        <th style="text-align: center;">Айы</th>
+                        <th style="text-align: center;">Оқушы<br/>үйін<br/>аралау</th>
+                        <th style="text-align: center;">Ата-ана<br/>тәрбие сағаты</th>
+                        <th style="text-align: center;">11 сынып<br/>жиналысы</th>
+                        <th style="text-align: center;">Әкімшілік<br/>жиналысы</th>
+                        <th style="text-align: center;">Директордың<br/>тәрбиешілерге<br/>жиналысы</th>
+                        <th style="text-align: center;">Тәрбиешілер<br/>семинары</th>
+                        <th style="text-align: center;">Мұғалімдер<br/>семинары</th>
+                        <th style="text-align: center;">Жалпы<br/>ұпай</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each results}}
+                    <tr>
+                        <td>{{math @index "+" 1}}</td>
+                        <td>{{teacherId}}</td>
+                        <td>{{surname}} {{name}}</td>
+                        <td style="text-align: center;">{{subjectName subjectId}}</td>
+                        <td style="text-align: center;">{{monthName month}}</td>
+                        <td style="text-align: center;">
+                            {{visit}} 
+                            </td>
+                        <td style="text-align: center;">
+                            {{parent_hour}}
+                            </td>
+                        <td style="text-align: center;">
+                            {{eleven_grade_meeting}} 
+                        </td>
+                        <td style="text-align: center;">
+                            {{admin_meeting}} 
+                        </td>
+                        <td style="text-align: center;">
+                            {{principal_meeting}}
+                            </td>
+                        <td style="text-align: center;">
+                            {{tutor_seminar}}
+                            </td>
+                        <td style="text-align: center;">
+                            {{teacher_seminar}} 
+                        </td>
+                        <td style="text-align: center;">{{total}}</td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+            {{/if}}
+
+
+            {{else}}
+            <p>Loading...</p>
+            {{/if}}
+        </div>
+    </div>
+</template>

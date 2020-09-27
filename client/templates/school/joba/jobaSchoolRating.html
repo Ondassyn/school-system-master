@@ -1,0 +1,92 @@
+<template name="jobaSchoolRating">
+    <div class="row">
+        <div class="col-md-12">
+        <h4 style="margin-bottom: 15pt">Жоба рейтингі</h4>
+            <div class="form-group">
+                <div class="form-inline" style="padding-bottom: 10pt">
+                    
+                    <div class="form-group" style="margin-right: 10pt">
+                        {{> academicYear}}
+                    </div>
+                    <div class="form-group">
+                        <label for="school">мектеп</label>
+                        <select class="form-control" style="width:150pt;margin-right: 10pt" name="schoolId_select" id="select">
+                                <option value="">Select All</option>
+                            {{#each schools}}
+                                <option value="{{schoolId}}" >{{shortName}}</option>
+                            {{/each}}
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="grade_select">cынып</label>
+                        <select class="form-control" style="margin-right: 10pt" name="grade" id="select">
+                            <option value="all">Жалпы</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                       <label for="subject_select">пән</label>
+                        <select class="form-control" name="subject" id="select" style="width: 100pt; margin-right: 10pt">
+                            <option value="all">Жалпы</option>
+                        {{#each subjects}}
+                            <option value="{{subjectId}}">{{name_kz}}</option>
+                        {{/each}}
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    {{#if Template.subscriptionsReady}}
+        <div class="col-md-12">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Мектеп</th>
+                        <th>Пән</th>
+                        <th id="sortRegionGold" style="text-align: center;">Облыс<br/>Алтын</th>
+                        <th id="sortRegionSilver" style="text-align: center;">Облыс<br/>Күміс</th>
+                        <th id="sortRegionBronze" style="text-align: center;">Облыс<br/>Қола</th>
+                        <th id="sortRegionTotal" style="text-align: center;">Облыс<br/>Жалпы</th>
+                        <th id="sortNatGold" style="text-align: center;">Респ<br/>Алтын</th>
+                        <th id="sortNatSilver" style="text-align: center;">Респ<br/>Күміс</th>
+                        <th id="sortNatBronze" style="text-align: center;">Респ<br/>Қола</th>
+                        <th id="sortNatTotal" style="text-align: center;">Респ<br/>Жалпы</th>
+                        <th id="sortInterGold" style="text-align: center;">Х/A<br/>Алтын</th>
+                        <th id="sortInterSilver" style="text-align: center;">Х/A<br/>Күміс</th>
+                        <th id="sortInterBronze" style="text-align: center;">Х/A<br/>Қола</th>
+                        <th id="sortInterTotal" style="text-align: center;">Х/A<br/>Жалпы</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each results}}
+                    <tr>
+                        <td>{{math @index "+" 1}}</td>
+                        <td>{{schoolName schoolId}}</td>
+                        <td>{{subjectName subjectId}}</td>
+                        <td style="text-align: center;">{{regGoldJoba}}</td>
+                        <td style="text-align: center;">{{regSilverJoba}}</td>
+                        <td style="text-align: center;">{{regBronzeJoba}}</td>
+                        <td style="text-align: center;">{{regTotalJoba}}</td>
+                        <td style="text-align: center;">{{natGoldJoba}}</td>
+                        <td style="text-align: center;">{{natSilverJoba}}</td>
+                        <td style="text-align: center;">{{natBronzeJoba}}</td>
+                        <td style="text-align: center;">{{natTotalJoba}}</td>
+                        <td style="text-align: center;">{{interGoldJoba}}</td>
+                        <td style="text-align: center;">{{interSilverJoba}}</td>
+                        <td style="text-align: center;">{{interBronzeJoba}}</td>
+                        <td style="text-align: center;">{{interTotalJoba}}</td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+        </div>
+    {{else}}
+            <p>Loading...</p>
+    {{/if}}
+    </div>
+</template>

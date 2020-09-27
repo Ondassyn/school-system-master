@@ -1,0 +1,165 @@
+<template name="ubtUpload">
+    <div class="row">
+        <div class="col-md-12">
+            <h4 for="upload" style="padding-bottom: 10pt">ҰБТ Жүктеу</h4>
+            <div class="form-group">
+                <div class="form-inline">
+                    <div class="form-group">
+
+                        <a style="margin-right: 15pt" class="btn btn-default" id="dnload">Үлгі</a>
+                        <input type="file" class="form-control" id="upload" style="margin-right: 15pt">
+                        <a class="btn btn-primary" id="save">Сақтау</a>
+
+                    </div >
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="table-responsive">
+            <table class="table table-striped table-bordered table-hover" >
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Сынып</th>
+                        <th>Тегі</th>
+                        <th>Аты</th>
+                        <th>ҰБТ1</th>
+                        <th>ҰБТ2</th>
+                        <th>ҰБТ3</th>
+                        <th>ҰБТ4</th>
+                        <th>ҰБТ5</th>
+                        <th>ҰБТ6</th>
+                        <th>ҰБТ7</th>
+                        <th>ҰБТ8</th>
+                        <th>ҰБТ9</th>
+                        <th>ҰБТ10</th>
+                        <th>ҰБТ11</th>
+                        <th>ҰБТ12</th>
+                        <th>ҰБТ13</th>
+                        <th>ҰБТ14</th>
+                        <th>ҰБТ15</th>
+                        <th>ҰБТ16</th>
+                        <th>ҰБТ17</th>
+                        <th>ҰБТ18</th>
+                        <th>ҰБТ19</th>
+                        <th>ҰБТ20</th>
+                        <th>ҰБТ21</th>
+                        <th>ҰБТ22</th>
+                        <th>ҰБТ23</th>
+                        <th>ҰБТ24</th>
+                        <th>ҰБТ25</th>
+                        <th>ҰБТ26</th>
+                        <th>ҰБТ27</th>
+                        <th>ҰБТ28</th>
+                        <th>ҰБТ29</th>
+                        <th>ҰБТ30</th>
+                        <th>ҰБТ31</th>
+                        <th>ҰБТ32</th>
+                        <th>ҰБТ33</th>
+                        <th>ҰБТ34</th>
+                        <th>ҰБТ35</th>
+                        <th>ҰБТ36</th>
+                        <th>ҰБТ37</th>
+                        <th>ҰБТ38</th>
+                        <th>ҰБТ39</th>
+                        <th>ҰБТ40</th>
+                        <th>ҰБТ41</th>
+                        <th>ҰБТ42</th>
+                        <th>ҰБТ43</th>
+                        <th>ҰБТ44</th>
+                        <th>ҰБТ45</th>
+                        <th>ҰБТ46</th>
+                        <th>ҰБТ47</th>
+                        <th>ҰБТ48</th>
+                        <th>ҰБТ49</th>
+                        <th>ҰБТ50</th>
+                        <th>ҰБТ51</th>
+                        <th>ҰБТ52</th>
+                        <th>ҰБТ53</th>
+                        <th>ҰБТ54</th>
+                        <th>ҰБТ55</th>
+                        <th>ҰБТ56</th>
+                        <th>ҰБТ57</th>
+                        <th>ҰБТ58</th>
+                        <th>ҰБТ59</th>
+                        <th>ҰБТ60</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each results}}
+                    <tr>
+                        <td>{{studentId}}</td>
+                        <td>{{grade}}</td>
+                        <td>{{studentSurname}}</td>
+                        <td>{{studentName}}</td>
+                        <td style="text-align: center;">{{ubt1}}</td>
+                        <td style="text-align: center;">{{ubt2}}</td>
+                        <td style="text-align: center;">{{ubt3}}</td>
+                        <td style="text-align: center;">{{ubt4}}</td>
+                        <td style="text-align: center;">{{ubt5}}</td>
+                        <td style="text-align: center;">{{ubt6}}</td>
+                        <td style="text-align: center;">{{ubt7}}</td>
+                        <td style="text-align: center;">{{ubt8}}</td>
+                        <td style="text-align: center;">{{ubt9}}</td>
+                        <td style="text-align: center;">{{ubt10}}</td>
+                        <td style="text-align: center;">{{ubt11}}</td>
+                        <td style="text-align: center;">{{ubt12}}</td>
+                        <td style="text-align: center;">{{ubt13}}</td>
+                        <td style="text-align: center;">{{ubt14}}</td>
+                        <td style="text-align: center;">{{ubt15}}</td>
+                        <td style="text-align: center;">{{ubt16}}</td>
+                        <td style="text-align: center;">{{ubt17}}</td>
+                        <td style="text-align: center;">{{ubt18}}</td>
+                        <td style="text-align: center;">{{ubt19}}</td>
+                        <td style="text-align: center;">{{ubt20}}</td>
+                        <td style="text-align: center;">{{ubt21}}</td>
+                        <td style="text-align: center;">{{ubt22}}</td>
+                        <td style="text-align: center;">{{ubt23}}</td>
+                        <td style="text-align: center;">{{ubt24}}</td>
+                        <td style="text-align: center;">{{ubt25}}</td>
+                        <td style="text-align: center;">{{ubt26}}</td>
+                        <td style="text-align: center;">{{ubt27}}</td>
+                        <td style="text-align: center;">{{ubt28}}</td>
+                        <td style="text-align: center;">{{ubt29}}</td>
+                        <td style="text-align: center;">{{ubt30}}</td>
+                        <td style="text-align: center;">{{ubt31}}</td>
+                        <td style="text-align: center;">{{ubt32}}</td>
+                        <td style="text-align: center;">{{ubt33}}</td>
+                        <td style="text-align: center;">{{ubt34}}</td>
+                        <td style="text-align: center;">{{ubt35}}</td>
+                        <td style="text-align: center;">{{ubt36}}</td>
+                        <td style="text-align: center;">{{ubt37}}</td>
+                        <td style="text-align: center;">{{ubt38}}</td>
+                        <td style="text-align: center;">{{ubt39}}</td>
+                        <td style="text-align: center;">{{ubt40}}</td>
+                        <td style="text-align: center;">{{ubt41}}</td>
+                        <td style="text-align: center;">{{ubt42}}</td>
+                        <td style="text-align: center;">{{ubt43}}</td>
+                        <td style="text-align: center;">{{ubt44}}</td>
+                        <td style="text-align: center;">{{ubt45}}</td>
+                        <td style="text-align: center;">{{ubt46}}</td>
+                        <td style="text-align: center;">{{ubt47}}</td>
+                        <td style="text-align: center;">{{ubt48}}</td>
+                        <td style="text-align: center;">{{ubt49}}</td>
+                        <td style="text-align: center;">{{ubt50}}</td>
+                        <td style="text-align: center;">{{ubt51}}</td>
+                        <td style="text-align: center;">{{ubt52}}</td>
+                        <td style="text-align: center;">{{ubt53}}</td>
+                        <td style="text-align: center;">{{ubt54}}</td>
+                        <td style="text-align: center;">{{ubt55}}</td>
+                        <td style="text-align: center;">{{ubt56}}</td>
+                        <td style="text-align: center;">{{ubt57}}</td>
+                        <td style="text-align: center;">{{ubt58}}</td>
+                        <td style="text-align: center;">{{ubt59}}</td>
+                        <td style="text-align: center;">{{ubt60}}</td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+            </div>
+        </div>
+        <div id="out"></div>
+    </div>
+</template>

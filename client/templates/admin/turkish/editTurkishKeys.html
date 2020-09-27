@@ -1,0 +1,19 @@
+<template name="editTurkishKeys">
+
+	<div class="row">
+		<div class="col-md-8">
+            {{#if Template.subscriptionsReady}}
+              <h4>Өзгерту</h4>
+							<h5>Жыл: {{keys.academicYear}}</h5>
+							<h5 style="padding-bottom: 20pt">Вариант: {{keys.variant}}</h5>
+                            <div class="form-group">
+                                <label for="name">Түрік тілі</label>
+                                <input type="text" class="form-control" name="turkish" value="{{keys.turkish}}">
+                            </div>
+            <button class="btn btn-primary" id="save">Сақтау</button>
+            {{else}}
+            <p>Loading...</p>
+            {{/if}}
+        </div>
+	</div>
+</template>

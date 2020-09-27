@@ -1,0 +1,67 @@
+<template name="btsObjectivesRating">
+    <div class="row">
+        <div class="col-md-12">
+            <h4>БТС-{{btsNo}} Сабақ мақсаттар рейтингі</h4>
+            <div class="form-inline">
+                <div class="form-group" style="margin-right: 10pt"> 
+                    {{> academicYear}}
+                </div>
+                <div class="form-group" style="margin-right: 10pt">
+                    <label for="">Сынып</label>
+                    <select class="form-control" name="grade" id="select">
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                    </select>
+                </div>
+                <div class="form-group" style="margin-right: 10pt"> 
+                    <label for="subject">Пән:</label>
+                    <select class="form-control" name="subject_select" id="select">
+                        <option value="algebra">Алгебра</option>
+                        <option value="physics">Физика</option>
+                        <option value="chemistry">Химия</option>
+                        <option value="biology">Биология</option>
+                    </select>
+                </div>
+                <div class="form-group" style="margin-right: 10pt"> 
+                    <label for="objective">Сабақ мақсаты:</label>
+                    <select class="form-control" name="objective_select" id="select">
+                        <option value="">Select Objective</option>
+                            {{#each objective}}
+                        <option value="{{objectiveId}}" >{{objectiveId}}</option>
+                            {{/each}}
+                    </select>
+                </div>
+            </div>
+            {{#if Template.subscriptionsReady}}
+            <table class="table table-striped">
+                <thead>
+                    <tr class="bts-header">
+                        <th>#</th>
+                        <th>Пәні</th>
+                        <th>Сабақ мақсаты ID</th>
+                        <th>Такырып</th>
+                        <th></th>
+                        <th>Нәтиже</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each results}}
+                    <tr>
+                        <td>{{math @index "+" 1}}</td>
+                        <td>{{subjectFromEnglish subject}}</td>
+                        <td>{{objectiveId}}</td>
+                        <td>{{topic}}</td>
+                        <td>{{objectiveDefinition}}</td>
+                        <td>{{success}}%</td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+            {{else}}
+            <p>Loading...</p>
+            {{/if}}
+        </div>
+    </div>
+</template>

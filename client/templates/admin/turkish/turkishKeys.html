@@ -1,0 +1,40 @@
+<template name="turkishKeys">
+	<div class="row">
+		<div class="col-md-12">
+			<div class="form-inline" style="padding-bottom: 15pt">
+				<h4 style="text-align: center;">Türkçe exam - Жауап кілттері</h4>
+				<div class="form-group" style="margin-right: 10pt;text-align: center;"> 
+					{{> academicYear}}
+				</div>
+				<div class="form-group" style="margin-right: 10pt">
+				<a href="/admin/turkish/keys/new" class="btn btn-primary" style="float: right;">Қосу</a>
+				</div>
+			</div>
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th>#</th>
+						<th></th>
+						<th>Вариант</th>
+						<th>Сынып</th>
+					</tr>
+				</thead>
+				<tbody>
+					{{#each keys}}
+					<tr>
+						<td>{{math @index "+" 1}}</td>
+						<td>{{academicYear}}</td>
+						<td>{{variant}}</td>
+						<td>{{grade}}</td>
+						<td><a style="float:right" class="btn btn-primary" href="/admin/turkish/keys/edit/{{_id}}">Өзгерту</a></td>
+						<td><a class="btn btn-danger" href="#" id="delete">Өшіру</a></td>
+
+					</tr>
+					{{/each}}
+				</tbody>
+			</table>
+		</div>
+		
+	</div>
+	
+</template>

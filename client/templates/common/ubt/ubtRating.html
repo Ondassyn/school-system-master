@@ -1,0 +1,438 @@
+<template name="ubtRating">
+    <div class="row">
+        <div class="col-md-12">
+            <h4 style="text-align: center;">ҰБТ Рейтинг</h4>
+                <div class="form-inline" style="padding-bottom: 10pt">
+                    <div class="form-group" style="margin-right: 10pt">
+                    {{> academicYear}}
+                    </div>
+
+                    <div class="form-group" style="float: right">
+                        <a class="btn btn-success" id="export">Export</a>
+                    </div>
+                </div>
+            {{#if Template.subscriptionsReady}}
+            <div class="table-responsive" id="out">
+            <table class="table table-striped table-bordered table-hover table-condensed">
+                <thead>
+                    <tr class="bts-header" style="background-color: white;">
+                        <th style="position: absolute; width: 20pt; background-color: white; text-align: center; ">#</th>
+                        <th style="position: absolute; width: 80pt; margin-left: 20pt;background-color: white; text-align: center;">Мектеп ID</th>
+                        <th style="position: absolute; width: 250pt; margin-left: 100pt; background-color: white; text-align: center;">Мектеп аты</th>
+                        <th style="padding-left: 355pt; text-align: center; white-space: nowrap;">Жалпы</th>
+                        <th style="text-align: center;">ҰБТ1</th>
+                        <th style="text-align: center;">ҰБТ2</th>
+                        <th style="text-align: center;">ҰБТ3</th>
+                        <th style="text-align: center;">ҰБТ4</th>
+                        <th style="text-align: center;">ҰБТ5</th>
+                        <th style="text-align: center;">ҰБТ6</th>
+                        <th style="text-align: center;">ҰБТ7</th>
+                        <th style="text-align: center;">ҰБТ8</th>
+                        <th style="text-align: center;">ҰБТ9</th>
+                        <th style="text-align: center;">ҰБТ10</th>
+                        <th style="text-align: center;">ҰБТ11</th>
+                        <th style="text-align: center;">ҰБТ12</th>
+                        <th style="text-align: center;">ҰБТ13</th>
+                        <th style="text-align: center;">ҰБТ14</th>
+                        <th style="text-align: center;">ҰБТ15</th>
+                        <th style="text-align: center;">ҰБТ16</th>
+                        <th style="text-align: center;">ҰБТ17</th>
+                        <th style="text-align: center;">ҰБТ18</th>
+                        <th style="text-align: center;">ҰБТ19</th>
+                        <th style="text-align: center;">ҰБТ20</th>
+                        <th style="text-align: center;">ҰБТ21</th>
+                        <th style="text-align: center;">ҰБТ22</th>
+                        <th style="text-align: center;">ҰБТ23</th>
+                        <th style="text-align: center;">ҰБТ24</th>
+                        <th style="text-align: center;">ҰБТ25</th>
+                        <th style="text-align: center;">ҰБТ26</th>
+                        <th style="text-align: center;">ҰБТ27</th>
+                        <th style="text-align: center;">ҰБТ28</th>
+                        <th style="text-align: center;">ҰБТ29</th>
+                        <th style="text-align: center;">ҰБТ30</th>
+                        <th style="text-align: center;">ҰБТ31</th>
+                        <th style="text-align: center;">ҰБТ32</th>
+                        <th style="text-align: center;">ҰБТ33</th>
+                        <th style="text-align: center;">ҰБТ34</th>
+                        <th style="text-align: center;">ҰБТ35</th>
+                        <th style="text-align: center;">ҰБТ36</th>
+                        <th style="text-align: center;">ҰБТ37</th>
+                        <th style="text-align: center;">ҰБТ38</th>
+                        <th style="text-align: center;">ҰБТ39</th>
+                        <th style="text-align: center;">ҰБТ40</th>
+                        <th style="text-align: center;">ҰБТ41</th>
+                        <th style="text-align: center;">ҰБТ42</th>
+                        <th style="text-align: center;">ҰБТ43</th>
+                        <th style="text-align: center;">ҰБТ44</th>
+                        <th style="text-align: center;">ҰБТ45</th>
+                        <th style="text-align: center;">ҰБТ46</th>
+                        <th style="text-align: center;">ҰБТ47</th>
+                        <th style="text-align: center;">ҰБТ48</th>
+                        <th style="text-align: center;">ҰБТ49</th>
+                        <th style="text-align: center;">ҰБТ50</th>
+                        <th style="text-align: center;">ҰБТ51</th>
+                        <th style="text-align: center;">ҰБТ52</th>
+                        <th style="text-align: center;">ҰБТ53</th>
+                        <th style="text-align: center;">ҰБТ54</th>
+                        <th style="text-align: center;">ҰБТ55</th>
+                        <th style="text-align: center;">ҰБТ56</th>
+                        <th style="text-align: center;">ҰБТ57</th>
+                        <th style="text-align: center;">ҰБТ58</th>
+                        <th style="text-align: center;">ҰБТ59</th>
+                        <th style="text-align: center;">ҰБТ60</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each results}}
+                    <tr>
+                        <td style="position: absolute; width: 20pt; background-color: white; text-align: center; border: 1px solid white; color: white;">-</td>
+                        <td style="position: absolute; width: 80pt; margin-left: 20pt;background-color: white; text-align: center;">{{schoolId}}</td>
+                        <td style="position: absolute; width: 250pt; margin-left: 100pt; background-color: white;">{{schoolName schoolId}}</td>
+                        <td style="text-align: center; padding-left: 355pt; white-space: nowrap;">{{round 1 totalInProcent}} %</td>
+
+                        <td style="text-align: center; white-space: nowrap; font-weight:bold;">{{ubt1PassedStudents}}</td>
+                        <td style="text-align: center; white-space: nowrap; font-weight:bold;">{{ubt2PassedStudents}}</td>
+                        <td style="text-align: center; white-space: nowrap; font-weight:bold;">{{ubt3PassedStudents}}</td>
+                        <td style="text-align: center; white-space: nowrap; font-weight:bold;">{{ubt4PassedStudents}}</td>
+                        <td style="text-align: center; white-space: nowrap; font-weight:bold;">{{ubt5PassedStudents}}</td>
+                        <td style="text-align: center; white-space: nowrap; font-weight:bold;">{{ubt6PassedStudents}}</td>
+                        <td style="text-align: center; white-space: nowrap; font-weight:bold;">{{ubt7PassedStudents}}</td>
+                        <td style="text-align: center; white-space: nowrap; font-weight:bold;">{{ubt8PassedStudents}}</td>
+                        <td style="text-align: center; white-space: nowrap; font-weight:bold;">{{ubt9PassedStudents}}</td>
+                        <td style="text-align: center; white-space: nowrap; font-weight:bold;">{{ubt10PassedStudents}}</td>
+                        <td style="text-align: center; white-space: nowrap; font-weight:bold;">{{ubt11PassedStudents}}</td>
+                        <td style="text-align: center; white-space: nowrap; font-weight:bold;">{{ubt12PassedStudents}}</td>
+                        <td style="text-align: center; white-space: nowrap; font-weight:bold;">{{ubt13PassedStudents}}</td>
+                        <td style="text-align: center; white-space: nowrap; font-weight:bold;">{{ubt14PassedStudents}}</td>
+                        <td style="text-align: center; white-space: nowrap; font-weight:bold;">{{ubt15PassedStudents}}</td>
+                        <td style="text-align: center; white-space: nowrap; font-weight:bold;">{{ubt16PassedStudents}}</td>
+                        <td style="text-align: center; white-space: nowrap; font-weight:bold;">{{ubt17PassedStudents}}</td>
+                        <td style="text-align: center; white-space: nowrap; font-weight:bold;">{{ubt18PassedStudents}}</td>
+                        <td style="text-align: center; white-space: nowrap; font-weight:bold;">{{ubt19PassedStudents}}</td>
+                        <td style="text-align: center; white-space: nowrap; font-weight:bold;">{{ubt20PassedStudents}}</td>
+                        <td style="text-align: center; white-space: nowrap; font-weight:bold;">{{ubt21PassedStudents}}</td>
+                        <td style="text-align: center; white-space: nowrap; font-weight:bold;">{{ubt22PassedStudents}}</td>
+                        <td style="text-align: center; white-space: nowrap; font-weight:bold;">{{ubt23PassedStudents}}</td>
+                        <td style="text-align: center; white-space: nowrap; font-weight:bold;">{{ubt24PassedStudents}}</td>
+                        <td style="text-align: center; white-space: nowrap; font-weight:bold;">{{ubt25PassedStudents}}</td>
+                        <td style="text-align: center; white-space: nowrap; font-weight:bold;">{{ubt26PassedStudents}}</td>
+                        <td style="text-align: center; white-space: nowrap; font-weight:bold;">{{ubt27PassedStudents}}</td>
+                        <td style="text-align: center; white-space: nowrap; font-weight:bold;">{{ubt28PassedStudents}}</td>
+                        <td style="text-align: center; white-space: nowrap; font-weight:bold;">{{ubt29PassedStudents}}</td>
+                        <td style="text-align: center; white-space: nowrap; font-weight:bold;">{{ubt30PassedStudents}}</td>
+                        <td style="text-align: center; white-space: nowrap; font-weight:bold;">{{ubt31PassedStudents}}</td>
+                        <td style="text-align: center; white-space: nowrap; font-weight:bold;">{{ubt32PassedStudents}}</td>
+                        <td style="text-align: center; white-space: nowrap; font-weight:bold;">{{ubt33PassedStudents}}</td>
+                        <td style="text-align: center; white-space: nowrap; font-weight:bold;">{{ubt34PassedStudents}}</td>
+                        <td style="text-align: center; white-space: nowrap; font-weight:bold;">{{ubt35PassedStudents}}</td>
+                        <td style="text-align: center; white-space: nowrap; font-weight:bold;">{{ubt36PassedStudents}}</td>
+                        <td style="text-align: center; white-space: nowrap; font-weight:bold;">{{ubt37PassedStudents}}</td>
+                        <td style="text-align: center; white-space: nowrap; font-weight:bold;">{{ubt38PassedStudents}}</td>
+                        <td style="text-align: center; white-space: nowrap; font-weight:bold;">{{ubt39PassedStudents}}</td>
+                        <td style="text-align: center; white-space: nowrap; font-weight:bold;">{{ubt40PassedStudents}}</td>
+                        <td style="text-align: center; white-space: nowrap; font-weight:bold;">{{ubt41PassedStudents}}</td>
+                        <td style="text-align: center; white-space: nowrap; font-weight:bold;">{{ubt42PassedStudents}}</td>
+                        <td style="text-align: center; white-space: nowrap; font-weight:bold;">{{ubt43PassedStudents}}</td>
+                        <td style="text-align: center; white-space: nowrap; font-weight:bold;">{{ubt44PassedStudents}}</td>
+                        <td style="text-align: center; white-space: nowrap; font-weight:bold;">{{ubt45PassedStudents}}</td>
+                        <td style="text-align: center; white-space: nowrap; font-weight:bold;">{{ubt46PassedStudents}}</td>
+                        <td style="text-align: center; white-space: nowrap; font-weight:bold;">{{ubt47PassedStudents}}</td>
+                        <td style="text-align: center; white-space: nowrap; font-weight:bold;">{{ubt48PassedStudents}}</td>
+                        <td style="text-align: center; white-space: nowrap; font-weight:bold;">{{ubt49PassedStudents}}</td>
+                        <td style="text-align: center; white-space: nowrap; font-weight:bold;">{{ubt50PassedStudents}}</td>
+                        <td style="text-align: center; white-space: nowrap; font-weight:bold;">{{ubt51PassedStudents}}</td>
+                        <td style="text-align: center; white-space: nowrap; font-weight:bold;">{{ubt52PassedStudents}}</td>
+                        <td style="text-align: center; white-space: nowrap; font-weight:bold;">{{ubt53PassedStudents}}</td>
+                        <td style="text-align: center; white-space: nowrap; font-weight:bold;">{{ubt54PassedStudents}}</td>
+                        <td style="text-align: center; white-space: nowrap; font-weight:bold;">{{ubt55PassedStudents}}</td>
+                        <td style="text-align: center; white-space: nowrap; font-weight:bold;">{{ubt56PassedStudents}}</td>
+                        <td style="text-align: center; white-space: nowrap; font-weight:bold;">{{ubt57PassedStudents}}</td>
+                        <td style="text-align: center; white-space: nowrap; font-weight:bold;">{{ubt58PassedStudents}}</td>
+                        <td style="text-align: center; white-space: nowrap; font-weight:bold;">{{ubt59PassedStudents}}</td>
+                        <td style="text-align: center; white-space: nowrap; font-weight:bold;">{{ubt60PassedStudents}}</td>
+                        <!--
+                        <td style="text-align: center; white-space: nowrap;">{{round 1 (math 0.71 "*" ubt1)}} %</td>
+                        <td style="text-align: center; white-space: nowrap;">{{round 1 (math 0.71 "*" ubt2)}} %</td>
+                        <td style="text-align: center; white-space: nowrap;">{{#if notZero ubt3}}{{round 1 (math 0.71 "*" ubt3)}} % {{else}} 0 {{/if}}</td>
+                        <td style="text-align: center; white-space: nowrap;">{{#if notZero ubt4}}{{round 1 (math 0.71 "*" ubt4)}} % {{else}} 0 {{/if}}</td>
+                        <td style="text-align: center; white-space: nowrap;">{{#if notZero ubt5}}{{round 1 (math 0.71 "*" ubt5)}} % {{else}} 0 {{/if}}</td>
+                        <td style="text-align: center; white-space: nowrap;">{{#if notZero ubt6}}{{round 1 (math 0.71 "*" ubt6)}} % {{else}} 0 {{/if}}</td>
+                        <td style="text-align: center; white-space: nowrap;">{{#if notZero ubt7}}{{round 1 (math 0.71 "*" ubt7)}} % {{else}} 0 {{/if}}</td>
+                        <td style="text-align: center; white-space: nowrap;">{{#if notZero ubt8}}{{round 1 (math 0.71 "*" ubt8)}} % {{else}} 0 {{/if}}</td>
+                        <td style="text-align: center; white-space: nowrap;">{{#if notZero ubt9}}{{round 1 (math 0.71 "*" ubt9)}} % {{else}} 0 {{/if}}</td>
+                        <td style="text-align: center; white-space: nowrap;">{{#if notZero ubt10}}{{round 1 (math 0.71 "*" ubt10)}} % {{else}} 0 {{/if}}</td>
+                        <td style="text-align: center; white-space: nowrap;">{{#if notZero ubt11}}{{round 1 (math 0.71 "*" ubt11)}} % {{else}} 0 {{/if}}</td>
+                        <td style="text-align: center; white-space: nowrap;">{{#if notZero ubt12}}{{round 1 (math 0.71 "*" ubt12)}} % {{else}} 0 {{/if}}</td>
+                        <td style="text-align: center; white-space: nowrap;">{{#if notZero ubt13}}{{round 1 (math 0.71 "*" ubt13)}} % {{else}} 0 {{/if}}</td>
+                        <td style="text-align: center; white-space: nowrap;">{{#if notZero ubt14}}{{round 1 (math 0.71 "*" ubt14)}} % {{else}} 0 {{/if}}</td>
+                        <td style="text-align: center; white-space: nowrap;">{{#if notZero ubt15}}{{round 1 (math 0.71 "*" ubt15)}} % {{else}} 0 {{/if}}</td>
+                        <td style="text-align: center; white-space: nowrap;">{{#if notZero ubt16}}{{round 1 (math 0.71 "*" ubt16)}} % {{else}} 0 {{/if}}</td>
+                        <td style="text-align: center; white-space: nowrap;">{{#if notZero ubt17}}{{round 1 (math 0.71 "*" ubt17)}} % {{else}} 0 {{/if}}</td>
+                        <td style="text-align: center; white-space: nowrap;">{{#if notZero ubt18}}{{round 1 (math 0.71 "*" ubt18)}} % {{else}} 0 {{/if}}</td>
+                        <td style="text-align: center; white-space: nowrap;">{{#if notZero ubt19}}{{round 1 (math 0.71 "*" ubt19)}} % {{else}} 0 {{/if}}</td>
+                        <td style="text-align: center; white-space: nowrap;">{{#if notZero ubt20}}{{round 1 (math 0.71 "*" ubt20)}} % {{else}} 0 {{/if}}</td>
+                        <td style="text-align: center; white-space: nowrap;">{{#if notZero ubt21}}{{round 1 (math 0.71 "*" ubt21)}} % {{else}} 0 {{/if}}</td>
+                        <td style="text-align: center; white-space: nowrap;">{{#if notZero ubt22}}{{round 1 (math 0.71 "*" ubt22)}} % {{else}} 0 {{/if}}</td>
+                        <td style="text-align: center; white-space: nowrap;">{{#if notZero ubt23}}{{round 1 (math 0.71 "*" ubt23)}} % {{else}} 0 {{/if}}</td>
+                        <td style="text-align: center; white-space: nowrap;">{{#if notZero ubt24}}{{round 1 (math 0.71 "*" ubt24)}} % {{else}} 0 {{/if}}</td>
+                        <td style="text-align: center; white-space: nowrap;">{{#if notZero ubt25}}{{round 1 (math 0.71 "*" ubt25)}} % {{else}} 0 {{/if}}</td>
+                        <td style="text-align: center; white-space: nowrap;">{{#if notZero ubt26}}{{round 1 (math 0.71 "*" ubt26)}} % {{else}} 0 {{/if}}</td>
+                        <td style="text-align: center; white-space: nowrap;">{{#if notZero ubt27}}{{round 1 (math 0.71 "*" ubt27)}} % {{else}} 0 {{/if}}</td>
+                        <td style="text-align: center; white-space: nowrap;">{{#if notZero ubt28}}{{round 1 (math 0.71 "*" ubt28)}} % {{else}} 0 {{/if}}</td>
+                        <td style="text-align: center; white-space: nowrap;">{{#if notZero ubt29}}{{round 1 (math 0.71 "*" ubt29)}} % {{else}} 0 {{/if}}</td>
+                        <td style="text-align: center; white-space: nowrap;">{{#if notZero ubt30}}{{round 1 (math 0.71 "*" ubt30)}} % {{else}} 0 {{/if}}</td>
+                        <td style="text-align: center; white-space: nowrap;">{{#if notZero ubt31}}{{round 1 (math 0.71 "*" ubt31)}} % {{else}} 0 {{/if}}</td>
+                        <td style="text-align: center; white-space: nowrap;">{{#if notZero ubt32}}{{round 1 (math 0.71 "*" ubt32)}} % {{else}} 0 {{/if}}</td>
+                        <td style="text-align: center; white-space: nowrap;">{{#if notZero ubt33}}{{round 1 (math 0.71 "*" ubt33)}} % {{else}} 0 {{/if}}</td>
+                        <td style="text-align: center; white-space: nowrap;">{{#if notZero ubt34}}{{round 1 (math 0.71 "*" ubt34)}} % {{else}} 0 {{/if}}</td>
+                        -->
+                    </tr>
+
+                    <tr>
+                        <!-- Average -->
+                        <td style="position: absolute; width: 20pt; background-color: white; text-align: center;  border: 1px solid white; z-index:1">{{math @index "+" 1}}</td>
+                        <td style="position: absolute; width: 80pt; margin-left: 20pt;background-color: white; text-align: center; font-size: 14px; z-index:1">Оқушы саны</td>
+                        <td style="position: absolute; width: 250pt; margin-left: 100pt; background-color: white; text-align: right; padding-right: 10pt; z-index:1">ave / 140</td>
+
+                        <td style="text-align: center; padding-left: 355pt">{{total}}</td>
+                        <td style="text-align: center;">{{ubt1}}</td>
+                        <td style="text-align: center; white-space: nowrap;">{{ubt2}}{{#if strelki ubt1 ubt2}} <i class="glyphicon glyphicon-arrow-up" style="color:green; z-index: 0"></i>{{else}} {{#if notZero ubt2}} <i class="glyphicon glyphicon-arrow-down" style="color:red"></i> {{/if}} {{/if}}</td>
+                        <td style="text-align: center; white-space: nowrap;">{{ubt3}}{{#if strelki ubt2 ubt3}} <i class="glyphicon glyphicon-arrow-up" style="color:green"></i>{{else}} {{#if notZero ubt3}} <i class="glyphicon glyphicon-arrow-down" style="color:red"></i> {{/if}} {{/if}}</td>
+                        <td style="text-align: center; white-space: nowrap;">{{ubt4}}{{#if strelki ubt3 ubt4}} <i class="glyphicon glyphicon-arrow-up" style="color:green"></i>{{else}} {{#if notZero ubt4}} <i class="glyphicon glyphicon-arrow-down" style="color:red"></i> {{/if}} {{/if}}</td>
+                        <td style="text-align: center; white-space: nowrap;">{{ubt5}}{{#if strelki ubt4 ubt5}} <i class="glyphicon glyphicon-arrow-up" style="color:green"></i>{{else}} {{#if notZero ubt5}} <i class="glyphicon glyphicon-arrow-down" style="color:red"></i> {{/if}} {{/if}}</td>
+                        <td style="text-align: center; white-space: nowrap;">{{ubt6}}{{#if strelki ubt5 ubt6}} <i class="glyphicon glyphicon-arrow-up" style="color:green"></i>{{else}} {{#if notZero ubt6}} <i class="glyphicon glyphicon-arrow-down" style="color:red"></i> {{/if}} {{/if}}</td>
+                        <td style="text-align: center; white-space: nowrap;">{{ubt7}}{{#if strelki ubt6 ubt7}} <i class="glyphicon glyphicon-arrow-up" style="color:green"></i>{{else}} {{#if notZero ubt7}} <i class="glyphicon glyphicon-arrow-down" style="color:red"></i> {{/if}} {{/if}}</td>
+                        <td style="text-align: center; white-space: nowrap;">{{ubt8}}{{#if strelki ubt7 ubt8}} <i class="glyphicon glyphicon-arrow-up" style="color:green"></i>{{else}} {{#if notZero ubt8}} <i class="glyphicon glyphicon-arrow-down" style="color:red"></i> {{/if}} {{/if}}</td>
+                        <td style="text-align: center; white-space: nowrap;">{{ubt9}}{{#if strelki ubt8 ubt9}} <i class="glyphicon glyphicon-arrow-up" style="color:green"></i>{{else}} {{#if notZero ubt9}} <i class="glyphicon glyphicon-arrow-down" style="color:red"></i> {{/if}} {{/if}}</td>
+                        <td style="text-align: center; white-space: nowrap;">{{ubt10}}{{#if strelki ubt9 ubt10}} <i class="glyphicon glyphicon-arrow-up" style="color:green"></i>{{else}} {{#if notZero ubt10}} <i class="glyphicon glyphicon-arrow-down" style="color:red"></i> {{/if}} {{/if}}</td>
+                        <td style="text-align: center; white-space: nowrap;">{{ubt11}}{{#if strelki ubt10 ubt11}} <i class="glyphicon glyphicon-arrow-up" style="color:green"></i>{{else}} {{#if notZero ubt11}} <i class="glyphicon glyphicon-arrow-down" style="color:red"></i> {{/if}} {{/if}}</td>
+                        <td style="text-align: center; white-space: nowrap;">{{ubt12}}{{#if strelki ubt11 ubt12}} <i class="glyphicon glyphicon-arrow-up" style="color:green"></i>{{else}} {{#if notZero ubt12}} <i class="glyphicon glyphicon-arrow-down" style="color:red"></i> {{/if}} {{/if}}</td>
+                        <td style="text-align: center; white-space: nowrap;">{{ubt13}}{{#if strelki ubt12 ubt13}} <i class="glyphicon glyphicon-arrow-up" style="color:green"></i>{{else}} {{#if notZero ubt13}} <i class="glyphicon glyphicon-arrow-down" style="color:red"></i> {{/if}} {{/if}}</td>
+                        <td style="text-align: center; white-space: nowrap;">{{ubt14}}{{#if strelki ubt13 ubt14}} <i class="glyphicon glyphicon-arrow-up" style="color:green"></i>{{else}} {{#if notZero ubt14}} <i class="glyphicon glyphicon-arrow-down" style="color:red"></i> {{/if}} {{/if}}</td>
+                        <td style="text-align: center; white-space: nowrap;">{{ubt15}}{{#if strelki ubt14 ubt15}} <i class="glyphicon glyphicon-arrow-up" style="color:green"></i>{{else}} {{#if notZero ubt15}} <i class="glyphicon glyphicon-arrow-down" style="color:red"></i> {{/if}} {{/if}}</td>
+                        <td style="text-align: center; white-space: nowrap;">{{ubt16}}{{#if strelki ubt15 ubt16}} <i class="glyphicon glyphicon-arrow-up" style="color:green"></i>{{else}} {{#if notZero ubt16}} <i class="glyphicon glyphicon-arrow-down" style="color:red"></i> {{/if}} {{/if}}</td>
+                        <td style="text-align: center; white-space: nowrap;">{{ubt17}}{{#if strelki ubt16 ubt17}} <i class="glyphicon glyphicon-arrow-up" style="color:green"></i>{{else}} {{#if notZero ubt17}} <i class="glyphicon glyphicon-arrow-down" style="color:red"></i> {{/if}} {{/if}}</td>
+                        <td style="text-align: center; white-space: nowrap;">{{ubt18}}{{#if strelki ubt17 ubt18}} <i class="glyphicon glyphicon-arrow-up" style="color:green"></i>{{else}} {{#if notZero ubt18}} <i class="glyphicon glyphicon-arrow-down" style="color:red"></i> {{/if}} {{/if}}</td>
+                        <td style="text-align: center; white-space: nowrap;">{{ubt19}}{{#if strelki ubt18 ubt19}} <i class="glyphicon glyphicon-arrow-up" style="color:green"></i>{{else}} {{#if notZero ubt19}} <i class="glyphicon glyphicon-arrow-down" style="color:red"></i> {{/if}} {{/if}}</td>
+                        <td style="text-align: center; white-space: nowrap;">{{ubt20}}{{#if strelki ubt19 ubt20}} <i class="glyphicon glyphicon-arrow-up" style="color:green"></i>{{else}} {{#if notZero ubt20}} <i class="glyphicon glyphicon-arrow-down" style="color:red"></i> {{/if}} {{/if}}</td>
+                        <td style="text-align: center; white-space: nowrap;">{{ubt21}}{{#if strelki ubt20 ubt21}} <i class="glyphicon glyphicon-arrow-up" style="color:green"></i>{{else}} {{#if notZero ubt21}} <i class="glyphicon glyphicon-arrow-down" style="color:red"></i> {{/if}} {{/if}}</td>
+                        <td style="text-align: center; white-space: nowrap;">{{ubt22}}{{#if strelki ubt21 ubt22}} <i class="glyphicon glyphicon-arrow-up" style="color:green"></i>{{else}} {{#if notZero ubt22}} <i class="glyphicon glyphicon-arrow-down" style="color:red"></i> {{/if}} {{/if}}</td>
+                        <td style="text-align: center; white-space: nowrap;">{{ubt23}}{{#if strelki ubt22 ubt23}} <i class="glyphicon glyphicon-arrow-up" style="color:green"></i>{{else}} {{#if notZero ubt23}} <i class="glyphicon glyphicon-arrow-down" style="color:red"></i> {{/if}} {{/if}}</td>
+                        <td style="text-align: center; white-space: nowrap;">{{ubt24}}{{#if strelki ubt23 ubt24}} <i class="glyphicon glyphicon-arrow-up" style="color:green"></i>{{else}} {{#if notZero ubt24}} <i class="glyphicon glyphicon-arrow-down" style="color:red"></i> {{/if}} {{/if}}</td>
+                        <td style="text-align: center; white-space: nowrap;">{{ubt25}}{{#if strelki ubt24 ubt25}} <i class="glyphicon glyphicon-arrow-up" style="color:green"></i>{{else}} {{#if notZero ubt25}} <i class="glyphicon glyphicon-arrow-down" style="color:red"></i> {{/if}} {{/if}}</td>
+                        <td style="text-align: center; white-space: nowrap;">{{ubt26}}{{#if strelki ubt25 ubt26}} <i class="glyphicon glyphicon-arrow-up" style="color:green"></i>{{else}} {{#if notZero ubt26}} <i class="glyphicon glyphicon-arrow-down" style="color:red"></i> {{/if}} {{/if}}</td>
+                        <td style="text-align: center; white-space: nowrap;">{{ubt27}}{{#if strelki ubt26 ubt27}} <i class="glyphicon glyphicon-arrow-up" style="color:green"></i>{{else}} {{#if notZero ubt27}} <i class="glyphicon glyphicon-arrow-down" style="color:red"></i> {{/if}} {{/if}}</td>
+                        <td style="text-align: center; white-space: nowrap;">{{ubt28}}{{#if strelki ubt27 ubt28}} <i class="glyphicon glyphicon-arrow-up" style="color:green"></i>{{else}} {{#if notZero ubt28}} <i class="glyphicon glyphicon-arrow-down" style="color:red"></i> {{/if}} {{/if}}</td>
+                        <td style="text-align: center; white-space: nowrap;">{{ubt29}}{{#if strelki ubt28 ubt29}} <i class="glyphicon glyphicon-arrow-up" style="color:green"></i>{{else}} {{#if notZero ubt29}} <i class="glyphicon glyphicon-arrow-down" style="color:red"></i> {{/if}} {{/if}}</td>
+                        <td style="text-align: center; white-space: nowrap;">{{ubt30}}{{#if strelki ubt29 ubt30}} <i class="glyphicon glyphicon-arrow-up" style="color:green"></i>{{else}} {{#if notZero ubt30}} <i class="glyphicon glyphicon-arrow-down" style="color:red"></i> {{/if}} {{/if}}</td>
+                        <td style="text-align: center; white-space: nowrap;">{{ubt31}}{{#if strelki ubt30 ubt31}} <i class="glyphicon glyphicon-arrow-up" style="color:green"></i>{{else}} {{#if notZero ubt31}} <i class="glyphicon glyphicon-arrow-down" style="color:red"></i> {{/if}} {{/if}}</td>
+                        <td style="text-align: center; white-space: nowrap;">{{ubt32}}{{#if strelki ubt31 ubt32}} <i class="glyphicon glyphicon-arrow-up" style="color:green"></i>{{else}} {{#if notZero ubt32}} <i class="glyphicon glyphicon-arrow-down" style="color:red"></i> {{/if}} {{/if}}</td>
+                        <td style="text-align: center; white-space: nowrap;">{{ubt33}}{{#if strelki ubt32 ubt33}} <i class="glyphicon glyphicon-arrow-up" style="color:green"></i>{{else}} {{#if notZero ubt33}} <i class="glyphicon glyphicon-arrow-down" style="color:red"></i> {{/if}} {{/if}}</td>
+                        <td style="text-align: center; white-space: nowrap;">{{ubt34}}{{#if strelki ubt33 ubt34}} <i class="glyphicon glyphicon-arrow-up" style="color:green"></i>{{else}} {{#if notZero ubt34}} <i class="glyphicon glyphicon-arrow-down" style="color:red"></i> {{/if}} {{/if}}</td>
+
+                        <td style="text-align: center; white-space: nowrap;">{{ubt35}}{{#if strelki ubt34 ubt35}} <i class="glyphicon glyphicon-arrow-up" style="color:green"></i>{{else}} {{#if notZero ubt35}} <i class="glyphicon glyphicon-arrow-down" style="color:red"></i> {{/if}} {{/if}}</td>
+                        <td style="text-align: center; white-space: nowrap;">{{ubt36}}{{#if strelki ubt35 ubt36}} <i class="glyphicon glyphicon-arrow-up" style="color:green"></i>{{else}} {{#if notZero ubt36}} <i class="glyphicon glyphicon-arrow-down" style="color:red"></i> {{/if}} {{/if}}</td>
+                        <td style="text-align: center; white-space: nowrap;">{{ubt37}}{{#if strelki ubt36 ubt37}} <i class="glyphicon glyphicon-arrow-up" style="color:green"></i>{{else}} {{#if notZero ubt37}} <i class="glyphicon glyphicon-arrow-down" style="color:red"></i> {{/if}} {{/if}}</td>
+                        <td style="text-align: center; white-space: nowrap;">{{ubt38}}{{#if strelki ubt37 ubt38}} <i class="glyphicon glyphicon-arrow-up" style="color:green"></i>{{else}} {{#if notZero ubt38}} <i class="glyphicon glyphicon-arrow-down" style="color:red"></i> {{/if}} {{/if}}</td>
+                        <td style="text-align: center; white-space: nowrap;">{{ubt39}}{{#if strelki ubt38 ubt39}} <i class="glyphicon glyphicon-arrow-up" style="color:green"></i>{{else}} {{#if notZero ubt39}} <i class="glyphicon glyphicon-arrow-down" style="color:red"></i> {{/if}} {{/if}}</td>
+                        <td style="text-align: center; white-space: nowrap;">{{ubt40}}{{#if strelki ubt39 ubt40}} <i class="glyphicon glyphicon-arrow-up" style="color:green"></i>{{else}} {{#if notZero ubt40}} <i class="glyphicon glyphicon-arrow-down" style="color:red"></i> {{/if}} {{/if}}</td>
+                        <td style="text-align: center; white-space: nowrap;">{{ubt41}}{{#if strelki ubt40 ubt41}} <i class="glyphicon glyphicon-arrow-up" style="color:green"></i>{{else}} {{#if notZero ubt41}} <i class="glyphicon glyphicon-arrow-down" style="color:red"></i> {{/if}} {{/if}}</td>
+                        <td style="text-align: center; white-space: nowrap;">{{ubt42}}{{#if strelki ubt41 ubt42}} <i class="glyphicon glyphicon-arrow-up" style="color:green"></i>{{else}} {{#if notZero ubt42}} <i class="glyphicon glyphicon-arrow-down" style="color:red"></i> {{/if}} {{/if}}</td>
+                        <td style="text-align: center; white-space: nowrap;">{{ubt43}}{{#if strelki ubt42 ubt43}} <i class="glyphicon glyphicon-arrow-up" style="color:green"></i>{{else}} {{#if notZero ubt43}} <i class="glyphicon glyphicon-arrow-down" style="color:red"></i> {{/if}} {{/if}}</td>
+                        <td style="text-align: center; white-space: nowrap;">{{ubt44}}{{#if strelki ubt43 ubt44}} <i class="glyphicon glyphicon-arrow-up" style="color:green"></i>{{else}} {{#if notZero ubt44}} <i class="glyphicon glyphicon-arrow-down" style="color:red"></i> {{/if}} {{/if}}</td>
+                        <td style="text-align: center; white-space: nowrap;">{{ubt45}}{{#if strelki ubt44 ubt45}} <i class="glyphicon glyphicon-arrow-up" style="color:green"></i>{{else}} {{#if notZero ubt45}} <i class="glyphicon glyphicon-arrow-down" style="color:red"></i> {{/if}} {{/if}}</td>
+                        <td style="text-align: center; white-space: nowrap;">{{ubt46}}{{#if strelki ubt45 ubt46}} <i class="glyphicon glyphicon-arrow-up" style="color:green"></i>{{else}} {{#if notZero ubt46}} <i class="glyphicon glyphicon-arrow-down" style="color:red"></i> {{/if}} {{/if}}</td>
+                        <td style="text-align: center; white-space: nowrap;">{{ubt47}}{{#if strelki ubt46 ubt47}} <i class="glyphicon glyphicon-arrow-up" style="color:green"></i>{{else}} {{#if notZero ubt47}} <i class="glyphicon glyphicon-arrow-down" style="color:red"></i> {{/if}} {{/if}}</td>
+                        <td style="text-align: center; white-space: nowrap;">{{ubt48}}{{#if strelki ubt47 ubt48}} <i class="glyphicon glyphicon-arrow-up" style="color:green"></i>{{else}} {{#if notZero ubt48}} <i class="glyphicon glyphicon-arrow-down" style="color:red"></i> {{/if}} {{/if}}</td>
+                        <td style="text-align: center; white-space: nowrap;">{{ubt49}}{{#if strelki ubt48 ubt49}} <i class="glyphicon glyphicon-arrow-up" style="color:green"></i>{{else}} {{#if notZero ubt49}} <i class="glyphicon glyphicon-arrow-down" style="color:red"></i> {{/if}} {{/if}}</td>
+                        <td style="text-align: center; white-space: nowrap;">{{ubt50}}{{#if strelki ubt49 ubt50}} <i class="glyphicon glyphicon-arrow-up" style="color:green"></i>{{else}} {{#if notZero ubt50}} <i class="glyphicon glyphicon-arrow-down" style="color:red"></i> {{/if}} {{/if}}</td>
+                        <td style="text-align: center; white-space: nowrap;">{{ubt51}}{{#if strelki ubt50 ubt51}} <i class="glyphicon glyphicon-arrow-up" style="color:green"></i>{{else}} {{#if notZero ubt51}} <i class="glyphicon glyphicon-arrow-down" style="color:red"></i> {{/if}} {{/if}}</td>
+                        <td style="text-align: center; white-space: nowrap;">{{ubt52}}{{#if strelki ubt51 ubt52}} <i class="glyphicon glyphicon-arrow-up" style="color:green"></i>{{else}} {{#if notZero ubt52}} <i class="glyphicon glyphicon-arrow-down" style="color:red"></i> {{/if}} {{/if}}</td>
+                        <td style="text-align: center; white-space: nowrap;">{{ubt53}}{{#if strelki ubt52 ubt53}} <i class="glyphicon glyphicon-arrow-up" style="color:green"></i>{{else}} {{#if notZero ubt53}} <i class="glyphicon glyphicon-arrow-down" style="color:red"></i> {{/if}} {{/if}}</td>
+                        <td style="text-align: center; white-space: nowrap;">{{ubt54}}{{#if strelki ubt53 ubt54}} <i class="glyphicon glyphicon-arrow-up" style="color:green"></i>{{else}} {{#if notZero ubt54}} <i class="glyphicon glyphicon-arrow-down" style="color:red"></i> {{/if}} {{/if}}</td>
+                        <td style="text-align: center; white-space: nowrap;">{{ubt55}}{{#if strelki ubt54 ubt55}} <i class="glyphicon glyphicon-arrow-up" style="color:green"></i>{{else}} {{#if notZero ubt55}} <i class="glyphicon glyphicon-arrow-down" style="color:red"></i> {{/if}} {{/if}}</td>
+                        <td style="text-align: center; white-space: nowrap;">{{ubt56}}{{#if strelki ubt55 ubt56}} <i class="glyphicon glyphicon-arrow-up" style="color:green"></i>{{else}} {{#if notZero ubt56}} <i class="glyphicon glyphicon-arrow-down" style="color:red"></i> {{/if}} {{/if}}</td>
+                        <td style="text-align: center; white-space: nowrap;">{{ubt57}}{{#if strelki ubt56 ubt57}} <i class="glyphicon glyphicon-arrow-up" style="color:green"></i>{{else}} {{#if notZero ubt57}} <i class="glyphicon glyphicon-arrow-down" style="color:red"></i> {{/if}} {{/if}}</td>
+                        <td style="text-align: center; white-space: nowrap;">{{ubt58}}{{#if strelki ubt57 ubt58}} <i class="glyphicon glyphicon-arrow-up" style="color:green"></i>{{else}} {{#if notZero ubt58}} <i class="glyphicon glyphicon-arrow-down" style="color:red"></i> {{/if}} {{/if}}</td>
+                        <td style="text-align: center; white-space: nowrap;">{{ubt59}}{{#if strelki ubt58 ubt59}} <i class="glyphicon glyphicon-arrow-up" style="color:green"></i>{{else}} {{#if notZero ubt59}} <i class="glyphicon glyphicon-arrow-down" style="color:red"></i> {{/if}} {{/if}}</td>
+                        <td style="text-align: center; white-space: nowrap;">{{ubt60}}{{#if strelki ubt59 ubt60}} <i class="glyphicon glyphicon-arrow-up" style="color:green"></i>{{else}} {{#if notZero ubt60}} <i class="glyphicon glyphicon-arrow-down" style="color:red"></i> {{/if}} {{/if}}</td>
+
+
+                    </tr>
+
+                    <tr>
+
+                        <!-- Median -->
+                        <td style="position: absolute; width: 20pt; background-color: white; text-align: center; color: white; border: 1px solid white">-</td>
+                        <td style="position: absolute; width: 80pt; margin-left: 20pt; background-color: white; text-align: center;  border-top: 1px solid white; font-weight:bold;">{{countOfStudentTakingUbt}}</td>
+                        <td style="position: absolute; width: 250pt; margin-left: 100pt; background-color: white; text-align: right; padding-right: 10pt;">median</td>
+
+                        <td style="text-align: center; padding-left: 355pt">{{totalMedian}}</td>
+                        <td style="text-align: center;">{{median1}}</td>
+                        <td style="text-align: center;">{{median2}}</td>
+                        <td style="text-align: center;">{{median3}}</td>
+                        <td style="text-align: center;">{{median4}}</td>
+                        <td style="text-align: center;">{{median5}}</td>
+                        <td style="text-align: center;">{{median6}}</td>
+                        <td style="text-align: center;">{{median7}}</td>
+                        <td style="text-align: center;">{{median8}}</td>
+                        <td style="text-align: center;">{{median9}}</td>
+                        <td style="text-align: center;">{{median10}}</td>
+                        <td style="text-align: center;">{{median11}}</td>
+                        <td style="text-align: center;">{{median12}}</td>
+                        <td style="text-align: center;">{{median13}}</td>
+                        <td style="text-align: center;">{{median14}}</td>
+                        <td style="text-align: center;">{{median15}}</td>
+                        <td style="text-align: center;">{{median16}}</td>
+                        <td style="text-align: center;">{{median17}}</td>
+                        <td style="text-align: center;">{{median18}}</td>
+                        <td style="text-align: center;">{{median19}}</td>
+                        <td style="text-align: center;">{{median20}}</td>
+                        <td style="text-align: center;">{{median21}}</td>
+                        <td style="text-align: center;">{{median22}}</td>
+                        <td style="text-align: center;">{{median23}}</td>
+                        <td style="text-align: center;">{{median24}}</td>
+                        <td style="text-align: center;">{{median25}}</td>
+                        <td style="text-align: center;">{{median26}}</td>
+                        <td style="text-align: center;">{{median27}}</td>
+                        <td style="text-align: center;">{{median28}}</td>
+                        <td style="text-align: center;">{{median29}}</td>
+                        <td style="text-align: center;">{{median30}}</td>
+                        <td style="text-align: center;">{{median31}}</td>
+                        <td style="text-align: center;">{{median32}}</td>
+                        <td style="text-align: center;">{{median33}}</td>
+                        <td style="text-align: center;">{{median34}}</td>
+                        <td style="text-align: center;">{{median35}}</td>
+                        <td style="text-align: center;">{{median36}}</td>
+                        <td style="text-align: center;">{{median37}}</td>
+                        <td style="text-align: center;">{{median38}}</td>
+                        <td style="text-align: center;">{{median39}}</td>
+                        <td style="text-align: center;">{{median40}}</td>
+                        <td style="text-align: center;">{{median41}}</td>
+                        <td style="text-align: center;">{{median42}}</td>
+                        <td style="text-align: center;">{{median43}}</td>
+                        <td style="text-align: center;">{{median44}}</td>
+                        <td style="text-align: center;">{{median45}}</td>
+                        <td style="text-align: center;">{{median46}}</td>
+                        <td style="text-align: center;">{{median47}}</td>
+                        <td style="text-align: center;">{{median48}}</td>
+                        <td style="text-align: center;">{{median49}}</td>
+                        <td style="text-align: center;">{{median50}}</td>
+                        <td style="text-align: center;">{{median51}}</td>
+                        <td style="text-align: center;">{{median52}}</td>
+                        <td style="text-align: center;">{{median53}}</td>
+                        <td style="text-align: center;">{{median54}}</td>
+                        <td style="text-align: center;">{{median55}}</td>
+                        <td style="text-align: center;">{{median56}}</td>
+                        <td style="text-align: center;">{{median57}}</td>
+                        <td style="text-align: center;">{{median58}}</td>
+                        <td style="text-align: center;">{{median59}}</td>
+                        <td style="text-align: center;">{{median60}}</td>
+                    </tr>
+
+                    <tr style="border-bottom: 2px solid black">
+
+                        <!-- Standar Dev -->
+                        <td style="position: absolute; width: 20pt; background-color: white; text-align: center; color: white; border: 1px solid white">-</td>
+                        <td style="position: absolute; width: 80pt; margin-left: 20pt; background-color: white; text-align: center; color: white; border-top: 1px solid white">-</td>
+                        <td style="position: absolute; width: 250pt; margin-left: 100pt; background-color: white; text-align: right; padding-right: 10pt;">Standard Deviation</td>
+
+                        <td style="text-align: center; padding-left: 355pt"> </td>
+                        <td style="text-align: center;">{{round 1 standarDev1}}</td>
+                        <td style="text-align: center;">{{round 1 standarDev2}}</td>
+                        <td style="text-align: center;">{{round 1 standarDev3}}</td>
+                        <td style="text-align: center;">{{round 1 standarDev4}}</td>
+                        <td style="text-align: center;">{{round 1 standarDev5}}</td>
+                        <td style="text-align: center;">{{round 1 standarDev6}}</td>
+                        <td style="text-align: center;">{{round 1 standarDev7}}</td>
+                        <td style="text-align: center;">{{round 1 standarDev8}}</td>
+                        <td style="text-align: center;">{{round 1 standarDev9}}</td>
+                        <td style="text-align: center;">{{round 1 standarDev10}}</td>
+                        <td style="text-align: center;">{{round 1 standarDev11}}</td>
+                        <td style="text-align: center;">{{round 1 standarDev12}}</td>
+                        <td style="text-align: center;">{{round 1 standarDev13}}</td>
+                        <td style="text-align: center;">{{round 1 standarDev14}}</td>
+                        <td style="text-align: center;">{{round 1 standarDev15}}</td>
+                        <td style="text-align: center;">{{round 1 standarDev16}}</td>
+                        <td style="text-align: center;">{{round 1 standarDev17}}</td>
+                        <td style="text-align: center;">{{round 1 standarDev18}}</td>
+                        <td style="text-align: center;">{{round 1 standarDev19}}</td>
+                        <td style="text-align: center;">{{round 1 standarDev20}}</td>
+                        <td style="text-align: center;">{{round 1 standarDev21}}</td>
+                        <td style="text-align: center;">{{round 1 standarDev22}}</td>
+                        <td style="text-align: center;">{{round 1 standarDev23}}</td>
+                        <td style="text-align: center;">{{round 1 standarDev24}}</td>
+                        <td style="text-align: center;">{{round 1 standarDev25}}</td>
+                        <td style="text-align: center;">{{round 1 standarDev26}}</td>
+                        <td style="text-align: center;">{{round 1 standarDev27}}</td>
+                        <td style="text-align: center;">{{round 1 standarDev28}}</td>
+                        <td style="text-align: center;">{{round 1 standarDev29}}</td>
+                        <td style="text-align: center;">{{round 1 standarDev30}}</td>
+                        <td style="text-align: center;">{{round 1 standarDev31}}</td>
+                        <td style="text-align: center;">{{round 1 standarDev32}}</td>
+                        <td style="text-align: center;">{{round 1 standarDev33}}</td>
+                        <td style="text-align: center;">{{round 1 standarDev34}}</td>
+                        <td style="text-align: center;">{{round 1 standarDev35}}</td>
+                        <td style="text-align: center;">{{round 1 standarDev36}}</td>
+                        <td style="text-align: center;">{{round 1 standarDev37}}</td>
+                        <td style="text-align: center;">{{round 1 standarDev38}}</td>
+                        <td style="text-align: center;">{{round 1 standarDev39}}</td>
+                        <td style="text-align: center;">{{round 1 standarDev40}}</td>
+                        <td style="text-align: center;">{{round 1 standarDev41}}</td>
+                        <td style="text-align: center;">{{round 1 standarDev42}}</td>
+                        <td style="text-align: center;">{{round 1 standarDev43}}</td>
+                        <td style="text-align: center;">{{round 1 standarDev44}}</td>
+                        <td style="text-align: center;">{{round 1 standarDev45}}</td>
+                        <td style="text-align: center;">{{round 1 standarDev46}}</td>
+                        <td style="text-align: center;">{{round 1 standarDev47}}</td>
+                        <td style="text-align: center;">{{round 1 standarDev48}}</td>
+                        <td style="text-align: center;">{{round 1 standarDev49}}</td>
+                        <td style="text-align: center;">{{round 1 standarDev50}}</td>
+                        <td style="text-align: center;">{{round 1 standarDev51}}</td>
+                        <td style="text-align: center;">{{round 1 standarDev52}}</td>
+                        <td style="text-align: center;">{{round 1 standarDev53}}</td>
+                        <td style="text-align: center;">{{round 1 standarDev54}}</td>
+                        <td style="text-align: center;">{{round 1 standarDev55}}</td>
+                        <td style="text-align: center;">{{round 1 standarDev56}}</td>
+                        <td style="text-align: center;">{{round 1 standarDev57}}</td>
+                        <td style="text-align: center;">{{round 1 standarDev58}}</td>
+                        <td style="text-align: center;">{{round 1 standarDev59}}</td>
+                        <td style="text-align: center;">{{round 1 standarDev60}}</td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+            </div>
+
+            <h4 style="text-align: center;">Енгізбеген мектептер</h4>
+            <div class="table table-responsive" id="out">
+              <table class="table table-striped  table-bordered table-hover table-condensed"  border=1 cellpadding=0 cellspacing=0 width=100%>
+
+                <thead>
+                    <tr class="bts-header" style="white-space: nowrap">
+                        <th>#</th>
+                        <th>Мектеп аты</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    {{#each schoolNotUploaded}}
+                    <tr>
+                        <td>{{math @index "+" 1}}</td>
+                        <td>{{this}}</td>
+                    </tr>
+                    {{/each}}
+
+
+                </tbody>
+              </table>
+            </div>
+
+            {{else}}
+            <p>Loading...</p>
+            {{/if}}
+        </div>
+
+    </div>
+</template>

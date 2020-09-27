@@ -1,0 +1,41 @@
+<template name="guestMenu">
+  <nav class="navbar navbar-default navbar-fixed-top" id="menu"  style="background-color: #007399" role="navigation">
+    <!-- <a class="navbar-brand" href="/">Admin</a> -->
+
+      <div class="navbar-header" >
+        <button type="button" class= "navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse" >
+          <span class="icon-bar" ></span>
+          <span class="icon-bar" ></span>
+          <span class="icon-bar" ></span>
+        </button>
+        <!-- <div id="logo" class="wow pulse"><a  style="color: white" href="index.php">КОМПЛЕКСНЫЕ СИСТЕМЫ БЕЗОПАСНОСТИ</a></div> -->
+      </div>
+
+    <div class="navbar-collapse collapse" id="responsine-menu" >
+
+      <ul class="nav navbar-nav">
+        <li class=""><a href="/"><span class="glyphicon glyphicon-home"></span> Басты бет</a></li>
+
+        <li>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">ТАТ<span class="caret"></span></a>
+          <input type="checkbox" id="sm1">
+          <ul class="sub-menu">
+            <li><a href="/admin/tat/keys" class="back-style">Жүктеу</a></li>
+            <li class="dropdown-header back-style">Нәтижелер</li>
+            <li><a href="/admin/tat/results/1" class="back-style">ТАТ-1</a></li>
+            <li><a href="/admin/tat/results/2" class="back-style">ТАТ-2</a></li>
+            <li><a href="/admin/tat/final" class="back-style">Жалпы</a></li>
+          </ul>
+        </li>
+
+
+
+      </ul>
+
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="/school/profile"><span class="glyphicon glyphicon-cog"></span> Баптаулар</a></li>
+        <li><a href="/signout"><span class="glyphicon glyphicon-log-out"></span> Шығу</a></li>
+      </ul>
+    </div>
+  </nav>
+</template>

@@ -1,0 +1,34 @@
+<template name="turkishKeysNew">
+
+	<div class="row">
+		<div class="col-md-8">
+              <h4>Türkçe exam Жауап кілтін қосу</h4>
+              <div class="form-group">
+                  <div class="form-inline">
+                      <div class="form-group">
+                        <label for="exampleSelect1">Сынып</label>
+                        <select class="form-control" name="grade" id="grade" style="margin-right: 15pt">
+                            <option value="7" {{selected "grade" "7"}}>7</option>
+                            <option value="8" {{selected "grade" "8"}}>8</option>
+                            <option value="9" {{selected "grade" "9"}}>9</option>
+                            <option value="10" {{selected "grade" "10"}}>10</option>
+                            <option value="11" {{selected "grade" "11"}}>11</option>
+                            <option value="1" {{selected "grade" "1"}}>1</option>
+                            <option value="2" {{selected "grade" "2"}}>2</option>
+                            <option value="3" {{selected "grade" "3"}}>3</option>
+                        </select>
+              </div>
+                  </div>
+              </div>
+              <div class="form-group">
+                <label for="name">Вариант</label>
+                <input type="text" class="form-control" name="variant">
+              </div>
+              <div class="form-group">
+                <label for="name">Түрік тілі</label>
+                <input type="text" class="form-control" name="turkish" value="{{keys.turkish}}">
+              </div>
+              <button class="btn btn-primary" id="save">Сақтау</button>
+        </div>
+	</div>
+</template>

@@ -1,0 +1,81 @@
+<template name="olympiadAllRegionRating">
+    <div class="row">
+        <div class="col-md-12">
+        <h4 style="text-align: center; padding-bottom: 15pt">Облыстық олимпиада рейтинг</h4>
+            <div class="row">
+                <div class="form-inline">
+                  <div class="form-group" style="padding-right: 15pt">
+                     {{> academicYear}}
+
+                     <label for="subject_select" style="margin-left: 10pt">Пән</label>
+                      <select class="form-control" id="select" style="width: 100pt;">
+                          <option value="all">Жалпы</option>
+                      {{#each subjects}}
+                          <option value="{{subjectId}}">{{name_kz}}</option>
+                      {{/each}}
+                      </select>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+
+        {{#if Template.subscriptionsReady}}
+        <div class="col-md-12">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Мектеп</th>
+                        <th style="text-align: center;" id="totalMedal">Жалпы медаль саны<br>{{totalOfMedals}}</th>
+                        <th style="text-align: center;" id="goldMedal">Алтын <br>{{totalGold}}</th>
+                        <th style="text-align: center;" id="silverMedal">Күміс <br>{{totalSilver}}</th>
+                        <th style="text-align: center;" id="bronzeMedal">Қола <br>{{totalBronze}}</th>
+                        <th style="text-align: center;" id="totalPoint">Жалпы <br> балл</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each results}}
+                    <tr>
+                        <td>{{math @index "+" 1}}</td>
+                        <td>{{schoolName schoolId}}</td>
+                        <td style="text-align: center;">{{regTotalOlymp}}</td>
+                        <td style="text-align: center;">{{regGoldOlymp}}</td>
+                        <td style="text-align: center;">{{regSilverOlymp}}</td>
+                        <td style="text-align: center;">{{regBronzeOlymp}}</td>
+                        <td style="text-align: center;">{{totalPoint}}</td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+        </div>
+
+        <h4 style="text-align: center;">Енгізбеген мектептер</h4>
+        <div class="table table-responsive" id="out">
+          <table class="table table-striped  table-bordered table-hover table-condensed"  border=1 cellpadding=0 cellspacing=0 width=100%>
+
+            <thead>
+                <tr class="bts-header" style="white-space: nowrap">
+                    <th>#</th>
+                    <th>Мектеп аты</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                {{#each schoolNotUploaded}}
+                <tr>
+                    <td>{{math @index "+" 1}}</td>
+                    <td>{{this}}</td>
+                </tr>
+                {{/each}}
+
+
+            </tbody>
+          </table>
+        </div>
+        {{else}}
+                <p>Loading...</p>
+        {{/if}}
+    </div>
+</template>

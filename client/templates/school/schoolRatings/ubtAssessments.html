@@ -1,0 +1,73 @@
+<template name="ubtAssessments">
+	<div class="row">
+		<div class="col-md-12">
+			<div class="row">
+				<h4 style="padding-bottom: 10pt;text-align: center;">ҰБТ</h4>
+				<h5 style="padding-bottom: 20pt; text-align: center;">Әкімшілік тарапынан ұйымдастырылған және қатысқан әрбір іс-шара үшін (мотивация беру) – 3 ұпай </h5>
+
+				<div class="form-group">
+					<div class="form-group">
+                  	{{> academicYear}}
+                  	</div>
+                  <div class="form-inline">
+                      <div class="form-group">
+                        <label for="example">Ай:</label>
+                        <select class="form-control" name="month_select" id="select">
+							
+							<option value="" >Жылдық</option>
+							<option value="09" >Қыркүйек</option>
+							<option value="10" >Қазан</option>
+							<option value="11" >Қараша</option>
+							<option value="12" >Желтоқсан</option>
+							<option value="01" >Қантар</option>
+							<option value="02" >Ақпан</option>
+							<option value="03" >Наурыз</option>
+							<option value="04" >Сәуір</option>
+							<option value="05" >Мамыр</option>
+							<option value="06" >Маусым</option>
+							<option value="07" >Шілде</option>
+							<option value="08" >Тамыз</option>
+							
+                        </select>
+                        <label for="exampleSelect1">Күн:</label>
+                        <!--<input class="form-control" name="date" id="date" placeholder="dd/mm/yyyy" length=100/> -->
+
+                        <div class="input-group datetimepicker">
+						  <input class="set-due-date form-control" name="date" type="text"/><span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+						</div>
+
+                        <label for="exampleSelect1">Іс-шара туралы:</label>
+                        <input class="form-control" style="width: 400pt" name="detail" length=100/>
+                        <a class="btn btn-primary" id="save">Қосу</a>
+                    	
+              		</div>
+                  </div>
+              	</div>
+			</div>
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th>#</th>
+						<th>Ай</th>
+						<th>Күн</th>
+						<th>Іс-шара туралы:</th>
+					</tr>
+				</thead>
+				<tbody>
+					{{#each results}}
+					<tr>
+						<td>{{math @index "+" 1}}</td>
+						<td>{{monthName month}}</td>
+						<td>{{date}}</td>
+						<td>{{detail}}</td>
+						<td><a style="float: right" class="btn btn-danger" href="#" id="delete">Өшіру</a></td>
+
+					</tr>
+					{{/each}}
+				</tbody>
+			</table>
+		</div>
+		
+	</div>
+	
+</template>

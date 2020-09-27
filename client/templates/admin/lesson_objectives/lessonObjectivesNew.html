@@ -1,0 +1,39 @@
+<template name="lessonObjectivesNew">
+	
+	<div class="row">
+		<div class="col-md-8">
+              <h4>Сабақ мақсатын қосу</h4>
+              <div class="form-group">
+                <label for="name">Сынып</label>
+                <select class="form-control" name="grade_select" id="select">
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="name">Пән</label>
+                <select class="form-control" name="subject_select" id="select">
+                    {{#each subjects}}
+                        <option value="{{subjectId}}" >{{name_kz}}</option>
+                    {{/each}}
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="name">Objective ID</label>
+                <input type="text" class="form-control" name="id">
+              </div>
+              <div class="form-group">
+                <label for="name">Definition</label>
+                <input type="text" class="form-control" name="objective">
+              </div>
+              <div class="form-group">
+                <label for="name">Тақырып</label>
+                <input type="text" class="form-control" name="topic">
+              </div>
+                  
+              <button class="btn btn-primary" id="save">Сақтау</button>
+        </div>
+	</div>
+</template>

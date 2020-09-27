@@ -1,0 +1,94 @@
+<template name="ketPetUpload">
+
+    <div class="row">
+        <div class="col-md-12">
+            <h4 style="text-align: center; padding-bottom: 15pt">KET and PET емтихан жүктеу</h4>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-inline">
+                        <div class="form-group" style="margin-right: 15pt">
+                          {{> academicYear}}
+
+                          <label style="margin-left: 10pt;">Тоқсан</label>
+                          <select class="form-control" id="examPeriod">
+                              <option value="2">2 тоқсан</option>
+                              <option value="4">4 тоқсан</option>
+                          </select>
+
+                          <label for="" style="margin-left: 10pt;">Емтихан таңдаңыз</label>
+                          <select class="form-control" name='grade' id='select'>
+                              <option value="7">KET 7 cынып</option>
+                              <option value="8">PET 8 cынып</option>
+                          </select>
+
+                          <a style="margin-right: 5pt; margin-left: 5pt;" class="btn btn-default" id="dnload">Үлгі</a>
+                          <input type="file" class="form-control" id="upload" style="margin-right: 15pt;">
+                          <a class="btn btn-success" id="save">Сақтау</a>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            {{#if Template.subscriptionsReady}}
+
+            <div  class="table table-responsive" id="out">
+              <table style="margin-top: 15pt" class="table table-striped">
+
+                <thead>
+                    <tr class="bts-header">
+                        <th>#</th>
+                        <th>Студент ID</th>
+                        <th>Сынып</th>
+                        <th>Тегі</th>
+                        <th>Аты</th>
+
+                        {{#if grade7}}
+                          <th style="text-align: center">Reading And Writing</th>
+                          <th style="text-align: center">Writing task 9</th>
+                        {{else}}
+                          <th style="text-align: center">Reading</th>
+                          <th style="text-align: center">Writing Part 1</th>
+                          <th style="text-align: center">Writing Part 2</th>
+                          <th style="text-align: center">Writing Part 3</th>
+                        {{/if}}
+                        <th style="text-align: center">Listening</th>
+                        <th style="text-align: center">Speaking</th>
+
+
+                    </tr>
+                </thead>
+
+                <tbody>
+                    {{#each results}}
+                    <tr>
+                        <td>{{math @index "+" 1}}</td>
+                        <td>{{studentId}}</td>
+                        <td>{{grade}}</td>
+                        <td>{{studentSurname}}</td>
+                        <td>{{studentName}}</td>
+                        {{#if grade7}}
+                          <td style="text-align: center">{{ReadingAndWriting}}</td>
+                          <td style="text-align: center">{{WritingTask9}}</td>
+                        {{else}}
+                          <td style="text-align: center">{{Reading}}</td>
+                          <td style="text-align: center">{{WritingPart1}}</td>
+                          <td style="text-align: center">{{WritingPart2}}</td>
+                          <td style="text-align: center">{{WritingPart3}}</td>
+                        {{/if}}
+
+                        <td style="text-align: center">{{Listening}}</td>
+                        <td style="text-align: center">{{Speaking}}</td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+              </table>
+            </div>
+
+            {{else}}
+            <p>Loading...</p>
+            {{/if}}
+        </div>
+    </div>
+</template>

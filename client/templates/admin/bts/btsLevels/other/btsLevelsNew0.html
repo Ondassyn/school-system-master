@@ -1,0 +1,235 @@
+<!-- <template name="btsLevelsNew">
+
+	<div class="row">
+		<div class="col-md-8">
+              <h4>БТС Жауап категориясын қосу</h4>
+              <div class="form-group">
+                  <div class="form-inline">
+                      <div class="form-group">
+                        <label for="exampleSelect1">БТС #</label>
+                        <select class="form-control" name="quarter" id="btsNo" style="margin-right: 15pt">
+                            <option value="1" {{selected "btsNo" "1"}}>1</option>
+                            <option value="2" {{selected "btsNo" "2"}}>2</option>
+                            <option value="3" {{selected "btsNo" "3"}}>3</option>
+                            <option value="4" {{selected "btsNo" "4"}}>4</option>
+                        </select>
+                        <label for="exampleSelect1">Күн #</label>
+                        <select class="form-control" name="day" id="day" style="margin-right: 15pt">
+                            <option value="1" {{selected "day" "1"}}>1</option>
+                            <option value="2" {{selected "day" "2"}}>2</option>
+                        </select>
+                        <label for="exampleSelect1">Сынып</label>
+                        <select class="form-control" name="grade" id="grade" style="margin-right: 15pt">
+                            <option value="7" {{selected "grade" "7"}}>7</option>
+                            <option value="8" {{selected "grade" "8"}}>8</option>
+                            <option value="9" {{selected "grade" "9"}}>9</option>
+                            <option value="10" {{selected "grade" "10"}}>10</option>
+                        </select>
+              </div>
+                  </div>
+              </div>
+              <div class="form-group">
+                <label for="name">Вариант</label>
+                <input type="text" class="form-control" name="variant">
+              </div>
+              {{#if grade7 }}
+                {{#if dayTwo }}
+                  {{#if btsNo2 }}
+                    <div class="form-group">
+                        <label for="name">Геометрия</label>
+                        <input type="text" class="form-control" name="geometry" value="{{levels.geometry}}">
+                    </div>
+                    <div class="form-group">
+                        <label for="name">Информатика</label>
+                        <input type="text" class="form-control" name="computer" value="{{levels.computer}}">
+                    </div>
+                    <div class="form-group">
+                        <label for="name">Дүние-жүзі тарихы</label>
+                        <input type="text" class="form-control" name="world_history" value="{{levels.world_history}}">
+                    </div>
+                    <div class="form-group">
+                        <label for="name">География</label>
+                        <input type="text" class="form-control" name="geography" value="{{levels.geography}}">
+                    </div>
+                  {{else}}
+                    <div class="form-group">
+                        <label for="name">Физика</label>
+                        <input type="text" class="form-control" name="physics" value="{{levels.physics}}">
+                    </div>
+                    <div class="form-group">
+                        <label for="name">Химия</label>
+                        <input type="text" class="form-control" name="chemistry" value="{{levels.chemistry}}">
+                    </div>
+                    <div class="form-group">
+                        <label for="name">Биология</label>
+                        <input type="text" class="form-control" name="biology" value="{{levels.biology}}">
+                    </div>
+                  {{/if}}
+                {{else}}
+                  <div class="form-group">
+                        <label for="name">Алгебра</label>
+                        <input type="text" class="form-control" name="algebra" value="{{levels.algebra}}">
+                    </div>
+                    <div class="form-group">
+                        <label for="name">Қазақ тілі (қазақ тобы)</label>
+                        <input type="text" class="form-control" name="kazakh_kaz" value="{{levels.kazakh_kaz}}">
+                    </div>
+                    <div class="form-group">
+                        <label for="name">Қазақ тілі (орыс тобы)</label>
+                        <input type="text" class="form-control" name="kazakh_rus" value="{{levels.kazakh_rus}}">
+                    </div>
+                    <div class="form-group">
+                        <label for="name">Қазақ әдебиеті (қазақ тобы)</label>
+                        <input type="text" class="form-control" name="kazakh_literature_kaz" value="{{levels.kazakh_literature_kaz}}">
+                    </div>
+                    <div class="form-group">
+                        <label for="name">Қазақ әдебиеті (орыс тобы)</label>
+                        <input type="text" class="form-control" name="kazakh_literature_rus" value="{{levels.kazakh_literature_rus}}">
+                    </div>
+                    <div class="form-group">
+                        <label for="name">Орыс тілі</label>
+                        <input type="text" class="form-control" name="russian" value="{{levels.russian}}">
+                    </div>
+                    <div class="form-group">
+                        <label for="name">Қазақстан тарихы</label>
+                        <input type="text" class="form-control" name="kazakh_history" value="{{levels.kazakh_history}}">
+                    </div>
+                {{/if}}
+              {{else}}
+                {{#if grade8 }}
+                  {{#if dayTwo }}
+                    {{#if btsNo2 }}
+                      <div class="form-group">
+                          <label for="name">Геометрия</label>
+                          <input type="text" class="form-control" name="geometry" value="{{levels.geometry}}">
+                      </div>
+                      <div class="form-group">
+                          <label for="name">Информатика</label>
+                          <input type="text" class="form-control" name="computer" value="{{levels.computer}}">
+                      </div>
+                      <div class="form-group">
+                          <label for="name">Дүние-жүзі тарихы</label>
+                          <input type="text" class="form-control" name="world_history" value="{{levels.world_history}}">
+                      </div>
+                      <div class="form-group">
+                          <label for="name">География</label>
+                          <input type="text" class="form-control" name="geography" value="{{levels.geography}}">
+                      </div>
+                    {{else}}
+                      <div class="form-group">
+                          <label for="name">Физика</label>
+                          <input type="text" class="form-control" name="physics" value="{{levels.physics}}">
+                      </div>
+                      <div class="form-group">
+                          <label for="name">Химия</label>
+                          <input type="text" class="form-control" name="chemistry" value="{{levels.chemistry}}">
+                      </div>
+                      <div class="form-group">
+                          <label for="name">Биология</label>
+                          <input type="text" class="form-control" name="biology" value="{{levels.biology}}">
+                      </div>
+                    {{/if}}
+                  {{else}}
+                      <div class="form-group">
+                          <label for="name">Алгебра</label>
+                          <input type="text" class="form-control" name="algebra" value="{{levels.algebra}}">
+                      </div>
+                      <div class="form-group">
+                        <label for="name">Қазақ тілі (қазақ тобы)</label>
+                        <input type="text" class="form-control" name="kazakh_kaz" value="{{levels.kazakh_kaz}}">
+                    </div>
+                    <div class="form-group">
+                        <label for="name">Қазақ тілі (орыс тобы)</label>
+                        <input type="text" class="form-control" name="kazakh_rus" value="{{levels.kazakh_rus}}">
+                    </div>
+                    <div class="form-group">
+                        <label for="name">Қазақ әдебиеті (қазақ тобы)</label>
+                        <input type="text" class="form-control" name="kazakh_literature_kaz" value="{{levels.kazakh_literature_kaz}}">
+                    </div>
+                    <div class="form-group">
+                        <label for="name">Қазақ әдебиеті (орыс тобы)</label>
+                        <input type="text" class="form-control" name="kazakh_literature_rus" value="{{levels.kazakh_literature_rus}}">
+                    </div>
+                      <div class="form-group">
+                          <label for="name">Орыс тілі</label>
+                          <input type="text" class="form-control" name="russian" value="{{levels.russian}}">
+                      </div>
+                      <div class="form-group">
+                          <label for="name">Қазақстан тарихы</label>
+                          <input type="text" class="form-control" name="kazakh_history" value="{{levels.kazakh_history}}">
+                      </div>
+                  {{/if}}
+                {{else}}
+                  {{#if dayTwo}}
+  					<div class="form-group">
+  						<label for="name">Орыс тілі</label>
+  						<input type="text" class="form-control" name="russian" value="{{levels.russian}}">
+  				    </div>
+  					<!--<div class="form-group">
+  						<label for="name">Түрік тілі</label>
+  						<input type="text" class="form-control" name="turkish" value="{{levels.turkish}}">
+  					</div>
+  					<div class="form-group">
+                        <label for="name">Физика</label>
+                        <input type="text" class="form-control" name="physics" value="{{levels.physics}}">
+                    </div>
+                    <div class="form-group">
+                        <label for="name">Химия</label>
+                        <input type="text" class="form-control" name="chemistry" value="{{levels.chemistry}}">
+                    </div>
+  									<div class="form-group">
+                        <label for="name">Биология</label>
+                        <input type="text" class="form-control" name="biology" value="{{levels.biology}}">
+                    </div>
+                    <div class="form-group">
+                        <label for="name">Информатика</label>
+                        <input type="text" class="form-control" name="computer" value="{{levels.computer}}">
+                    </div>
+                    <div class="form-group">
+                        <label for="name">Дүние-жүзі тарихы</label>
+                        <input type="text" class="form-control" name="world_history" value="{{levels.world_history}}">
+                    </div>
+                    <div class="form-group">
+                        <label for="name">География</label>
+                        <input type="text" class="form-control" name="geography" value="{{levels.geography}}">
+                    </div>
+                  {{else}}
+                    <div class="form-group">
+                        <label for="name">Алгебра</label>
+                        <input type="text" class="form-control" name="algebra" value="{{levels.algebra}}">
+                    </div>
+                    <div class="form-group">
+                        <label for="name">Геометрия</label>
+                        <input type="text" class="form-control" name="geometry" value="{{levels.geometry}}">
+                    </div>
+                    <div class="form-group">
+                        <label for="name">Қазақ тілі (қазақ тобы)</label>
+                        <input type="text" class="form-control" name="kazakh_kaz" value="{{levels.kazakh_kaz}}">
+                    </div>
+                    <div class="form-group">
+                        <label for="name">Қазақ тілі (орыс тобы)</label>
+                        <input type="text" class="form-control" name="kazakh_rus" value="{{levels.kazakh_rus}}">
+                    </div>
+                    <div class="form-group">
+                        <label for="name">Қазақ әдебиеті (қазақ тобы)</label>
+                        <input type="text" class="form-control" name="kazakh_literature_kaz" value="{{levels.kazakh_literature_kaz}}">
+                    </div>
+                    <div class="form-group">
+                        <label for="name">Қазақ әдебиеті (орыс тобы)</label>
+                        <input type="text" class="form-control" name="kazakh_literature_rus" value="{{levels.kazakh_literature_rus}}">
+                    </div>
+  					<div class="form-group">
+                        <label for="name">Ағылшын тілі</label>
+                        <input type="text" class="form-control" name="english" value="{{levels.english}}">
+                    </div>
+                    <div class="form-group">
+                        <label for="name">Қазақстан тарихы</label>
+                        <input type="text" class="form-control" name="kazakh_history" value="{{levels.kazakh_history}}">
+                    </div>
+                  {{/if}}
+                {{/if}}
+              {{/if}}
+              <button class="btn btn-primary" id="save">Сақтау</button>
+        </div>
+	</div>
+</template> -->

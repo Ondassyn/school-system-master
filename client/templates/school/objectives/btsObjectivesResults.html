@@ -1,0 +1,76 @@
+<template name="btsObjectivesResults">
+    <div class="row">
+        <div class="col-md-12">
+            <h4 style="padding-bottom: 15pt">БТС-{{btsNo}} Сабақ мақсаттар нәтижелері</h4>
+            <div class="row">
+                <div class="form-inline" style="padding-bottom: 15pt">
+                    <div class="form-group" style="margin-right: 10pt">
+                        {{> academicYear}}
+                    </div>
+                    <div class="form-group" style="margin-right: 10pt">
+                        <label for="">Сынып</label>
+                        <select class="form-control" id="select" name="grade">
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                        </select>
+                    </div>
+                    <div class="form-group" style="margin-right: 10pt">
+                        <label for="subject">Пән:</label>
+                        <select class="form-control" name="subject_select" id="select">
+                            <option value="algebra">Алгебра</option>
+                            <option value="physics">Физика</option>
+                            <option value="chemistry">Химия</option>
+                            <option value="biology">Биология</option>
+                        </select>
+                    </div>
+                    <div class="form-group" style="margin-right: 10pt">
+                        <label for="objective">Сабақ мақсаты:</label>
+                        <select class="form-control" name="objective_select" id="select">
+                            <option value="">Select Objective</option>
+                                {{#each objectives}}
+                            <option value="{{objectiveId}}" >{{objectiveId}}</option>
+                                {{/each}}
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            {{#if Template.subscriptionsReady}}
+            <table class="table table-striped">
+                <thead>
+                    <tr class="bts-header">
+                        <th>#</th>
+                        <th>Аты-жөні</th>
+                        <th>Сынып</th>
+                        <th>Пән</th>
+                        <th>Сабақ мақсаты ID</th>
+                        <th>Сабақ мақсаты</th>
+                        <th>Тақырыбы</th>
+                        <th>Пайыз</th>
+                        
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each results}}
+                    <tr>
+                        <td>{{math @index "+" 1}}</td>
+                        <td>{{name}} {{surname}}</td>
+                        <td>{{grade}}</td>
+                        <td>{{subjectFromEnglish subject}}</td>
+                        <td>{{objective}}</td>
+                        <td>{{objectiveDefinition}}</td>
+                        <td>{{topic}}</td>
+                        <td>{{success}}%</td>
+                        
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+            {{else}}
+            <p>Loading...</p>
+            {{/if}}
+        </div>
+    </div>
+</template>

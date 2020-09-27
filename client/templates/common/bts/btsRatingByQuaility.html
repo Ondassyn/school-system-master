@@ -1,0 +1,249 @@
+<template name="btsRatingByQuaility">
+    <div class="row">
+        <div class="col-md-12">
+
+            <div style="text-align: center;">
+              <h4>БТС-{{btsNo}} Рейтинг Сапамен / Үлгеріммен</h4>
+              <label class="color-green">Өте жақсы</label>
+              <label class="color-yellow">Үлгерімі жоғары</label>
+              <label class="color-red">Үлгерімі төмен</label>
+            </div>
+
+            <div class="form-inline" style="padding-bottom: 10pt">
+                <div class="form-group" style="margin-right: 10pt">
+                    {{> academicYear}}
+                    <label for="" style="margin-left: 10pt;">Сынып</label>
+                    <select class="form-control" name='grade' id='select'>
+                        <option value="all">Жалпы</option>
+                        <option value="7">7 cынып</option>
+                        <option value="8">8 cынып</option>
+                        <option value="9">9 cынып</option>
+                        <option value="10">10 cынып</option>
+                    </select>
+                </div>
+
+                <div class="form-group" style="float: right">
+                    <a class="btn btn-success" id="export">Export</a>
+                </div>
+
+            </div>
+            {{#if Template.subscriptionsReady}}
+            <div class="table table-responsive" id="out">
+              <table class="table table-striped  table-bordered table-hover table-condensed"  border=1 cellpadding=0 cellspacing=0 width=100%>
+
+                <thead>
+                    <tr class="bts-header center">
+                        <th class="absolute-style" style="width: 20pt;  text-align: center;">#</th>
+                        <th class="absolute-style" style="width: 55pt;  margin-left: 20pt; ">Мектеп ID</th>
+                        <th class="absolute-style" style="width: 270pt; margin-left: 70pt; ">Мектеп аты</th>
+                        <th style="white-space: nowrap; padding-left: 350pt;"  id="sortTotal">Жалпы</th>
+                        <th style="white-space: nowrap; text-align:right" id="sortMath">Математика</th>
+
+                        {{#if grade7}}
+
+                          {{#if btsNo3}}
+                            <th style="white-space: nowrap;" id="sortPhysics">Физика</th>
+                            <th style="white-space: nowrap;" id="sortChemistry">Химия</th>
+                            <th style="white-space: nowrap;" id="sortBio">Биология</th>
+
+                          {{else}}
+                            <th style="white-space: nowrap;" id="sortKazakh">Қазақ тілі</th>
+                            <th style="white-space: nowrap;" id="sortTur">Түрік тілі</th>
+                            <th style="white-space: nowrap;" id="sortRus">Орыс тілі</th>
+                          {{/if}}
+                        {{else}}
+                          {{#if grade8_or_9}}
+
+                            <th style="white-space: nowrap;" id="sortKazakh">Қазақ тілі</th>
+                            <th style="white-space: nowrap;" id="sortTur">Түрік тілі</th>
+                            <th style="white-space: nowrap;" id="sortHistory">Қазақcтан тарихы</th>
+                            <th style="white-space: nowrap;" id="sortGeography">География</th>
+                            <th style="white-space: nowrap;" id="sortPhysics">Физика</th>
+                            <th style="white-space: nowrap;" id="sortChemistry">Химия</th>
+                            <th style="white-space: nowrap;" id="sortBio">Биология</th>
+
+                            {{else}}
+
+                              {{#if grade10}}
+                                <th style="white-space: nowrap;" id="sortKazakh">Қазақ тілі</th>
+                                <th style="white-space: nowrap;" id="sortHistory">Қазақcтан тарихы</th>
+                                <th style="white-space: nowrap;" id="sortWorldHistory">Дүние тарихы</th>
+                                <th style="white-space: nowrap;" id="sortGeography">География</th>
+                                <th style="white-space: nowrap;" id="sortPhysics">Физика</th>
+                                <th style="white-space: nowrap;" id="sortChemistry">Химия</th>
+                                <th style="white-space: nowrap;" id="sortBio">Биология</th>
+
+                              {{else}}
+
+                                <th style="white-space: nowrap;" id="sortTur">Қазақ тілі</th>
+                                <th style="white-space: nowrap;" id="sortTur">Түрік тілі</th>
+                                <th style="white-space: nowrap;" id="sortRus">Орыс тілі</th>
+                                <th style="white-space: nowrap;" id="sortHistory">Қазақcтан тарихы</th>
+                                <th style="white-space: nowrap;" id="sortWorldHistory">Дүние тарихы</th>
+                                <th style="white-space: nowrap;" id="sortGeography">География</th>
+                                <th style="white-space: nowrap;" id="sortPhysics">Физика</th>
+                                <th style="white-space: nowrap;" id="sortChemistry">Химия</th>
+                                <th style="white-space: nowrap;" id="sortBio">Биология</th>
+                              {{/if}}
+
+                          {{/if}}
+
+                        {{/if}}
+
+                        <!-- <th style="{{getStylе }}" id="sortEng">Ағылшын тілі</th>
+                        <th style="{{getStylе }}" id="sortKazLit">Қазақ әдебиеті</th>
+                        <th style="{{getStylе }}" id="sortAlgebra">Алгебра</th>
+                        <th style="{{getStylе }}" id="sortGeometry">Геометрия</th>
+                        <th style="{{getStylе }}" id="sortInf">Информатика</th>
+                        <th style="{{getStylе }}" id="sortKZHistory">Тарих</th> -->
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each results}}
+                    <tr>
+                        <td class="absolute-style" style="width: 20pt; ">{{math @index "+" 1}}</td>
+                        <td class="absolute-style" style="width: 55pt;  margin-left: 20pt; text-align: center;">{{schoolId}}</td>
+                        <td class="absolute-style" style="width: 270pt; margin-left: 70pt; ">{{schoolName schoolId}}</td>
+                        <td style="{{getTotalStylе total}}">{{round 2 total}} % </td>
+
+
+                        <td class="color-green" style="{{getStylе mathematic}}">{{round 2 mathematic}}</td>
+
+                        {{#if grade7}}
+
+                          {{#if btsNo3}}
+                            <td style="{{getStylе physics}}">{{round 2 physics}}</td>
+                            <td style="{{getStylе chemistry}}">{{round 2 chemistry}}</td>
+                            <td style="{{getStylе biology}}">{{round 2 biology}}</td>
+
+                          {{else}}
+                            <td style="{{getStylе kazakh_lang}}">{{round 2 kazakh_lang}}</td>
+                            <td style="{{getStylе turkish_lang}}">{{round 2 turkish_lang}}</td>
+                            <td style="{{getStylе russian_lang}}">{{round 2 russian_lang}}</td>
+
+                          {{/if}}
+
+                        {{else}}
+                          {{#if grade8_or_9}}
+
+                            <td style="{{getStylе kazakh_lang}}">{{round 2 kazakh_lang}}</td>
+                            <td style="{{getStylе turkish_lang}}">{{round 2 turkish_lang}}</td>
+                            <td style="{{getStylе kazakh_history}}">{{round 2 kazakh_history}}</td>
+                            <td style="{{getStylе geography}}">{{round 2 geography}}</td>
+                            <td style="{{getStylе physics}}">{{round 2 physics}}</td>
+                            <td style="{{getStylе chemistry}}">{{round 2 chemistry}}</td>
+                            <td style="{{getStylе biology}}">{{round 2 biology}}</td>
+
+                            {{else}}
+
+                              {{#if grade10}}
+                                <td style="{{getStylе kazakh_lang}}">{{#if kazakh_lang}}    {{round 2 kazakh_lang}}     {{/if}}</td>
+                                <td style="{{getStylе kazakh_history}}">{{#if kazakh_history}} {{round 2 kazakh_history}}  {{/if}}</td>
+                                <td style="{{getStylе world_history}}">{{#if world_history}}  {{round 2 world_history}}   {{/if}}</td>
+                                <td style="{{getStylе geography}}">{{#if geography}}      {{round 2 geography}}       {{/if}}</td>
+                                <td style="{{getStylе physics}}">{{#if physics}}        {{round 2 physics}}         {{/if}}</td>
+                                <td style="{{getStylе chemistry}}">{{#if chemistry}}      {{round 2 chemistry}}       {{/if}}</td>
+                                <td style="{{getStylе biology}}">{{#if biology}}        {{round 2 biology}}         {{/if}}</td>
+
+                              {{else}}
+
+                                <td style="{{getStylе kazakh_lang}}">{{round 2 kazakh_lang}}</td>
+                                <td style="{{getStylе turkish_lang}}">{{round 2 turkish_lang}}</td>
+                                <td style="{{getStylе russian_lang}}">{{round 2 russian_lang}}</td>
+                                <td style="{{getStylе kazakh_history}}">{{round 2 kazakh_history}}</td>
+                                <td style="{{getStylе world_history}}">{{round 2 world_history}}</td>
+                                <td style="{{getStylе geography}}">{{round 2 geography}}</td>
+                                <td style="{{getStylе physics}}">{{round 2 physics}}</td>
+                                <td style="{{getStylе chemistry}}">{{round 2 chemistry}}</td>
+                                <td style="{{getStylе biology}}">{{round 2 biology}}</td>
+
+                              {{/if}}
+
+                          {{/if}}
+
+                        {{/if}}
+
+                    </tr>
+                    <!--<tr>
+                        <td >A</td>
+                        <td></td>
+                        <td></td>
+                        <td>{{round 2 mathematicA}}</td>
+                        <td>{{round 2 kazakh_langA}}</td>
+                        <td>{{round 2 turkish_langA}}</td>
+                        <td></td>
+                        <td>{{round 2 kazakh_historyA}}</td>
+                        <td>{{round 2 geographyA}}</td>
+                        <td>{{round 2 physicsA}}</td>
+                        <td>{{round 2 chemistryA}}</td>
+                        <td>{{round 2 biologyA}}</td>
+                    </tr>
+                    <tr>
+                        <td>B</td>
+                        <td></td>
+                        <td></td>
+                        <td>{{round 2 mathematicB}}</td>
+                        <td>{{round 2 kazakh_langB}}</td>
+                        <td>{{round 2 turkish_langB}}</td>
+                        <td></td>
+                        <td>{{round 2 kazakh_historyB}}</td>
+                        <td>{{round 2 geographyB}}</td>
+                        <td>{{round 2 physicsB}}</td>
+                        <td>{{round 2 chemistryB}}</td>
+                        <td>{{round 2 biologyB}}</td>
+                        <td></td>
+                    </tr>
+                     <tr>
+                        <td>C</td>
+                        <td></td>
+                        <td></td>
+                        <td>{{round 2 physics_C}}</td>
+                        <td>{{round 2 chemistry_C}}</td>
+                        <td>{{round 2 biology_C}}</td>
+                        <td>{{round 2 english_C}}</td>
+                        <td>{{round 2 kazakh_C}}</td>
+                        <td>{{round 2 kazakh_literature_C}}</td>
+                        <td></td>
+                        <td>{{round 2 algebra_C}}</td>
+                        <td>{{round 2 geometry_C}}</td>
+                        <td>{{round 2 computer_C}}</td>
+                        <td>{{round 2 world_history_C}}</td>
+                        <td>{{round 2 kazakh_history_C}}</td>
+                        <td>{{round 2 geography_C}}</td>
+                        <td></td>
+                    </tr> -->
+                    {{/each}}
+                </tbody>
+              </table>
+            </div>
+
+            <h4 style="text-align: center;">Енгізбеген мектептер</h4>
+            <div class="table table-responsive" id="out">
+              <table class="table table-striped  table-bordered table-hover table-condensed"  border=1 cellpadding=0 cellspacing=0 width=100%>
+
+                <thead>
+                    <tr class="bts-header" style="white-space: nowrap">
+                        <th>#</th>
+                        <th>Мектеп аты</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    {{#each schoolNotUploaded}}
+                    <tr>
+                        <td>{{math @index "+" 1}}</td>
+                        <td>{{this}}</td>
+                    </tr>
+                    {{/each}}
+
+
+                </tbody>
+              </table>
+            </div>
+
+            {{else}}
+            <p>Loading...</p>
+            {{/if}}
+        </div>
+    </div>
+</template>

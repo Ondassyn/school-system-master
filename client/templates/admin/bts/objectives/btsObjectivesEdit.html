@@ -1,0 +1,43 @@
+<template name="btsObjectivesEdit">
+	
+	<div class="row">
+		<div class="col-md-8">
+            {{#if Template.subscriptionsReady}}
+              <h4>Өзгерту: {{objectives.academicYear}} / БТС: {{objectives.quarter}} / Пән: {{subjectFromEnglish objectives.subject}}</h4>
+              <br/>
+              <div class="form-group">
+                <label for="name">Objective</label>
+                <label class="form-control">{{objectives.objectiveId}}</label>
+              </div>
+              <div class="form-group">
+                <label for="name">Definition</label>
+                <label class="form-control">{{objectives.objectiveDefinition}}</label>
+              </div>
+              <div class="form-group">
+                <label for="name">Topic</label>
+                <label class="form-control">{{objectives.topic}}</label>
+              </div>
+              <div class="form-group">
+              <label for="name">Вариант 1</label>
+              <input type="text" class="form-control" name="variant1" value="{{objectives.variant1}}">
+              </div>
+              <div class="form-group">
+                <label for="name">Сұрақтар Вариант 1 </label>
+                <input type="text" class="form-control" name="questions1" value="{{objectives.questions1}}">
+              </div>
+              <div class="form-group">
+                <label for="name">Вариант 2</label>
+                <input type="text" class="form-control" name="variant2" value="{{objectives.variant2}}">
+              </div>
+              <div class="form-group">
+                <label for="name">Сұрақтар Вариант 2 </label>
+                <input type="text" class="form-control" name="questions2" value="{{objectives.questions2}}">
+              </div>  
+                
+              <button class="btn btn-primary" id="save">Сақтау</button>
+            {{else}}
+            <p>Loading...</p>
+            {{/if}}
+        </div>
+	</div>
+</template>

@@ -1,0 +1,126 @@
+<template name="schoolRating">
+    <div class="row">
+        <div class="col-md-12">
+            {{#if Template.subscriptionsReady}}
+            <div>
+            <h4 style="text-align: center;">{{schoolName school}}</h4>
+            <h4 style="text-align: center;margin-bottom: 15pt">Мектеп іс-шаралары</h4>
+                    <div class="form-inline">
+                        <div class="form-group" style="margin-right: 15pt">
+                        {{> academicYear}}
+                        </div>
+                        <div class="form-group">
+                            <label for="month_select">Ай:</label>
+                            <select class="form-control" name="month_select" id="select" style="margin-right: 15pt">
+                                <option value="">Жылдық</option>
+                                <option value="09">Қыркүйек</option>
+                                <option value="10">Қазан</option>
+                                <option value="11">Қараша</option>
+                                <option value="12">Желтоқсан</option>
+                                <option value="01">Қантар</option>
+                                <option value="02">Ақпан</option>
+                                <option value="03">Наурыз</option>
+                                <option value="04">Сәуір</option>
+                                <option value="05">Мамыр</option>
+                                <option value="06">Маусым</option>
+                                <option value="07">Шілде</option>
+                                <option value="08">Тамыз</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="event_select">Іс-шара атауы:</label>
+                            <select class="form-control" name="event_select" id="select" style="margin-right: 15pt">
+                                <option value="">Жалпы</option>
+                                {{#each schoolPerforma}}
+                                    <option value="{{criteria}}">{{criteria_kaz}}</option>
+                                {{/each}}
+                            </select>
+                        </div>
+                        {{#if eventScope}}
+                        <div class="form-group">
+                            <label for="eventScope">Деңгейі:</label>
+                            <select class="form-control" name="eventScope" id="eventScope" style="margin-right: 15pt">
+                                <option value="">Жалпы</option>
+                                <option value="city">Қала</option>
+                                <option value="republic">Республика</option>
+                            </select>
+                        </div>
+                        {{/if}}
+                        {{#if attendScope}}
+                        <div class="form-group">
+                            <label for="attendScope">Деңгейі:</label>
+                            <select class="form-control" name="attendScope" id="attendScope" style="margin-right: 15pt">
+                                <option value="">Жалпы</option>
+                                <option value="vice-principal">Директор орынбасары</option>
+                                <option value="principal">Директор</option>
+                            </select>
+                        </div>
+                        {{/if}}
+                    </div>
+
+            <table class="table table-striped" style="margin-top: 15pt">
+                <thead>
+                    <tr class="bts-header">
+                        <th>#</th>
+                        <th style="text-align: center;">Іс-шара</th>
+                        <th style="text-align: center;">Ай</th>
+                        <th style="text-align: center;">Тарих</th>
+                        <th style="text-align: center;">Іс-шара туралы</th>
+                        <th style="text-align: center;">Деңгейі</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#if eventScope}}
+                    {{#each allEventResults}}
+                    <tr>
+                        <td>{{math @index "+" 1}}</td>
+                        <td style="text-align: center;">{{eventName event}}</td>
+                        <td style="text-align: center;">{{monthName month}}</td>
+                        <td style="text-align: center;">{{date}}</td>
+                        <td style="text-align: center;">{{detail}}</td>
+                        <td style="text-align: center;">{{scope}}</td>
+                        <td><a class="btn btn-danger" id="deleteEvent">Өшіру</a></td>
+                        
+                    </tr>
+                    {{/each}}
+                    {{else if attendScope}}
+                    {{#each allAttendResults}}
+                    <tr>
+                        <td>{{math @index "+" 1}}</td>
+                        <td style="text-align: center;">{{eventName event}}</td>
+                        <td style="text-align: center;">{{monthName month}}</td>
+                        <td style="text-align: center;">{{date}}</td>
+                        <td style="text-align: center;">{{detail}}</td>
+                        <td style="text-align: center;">{{scope}}</td>
+                        <td><a class="btn btn-danger" id="deleteEvent">Өшіру</a></td>
+                        
+                    </tr>
+                    {{/each}}
+                    {{else}}
+                    {{#each allSchoolResults}}
+                    <tr>
+                        <td>{{math @index "+" 1}}</td>
+                        <td style="text-align: center;">{{eventName event}}</td>
+                        <td style="text-align: center;">{{monthName month}}</td>
+                        <td style="text-align: center;">{{date}}</td>
+                        <td style="text-align: center;">{{detail}}</td>
+                        <td style="text-align: center;">{{scope}}</td>
+                        <td><a class="btn btn-danger" id="deleteEvent">Өшіру</a></td>
+                        
+                    </tr>
+                    {{/each}}
+                    {{/if}}
+                </tbody>
+            </table>
+        </div>
+            {{else}}
+            <p>Loading...</p>
+            {{/if}}
+        </div>
+    </div>
+    <script>
+    $(document).ready(function(){
+        $('[data-toggle="tooltip"]').tooltip({trigger: "hover"}); 
+    });
+    </script>
+</template>

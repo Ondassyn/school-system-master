@@ -1,0 +1,88 @@
+<template name="tatRating">
+    <div class="row">
+        <div class="col-md-12 col-sm-6">
+            <h4 style="text-align: center;">ТАТ-{{tatNo}} Рейтинг</h4>
+            <div class="form-inline" style="padding-bottom: 10pt">
+                    <div class="form-group" style="margin-right: 10pt">
+                      {{> academicYear}}
+
+                      <label for="" style="margin-left: 10pt; ">Пән</label>
+                      <select class="form-control" id="subjectId">
+                          <option value="all">Жалпы</option>
+                          <option value="01">Алгебра</option>
+                          <option value="02">Физика</option>
+                          <option value="03">Химия</option>
+                          <option value="04">Биология</option>
+                          <option value="05">Ағылшын тілі</option>
+                          <option value="06">География</option>
+                          <option value="08">Информатика</option>
+                          <option value="09">Қазақ тілі</option>
+                          <option value="10">Түрік тілі</option>
+                          <option value="11">Орыс тілі</option>
+                          <option value="12">Қазақстан тарихы</option>
+                          <option value="23">Дене шынықтыру</option>
+                          <option value="28">Бастауыш</option>
+                      </select>
+                    </div>
+
+                    <div class="form-group" style="float: right">
+                        <a class="btn btn-success" id="export">Export</a>
+                    </div>
+
+            </div>
+            {{#if Template.subscriptionsReady}}
+
+            <div class="table table-responsive" id="out">
+              <table class="table table-striped table-bordered table-hover table-condensed">
+                  <thead>
+                      <tr class="bts-header">
+                          <th>#</th>
+                          <th class="center">Мектеп ID</th>
+                          <th>Мектеп аты</th>
+                          <th class="center">Жалпы</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      {{#each results}}
+                      <tr>
+                          <td>{{math @index "+" 1}}</td>
+                          <td class="center">{{schoolId}}</td>
+                          <td>{{schoolName schoolId}}</td>
+                          <td class="center">{{total}}%</td>
+                      </tr>
+                      {{/each}}
+                  </tbody>
+              </table>
+            </div>
+
+            <h4 style="text-align: center;">Енгізбеген мектептер</h4>
+            <div class="table table-responsive" id="out">
+              <table class="table table-striped  table-bordered table-hover table-condensed"  border=1 cellpadding=0 cellspacing=0 width=100%>
+
+                <thead>
+                    <tr class="bts-header" style="white-space: nowrap">
+                        <th>#</th>
+                        <th>Мектеп аты</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    {{#each schoolNotUploaded}}
+                    <tr>
+                        <td>{{math @index "+" 1}}</td>
+                        <td>{{this}}</td>
+                    </tr>
+                    {{/each}}
+
+
+                </tbody>
+              </table>
+            </div>
+
+            {{else}}
+            <p>Loading...</p>
+            {{/if}}
+        </div>
+    </div>
+
+</template>

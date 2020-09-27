@@ -1,0 +1,58 @@
+<template name="bts10Results">
+    <div class="row">
+        <div class="col-md-12">
+            <h4 style="text-align: center;">БТС-{{btsNo}} TOП-10 Оқушы</h4>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-inline">
+                      <div  class="form-group" style="margin-right: 15pt">
+                        {{> academicYear}}
+                        <label for="">Сынып</label>
+                        <select class="form-control" id="grade">
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                        </select>
+                      </div>
+                  
+                    </div>
+                </div>
+            </div>
+            {{#if Template.subscriptionsReady}}
+            <table class="table table-striped">
+                <thead>
+                    <tr class="bts-header">
+                        <th>#</th>
+                        <th>Оқушы ID</th>
+                        <th>Сынып</th>
+                        <th>Аты</th>
+                        <th>Жөні</th>
+                        <th>Мектеп</th>
+                        <th>Орын</th>
+                        <th>Жалпы</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each results}}
+                    <!-- {{#if math @index "<" 10}} -->
+                    <tr>
+                        <td>{{math @index "+" 1}}</td>
+                        <td>{{studentId}}</td>
+                        <td>{{grade}}{{division}}</td>
+                        <td>{{name}}</td>
+                        <td>{{surname}}</td>
+                        <td>{{schoolName schoolId}}</td>
+                        <td>{{place total}}</td>
+                        <td>{{total}}</td>
+                    </tr>
+                    <!-- {{/if}} -->
+                    {{/each}}
+                </tbody>
+            </table>
+            {{else}}
+            <p>Loading...</p>
+            {{/if}}
+        </div>
+    </div>
+</template>

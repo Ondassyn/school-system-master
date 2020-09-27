@@ -1,0 +1,59 @@
+<template name="lessonObjectives">
+	<div class="row">
+		<div class="col-md-12">
+			<h4 style="text-align: center; padding-bottom: 10pt">Сабақ мақсаттары</h4>
+			<div class="form-inline">
+					<div class="form-group" style="margin-right: 10pt">
+						<label style="margin-right: 10pt">Сынып</label>
+                		    <select class="form-control" name="grade_select" id="select">
+                		        <option value="7">7 cынып</option>
+                		        <option value="8">8 cынып</option>
+                		        <option value="9">9 cынып</option>
+                		        <option value="10">10 cынып</option>
+                		    </select>
+                	</div>
+                	<div class="form-group" style="margin-right: 10pt">
+                		    <label for="">Пән:</label>
+                			<select class="form-control" name="subject_select" id="select">
+                                <option value="">Select subject</option>
+                                {{#each subjects}}
+                                    <option value="{{subjectId}}" >{{name_kz}}</option>
+                                {{/each}}
+                            </select>
+                    </div>
+                    <div class="form-group" style="margin-right: 10pt">
+                            <label for="objective">Іздеу:</label>
+                            <input type="text" class="form-control" id="search" placeholder="Сабақ мақсаты" name="objective_search">
+					</div>
+					<a href="/admin/lessonObjectives/new" class="btn btn-primary">Қосу</a>
+			</div>
+			<table class="table table-striped" style="margin-top:3%">
+				<thead>
+					<tr>
+						<th>#</th>
+						<th>Пән</th>
+						<th>ID</th>
+						<th>Тақырып</th>
+						<th>Сабақ мақсаты</th>
+					</tr>
+				</thead>
+				<tbody>
+					{{#each objectives}}
+					<tr>
+						<td>{{math @index "+" 1}}</td>
+						<td>{{subjectName subjectId}}</td>
+						<td>{{id}}</td>
+						<td>{{topic}}</td>
+						<td>{{objective}}</td>
+						<td><a style="float:right" class="btn btn-primary" href="/admin/lessonObjectives/edit/{{_id}}">Өзгерту</a></td>
+						<td><a class="btn btn-danger" href="#" id="delete">Өшіру</a></td>
+
+					</tr>
+					{{/each}}
+				</tbody>
+			</table>
+		</div>
+		
+	</div>
+	
+</template>

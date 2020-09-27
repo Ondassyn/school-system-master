@@ -1,0 +1,51 @@
+<template name="btsLevels">
+	<div class="row">
+		<div class="col-md-12">
+			<div class="form-inline" style="padding-bottom: 15pt">
+				<h4 style="text-align: center;">БТС - Категория кілттері</h4>
+				<div class="form-group" style="margin-right: 10pt;text-align: center;"> 
+					{{> academicYear}}
+				</div>
+				<div class="form-group" style="margin-right: 10pt">
+				<label>БТС</label>
+				<select class="form-control" id="btsNo" style="width: 30pt; margin-right: 10pt">
+					<option>1</option>
+					<option>2</option>
+					<option>3</option>
+					<option>4</option>
+				</select>
+				</div>
+				<div class="form-group" style="margin-right: 10pt">
+				<a href="/admin/bts/levels/new" class="btn btn-primary" style="float: right;">Қосу</a>
+				</div>
+			</div>
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th>#</th>
+						<th></th>
+						<th>Вариант</th>
+						<th>Сынып</th>
+						<th>Күн</th>
+					</tr>
+				</thead>
+				<tbody>
+					{{#each levels}}
+					<tr>
+						<td>{{math @index "+" 1}}</td>
+						<td>{{academicYear}}</td>
+						<td>{{variant}}</td>
+						<td>{{grade}}</td>
+						<td>{{day}}</td>
+						<td><a style="float:right" class="btn btn-primary" href="/admin/bts/levels/edit/{{_id}}">Өзгерту</a></td>
+						<td><a class="btn btn-danger" href="#" id="delete">Өшіру</a></td>
+
+					</tr>
+					{{/each}}
+				</tbody>
+			</table>
+		</div>
+		
+	</div>
+	
+</template>

@@ -1,0 +1,99 @@
+<template name="teacherDetail">
+    <div class="row">
+        <h4 style="text-align: center">Мұғалім өзгерту</h4>
+        {{#if Template.subscriptionsReady}}
+            <div class="col-md-6 col-md-offset-3" style="margin-left: 0%">
+
+                <div class="form-group" style="width: 80%">
+                    <label for="name">Аты</label>
+                    <input type="text"  class="form-control" placeholder="Аты" name="name" value={{teacher.name}}>
+                </div>
+                <div class="form-group" style="width: 80%">
+                    <label for="surname">Жөні</label>
+                    <input type="text" class="form-control" placeholder="Жөні" name="surname" value="{{teacher.surname}}">
+                </div>
+                <div class="form-group" style="width: 80%">
+                    <label for="exampleSelect1">Пәні</label>
+                    <select class="form-control" name="subjectId">
+                        {{#each subjects}}
+                            <option value="{{subjectId}}" {{selector "subjectId" subjectId}}>{{name_kz}}</option>
+                        {{/each}}
+                    </select>
+                </div>
+
+                <div class="form-group" style="width: 80%">
+                    <label for="workExperience">Тәжірибе</label>
+                    <input type="text" class="form-control" placeholder="Пед стаж" name="workExperience" value="{{teacher.workExperience}}">
+                </div>
+                <div class="form-group" style="width: 80%">
+                    <label for="ielts">IELTS</label>
+                    <select class="form-control" name="ielts">
+                        <option disabled="disabled" selected="selected" value="{{teacher.ielts}}">
+                            {{teacher.ielts}}</option>
+                        <option value="4.5">4.5</option>
+                        <option value="5.0">5.0</option>
+                        <option value="5.5">5.5</option>
+                        <option value="6.0">6.0</option>
+                        <option value="6.5">6.5</option>
+                        <option value="7.0">7.0</option>
+                        <option value="7.5">7.5</option>
+                        <option value="8.0">8.0</option>
+                        <option value="8.5">8.5</option>
+                        <option value="9.0">9.0</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-md-offset-3" style="margin-left: 0%" >
+                <div class="form-group" style="width: 80%">
+                    <label for="position">Лауазымы</label>
+                    <select class="form-control" name="position">
+                        <option disabled="disabled" selected="selected" value="{{teacher.position}}">
+                            {{teacher.position}}</option>
+                        <option value="intern">интерн</option>
+                        <option value="teacher">мұғалім</option>
+                        <option value="vice-principal">директор орынбасары</option>
+                        <option value="principal">директор</option>
+                    </select>
+                </div>
+                <div class="form-group" style="width: 80%">
+                    <label for="academicDegree">Академ дәрежесі</label>
+                    <select class="form-control" name="academicDegree" >
+                        <option disabled="disabled" selected="selected" value="{{teacher.academicDegree}}">
+                            {{teacher.academicDegree}}</option>
+                        <option value="bachelor">бакалавр</option>
+                        <option value="master">магистр</option>
+                        <option value="doctor">доктор</option>
+                    </select>
+                </div>
+
+                <div class="form-group" style="width: 80%">
+                    <label for="academicDegree">Категория</label>
+                    <select class="form-control" name="category" >
+                        <option disabled="disabled" selected="selected" value="{{teacher.category}}">
+                            {{teacher.category}}</option>
+                        <option value="no category">категория жоқ</option>
+                        <option value="2">2</option>
+                        <option value="1">1</option>
+                        <option value="highest">жоғары</option>
+                    </select>
+                </div>
+
+            </div>
+
+            <div class="form-group">
+                <div class="form-inline" style="margin-left:15%">
+                    <div class="form-group">
+                        <button class="btn btn-warning" id="transfer">Трансфер тізіміне қосу</button>
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-primary" id="save">Сақтау</button>
+                    </div>
+                </div>
+            </div>
+
+        {{else}}
+            <p>Loading...</p>
+        {{/if}}
+    </div>
+</template>

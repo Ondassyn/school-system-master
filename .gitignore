@@ -1,0 +1,4 @@
+node_modules/
+.deploy
+mup.js
+settings.json

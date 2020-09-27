@@ -1,0 +1,88 @@
+<template name="allTeachersRating">
+    <div class="row">
+        <div class="col-md-12">
+            <h4 style="text-align: center;">Мұғалім рейтингі</h4>
+            <h4 style="text-align: center;">{{quarter}} тоқсан</h4> 
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-inline">
+                        <div style="margin-right: 15pt;padding-top: 10pt" class="form-group">
+                            <label for="schoolId">Іздеу:</label>
+                            <input type="text" class="form-control" id="search" placeholder="Аты" name="name_search">
+                            <input type="text" class="form-control" id="search" placeholder="Жөні" name="surname_search">
+                        </div>
+                        <label for="schoolId_select">Мектеп: </label>
+                        <select class="form-control" style="width:150pt; margin-right: 15pt" name="schoolId_select" id="select">
+                                <option value="">Select School</option>
+                            {{#each schools}}
+                                <option value="{{schoolId}}" >{{shortName}}</option>
+                            {{/each}}
+                        </select>
+                        <!-- <div style="margin-right: 15pt" class="form-group">
+                            <label for="week">Апта: </label>
+                            <select class="form-control" name="week" id="select">
+                                <option value="all">жалпы</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                                <option value="10">10</option>
+                            </select>
+                        </div> -->
+                    </div>
+                </div>
+            </div>
+            {{#if Template.subscriptionsReady}}
+            <table style="margin-top: 15pt" class="table table-striped">
+                <thead>
+                    <tr class="bts-header">
+                        <th>#</th>
+                        <th>Мектеп</th>
+                        <th>Аты-жөні</th>
+                        <th style="text-align: center;">Пәні</th>
+                        <th style="text-align: center;">Апта</th>
+                        <th style="text-align: center;">Қосымша<br/>сабақтар</th>
+                        <th style="text-align: center;">Олимпиадаға<br/>дайындық</th>
+                        <th style="text-align: center;">ҰБТ-ға<br/>дайындық </th>
+                        <th style="text-align: center;">Сабаққа<br/>қатысу</th>
+                        <th style="text-align: center;">Мектептік<br/>Іс-шара</th>
+                        <th style="text-align: center;">Қалалық<br/>Іс-шара</th>
+                        <th style="text-align: center;">Республика<br/>Іс-шара</th>
+                        <th style="text-align: center;">PBL<br/>дайындалды</th>
+                        <th style="text-align: center;">PBL<br/>ұсынылды</th>
+                        <th style="text-align: center;">Жалпы<br/>ұпай</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each results}}
+                    <tr>
+                        <td>{{math @index "+" 1}}</td>
+                        <td>{{schoolName schoolId}}</td>
+                        <td>{{surname}} {{name}}</td>
+                        <td style="text-align: center;">{{subjectName subjectId}}</td>
+                        <td style="text-align: center;">{{week}}</td>
+                        <td style="text-align: center;">{{extra_lesson}}</td>
+                        <td style="text-align: center;">{{olympiad_preparation}}</td>
+                        <td style="text-align: center;">{{ubt_preparation}}</td>
+                        <td style="text-align: center;">{{lesson_attend}}</td>
+                        <td style="text-align: center;">{{event_school}}</td>
+                        <td style="text-align: center;">{{event_city}}</td>
+                        <td style="text-align: center;">{{event_republic}}</td>
+                        <td style="text-align: center;">{{pbl_prepare}}</td>
+                        <td style="text-align: center;">{{pbl_present}}</td>
+                        <td style="text-align: center;">{{total}}</td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+            {{else}}
+            <p>Loading...</p>
+            {{/if}}
+        </div>
+    </div>
+</template>

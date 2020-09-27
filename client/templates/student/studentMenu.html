@@ -1,0 +1,96 @@
+<template name="studentMenu">
+  <nav class="navbar navbar-default navbar-fixed-top" id="menu">
+    <a class="navbar-brand" href="/">tests.bilik.kz</a>
+    
+    <label for="tm" id="toggle-menu">tests.bilik.kz<span class="drop-icon">▾</span></label>
+    <input type="checkbox" id="tm">
+    <ul class="main-menu clearfix">
+      <ul class="nav navbar-nav">
+        <li class>
+            <a href="/"><span class="glyphicon glyphicon-home"></span> Профиль</a>
+        </li>
+        <li><a href="#">БТС
+          <span class="drop-icon">▾</span>
+          <label title="Toggle Drop-down" class="drop-icon" for="sm1">▾</label>
+          </a>
+          <input type="checkbox" id="sm1">
+          <ul class="sub-menu">
+            <li><a href="#">БТС-1
+                <span class="drop-icon">▾</span>
+                <label title="Toggle Drop-down" class="drop-icon" for="sm2">▾</label>
+              </a>
+              <input type="checkbox" id="sm2">
+              <ul class="sub-menu">
+                <li><a href="/student/bts/results/1">Нәтижелерім</a></li>
+                <!-- <li><a href="/student/bts/top100/1">ТОП-100</a></li> -->
+                <li><a href="/student/bts/objectives/results/1">Сабақ мақсаттары</a></li>
+              </ul>
+            </li>
+            <li><a href="#">БТС-2
+                <span class="drop-icon">▾</span>
+                <label title="Toggle Drop-down" class="drop-icon" for="sm3">▾</label>
+              </a>
+              <input type="checkbox" id="sm3">
+              <ul class="sub-menu">
+                <li><a href="/student/bts/results/2">Нәтижелерім</a></li>
+                <!-- <li><a href="/student/bts/top100/2">ТОП-100</a></li> -->
+                <li><a href="/student/bts/objectives/results/2">Сабақ мақсаттары</a></li>
+              </ul>
+            </li>
+            <li><a href="#">БТС-3
+                <span class="drop-icon">▾</span>
+                <label title="Toggle Drop-down" class="drop-icon" for="sm4">▾</label>
+              </a>
+              <input type="checkbox" id="sm4">
+              <ul class="sub-menu">
+                <li><a href="/student/bts/results/3">Нәтижелерім</a></li>
+                <!-- <li><a href="/student/bts/top100/3">ТОП-100</a></li> -->
+                <li><a href="/student/bts/objectives/results/3">Сабақ мақсаттары</a></li>
+              </ul>
+            </li>
+            <li><a href="#">БТС-4
+                <span class="drop-icon">▾</span>
+                <label title="Toggle Drop-down" class="drop-icon" for="sm5">▾</label>
+              </a>
+              <input type="checkbox" id="sm5">
+              <ul class="sub-menu">
+                <li><a href="/student/bts/results/4">Нәтижелерім</a></li>
+                <!-- <li><a href="/student/bts/top100/4">ТОП-100</a></li> -->
+                <li><a href="/student/bts/objectives/results/4">Сабақ мақсаттары</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+
+        <li><a href="#">КБО
+          <span class="drop-icon">▾</span>
+          <label title="Toggle Drop-down" class="drop-icon" for="sm6">▾</label>
+          </a>
+          <input type="checkbox" id="sm6">
+          <ul class="sub-menu">
+            <li><a href="/student/kbo/results/1">КБО-1
+              </a>
+            </li>
+            <li><a href="/student/kbo/results/2">КБО-2
+              </a>
+            </li>
+            <li><a href="/student/kbo/results/3">КБО-3
+              </a>
+            </li>
+            <li role="separator" class="divider"></li>
+            <li><a href="/student/kbo/final">КБО Финал
+              </a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+              <li><a href="/student/profile"><span class="glyphicon glyphicon-cog"></span> Баптаулар</a></li>
+              <li><a href="/signout"><span class="glyphicon glyphicon-log-out"></span> Шығу</a></li>
+      </ul>
+    </ul>
+
+  
+
+</nav>
+</template>

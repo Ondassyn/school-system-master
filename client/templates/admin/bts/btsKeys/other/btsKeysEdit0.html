@@ -1,0 +1,326 @@
+<template name="btsKeysEdit0">
+
+	<div class="row">
+		<div class="col-md-8">
+      {{#if Template.subscriptionsReady}}
+        <h4>Өзгерту</h4>
+				<h5>Жыл: {{keys.academicYear}}</h5>
+				<h5>БТС: {{keys.quarter}}</h5>
+				<h5 style="padding-bottom: 20pt">Вариант: {{keys.variant}}</h5>
+
+
+        {{#if grade7 keys.grade}}
+          {{#if day1 keys.day}}
+
+            {{#if btsNo1_or_2 keys.quarter}}
+              {{> math}}
+              {{> kazakh_lang}}
+              {{> turkish_lang}}
+              {{> russian_lang}}
+            {{else}} <!-- BTS No 3-->
+              {{> math}}
+              {{> physics}}
+              {{> chemistry}}
+              {{> biology}}
+            {{/if}}
+
+          {{else}} <!-- day2-->
+              <div class="form-group">
+                <label for="name"> 7 сыныпта  БТС 2 күн жоқ </label>
+              </div>
+
+          {{/if}}
+
+        {{else}}
+          {{#if grade8_or_9 keys.grade}}
+            {{#if day1  keys.day}}
+                {{> math}}
+                {{> kazakh_lang}}
+                {{> turkish_lang}}
+                {{> kazakh_history}}
+
+            {{else}} <!-- grade 8 or 9, day 2 -->
+              {{> geography}}
+              {{> physics}}
+              {{> chemistry}}
+              {{> biology}}
+            {{/if}} <!-- end day1 -->
+
+          {{else}} <!-- else grade8_or_9 -->
+            {{#if grade10  keys.grade}}
+              {{#if day1 keys.day}}
+                {{> math}}
+                {{> kazakh_lang}}
+                {{> kazakh_history}}
+              <!-- Elective subjects -->
+              <div style="border: 2px solid grey; border-radius: 5px; padding: 10px;">
+                <h3>Таңдау пәндері</h3>
+                {{> geography}}
+                {{> physics}}
+                {{> chemistry}}
+                {{> biology}}
+              </div>
+              {{else}}
+                  <div class="form-group">
+                    <label for="name">10 сыныпта  БТС 2 күн жоқ </label>
+                  </div>
+              {{/if}}
+            {{/if}}
+          {{/if}}
+        {{/if}}
+
+				{{#if grade7 keys.grade}}
+					{{#if dayOne keys.day }}
+						{{ #if btsNo1 keys.quarter }}
+
+							{{> math}}
+							{{> kazakh_lang}}
+							{{> turkish_lang}}
+							{{> russian_lang}}
+
+						{{else}}
+
+							{{ #if btsNo2 keys.quarter }}
+
+								{{> math}}
+								{{> kazakh_lang}}
+								{{> turkish_lang}}
+								{{> russian_lang}}
+
+							{{else}}
+
+								{{> math}}
+								{{> physics}}
+								{{> chemistry}}
+								{{> biology}}
+
+							{{/if}}
+
+						{{/if}}
+
+					{{else}}
+						{{ #if btsNo4 keys.quarter }}
+							{{#if dayTwo keys.day }}
+								<div class="form-group">
+									<label for="name">Физика</label>
+									<input type="text" class="form-control" name="physics" value="{{keys.physics}}">
+								</div>
+								<div class="form-group">
+									<label for="name">Химия</label>
+									<input type="text" class="form-control" name="chemistry" value="{{keys.chemistry}}">
+								</div>
+								<div class="form-group">
+									<label for="name">Биология</label>
+									<input type="text" class="form-control" name="biology" value="{{keys.biology}}">
+								</div>
+							{{else}}
+								<div class="form-group">
+									<label for="name">Алгебра</label>
+									<input type="text" class="form-control" name="algebra" value="{{keys.algebra}}">
+								</div>
+								<div class="form-group">
+									<label for="name">Қазақ тілі (қазақ тобы)</label>
+									<input type="text" class="form-control" name="kazakh_kaz" value="{{keys.kazakh_kaz}}">
+								</div>
+								<div class="form-group">
+									<label for="name">Қазақ тілі (орыс тобы)</label>
+									<input type="text" class="form-control" name="kazakh_rus" value="{{keys.kazakh_rus}}">
+								</div>
+								<div class="form-group">
+									<label for="name">Қазақ әдебиеті (қазақ тобы)</label>
+									<input type="text" class="form-control" name="kazakh_literature_kaz" value="{{keys.kazakh_literature_kaz}}">
+								</div>
+								<div class="form-group">
+									<label for="name">Қазақ әдебиеті (орыс тобы)</label>
+									<input type="text" class="form-control" name="kazakh_literature_rus" value="{{keys.kazakh_literature_rus}}">
+								</div>
+								<div class="form-group">
+									<label for="name">Орыс тілі</label>
+									<input type="text" class="form-control" name="russian" value="{{keys.russian}}">
+								</div>
+								<div class="form-group">
+									<label for="name">Қазақстан тарихы</label>
+									<input type="text" class="form-control" name="kazakh_history" value="{{keys.kazakh_history}}">
+								</div>
+							{{/if}}
+						{{else}}
+							<h1> Бұл сынып үшін бірінші және үшінші БТС жазылмайды </h1>
+						{{/if}}
+					{{/if}}
+				{{else}}
+					{{#if grade8 keys.grade}}
+						{{ #if btsNo2 keys.quarter }}
+							{{#if dayTwo keys.day }}
+								<div class="form-group">
+									<label for="name">Геометрия</label>
+									<input type="text" class="form-control" name="geometry" value="{{keys.geometry}}">
+								</div>
+								<div class="form-group">
+									<label for="name">Информатика</label>
+									<input type="text" class="form-control" name="computer" value="{{keys.computer}}">
+								</div>
+								<div class="form-group">
+									<label for="name">Дүние-жүзі тарихы</label>
+									<input type="text" class="form-control" name="world_history" value="{{keys.world_history}}">
+								</div>
+								<div class="form-group">
+									<label for="name">География</label>
+									<input type="text" class="form-control" name="geography" value="{{keys.geography}}">
+								</div>
+							{{else}}
+								<div class="form-group">
+									<label for="name">Алгебра</label>
+									<input type="text" class="form-control" name="algebra" value="{{keys.algebra}}">
+								</div>
+								<div class="form-group">
+									<label for="name">Қазақ тілі (қазақ тобы)</label>
+									<input type="text" class="form-control" name="kazakh_kaz" value="{{keys.kazakh_kaz}}">
+								</div>
+								<div class="form-group">
+									<label for="name">Қазақ тілі (орыс тобы)</label>
+									<input type="text" class="form-control" name="kazakh_rus" value="{{keys.kazakh_rus}}">
+								</div>
+								<div class="form-group">
+									<label for="name">Қазақ әдебиеті (қазақ тобы)</label>
+									<input type="text" class="form-control" name="kazakh_literature_kaz" value="{{keys.kazakh_literature_kaz}}">
+								</div>
+								<div class="form-group">
+									<label for="name">Қазақ әдебиеті (орыс тобы)</label>
+									<input type="text" class="form-control" name="kazakh_literature_rus" value="{{keys.kazakh_literature_rus}}">
+								</div>
+								<div class="form-group">
+									<label for="name">Орыс тілі</label>
+									<input type="text" class="form-control" name="russian" value="{{keys.russian}}">
+								</div>
+								<div class="form-group">
+									<label for="name">Қазақстан тарихы</label>
+									<input type="text" class="form-control" name="kazakh_history" value="{{keys.kazakh_history}}">
+								</div>
+							{{/if}}
+						{{else}}
+							{{ #if btsNo4 keys.quarter }}
+								{{#if dayTwo keys.day }}
+									<div class="form-group">
+										<label for="name">Физика</label>
+										<input type="text" class="form-control" name="physics" value="{{keys.physics}}">
+									</div>
+									<div class="form-group">
+										<label for="name">Химия</label>
+										<input type="text" class="form-control" name="chemistry" value="{{keys.chemistry}}">
+									</div>
+									<div class="form-group">
+										<label for="name">Биология</label>
+										<input type="text" class="form-control" name="biology" value="{{keys.biology}}">
+									</div>
+								{{else}}
+									<div class="form-group">
+										<label for="name">Алгебра</label>
+										<input type="text" class="form-control" name="algebra" value="{{keys.algebra}}">
+									</div>
+									<div class="form-group">
+										<label for="name">Қазақ тілі (қазақ тобы)</label>
+										<input type="text" class="form-control" name="kazakh_kaz" value="{{keys.kazakh_kaz}}">
+									</div>
+									<div class="form-group">
+										<label for="name">Қазақ тілі (орыс тобы)</label>
+										<input type="text" class="form-control" name="kazakh_rus" value="{{keys.kazakh_rus}}">
+									</div>
+									<div class="form-group">
+										<label for="name">Қазақ әдебиеті (қазақ тобы)</label>
+										<input type="text" class="form-control" name="kazakh_literature_kaz" value="{{keys.kazakh_literature_kaz}}">
+									</div>
+									<div class="form-group">
+										<label for="name">Қазақ әдебиеті (орыс тобы)</label>
+										<input type="text" class="form-control" name="kazakh_literature_rus" value="{{keys.kazakh_literature_rus}}">
+									</div>
+									<div class="form-group">
+										<label for="name">Орыс тілі</label>
+										<input type="text" class="form-control" name="russian" value="{{keys.russian}}">
+									</div>
+									<div class="form-group">
+										<label for="name">Қазақстан тарихы</label>
+										<input type="text" class="form-control" name="kazakh_history" value="{{keys.kazakh_history}}">
+									</div>
+								{{/if}}
+							{{else}}
+								<h1> Бұл сынып үшін бірінші және үшінші БТС жазылмайды </h1>
+							{{/if}}
+						{{/if}}
+					{{else}}
+                		{{#if dayTwo keys.day}}
+							<div class="form-group">
+								<label for="name">Орыс тілі</label>
+								<input type="text" class="form-control" name="russian" value="{{keys.russian}}">
+							</div>
+							<!--<div class="form-group">
+								<label for="name">Түрік тілі</label>
+								<input type="text" class="form-control" name="turkish" value="{{keys.turkish}}">
+							</div>-->
+							<div class="form-group">
+								<label for="name">Физика</label>
+								<input type="text" class="form-control" name="physics" value="{{keys.physics}}">
+							</div>
+							<div class="form-group">
+								<label for="name">Химия</label>
+								<input type="text" class="form-control" name="chemistry" value="{{keys.chemistry}}">
+							</div>
+							<div class="form-group">
+								<label for="name">Биология</label>
+								<input type="text" class="form-control" name="biology" value="{{keys.biology}}">
+							</div>
+							<div class="form-group">
+								<label for="name">Информатика</label>
+								<input type="text" class="form-control" name="computer" value="{{keys.computer}}">
+							</div>
+							<div class="form-group">
+								<label for="name">Дүние-жүзі тарихы</label>
+								<input type="text" class="form-control" name="world_history" value="{{keys.world_history}}">
+							</div>
+							<div class="form-group">
+								<label for="name">География</label>
+								<input type="text" class="form-control" name="geography" value="{{keys.geography}}">
+							</div>
+						{{else}}
+
+							<div class="form-group">
+								<label for="name">Алгебра</label>
+								<input type="text" class="form-control" name="algebra" value="{{keys.algebra}}">
+							</div>
+							<div class="form-group">
+								<label for="name">Геометрия</label>
+								<input type="text" class="form-control" name="geometry" value="{{keys.geometry}}">
+							</div>
+							<div class="form-group">
+								<label for="name">Қазақ тілі (қазақ тобы)</label>
+								<input type="text" class="form-control" name="kazakh_kaz" value="{{keys.kazakh_kaz}}">
+							</div>
+							<div class="form-group">
+								<label for="name">Қазақ тілі (орыс тобы)</label>
+								<input type="text" class="form-control" name="kazakh_rus" value="{{keys.kazakh_rus}}">
+							</div>
+							<div class="form-group">
+								<label for="name">Қазақ әдебиеті (қазақ тобы)</label>
+								<input type="text" class="form-control" name="kazakh_literature_kaz" value="{{keys.kazakh_literature_kaz}}">
+							</div>
+							<div class="form-group">
+								<label for="name">Қазақ әдебиеті (орыс тобы)</label>
+								<input type="text" class="form-control" name="kazakh_literature_rus" value="{{keys.kazakh_literature_rus}}">
+							</div>
+							<div class="form-group">
+								<label for="name">Ағылшын тілі</label>
+								<input type="text" class="form-control" name="english" value="{{keys.english}}">
+							</div>
+							<div class="form-group">
+								<label for="name">Қазақстан тарихы</label>
+								<input type="text" class="form-control" name="kazakh_history" value="{{keys.kazakh_history}}">
+							</div>
+                		{{/if}}
+                	{{/if}}
+                {{/if}}
+            <button class="btn btn-primary" id="save">Сақтау</button>
+            {{else}}
+            <p>Loading...</p>
+            {{/if}}
+        </div>
+	</div>
+</template>

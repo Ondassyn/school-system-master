@@ -1,0 +1,60 @@
+<template name="btsObjectivesList">
+	<div class="row">
+		<div class="col-md-12">
+			<div class="row">
+				<h4 style="text-align: center;">БТС-{{btsNo}} Сабақ мақсаттары</h4>
+				
+				<div class="form-inline">
+					<div class="form-group" style="margin-right: 15pt">
+						{{> academicYear}}
+					</div>
+					<div class="form-group" style="margin-right: 15pt">
+						<label for="">Сынып</label>
+                		    <select class="form-control" id="grade">
+                		        <option value="7">7</option>
+                		        <option value="8">8</option>
+                		        <option value="9">9</option>
+                		        <option value="10">10</option>
+                		    </select>
+					</div>
+					<div class="form-group"><a href="/admin/bts/objectives/addNew/new" class="btn btn-primary">Қосу</a>
+					</div>
+					<div class="form-group" style="float:right"><a class="btn btn-success" id="calculate">Cанау</a>
+					</div>
+				</div>
+
+			</div>
+			<table class="table table-striped" style="margin-top:3%">
+				<thead>
+					<tr>
+						<th>#</th>
+						<th>Пән</th>
+						<th>Сабақ мақсаты ID</th>
+						<th>Вариант 1</th>
+						<th>Вариант 1 сұрақтары</th>
+						<th>Вариант 2</th>
+						<th>Вариант 2 сұрақтары</th>
+					</tr>
+				</thead>
+				<tbody>
+					{{#each objectives}}
+					<tr>
+						<td>{{math @index "+" 1}}</td>
+						<td>{{subjectFromEnglish subject}}</td>
+						<td>{{objectiveId}}</td>
+						<td>{{variant1}}</td>
+						<td>{{questions1}}</td>
+						<td>{{variant2}}</td>
+						<td>{{questions2}}</td>
+						<td><a style="float:right" class="btn btn-primary" href="/admin/bts/objectives/edit/{{_id}}">Өзгерту</a></td>
+						<td><a class="btn btn-danger" href="#" id="delete">Өшіру</a></td>
+
+					</tr>
+					{{/each}}
+				</tbody>
+			</table>
+		</div>
+		
+	</div>
+	
+</template>

@@ -1,0 +1,86 @@
+<template name="tatAllResults">
+    <div class="row">
+        <div class="col-md-12">
+            <h4 style='text-align: center'>ТАТ-{{tatNo}} Нәтиже</h4>
+            <div class="row">
+                    <div class="form-inline">
+                        {{> academicYear}}
+                        <select class="form-control" id="subjectId">
+                            <option value="all">Жалпы</option>
+                            <option selected value="01">Алгебра</option>
+                            <option value="02">Физика</option>
+                            <option value="03">Химия</option>
+                            <option value="04">Биология</option>
+                            <option value="05">Ағылшын тілі</option>
+                            <option value="06">География</option>
+                            <option value="08">Информатика</option>
+                            <option value="09">Қазақ тілі</option>
+                            <option value="10">Түрік тілі</option>
+                            <option value="11">Орыс тілі</option>
+                            <option value="12">Қазақстан тарихы</option>
+                            <option value="23">Дене шынықтыру</option>
+                            <option value="28">Бастауыш</option>
+                        </select>
+
+                    <div class="form-group" style="float: right">
+                        <a class="btn btn-primary" id="calcPlaces">Save Place & update position</a>
+                        <a class="btn btn-success" id="calcSubjectAve">Save Subject Average</a>
+                    </div>
+
+                </div>
+
+                    <div class="form-inline">
+                      <h4 name='totalCount'>Мұғалім саны: {{getTotalCount}}</h4>
+                      {{#if allSubjectNotSelected}}<h4 name='ave'>Орта балл: {{round 2 getAve}}</h4>{{/if}}
+                    </div>
+            </div>
+
+            {{#if Template.subscriptionsReady}}
+            <section class="">
+              <div class="container1">
+                <table class="table table-striped">
+                  <thead>
+                    <tr class="header">
+                        <th><div># </div></th>
+                        <th><div>Мектеп ID</div></th>
+                        <th><div>Мектеп аты</div></th>
+                        <th><div>Мұғалім ID</div></th>
+                        {{#if allSubjectSelected}}<th><div>Пән</div></th>{{/if}}
+                        <th><div>Аты</div></th>
+                        <th><div>Жөні</div></th>
+                        <th><div>Лауазымы</div></th>
+                        <th><div>Нәтиже</div></th>
+                        <th><div>Орын</div></th>
+                        <th><div>%</div></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each results}}
+                    <tr>
+                        <td>{{math @index "+" 1}}</td>
+                        <td>{{schoolId}}</td>
+                        <td>{{schoolName schoolId}}</td>
+                        <td>{{teacherId}}</td>
+                        {{#if allSubjectSelected}}<td>{{subjectName subjectId}}</td>{{/if}}
+                        <td>{{teacherName}}</td>
+                        <td>{{teacherSurname}}</td>
+                        <td>{{position}}</td>
+                        <td>{{result}}</td>
+                        
+                        {{#if allSubjectSelected}}<td style='text-align: center'>{{place}}</td>
+                        {{else}}<td style='text-align: center'>{{placeNumber @index "+" 1}}</td>{{/if}}
+
+                        <td>{{percent}}</td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+          </div>
+        </section>
+            {{else}}
+            <p>Loading...</p>
+            {{/if}}
+        </div>
+    </div>
+
+</template>

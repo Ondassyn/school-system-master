@@ -1,0 +1,24 @@
+<template name="mainPage">
+    {{#onlyIfLoggedIn}}
+      {{#if isAdmin}}
+        {{> adminMainPage}}
+      {{else if isEdlight}}
+        {{> adminMainPage}}
+
+      {{else if isSchool}}
+        {{> schoolMainPage}}
+
+      {{else if isSchoolCoordinator}}
+        {{> schoolMainPage}}
+
+      {{else if isGuestSchool}}
+          {{> guestSchoolMainPage}}
+
+      {{else if isTjo}}
+        {{> tjoMainPage}}
+
+      {{else}}
+     	  {{> studentMainPage}}
+      {{/if}}
+    {{/onlyIfLoggedIn}}
+</template>

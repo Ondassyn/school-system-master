@@ -1,0 +1,252 @@
+<template name="btsKeysEdit">
+
+	<div class="row">
+		<div class="col-md-8">
+      {{#if Template.subscriptionsReady}}
+        <h4>Өзгерту</h4>
+				<h5>Жыл: {{keys.academicYear}}</h5>
+				<h5>БТС: {{keys.quarter}}</h5>
+				<h5 style="padding-bottom: 20pt">Вариант: {{keys.variant}}</h5>
+
+        {{#if grade7 keys.grade}}
+          {{#if day1 keys.day}}
+
+            {{#if btsNo1_or_2 keys.quarter}}
+
+
+							<div class="form-group">
+								<label for="name">Математика</label>
+								<input type="text" class="form-control" name="mathematic" value="{{keys.mathematic}}">
+
+								<thead>
+									<tr class="bts-header" style="white-space: nowrap">
+										{{#each mathKeysStore}}
+											<th style="text-align: center">{{math @index "+" 1}}</th>
+										{{/each}}
+									</tr>
+								</thead>
+
+								<tbody>
+										<tr>
+											{{#each mathKeysStore}}
+													<td><input type="text" class="form-control" id="mathematic{{math @index '+' 1}}" value="{{this}}"></td>
+											{{/each}}
+										</tr>
+								</tbody>
+
+							</div>
+							<div class="form-group">
+							    <label for="name">Қазақ тілі</label>
+							    <input type="text" class="form-control" name="kazakh_lang" value="{{keys.kazakh_lang}}">
+
+									<thead>
+										<tr class="bts-header" style="white-space: nowrap">
+											{{#each kazakhKeysStore}}
+												<th style="text-align: center">{{math @index "+" 1}}</th>
+											{{/each}}
+										</tr>
+									</thead>
+
+									<tbody>
+											<tr>
+												{{#each kazakhKeysStore}}
+														<td><input type="text" class="form-control" id="kazakh_lang{{math @index '+' 1}}" value="{{this}}"></td>
+												{{/each}}
+											</tr>
+									</tbody>
+							</div>
+							<div class="form-group">
+						      <label for="name">Түрік тілі</label>
+						      <input type="text" class="form-control" name="turkish_lang" value="{{keys.turkish_lang}}">
+									<thead>
+										<tr class="bts-header" style="white-space: nowrap">
+											{{#each turkishKeysStore}}
+												<th style="text-align: center">{{math @index "+" 1}}</th>
+											{{/each}}
+										</tr>
+									</thead>
+
+									<tbody>
+											<tr>
+												{{#each turkishKeysStore}}
+														<td><input type="text" class="form-control" id="turkish_lang{{math @index '+' 1}}" value="{{this}}"></td>
+												{{/each}}
+											</tr>
+									</tbody>
+						  </div>
+							<div class="form-group">
+						      <label for="name">Орыс тілі</label>
+						      <input type="text" class="form-control" name="russian_lang" value="{{keys.russian_lang}}">
+									<thead>
+										<tr class="bts-header" style="white-space: nowrap">
+											{{#each russianKeysStore}}
+												<th style="text-align: center">{{math @index "+" 1}}</th>
+											{{/each}}
+										</tr>
+									</thead>
+
+									<tbody>
+											<tr>
+												{{#each russianKeysStore}}
+														<td><input type="text" class="form-control" id="russian_lang{{math @index '+' 1}}" value="{{this}}"></td>
+												{{/each}}
+											</tr>
+									</tbody>
+
+						  </div>
+            {{else}} <!-- BTS No 3-->
+							<div class="form-group">
+								<label for="name">Математика</label>
+								<input type="text" class="form-control" name="mathematic" value="{{keys.mathematic}}">
+							</div>
+							<div class="form-group">
+						      <label for="name">Физика</label>
+						      <input type="text" class="form-control" name="physics" value="{{keys.physics}}">
+						  </div>
+							<div class="form-group">
+						      <label for="name">Химия</label>
+						      <input type="text" class="form-control" name="chemistry" value="{{keys.chemistry}}">
+						  </div>
+						  <div class="form-group">
+						      <label for="name">Биология</label>
+						      <input type="text" class="form-control" name="biology" value="{{keys.biology}}">
+						  </div>
+            {{/if}}
+
+          {{else}} <!-- day2-->
+              <div class="form-group">
+                <label for="name"> 7 сыныпта  БТС 2 күн жоқ </label>
+              </div>
+
+          {{/if}}
+
+        {{else}}
+          {{#if grade8_or_9 keys.grade}}
+            {{#if day1  keys.day}}
+								<div class="form-group">
+									<label for="name">Математика</label>
+									<input type="text" class="form-control" name="mathematic" value="{{keys.mathematic}}">
+
+									<thead>
+										<tr class="bts-header" style="white-space: nowrap">
+											{{#each mathKeysStore}}
+												<th style="text-align: center">{{math @index "+" 1}}</th>
+											{{/each}}
+										</tr>
+									</thead>
+
+									<tbody>
+											<tr>
+												{{#each mathKeysStore}}
+														<td><input type="text" class="form-control" id="mathematic{{math @index '+' 1}}" value="{{this}}"></td>
+												{{/each}}
+											</tr>
+									</tbody>
+									<button style="margin-top: 10pt" class="btn btn-primary" id="saveMath">Save Math</button>
+
+								</div>
+								<div class="form-group">
+								    <label for="name">Қазақ тілі</label>
+								    <input type="text" class="form-control" name="kazakh_lang" value="{{keys.kazakh_lang}}">
+
+										<thead>
+											<tr class="bts-header" style="white-space: nowrap">
+												{{#each kazakhKeysStore}}
+													<th style="text-align: center">{{math @index "+" 1}}</th>
+												{{/each}}
+											</tr>
+										</thead>
+
+										<tbody>
+												<tr>
+													{{#each kazakhKeysStore}}
+															<td><input type="text" class="form-control" id="kazakh_lang{{math @index '+' 1}}" value="{{this}}"></td>
+													{{/each}}
+												</tr>
+										</tbody>
+
+								</div>
+								<div class="form-group">
+							      <label for="name">Түрік тілі</label>
+							      <input type="text" class="form-control" name="turkish_lang" value="{{keys.turkish_lang}}">
+							  </div>
+							  <div class="form-group">
+							      <label for="name">Қазақстан тарихы</label>
+							      <input type="text" class="form-control" name="kazakh_history" value="{{keys.kazakh_history}}">
+							  </div>
+
+            {{else}} <!-- grade 8 or 9, day 2 -->
+						  <div class="form-group">
+						      <label for="name">География</label>
+						      <input type="text" class="form-control" name="geography" value="{{keys.geography}}">
+						  </div>
+							<div class="form-group">
+									<label for="name">Физика</label>
+									<input type="text" class="form-control" name="physics" value="{{keys.physics}}">
+							</div>
+							<div class="form-group">
+						      <label for="name">Химия</label>
+						      <input type="text" class="form-control" name="chemistry" value="{{keys.chemistry}}">
+						  </div>
+							<div class="form-group">
+						      <label for="name">Биология</label>
+						      <input type="text" class="form-control" name="biology" value="{{keys.biology}}">
+						  </div>
+            {{/if}} <!-- end day1 -->
+
+          {{else}} <!-- else grade8_or_9 -->
+            {{#if grade10  keys.grade}}
+              {{#if day1 keys.day}}
+								<div class="form-group">
+									<label for="name">Математика</label>
+									<input type="text" class="form-control" name="mathematic" value="{{keys.mathematic}}">
+								</div>
+								<div class="form-group">
+								    <label for="name">Қазақ тілі</label>
+								    <input type="text" class="form-control" name="kazakh_lang" value="{{keys.kazakh_lang}}">
+								</div>
+							  <div class="form-group">
+							      <label for="name">Қазақстан тарихы</label>
+							      <input type="text" class="form-control" name="kazakh_history" value="{{keys.kazakh_history}}">
+							  </div>
+              <!-- Elective subjects -->
+              <div style="border: 2px solid grey; border-radius: 5px; padding: 10px;">
+                <h3>Таңдау пәндері</h3>
+							  <div class="form-group">
+							      <label for="name">География</label>
+							      <input type="text" class="form-control" name="geography" value="{{keys.geography}}">
+							  </div>
+								<div class="form-group">
+							      <label for="name">Физика</label>
+							      <input type="text" class="form-control" name="physics" value="{{keys.physics}}">
+							  </div>
+								<div class="form-group">
+							      <label for="name">Химия</label>
+							      <input type="text" class="form-control" name="chemistry" value="{{keys.chemistry}}">
+							  </div>
+								<div class="form-group">
+							      <label for="name">Биология</label>
+							      <input type="text" class="form-control" name="biology" value="{{keys.biology}}">
+							  </div>
+								<div class="form-group">
+							      <label for="name">Дүние тарихы</label>
+							      <input type="text" class="form-control" name="world_history" value="{{keys.world_history}}">
+							  </div>
+              </div>
+              {{else}}
+                  <div class="form-group">
+                    <label for="name">10 сыныпта  БТС 2 күн жоқ </label>
+                  </div>
+              {{/if}}
+            {{/if}}
+          {{/if}}
+        {{/if}}
+
+			<button class="btn btn-primary" id="saveKeys">Save Keys</button>
+      <button class="btn btn-primary" id="save">Сақтау</button>
+      {{else}}
+      <p>Loading...</p>
+      {{/if}}
+      </div>
+	</div>
+</template>

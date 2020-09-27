@@ -1,0 +1,88 @@
+<template name="ketPetRatings">
+    <div class="row">
+        <div class="col-md-12">
+            <h4 style="text-align: center; padding-bottom: 15pt">KET-PET Рейтинг</h4>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-inline">
+                        <div class="form-group" style="margin-right: 15pt">
+                          {{> academicYear}}
+
+                          <label style="margin-left: 10pt;">Тоқсан таңдаңыз</label>
+                          <select class="form-control" id="examPeriod">
+                              <option value="2">2 тоқсан</option>
+                              <option value="4">4 тоқсан</option>
+                          </select>
+
+                        </div>
+
+                        <div class="form-group" style="float: right">
+                            <a class="btn btn-success" id="export">Export</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            {{#if Template.subscriptionsReady}}
+
+            <div  class="table table-responsive" id="out">
+              <table style="margin-top: 15pt" class="table table-striped">
+
+                <thead>
+                    <tr class="bts-header">
+                        <th>#</th>
+                        <th style="text-align:center" id="sortTotal">Мектеп ID</th>
+                        <th style="text-align:center" id="reportType1">Мектеп аты</th>
+                        <th style="text-align:center" id="reportType2">KET (7 сынып)<br>Орта балл</th>
+                        <th style="text-align:center" id="reportType3">Average level<br>KET</th>
+                        <th style="text-align:center" id="reportType2">PET (8 сынып)<br>Орта балл</th>
+                        <th style="text-align:center" id="reportType3">Average level<br>PET</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    {{#each results}}
+                    <tr>
+                        <td>{{math @index "+" 1}}</td>
+                        <td style="text-align:center;">{{schoolId}}</td>
+                        <td>{{schoolName schoolId}}</td>
+                        <td style="text-align: center;">{{round "2" total7Grade}} %</td>
+                        <td style="text-align: center;">{{total7Level}}</td>
+                        <td style="text-align: center;">{{round "2" total8Grade}} %</td>
+                        <td style="text-align: center;">{{total8Level}}</td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+              </table>
+            </div>
+
+            <h4 style="text-align: center;">Енгізбеген мектептер</h4>
+            <div class="table table-responsive" id="out">
+              <table class="table table-striped  table-bordered table-hover table-condensed"  border=1 cellpadding=0 cellspacing=0 width=100%>
+
+                <thead>
+                    <tr class="bts-header" style="white-space: nowrap">
+                        <th>#</th>
+                        <th>Мектеп аты</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    {{#each schoolNotUploaded}}
+                    <tr>
+                        <td>{{math @index "+" 1}}</td>
+                        <td>{{this}}</td>
+                    </tr>
+                    {{/each}}
+
+
+                </tbody>
+              </table>
+            </div>
+
+            {{else}}
+            <p>Loading...</p>
+            {{/if}}
+        </div>
+    </div>
+</template>

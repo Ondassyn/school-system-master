@@ -1,0 +1,54 @@
+<template name="turkishResults">
+        <div class="row">
+            <div class="col-md-12">
+                <h4>Exam - Нәтиже</h4>
+                <div class="row">
+                        {{> academicYear}}
+                        <label for="">Сынып</label>
+                        <select class="grade">
+                            <option value="7">7 cынып</option>
+                            <option value="8">8 cынып</option>
+                            <option value="9">9 cынып</option>
+                            <option value="10">10 cынып</option>
+                            <option value="11">11 cынып</option>
+                            <option value="1">1 cынып</option>
+                            <option value="2">2 cынып</option>
+                            <option value="3">3 cынып</option>
+                        </select>
+                </div>
+                {{#if Template.subscriptionsReady}}
+                <table class="table table-striped">
+                    <thead>
+                        <tr class="bts-header">
+                            <th>#</th>
+                            <th>Оқушы ID</th>
+                            <th>Сынып</th>
+                            <th>Аты</th>
+                            <th>Жөні</th>
+                            <th>Turkish</th>
+                            <th>Correct</th>
+                            <th>Incorrect</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{#each results}}
+                        <tr>
+                            <td>{{math @index "+" 1}}</td>
+                            <td>{{studentId}}</td>
+                            <td>{{grade}}{{division}}</td>
+                            <td>{{name}}</td>
+                            <td>{{surname}}</td>
+                            <td>{{round 2 turkish}}</td>
+                            <td>{{turkishCorrect}}</td>
+                            <td>{{turkishInCorrect}}</td>
+                        </tr>
+                        {{/each}}
+                    </tbody>
+                </table>
+                {{else}}
+                <p>Loading...</p>
+                {{/if}}
+            </div>
+        </div>
+    </template>
+    

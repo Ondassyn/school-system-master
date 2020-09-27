@@ -1,0 +1,103 @@
+<template name="kboRating">
+    <div class="row">
+        <div class="col-md-12">
+            <h4 style="text-align: center;">КБО-{{kboNo}} Рейтинг</h4>
+            <div class="form-inline" style="padding-bottom: 10pt">
+                <div class="form-group" style="margin-right: 10pt">
+                    {{> academicYear}}
+                    <label for="" style="margin-left: 10pt;">Сынып</label>
+                    <select  class="form-control" id="grade">
+                        <option value="all">Жалпы</option>
+                        <option value="6">6 cынып</option>
+                        <option value="7">7 cынып</option>
+                        <option value="8">8 cынып</option>
+                        <option value="9">9 cынып</option>
+                        <option value="10">10 cынып</option>
+                        <option value="11">11 cынып</option>
+                    </select>
+                  </div>
+
+                  <div class="form-group" style="float: right">
+                      <a class="btn btn-success" id="export">Export</a>
+                  </div>
+
+
+            </div>
+            {{#if Template.subscriptionsReady}}
+            <div class="table table-responsive" id="out">
+              <table class="table table-striped  table-bordered table-hover table-condensed"  border=1 cellpadding=0 cellspacing=0 width=100%>
+
+                <thead>
+                    <tr class="bts-header" style="white-space: nowrap">
+                        <th>#</th>
+                        <th>Мектеп ID</th>
+                        <th>Мектеп аты</th>
+                        <th id="sortAlgebra">Алгебра</th>
+                        <th id="sortPhysics">Физика</th>
+                        <th id="sortChemistry">Химия</th>
+                        <th id="sortBio">Биология</th>
+                        <th id="sortEng">Ағылшын тілі</th>
+                        <th id="sortGeography">География</th>
+                        <th id="sortKaz">Қазақ тілі (Қазақ тобы)</th>
+                        <th id="sortTurkish">Түрік тілі</th>
+                        <th id="sortRus">Орыс тілі</th>
+                        <th id="sortKZHistory">Тарих</th>
+                        <th>Құқық</th>
+                        <th id="sortTotal">Жалпы</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each results}}
+                    <tr>
+                        <td>{{math @index "+" 1}}</td>
+                        <td>{{schoolId}}</td>
+                        <td style="white-space: nowrap">{{schoolName schoolId}}</td>
+                        <td>{{points "01"}}</td>
+                        <td>{{points "02"}}</td>
+                        <td>{{points "03"}}</td>
+                        <td>{{points "04"}}</td>
+                        <td>{{points "05"}}</td>
+                        <td>{{points "06"}}</td>
+                        <td>{{points "07"}}</td>
+                        <td>{{points "10"}}</td>
+                        <td>{{points "11"}}</td>
+                        <td>{{points "12"}}</td>
+                        <td>{{points "15"}}</td>
+                        <td>{{total}}</td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+              </table>
+            </div>
+
+            <h4 style="text-align: center;">Енгізбеген мектептер</h4>
+            <div class="table table-responsive" id="out">
+              <table class="table table-striped  table-bordered table-hover table-condensed"  border=1 cellpadding=0 cellspacing=0 width=100%>
+
+                <thead>
+                    <tr class="bts-header" style="white-space: nowrap">
+                        <th>#</th>
+                        <th>Мектеп аты</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    {{#each schoolNotUploaded}}
+                    <tr>
+                        <td>{{math @index "+" 1}}</td>
+                        <td>{{this}}</td>
+                    </tr>
+                    {{/each}}
+
+
+                </tbody>
+              </table>
+            </div>
+
+            {{else}}
+            <p>Loading...</p>
+            {{/if}}
+        </div>
+    </div>
+
+</template>
