@@ -7,7 +7,7 @@ Meteor.methods({
             _id: 'btsUpload'
         });
         if (bts[btsNo] == 'disabled')
-            throw new Meteor.Error('upload-disabled', 'БТС жүктеу жабық.Өтініш, IT Department-ке хабарласыңыз.')
+            throw new Meteor.Error('upload-disabled', 'БТС жүктеу жабық. Өтініш, IT Department-ке хабарласыңыз.')
 
         if(!Roles.userIsInRole(this.userId,'school'))
             throw new Meteor.Error('access-denied', 'Access denied!')

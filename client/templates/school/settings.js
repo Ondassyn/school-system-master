@@ -44,34 +44,78 @@ Template.schoolSettings.events({
         event.preventDefault()
         let pass = template.find("[name=confirm]").value
         if (pass) {
-            if (confirm("Өзгеріс енгізілгеннен кейін қайта калпына келмейді!")) {
-                $('#upgrade').prop('disabled', true);
-                Meteor.call("Student.upgrade",academicYear.get(),function(err) {
-                    if (err) {
-                        alert(err.reason)
+            Meteor.call('validateSchoolPassword', pass, (err, res) => {
+                
+                if(err) {
+                    alert(err.message);
+                } else {
+                    
+                    if(res) {
+                                    
+                        if (confirm("Өзгеріс енгізілгеннен кейін қайта калпына келмейді!")) {
+                            $('#upgrade').prop('disabled', true);
+                            Meteor.call("Student.upgrade",academicYear.get(),function(err) {
+                                if (err) {
+                                    alert(err.message)
+                                } else {
+                                    alert("Сыныптан сыныпқа көшіру сәтті аяқталды!")
+                                    $('#upgrade').prop('disabled', false);
+                                }
+                            })
+                        }
                     } else {
-                        alert("Сыныптан сыныпқа көшіру сәтті аяқталды!")
-                        $('#upgrade').prop('disabled', false);
+                        alert('Wrong school password');
                     }
-                })
-            }
+                }
+            })
+        } else {
+            alert('Password field is empty');
         }
     },
     "click #downgrade"(event,template) {
         event.preventDefault()
         let pass = template.find("[name=confirm]").value
-        if (pass) {
-            if (confirm("Өзгеріс енгізілгеннен кейін қайта калпына келмейді!")) {
-                $('#downgrade').prop('disabled', true);
-                Meteor.call("Student.downgrade",function(err) {
-                    if (err) {
-                        alert(err.reason)
+        // if (pass) {
+        //     if (confirm("Өзгеріс енгізілгеннен кейін қайта калпына келмейді!")) {
+        //         $('#downgrade').prop('disabled', true);
+        //         Meteor.call("Student.downgrade", academicYear.get(), function(err) {
+        //             if (err) {
+        //                 alert(err.message)
+        //             } else {
+        //                 alert("Көшірудің артқа алынуы сәтті аяқталды!")
+        //                 $('#downgrade').prop('disabled', false);
+        //             }
+        //         })
+        //     }
+        // }
+
+        if(pass) {
+            Meteor.call('validateSchoolPassword', pass, (err, res) => {
+                
+                if(err) {
+                    alert(err.message);
+                } else {
+                    
+                    if(res) {
+                        
+                        if (confirm("Өзгеріс енгізілгеннен кейін қайта калпына келмейді!")) {
+                            $('#downgrade').prop('disabled', true);
+                            Meteor.call("Student.downgrade", academicYear.get(), function(err) {
+                                if (err) {
+                                    alert(err.message)
+                                } else {
+                                    alert("Көшірудің артқа алынуы сәтті аяқталды!")
+                                    $('#downgrade').prop('disabled', false);
+                                }
+                            })
+                        }
                     } else {
-                        alert("Көшірудің артқа алынуы сәтті аяқталды!")
-                        $('#downgrade').prop('disabled', false);
+                        alert('Wrong school password');
                     }
-                })
-            }
+                }
+            })
+        } else {
+            alert('Password field is empty');
         }
     }
 })

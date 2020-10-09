@@ -20,5 +20,8 @@ Template.mainPage.helpers({
     },
     isGuestSchool: function() {
         return Roles.userIsInRole(Meteor.userId(),['guestSchool'])
+    }, 
+    isTeacher: function() {
+        return Roles.userIsInRole(Meteor.userId(),['teacher'])
     }
 });

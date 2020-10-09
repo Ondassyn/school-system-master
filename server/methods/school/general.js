@@ -22,5 +22,20 @@ Meteor.methods({
         if (student) {
             Accounts.setPassword(student.userId,'student'+student.studentId)
         }
+    },
+    validateSchoolPassword(password) {
+        
+        if(Roles.userIsInRole(this.userId,'school') ||
+        Roles.userIsInRole(this.userId,'schoolCoordinator')){
+            
+            let school = Schools.findOne({userId:this.userId})
+            
+            if(school) {
+                return password === school.schoolPassword || password === school.coordinatorPassword;
+            }
+            return false;
+        } else {
+            throw new Meteor.Error('auth-error','School rights required.')
+        }
     }
 })

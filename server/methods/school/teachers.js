@@ -33,8 +33,8 @@ Meteor.methods({
         if(Roles.userIsInRole(this.userId,['school', 'admin'])) {
             let teacher = Teachers.findOne({_id:teacher_id})
             if(teacher) {
-                Teachers.remove({_id:teacher_id})
                 TeacherTransferList.insert(teacher)
+                Teachers.remove({_id:teacher_id})
             }
         } else {
             throw new Meteor.Error('auth-error','School rights required.')

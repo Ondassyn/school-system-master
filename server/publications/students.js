@@ -19,7 +19,15 @@ Meteor.publish('allStudents', function(grade){
 
 Meteor.publish('graduatedStudentList', function(academicYear){
         if (this.userId) {
-            return Students.find({grade:academicYear})
+            let school = Schools.findOne({userId: this.userId});
+            if(!school) {
+                school = Schools.findOne({coordinatorId: this.userId});
+            }
+            if(!school){
+                return Students.find({grade:academicYear})
+            } else {
+                return Students.find({schoolId:school.schoolId, grade:academicYear});
+            }
         } else {
             return this.ready()
         }

@@ -117,10 +117,28 @@ Meteor.methods({
         Roles.userIsInRole(this.userId,'schoolCoordinator')){
             let school = Schools.findOne({userId:this.userId})
 
+            // prevent double upgrade
+            if(Students.find({schoolId: school.schoolId, grade: '7'}).fetch().length === 0) {
+                throw new Meteor.Error('Seems like the grade upgrade has already been performed');
+            }
+            
             let years = academicYear.split('-')
             let prev = +years[0]
             prev--
             let previousAcademicYear =  prev+'-'+years[0];
+            
+            // Find an empty year to record graduates
+            let counter = 0;
+            while(Students.find({schoolId: school.schoolId, grade: previousAcademicYear}).fetch().length !== 0) {
+                if(counter === 10)
+                    throw new Meteor.Error('Could not assign year to graduates');
+
+                years = previousAcademicYear.split('-');
+                prev = +years[1];
+                prev++;
+                previousAcademicYear = years[1] + '-' + prev;
+                counter++;
+            }
 
             let students = Students.find({schoolId:school.schoolId}).fetch()
             _.each(students,(student) => {
@@ -139,17 +157,28 @@ Meteor.methods({
         }
     },
     // added this
-    "Student.downgrade": function() {
+    "Student.downgrade": function(academicYear) {
       if(Roles.userIsInRole(this.userId,'school') ||
         Roles.userIsInRole(this.userId,'schoolCoordinator')){
-            let school = Schools.findOne({userId:this.userId})
-            Students.remove({grade:"7",schoolId:school.schoolId})
+            let school = Schools.findOne({userId:this.userId});
+            // If there is a single 7th grade student prevent downgrading
+            if(Students.find({schoolId: school.schoolId, grade: '7'}).fetch().length !== 0) {
+                throw new Meteor.Error('Cannot perform this action because there are 7th grade students which can be permanently lost');
+            }
+
+            let years = academicYear.split('-')
+            let prev = +years[0]
+            prev--
+            let previousAcademicYear =  prev+'-'+years[0];
+
+            // Students.remove({grade:"7",schoolId:school.schoolId})
             let students = Students.find({schoolId:school.schoolId}).fetch()
             _.each(students,(student) => {
-              if(student.grade == "7" || student.grade == "8" || student.grade == "9" || student.grade == "10" || student.grade == "11"){
-
+              if(student.grade == "8" || student.grade == "9" || student.grade == "10" || student.grade == "11"){
                 let grade = +student.grade-1+""
                 Students.update({_id:student._id},{$set:{grade:grade}})
+              } else if (student.grade == previousAcademicYear) {
+                  Students.update({_id: student._id}, {$set: {grade: '11'}});
               }
             })
         } else {
