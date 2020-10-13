@@ -36,6 +36,10 @@ Template.schoolStudents.helpers({
         return BtsElectiveGroup.find({},{sort:{subjectId:1}})
     },
 
+    levelGroups() {
+        return [{groupId: '01', name: 'Республика'}, {groupId: '02', name: 'Область'}];
+    },
+
     isOlympiadStudent(studentId, subjectId) {
         let student = Students.findOne({studentId:studentId})
         if (student && student.olympiad == subjectId)
@@ -53,6 +57,12 @@ Template.schoolStudents.helpers({
         if (student && student.electiveGroup == electiveGroupId) {
             return "selected"
         }
+    }, 
+
+    isSelectedLevel(studentId, name) {
+        let student = Students.findOne({studentId:studentId});
+        if(student && student.level == name)
+            return 'selected';
     }
 });
 
@@ -129,6 +139,10 @@ Template.schoolStudents.events({
     },
     "change #electiveGroup"(event,template) {
         Meteor.call('Student.updateBtsElectiveGroup',this._id, event.target.value)
+    },
+
+    'change #levelGroup'(event, template) {
+        Meteor.call('Student.updateLevel', this._id, event.target.value);
     },
 
     "change #kboSubject"(event,template) {

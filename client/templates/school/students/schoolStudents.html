@@ -43,6 +43,7 @@
                         <th style="width: 80pt">Toбы</th>
                         <th style="width: 120pt">Олимпиада пәні</th>
                         <th style="width: 220pt; text-align: center;">БТС таңдау пәндері</th>
+                        <th style="width: 80pt">Деңгей</th>
                         <!--  Student joba & cabinet part
                         <th style="width: 120pt">Жоба пәні</th>
                         <th style="width: 100pt">Парақшасы<br/>бар ма</th> -->
@@ -82,6 +83,17 @@
                             </select>
                         </td>
                         <!-- {{/if}} -->
+
+                        <td>
+                            <select class="form-control" style="width: 100pt" name="groupId" id="levelGroup">
+                                <option value="none">---</option>
+                                {{#each levelGroups}}
+                                <option value="{{name}}" {{isSelectedLevel ../studentId name}}>
+                                        {{name}}
+                                </option>
+                                {{/each}}
+                            </select>
+                        </td>
 
                         <!-- <td>
                             <select class="form-control" style="width: 100pt" id="electiveGroup">

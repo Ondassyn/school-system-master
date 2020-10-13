@@ -121,15 +121,21 @@ Template.newStudent.events({
         var data = [];
         var headers = ['grade','division', 'surname', 'name', 'languageGroup']
 
-        listDivision = ['A','B','C','D','E','F'];
+        listGrade = ['7', '8']
+        listDivision = ['A','B'];
+        listSurname = ['Абаев', 'Алиева']
+        listName = ['Абай', 'Алия']
         listLang = ['Қазақ тобы','Орыс тобы'];
 
         data.push(headers);
         count = 0;
         listDivision.forEach(item =>{
-          let divItem = listDivision[count]
+          let gradeItem = listGrade[count];
+          let divItem = listDivision[count];
+          let surnameItem = listSurname[count];
+          let nameItem = listName[count];
           let langItem = listLang[count]
-          let content = [ '', divItem, '', '', langItem];
+          let content = [ gradeItem, divItem, surnameItem, nameItem, langItem];
           data.push(content);
 
           count++;

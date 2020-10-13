@@ -332,6 +332,30 @@ Template.adminSettings.events({
         }
     },
 
+    'click #addNewUser' (event, template) {
+        event.preventDefault()
+
+        if (confirm("Do you want to add a new user?")) {
+
+            let username = template.find("[name=newUserName]").value
+            let password = template.find("[name=newUserPassword]").value
+            let role = template.find("[name=newUserRole]").value
+
+            if (username && password && role) {
+                
+                Meteor.call('addNewUser',{
+                    username:username,
+                    password:password,
+                    role:role
+                })
+                alert("Added a new user")
+            }
+            else {
+                alert("Could not add a new user")
+            }
+        }
+    },
+
     "change #bts1"(event,template) {
         Meteor.call("editConfig","btsUpload","1",event.target.value)
     },

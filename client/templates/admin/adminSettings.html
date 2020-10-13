@@ -19,6 +19,27 @@
             </div>
         </div>
 
+        <div class="row">
+          <div class="col-md-8">
+            <h5>Жаңа қолданушы қосу</h5>
+            <div class="form-inline">
+              <div class="form-group">
+                <!-- <label for="newUserName">Username:</label> -->
+                <input type="text" class="form-control" placeholder="Username" name="newUserName">
+              </div>
+              <div class="form-group">
+                <!-- <label for="">Мектеп аты:</label> -->
+                <input type="text" class="form-control" placeholder="Password" name="newUserPassword">
+              </div>
+              <div class="form-group">
+                <!-- <label for="pwd">Мектеп аты:</label> -->
+                <input type="text" class="form-control" placeholder="Role" name="newUserRole">
+              </div>
+              <button id="addNewUser" class="btn btn-default">Қосу</button>
+            </div>
+          </div>
+      </div>
+
         <div style="padding-top: 30pt" class="row">
           <div class="col-md-8">
             <h4 style="text-align: center;">Admin Accounts</h4>
@@ -156,6 +177,8 @@
             {{else}}
             <p>Loading...</p>
             {{/if}}
+
+            <div></div>
         </div>
 
         <div class="col-md-3">

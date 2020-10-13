@@ -284,6 +284,22 @@ Meteor.methods({
         }
     },
 
+    "addNewUser": function(newUser) {
+        if(Roles.userIsInRole(this.userId,'admin')) {
+            let newUserData = {
+                username: newUser.username,
+                password: newUser.password
+            };
+
+            let userId = Accounts.createUser(newUserData);
+            Roles.addUsersToRoles(userId,[newUser.role])
+
+            console.log("New user added: " + newUser.username + " with password " + newUser.password + ", " + newUser.role);
+        }
+    },
+
+
+
 
     "lessonObjectives.Insert": function (objectives) {
         if (!this.userId || !Roles.userIsInRole(this.userId, ['admin']))

@@ -25,6 +25,19 @@ Meteor.methods({
             throw new Meteor.Error('auth-error','School rights required.')
         }
     },
+
+    'Student.updateLevel': function(student_id, level) {
+        if(Roles.userIsInRole(this.userId,'school') ||
+          Roles.userIsInRole(this.userId,'schoolCoordinator')){
+            let student = Students.findOne({_id:student_id})
+            if (student) {
+                Students.update({_id:student._id},{$set:{level:level}})
+            }
+        } else {
+            throw new Meteor.Error('auth-error','School rights required.')
+        }
+    },
+
   	"Student.Upload":function(academicYear,results) {
 
       if(!Roles.userIsInRole(this.userId,'school') &&
