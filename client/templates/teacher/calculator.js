@@ -1,5 +1,7 @@
 import { Template } from 'meteor/templating';
 import { ReactiveVar } from 'meteor/reactive-var';
+import { TAPi18n } from 'meteor/tap:i18n';
+import { CurrentLanguage } from '../../../lib/language/current-language';
 
 import './calculator.html';
 
@@ -62,8 +64,12 @@ const TAT_4 = 14000;
 const KINDERGARDEN_COEFFICIENT = 0.2;
 const ROTATION = 0.25;
 
+
 Template.calculator.onCreated(function() {
     let template = this;
+
+    //TAPi18n.setLanguage('kz');
+
     template.workExperience = new ReactiveVar('');
     template.specialPosition = new ReactiveVar('');
     template.kids_6 = new ReactiveVar('');

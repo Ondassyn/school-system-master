@@ -1,126 +1,126 @@
 <template name="calculator">
     <div class="container-fluid">
-        <h3 style="text-align: center">Калькулятор</h3>
+        <h3 style="text-align: center">{{_ "title"}}</h3>
         <div class="col-md-6 col-md-offset-3" style="margin-left: 0%">
 
             <div class="form-group" style="margin-top: 20pt; width: 80%">
-                <label for="name">Сколько лет Вы работаете в лицее "Білім – инновация"?</label>
-                <input type="text"  class="form-control" placeholder="Введите число" id="input" name="workExperience" value={{teacher.workExperience}}>
+                <label for="name">{{_ "question1"}}</label>
+                <input type="text"  class="form-control" placeholder={{_ "enter_number"}} id="input" name="workExperience" value={{teacher.workExperience}}>
             </div>
 
             <div class="form-group" style="margin-top: 20pt; width: 80%">
-                <label for="specialPosition">Является ли Ваша позиция в организации "директор", "заместитель директора" или "классный руководитель"?</label>
+                <label for="specialPosition">{{_ "question2"}}</label>
                 <select class="form-control" id="select" name="specialPosition">
                     <option disabled="diabled" selected="selected" value="{{teacher.specialPosition}}">
                         {{teacher.specialPosition}}</option>
-                    <option value="head">Директор школы</option>
-                    <option value="vice-head">Заместитель директора</option>
-                    <option value="form-master">Классный руководитель</option>
-                    <option value="none">Ничего из перечисленного</option>
+                    <option value="head">{{_ "question2_option1"}}</option>
+                    <option value="vice-head">{{_ "question2_option2"}}</option>
+                    <option value="form-master">{{_ "question2_option3"}}</option>
+                    <option value="none">{{_ "option_none"}}</option>
                 </select>
             </div>
 
             <div class="form-group" style="margin-top: 20pt; width: 80%">
-                <label for="kids_6">Сколько детей до 6 лет (включительно) в семье?</label>
-                <input type="text" id="input" class="form-control" placeholder="Введите число" name="kids_6" value="{{teacher.kids_6}}">
+                <label for="kids_6">{{_ "question3"}}</label>
+                <input type="text" id="input" class="form-control" placeholder={{_ "enter_number"}} name="kids_6" value="{{teacher.kids_6}}">
             
-                <p style="margin-top: 10pt">*Заполняют работники женского пола (в случае смерти супруга), а также работники мужского пола (вне зависимости от наличия/отсутствия супруги)</p>
+                <p style="margin-top: 10pt">{{_ "question3_remark"}}</p>
             </div>
 
             <div class="form-group" style="width: 80%">
-                <label for="kids_7_16">Сколько детей с 7 до 16 лет (включительно) в семье?</label>
-                <input type="text" id="input" class="form-control" placeholder="Введите число" name="kids_7_16" value="{{teacher.kids_7_16}}">
+                <label for="kids_7_16">{{_ "question4"}}</label>
+                <input type="text" id="input" class="form-control" placeholder={{_ "enter_number"}} name="kids_7_16" value="{{teacher.kids_7_16}}">
 
-                <p style="margin-top: 10pt">*Заполняют работники женского пола (в случае смерти супруга), а также работники мужского пола (вне зависимости от наличия/отсутствия супруги)</p>
+                <p style="margin-top: 10pt">{{_ "question3_remark"}}</p>
             </div>
 
             <div class="form-group" style="width: 80%">
-                <label for="kids_17_22">Сколько детей с 17 до 22 лет (включительно) в семье?</label>
-                <input type="text" id="input" class="form-control" placeholder="Введите число" name="kids_17_22" value="{{teacher.kids_17_22}}">
+                <label for="kids_17_22">{{_ "question5"}}</label>
+                <input type="text" id="input" class="form-control" placeholder={{_ "enter_number"}} name="kids_17_22" value="{{teacher.kids_17_22}}">
 
-                <p style="margin-top: 10pt">*Заполняют работники женского пола (в случае смерти супруга), а также работники мужского пола (вне зависимости от наличия/отсутствия супруги)</p>
+                <p style="margin-top: 10pt">{{_ "question3_remark"}}</p>
             </div>
 
             <div class="form-group" style="margin-top: 20pt; width: 80%">
-                <label for="academicDegree">Имеете ли Вы соответствующий Диплом и/или ученную степень?</label>
+                <label for="academicDegree">{{_ "question6"}}</label>
                 <select class="form-control" id="select" name="academicDegree">
                     <option disabled="diabled" selected="selected" value="{{teacher.academicDegree}}">
                         {{teacher.academicDegree}}</option>
-                    <option value="bachelor">Бакалавр по педагогической специальности</option>
-                    <option value="master">Магистр по научно - педагогическому направлению </option>
-                    <option value="phd">Кандидат наук (PhD)</option>
-                    <option value="doctor">Доктор наук</option>
-                    <option value="none">Ничего из перечисленного</option>
+                    <option value="bachelor">{{_ "question6_option1"}}</option>
+                    <option value="master">{{_ "question6_option2"}}</option>
+                    <option value="phd">{{_ "question6_option3"}}</option>
+                    <option value="doctor">{{_ "question6_option4"}}</option>
+                    <option value="none">{{_ "option_none"}}</option>
                 </select>
             </div>
 
             <div class="form-group" style="margin-top: 20pt; width: 80%">
-                <label for="maritalStatus">Ваше семейное положение?</label>
+                <label for="maritalStatus">{{_ "question7"}}</label>
                 <select class="form-control" id="select" name="maritalStatus">
                     <option disabled="diabled" selected="selected" value="{{teacher.maritalStatus}}">
                         {{teacher.maritalStatus}}</option>
-                    <option value="married-to-employed">Женат/замужем и супруг(а) работает</option>
-                    <option value="married-to-unemployed">Женат/замужем и супруг(а) не работает</option>
-                    <option value="widowed-divorced">Вдова / вдовец / разведен(а)</option>
-                    <option value="single">Холост / не замужем</option>
+                    <option value="married-to-employed">{{_ "question7_option1"}}</option>
+                    <option value="married-to-unemployed">{{_ "question7_option2"}}</option>
+                    <option value="widowed-divorced">{{_ "question7_option3"}}</option>
+                    <option value="single">{{_ "question7_option4"}}</option>
                 </select>
             </div>
 
             <div class="form-group" style="margin-top: 20pt; width: 80%">
-                <label for="workRegion">Выберите регион, где Вы работаете</label>
+                <label for="workRegion">{{_ "question8"}}</label>
                 <select class="form-control" id="select" name="workRegion">
                     <option disabled="diabled" selected="selected" value="{{teacher.workRegion}}">
                         {{teacher.workRegion}}</option>
-                    <option value="regionA">Регион «A»</option>
-                    <option value="regionB">Регион «B»</option>
-                    <option value="regionC">Регион «C»</option>
-                    <option value="regionD">Регион «D»</option>
-                    <option value="none">Ничего из перечисленного</option>
+                    <option value="regionA">{{_ "question8_option1"}}</option>
+                    <option value="regionB">{{_ "question8_option2"}}</option>
+                    <option value="regionC">{{_ "question8_option3"}}</option>
+                    <option value="regionD">{{_ "question8_option4"}}</option>
+                    <option value="none">{{_ "option_none"}}</option>
                 </select>
 
-                <p style="margin-top: 10pt">Регион «А» - г. Нур-Султан</p>
-                <p>Регион «B» - г. Алматы</p>
-                <p>Регион «С» - Акмолинская, Актюбинская, Атырауская, Западно-Казахстанская и Мангистауская область</p>
-                <p>Регион «D» - г. Шымкент, Туркестанская, Алматинская, Восточно-Казахстанская,  Кызылординская, Жамбылская, Карагандинская, Павлодарская и Северо-Казахстанская область</p>
+                <p style="margin-top: 10pt">{{_ "question8_remark1"}}</p>
+                <p>{{_ "question8_remark2"}}</p>
+                <p>{{_ "question8_remark3"}}</p>
+                <p>{{_ "question8_remark4"}}</p>
             </div>
 
             <div class="form-group" style="margin-top: 20pt; width: 80%">
-                <label for="housing">Арендуете ли Вы жилье или выплачиваете ли ипотеку по приобретению первого жилья?</label>
+                <label for="housing"></label>
                 <select class="form-control" id="select" name="housing">
                     <option disabled="diabled" selected="selected" value="{{teacher.housing}}">
                         {{teacher.housing}}</option>
-                    <option value="regionA">Регион «A»</option>
-                    <option value="regionB">Регион «B»</option>
-                    <option value="regionC">Регион «C»</option>
-                    <option value="regionD">Регион «D»</option>
-                    <option value="none">Ничего из перечисленного</option>
+                    <option value="regionA">{{_ "question8_option1"}}</option>
+                    <option value="regionB">{{_ "question8_option2"}}</option>
+                    <option value="regionC">{{_ "question8_option3"}}</option>
+                    <option value="regionD">{{_ "question8_option4"}}</option>
+                    <option value="none">{{_ "option_none"}}</option>
                 </select>
 
-                <p style="margin-top: 10pt">Регион «A» - г. Нур-Султан</p>
-                <p>Регион «B» - г. Алматы</p>
-                <p>Регион «С» - Акмолинская, Актюбинская, Атырауская, Западно-Казахстанская и Мангистауская область</p>
-                <p>Регион «D» - г. Шымкент, Туркестанская, Алматинская, Восточно-Казахстанская,  Кызылординская, Жамбылская, Карагандинская, Павлодарская и Северо-Казахстанская область</p>
+                <p style="margin-top: 10pt">{{_ "question8_remark1"}}</p>
+                <p>{{_ "question8_remark2"}}</p>
+                <p>{{_ "question8_remark3"}}</p>
+                <p>{{_ "question8_remark4"}}</p>
             </div>
 
 
             <div class="form-group" style="margin-top: 20pt; width: 80%">
-                <label for="englishOption">Степень причастия английского языка к Вашей работе</label>
+                <label for="englishOption">{{_ "question10"}}</label>
                 <select id="select" class="form-control" name="englishOption">
                     <option disabled="disabled" selected="selected" value="{{teacher.englishOption}}">
                         {{teacher.englishOption}}</option>
-                    <option value="option1">Опция 1</option>
-                    <option value="option2">Опция 2</option>
-                    <option value="option3">Опция 3</option>
-                    <option value="none">Ничего из перечисленного</option>
+                    <option value="option1">{{_ "question10_option1"}}</option>
+                    <option value="option2">{{_ "question10_option2"}}</option>
+                    <option value="option3">{{_ "question10_option3"}}</option>
+                    <option value="none">{{_ "option_none"}}</option>
                 </select>
 
-                <p style="margin-top: 10pt">Опция 1 - Если Вы преподаете английский язык (EN)</p>
-                <p>Опция 2 - Если Вы преподаете на английском языке при режиме частичного погружения: «Математика», «Физика», «Химия», «Биология», «Информатика» и «Экономика» (SS)</p>
-                <p>Опция 3 - Если Вы реализуете иные учебные предметы, включая «Турецкий язык» (SZ)</p>
+                <p style="margin-top: 10pt">{{_ "question10_remark1"}}</p>
+                <p>{{_ "question10_remark2"}}</p>
+                <p>{{_ "question10_remark3"}}</p>
             </div>
 
             <div class="form-group" style="width: 80%">
-                <label for="ielts">Имеете ли Вы документ о прохождении международного экзамена (теста) на знание английского языка CELTA и/или IELTS (General module)?</label>
+                <label for="ielts">{{_ "question11"}}</label>
                 <select id="select" class="form-control" name="ielts">
                     <option disabled="disabled" selected="selected" value="{{teacher.ielts}}">
                         {{teacher.ielts}}</option>
@@ -134,46 +134,46 @@
                     <option value="8.0">8.0</option>
                     <option value="8.5">8.5</option>
                     <option value="9.0">9.0</option>
-                    <option value="none">Ничего из перечисленного</option>
+                    <option value="none">{{_ "option_none"}}</option>
                 </select>
             </div>
 
             <div class="form-group" style="width: 80%">
-                <label for="tat">Имеете ли Вы документ о прохождении экзамена (теста) "ТАТ"?</label>
+                <label for="tat">{{_ "question12"}}</label>
                 <select class="form-control" id="select" name="tat">
                     <option disabled="diabled" selected="selected" value="{{teacher.tat}}">
                         {{teacher.tat}}</option>
-                    <option value="group1">1 группа</option>
-                    <option value="group2">2 группа</option>
-                    <option value="group3">3 группа</option>
-                    <option value="group4">4 группа</option>
-                    <option value="none">Ничего из перечисленного</option>
+                    <option value="group1">{{_ "question12_option1"}}</option>
+                    <option value="group2">{{_ "question12_option2"}}</option>
+                    <option value="group3">{{_ "question12_option3"}}</option>
+                    <option value="group4">{{_ "question12_option4"}}</option>
+                    <option value="none">{{_ "option_none"}}</option>
                 </select>
 
-                <p style="margin-top: 10pt">1 группа - Математика (88,28-97,50), Информатика (88,76-98,00), Тур.язык (76,18-84,75), Физика (88,20-97,50), Георграфия (75,40-82,00), Биология (89,82-100), Химия (86,90-97,50), Физ.культура (65,18-72,50), Анг.язык (92,68-98,75), Каз.язык (87,29-93,75), История Казахстана (82,36-90,00), Начальные классы (82,78-86,00)</p>
-                <p>2 группа - Математика (79,05-88,28), Информатика (79,51-88,76), Тур.язык (67,60-76,18), Физика (78,90-88,20), Георграфия (68,80-75,40), Биология (79,64-89,82), Химия (76,31-86,90), Физ.культура (57,87-65,18), Анг.язык (86,61-92,68), Каз.язык (80,83-87,29), История Казахстана (74,32-82,36), Начальные классы (79,56-82,78)</p>
-                <p>3 группа - Математика (69,83-79,05), Информатика (70,27-79,51), Тур.язык (59,03-67,60), Физика (69,59-78,90), Георграфия (62,19-68,80), Биология (69,46-79,64), Химия (65,71-76,31), Физ.культура (50,55-57,87), Анг.язык (80,54-86,61), Каз.язык (74,37-80,83), История Казахстана (67,08-74,32), Начальные классы (76,33-79,56)</p>
-                <p>4 группа - Математика (60,60-69,83), Информатика (61,02-70,27), Тур.язык (50,45-59,03), Физика (60,29-69,59), Георграфия (55,59-62,19), Биология (59,28-69,46), Химия (55,11-65,71), Физ.культура (43,23-50,55), Анг.язык (74,47-80,54), Каз.язык (67,91-74,37), История Казахстана (59,44-67,08), Начальные классы (73,11-76,33)</p>
+                <p style="margin-top: 10pt">{{_ "question12_remark1"}}</p>
+                <p>{{_ "question12_remark2"}}</p>
+                <p>{{_ "question12_remark3"}}</p>
+                <p>{{_ "question12_remark4"}}</p>
             </div>
 
             <div class="form-group" style="margin-top: 20pt; width: 80%">
-                <label for="rotation">Участвуете ли Вы в программе "ротации"?</label>
+                <label for="rotation">{{_ "question13"}}</label>
                 <select class="form-control" id="select" name="rotation">
                     <option disabled="diabled" selected="selected" value="{{teacher.rotation}}">
                         {{teacher.rotation}}</option>
-                    <option value="yes">Да</option>
-                    <option value="no">Нет</option>
+                    <option value="yes">{{_ "question13_option1"}}</option>
+                    <option value="no">{{_ "question13_option2"}}</option>
                 </select>
             </div>
 
             <div class="form-group" style="margin-top: 20pt; width: 80%">
-                <label for="kindergardenFee">Сколько Вы платите в месяц за детский сад?</label>
-                <input type="text" id="input" class="form-control" placeholder="Введите число" name="kindergardenFee" value="{{teacher.kindergardenFee}}">
+                <label for="kindergardenFee">{{_ "question14"}}</label>
+                <input type="text" id="input" class="form-control" placeholder={{_ "enter_number"}} name="kindergardenFee" value="{{teacher.kindergardenFee}}">
             </div>
 
             <div class="form-group" style="margin-top: 20pt; width: 80%">
-                <label for="currentSalary">Сколько Вы получаете заработную плату (net, на руки)?</label>
-                <input type="text" id="input" class="form-control" placeholder="Введите число" name="currentSalary" value="{{teacher.currentSalary}}">
+                <label for="currentSalary">{{_ "question15"}}</label>
+                <input type="text" id="input" class="form-control" placeholder={{_ "enter_number"}} name="currentSalary" value="{{teacher.currentSalary}}">
             </div>
 
             <!-- <div class="form-group">
@@ -197,55 +197,55 @@
                 </thead> -->
                 <tbody>
                     <tr>
-                        <td>Базовая ставка, с учетом надбавки за специальный стаж</td>
+                        <td>{{_ "value1"}}</td>
                         <td style="text-align: right">{{value1}}</td>
                     </tr>
                     <tr>
-                        <td>Доплата за классное руководство</td>
+                        <td>{{_ "value2"}}</td>
                         <td style="text-align: right">{{value2}}</td>
                     </tr>
                     <tr>
-                        <td>Доплата за ненормированную работу (включая за классное руководство)</td>
+                        <td>{{_ "value3"}}</td>
                         <td style="text-align: right">{{value3}}</td>
                     </tr>
                     <tr>
-                        <td>Дополнительная выплата социального характера</td>
+                        <td>{{_ "value4"}}</td>
                         <td style="text-align: right">{{value4}}</td>
                     </tr>
                     <tr>
-                        <td>Доплата за квалификацию</td>
+                        <td>{{_ "value5"}}</td>
                         <td style="text-align: right">{{value5}}</td>
                     </tr>
                     <tr>
-                        <td>Региональная надбавка с учетом семейного положения</td>
+                        <td>{{_ "value6"}}</td>
                         <td style="text-align: right">{{value6}}</td>
                     </tr>
                     <tr>
-                        <td>Жилищная компенсация</td>
+                        <td>{{_ "value7"}}</td>
                         <td style="text-align: right">{{value7}}</td>
                     </tr>
                     <tr>
-                        <td>Надбавка за уровень знания английского языка</td>
+                        <td>{{_ "value8"}}</td>
                         <td style="text-align: right">{{value8}}</td>
                     </tr>
                     <tr>
-                        <td>Надбавка за профессионализм (ТАТ)</td>
+                        <td>{{_ "value9"}}</td>
                         <td style="text-align: right">{{value9}}</td>
                     </tr>
                     <tr>
-                        <td>Компенсационные выплаты за детский сад </td>
+                        <td>{{_ "value10"}}</td>
                         <td style="text-align: right">{{value10}}</td>
                     </tr>
                     <tr>
-                        <td>Надбавка за участие в программе ротации</td>
+                        <td>{{_ "value11"}}</td>
                         <td style="text-align: right">{{value11}}</td>
                     </tr>
                     <tr>
-                        <td>Итого:</td>
+                        <td>{{_ "value12"}}</td>
                         <td style="text-align: right">{{value12}}</td>
                     </tr>
                     <tr style="font-weight:bold">
-                        <td>TOTAL cумма Вознаграждения от МОФ "БИ"</td>
+                        <td>{{_ "value13"}}</td>
                         <td style="text-align: right">{{value13}}</td>
                     </tr>
                     
