@@ -2,7 +2,7 @@ import { Meteor } from 'meteor/meteor';
 import { upload } from "../../modules/ope/upload";
 
 Meteor.methods({
-    "Ope.updateOpeResults": function(student_id, editItem) {
+    "Ope.updateOpeResults": function(academicYear, student_id, editItem) {
 
         if(Roles.userIsInRole(this.userId,'school') ||
             Roles.userIsInRole(this.userId,'schoolCoordinator')) {
@@ -62,6 +62,7 @@ Meteor.methods({
                   schoolId: schoolId,
                   grade: grade,
                   olympiad: olympiad,
+                  academicYear: academicYear,
                   ope1: editItem["ope1"],
                   ope2: editItem["ope2"],
                   ope3: editItem["ope3"],

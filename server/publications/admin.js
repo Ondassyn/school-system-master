@@ -180,3 +180,10 @@ Meteor.publish("configs",function() {
 	}
 	return this.ready()
 })
+
+Meteor.publish("teacherAccounts",function() {
+	if (this.userId) {
+		return teacherAccounts.find()
+	}
+	return this.ready()
+})

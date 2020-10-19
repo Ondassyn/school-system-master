@@ -1,7 +1,7 @@
 import { Meteor } from 'meteor/meteor'
 
-Meteor.publish('opes',function() {
-      return OpeResults.find()
+Meteor.publish('opes',function(academicYear) {
+      return OpeResults.find({academicYear})
 })
 
 Meteor.publish('opeReport',function() {
@@ -16,9 +16,9 @@ Meteor.publish('opeReportRatingsByFilter', function(academicYear, subjectId, rep
       return OpeRatings.find({academicYear:academicYear, subjectId:subjectId, reportPeriod:reportPeriod})
 })
 
-Meteor.publish('adminOpeResults',function(subjectId, grade) {
+Meteor.publish('adminOpeResults',function(academicYear, subjectId, grade) {
     if (this.userId) {
-      return OpeResults.find({olympiad:subjectId, grade:grade})
+      return OpeResults.find({academicYear: academicYear, olympiad:subjectId, grade:grade})
     }
     return this.ready()
 })

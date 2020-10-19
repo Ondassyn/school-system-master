@@ -8,9 +8,10 @@ Template.opeResults.onCreated(function() {
     document.title = "OPE Нәтижелері";
     template.subjectId = new ReactiveVar('01')
     template.grade = new ReactiveVar('7')
-    template.subscribe('opes');
+    
 
     template.autorun(() => {
+      template.subscribe('opes', academicYear.get());
         template.subscribe("opeResults", template.subjectId.get(), template.grade.get())
     })
 })
@@ -34,7 +35,7 @@ var saveItem = function(){
     ope6: $("#editOpe6").val(),
   }
 
-  Meteor.call('Ope.updateOpeResults',Session.get('editItemId'),editItem)
+  Meteor.call('Ope.updateOpeResults',academicYear.get(), Session.get('editItemId'),editItem)
   Session.set('editItemId', null);
 }
 

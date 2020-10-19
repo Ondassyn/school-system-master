@@ -10,15 +10,27 @@ Template.adminOpeResults.onCreated(function() {
     template.grade = new ReactiveVar('7')
 
     template.subscribe('schools');
+    template.subscribe('configs');
 
     template.autorun(() => {
-        template.subscribe("adminOpeResults", template.subjectId.get(), template.grade.get())
+        template.subscribe("adminOpeResults", academicYear.get(), template.subjectId.get(), template.grade.get())
     })
 })
 
 Template.adminOpeResults.helpers({
   opeList(){
     return OpeResults.find()
+  },
+  opeThresholds() {
+      console.log(Configs.findOne({_id: "opeThresholds"}));
+    return Configs.findOne({_id: "opeThresholds"});
+  },
+  thresholdRatioRegion() {
+    let subjectId = Template.instance().subjectId.get();
+    let grade = Template.instance().grade.get();
+    let academicYear = academicYear.get();
+
+    OpeResults.find({academicYear, olympiad: subjectId, grade});
   }
 });
 
@@ -29,6 +41,20 @@ Template.adminOpeResults.events({
     'change #grade'(event,template) {
         template.grade.set(event.target.value)
     },
+    'change #threshold_region'(event, template) {
+        Meteor.call('Configs.changeThresholdRegion', event.target.value, (err,res) => {
+            if (err) {
+                alert(err.reason)
+            } 
+        })
+    },
+    'change #threshold_republic'(event, template) {
+        Meteor.call('Configs.changeThresholdRepublic', event.target.value, (err,res) => {
+            if (err) {
+                alert(err.reason)
+            } 
+        })
+    }
 })
 
 Template.adminOpeResults.onRendered(function() {

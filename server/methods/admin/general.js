@@ -298,7 +298,40 @@ Meteor.methods({
         }
     },
 
+    'addTeacherAccounts': function() {
+        if(Roles.userIsInRole(this.userId, 'admin')) {
+            let allTeachers = TeacherAccounts.find().fetch();
+            allTeachers.map((teacher) => {
+                if(teacher.iin) {
+                    // fix iin
+                    if(teacher.iin.length != 12) {
+                        let newIin = teacher.iin.replace(/\s/g, "");
+                        while(newIin.length < 12) newIin = '0' + newIin;
+                        TeacherAccounts.update({iin: teacher.iin}, {$set: {iin: newIin}});
+                        teacher.iin = newIin;
+                    } 
 
+                    let randomPasssword = 'user' + ((+teacher.iin*3 + 7) % 9999 + 10000); 
+                    let newUserData = {
+                        username: teacher.iin,
+                        password: randomPasssword
+                    };
+
+                    // console.log(newUserData.username + ": " + newUserData.password);
+
+                    const userExists = Accounts.findUserByUsername(teacher.iin);
+
+                    if (!userExists) {
+                        let userId = Accounts.createUser(newUserData);
+                        Roles.addUsersToRoles(userId, 'teacher');
+                        TeacherAccounts.update({iin:teacher.iin}, {$set: {password: randomPasssword}});
+                        console.log('NEW USER [TEACHER]: username: ' + newUserData.username + ', password: ' + newUserData.password);
+                    }
+                }
+                return true;
+            });
+        }
+    },
 
 
     "lessonObjectives.Insert": function (objectives) {
@@ -339,5 +372,21 @@ Meteor.methods({
             LessonObjectives.update({_id:_id},{$set:objectives})
         }
     },
+
+    'Configs.changeThresholdRegion': function(threshold) {
+        if(!this.userId || !Roles.userIsInRole(this.userId, ['admin'])) {
+            throw new Meteor.Error(401, 'Please login as administrator')
+        }
+
+        if(Configs.update({_id: "opeThresholds"}, {$set: {region : threshold}}));
+    },
+
+    'Configs.changeThresholdRepublic': function(threshold) {
+        if(!this.userId || !Roles.userIsInRole(this.userId, ['admin'])) {
+            throw new Meteor.Error(401, 'Please login as administrator')
+        }
+
+        if(Configs.upsert({_id: "opeThresholds"}, {$set: {republic : threshold}}));
+    }
 
 })

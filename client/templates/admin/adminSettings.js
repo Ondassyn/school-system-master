@@ -356,6 +356,25 @@ Template.adminSettings.events({
         }
     },
 
+    'click #addTeacherAccounts' (event, template) {
+        event.preventDefault();
+
+        if(confirm('Do you want to create teacher accounts?')) {
+            let teacherAccountsPassword = template.find("[name=teacherAccountsPassword]").value;
+            if(teacherAccountsPassword && teacherAccountsPassword === '777') {
+                Meteor.call('addTeacherAccounts', (err) => {
+                    if(err) {
+                        alert(err.reason);
+                    } else {
+                        alert('Teacher accounts have been created');
+                    }
+                })
+            } else {
+                alert('Wrong password');
+            }
+        }
+    },
+
     "change #bts1"(event,template) {
         Meteor.call("editConfig","btsUpload","1",event.target.value)
     },
