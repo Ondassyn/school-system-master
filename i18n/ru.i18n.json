@@ -69,5 +69,15 @@
 
     "lang_ru": "Русский язык",
     "lang_kz": "Казахский язык",
-    "logout": "Выйти"
+    "settings": "Настройки",
+    "logout": "Выйти",
+
+    "change_password_title" : "Изменить пароль",
+    "old_password" : "Старый пароль",
+    "new_password" : "Новый пароль",
+    "password_change_success": "Пароль успешно изменен",
+    "password_not_match" : "Старый пароль не подходит",
+    "password_success" : "Пароль успешно изменен",
+    "cancel" : "Назад",
+    "save" : "Сохранить"
 }

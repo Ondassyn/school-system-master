@@ -356,17 +356,17 @@ Template.adminSettings.events({
         }
     },
 
-    'click #addTeacherAccounts' (event, template) {
+    'click #doMagicStuff' (event, template) {
         event.preventDefault();
 
-        if(confirm('Do you want to create teacher accounts?')) {
+        if(confirm('Are you sure you want to do that?')) {
             let teacherAccountsPassword = template.find("[name=teacherAccountsPassword]").value;
             if(teacherAccountsPassword && teacherAccountsPassword === '777') {
-                Meteor.call('addTeacherAccounts', (err) => {
+                Meteor.call('doMagicStuff', (err) => {
                     if(err) {
                         alert(err.reason);
                     } else {
-                        alert('Teacher accounts have been created');
+                        alert('Success');
                     }
                 })
             } else {

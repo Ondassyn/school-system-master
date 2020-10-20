@@ -183,7 +183,7 @@ Meteor.publish("configs",function() {
 
 Meteor.publish("teacherAccounts",function() {
 	if (this.userId) {
-		return teacherAccounts.find()
+		return TeacherAccounts.find()
 	}
 	return this.ready()
 })

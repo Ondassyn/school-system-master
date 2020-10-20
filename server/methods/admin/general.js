@@ -298,23 +298,31 @@ Meteor.methods({
         }
     },
 
-    'addTeacherAccounts': function() {
+    'doMagicStuff': function() {
         if(Roles.userIsInRole(this.userId, 'admin')) {
+            let lastDay = new Date();
+            lastDay.setHours(lastDay.getHours() - 24);
+            let users = Meteor.users.find( {"createdAt" : {$gt: lastDay}}).fetch();
+
+            users.map((user) => {
+                Meteor.users.remove({_id: user._id});
+            })
+
             let allTeachers = TeacherAccounts.find().fetch();
             allTeachers.map((teacher) => {
                 if(teacher.iin) {
                     // fix iin
-                    if(teacher.iin.length != 12) {
-                        let newIin = teacher.iin.replace(/\s/g, "");
-                        while(newIin.length < 12) newIin = '0' + newIin;
-                        TeacherAccounts.update({iin: teacher.iin}, {$set: {iin: newIin}});
-                        teacher.iin = newIin;
-                    } 
+                    // if(teacher.iin.length != 12) {
+                    //     let newIin = teacher.iin.replace(/\s/g, "");
+                    //     while(newIin.length < 12) newIin = '0' + newIin;
+                    //     TeacherAccounts.update({iin: teacher.iin}, {$set: {iin: newIin}});
+                    //     teacher.iin = newIin;
+                    // } 
 
-                    let randomPasssword = 'user' + ((+teacher.iin*3 + 7) % 9999 + 10000); 
+                    // let randomPasssword = 'user' + ((+teacher.iin*3 + 7) % 9999 + 10000); 
                     let newUserData = {
                         username: teacher.iin,
-                        password: randomPasssword
+                        password: teacher.password
                     };
 
                     // console.log(newUserData.username + ": " + newUserData.password);
@@ -324,11 +332,10 @@ Meteor.methods({
                     if (!userExists) {
                         let userId = Accounts.createUser(newUserData);
                         Roles.addUsersToRoles(userId, 'teacher');
-                        TeacherAccounts.update({iin:teacher.iin}, {$set: {password: randomPasssword}});
-                        console.log('NEW USER [TEACHER]: username: ' + newUserData.username + ', password: ' + newUserData.password);
+                        TeacherAccounts.update({iin:teacher.iin}, {$set: {userId: userId}});
+                        //console.log('NEW USER [TEACHER]: username: ' + newUserData.username + ', password: ' + newUserData.password);
                     }
                 }
-                return true;
             });
         }
     },

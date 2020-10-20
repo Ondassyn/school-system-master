@@ -1,0 +1,38 @@
+<template name="teacherSettings">
+    <div class="row">
+        <div class="col-md-6">
+            <form class="form-horizontal">
+                <fieldset>
+
+                    <!-- Form Name -->
+                    <legend>{{_ "change_password_title"}}</legend>
+
+                    <!-- Password input-->
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="piCurrPass">{{_ "old_password"}}</label>
+                        <div class="col-md-6">
+                            <input name="oldPassword" type="password" placeholder="" class="form-control input-md" required="">
+                        </div>
+                    </div>
+
+                    <!-- Password input-->
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="piNewPass">{{_ "new_password"}}</label>
+                        <div class="col-md-6">
+                            <input name="newPassword" type="password" placeholder="" class="form-control input-md" required="">
+                        </div>
+                    </div>
+
+                    <!-- Button (Double) -->
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="bCancel"></label>
+                        <div class="col-md-4">
+                            <a id="cancel" href="/" class="btn btn-danger">{{_ "cancel"}}</a>
+                            <button id="save" class="btn btn-success">{{_ "save"}}</button>
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+</template>

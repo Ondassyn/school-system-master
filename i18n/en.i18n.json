@@ -69,5 +69,16 @@
 
     "lang_ru": "Орыс тілі",
     "lang_kz": "Қазақ тілі",
-    "logout": "Шығу"
+    "settings": "Баптаулар",
+    "logout": "Шығу",
+
+    "change_password_title" : "Құпиясөзді өзгерту",
+    "old_password" : "Ескі құпиясөз",
+    "new_password" : "Жаңа құпиясөз",
+    "password_change_success" : "Құпиясөз өзгертілді",
+    "password_not_match" : "Ескі құпиясөз дұрыс емес",
+    "password_success": "Құпиясөз өзгерді",
+    "cancel" : "Кері",
+    "save" : "Сақтау"
+
 }
