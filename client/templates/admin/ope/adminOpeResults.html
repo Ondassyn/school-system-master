@@ -8,8 +8,17 @@
                         <div class="form-group" style="margin-right: 15pt">
                         {{> academicYear}}
 
+                        <label for="" style="margin-left: 10pt; ">Мектеп</label>
+                        <select class="form-control" style="width:200pt;" id="schoolId">
+                            <option value="all">Жалпы</option>
+                            {{#each schools}}
+                            <option value="{{schoolId}}">{{shortName}}</option>
+                            {{/each}}
+                        </select>
+
                         <label for="" style="margin-left: 10pt; ">Пән</label>
                         <select class="form-control" id="subjectId">
+                            <option value="all">Жалпы</option>
                             <option value="01">Алгебра</option>
                             <option value="02">Физика</option>
                             <option value="03">Химия</option>
@@ -26,6 +35,7 @@
 
                         <label for="" style="margin-left: 10pt; ">Сынып</label>
                         <select class="form-control" id="grade">
+                            <option value="all">Жалпы</option>
                             <option value="7">7 сынып</option>
                             <option value="8">8 сынып</option>
                             <option value="9">9 сынып</option>
@@ -35,10 +45,11 @@
 
                         <label for="threshold_regional" style="margin-left: 10pt; ">Область</label>
                         <input type="text" style="width: 40pt" id="threshold_region" class="form-control" placeholder="Сан енгізіңіз" name="threshold_regional" value="{{opeThresholds.region}}">                        
-                        <span>{{thresholdRationRegion}}</span>
+                        
 
                         <label for="threshold_republic" style="margin-left: 10pt; ">Республика</label>
                         <input type="text" style="width: 40pt" id="threshold_republic" class="form-control" placeholder="Сан енгізіңіз" name="threshold_republic" value="{{opeThresholds.republic}}">
+                        
 
                         </div>
 
@@ -55,12 +66,12 @@
                         <th>Мектеп</th>
                         <th>Сынып</th>
                         <th>Аты-жөні</th>
-                        <th style="text-align: center">OPE<br>16.11 - 30.11</th>
-                        <th style="text-align: center">OPE<br>30.11 - 14.12</th>
-                        <th style="text-align: center">OPE<br>14.12 - 28.12</th>
-                        <th style="text-align: center">OPE<br>28.12 - 11.01</th>
-                        <th style="text-align: center">OPE<br>11.01 - 25.01</th>
-                        <th style="text-align: center">OPE<br>25.01 - 08.02</th>
+                        <th style="text-align: center"><span>{{thresholdRatioRegion1}}</span><br><span>{{thresholdRatioRepublic1}}</span><br>OPE<br>16.11 - 30.11</th>
+                        <th style="text-align: center"><span>{{thresholdRatioRegion2}}</span><br><span>{{thresholdRatioRepublic2}}</span><br>OPE<br>30.11 - 14.12</th>
+                        <th style="text-align: center"><span>{{thresholdRatioRegion3}}</span><br><span>{{thresholdRatioRepublic3}}</span><br>OPE<br>14.12 - 28.12</th>
+                        <th style="text-align: center"><span>{{thresholdRatioRegion4}}</span><br><span>{{thresholdRatioRepublic4}}</span><br>OPE<br>28.12 - 11.01</th>
+                        <th style="text-align: center"><span>{{thresholdRatioRegion5}}</span><br><span>{{thresholdRatioRepublic5}}</span><br>OPE<br>11.01 - 25.01</th>
+                        <th style="text-align: center"><span>{{thresholdRatioRegion6}}</span><br><span>{{thresholdRatioRepublic6}}</span><br>OPE<br>25.01 - 08.02</th>
                         <th>Average</th>
                     </tr>
                 </thead>

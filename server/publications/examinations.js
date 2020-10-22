@@ -16,9 +16,23 @@ Meteor.publish('opeReportRatingsByFilter', function(academicYear, subjectId, rep
       return OpeRatings.find({academicYear:academicYear, subjectId:subjectId, reportPeriod:reportPeriod})
 })
 
-Meteor.publish('adminOpeResults',function(academicYear, subjectId, grade) {
+Meteor.publish('adminOpeResults',function(academicYear, schoolId, subjectId, grade) {
     if (this.userId) {
-      return OpeResults.find({academicYear: academicYear, olympiad:subjectId, grade:grade})
+        if(schoolId === 'all' && subjectId === 'all' && grade === 'all')
+            return OpeResults.find({academicYear});
+        else if(schoolId === 'all'  && subjectId === 'all')
+            return OpeResults.find({academicYear, grade});
+        else if(schoolId === 'all'  && grade === 'all')
+            return OpeResults.find({academicYear, olympiad:subjectId});
+        else if(grade === 'all'  && subjectId === 'all')
+            return OpeResults.find({academicYear, schoolId});
+        else if(schoolId === 'all')
+            return OpeResults.find({academicYear, olympiad:subjectId, grade});
+        else if(subjectId === 'all')
+            return OpeResults.find({academicYear, schoolId, grade});
+        else if(grade === 'all')
+            return OpeResults.find({academicYear, olympiad:subjectId, schoolId});
+        return OpeResults.find({academicYear: academicYear, schoolId, olympiad:subjectId, grade:grade});
     }
     return this.ready()
 })

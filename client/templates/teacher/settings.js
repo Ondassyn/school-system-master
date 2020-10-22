@@ -32,8 +32,6 @@ Template.teacherSettings.events({
                     Meteor.call("teacher.updateTeacherPassword", teacher, newp, function(err) {
                         if (err) {
                             alert(err.reason)
-                        } else {
-                            alert('{{_ "password_success"}}');
                         }
                     });
 
