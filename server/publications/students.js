@@ -34,6 +34,23 @@ Meteor.publish('adminStudents', function(schoolId, olympiad, grade) {
     return this.ready()
 })
 
+Meteor.publish('schoolStudents', function(olympiad, grade) {
+    if(this.userId) {
+        let school = Schools.findOne({userId: this.userId});
+        if(school) {
+            if(olympiad === 'all' && grade === 'all')
+                return Students.find({schoolId: school.schoolId});
+            else if(olympiad === 'all')
+                return Students.find({schoolId: school.schoolId, grade});
+            else if(grade === 'all')
+                return Students.find({schoolId: school.schoolId, olympiad});
+            else
+                return Students.find({schoolId: school.schoolId, olympiad, grade});
+        }
+    }
+    return this.ready();
+})
+
 Meteor.publish('allStudents', function(grade){
         return Students.find({grade:grade})
 })

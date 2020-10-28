@@ -1,22 +1,13 @@
-<template name="adminOpeResults">
+<template name="adminOpeRatings">
     <div class="row">
         <div class="col-md-12">
-            <h4 style="text-align: center; padding-bottom: 15pt">OPE Нәтижелері</h4>
-            
+            <h4 style="text-align: center; padding-bottom: 15pt">OPE Рейтинг</h4>
             
             <div class="row">
                 <div class="col-md-12">
                     <div class="form-inline">
                         <div class="form-group" style="margin-right: 15pt">
                         {{> academicYear}}
-
-                        <label for="" style="margin-left: 10pt; ">Мектеп</label>
-                        <select class="form-control" style="width:200pt;" id="schoolId">
-                            <option value="all">Жалпы</option>
-                            {{#each schools}}
-                            <option value="{{schoolId}}">{{shortName}}</option>
-                            {{/each}}
-                        </select>
 
                         <label for="" style="margin-left: 10pt; ">Пән</label>
                         <select class="form-control" id="subjectId">
@@ -45,6 +36,13 @@
                             <option value="11">11 сынып</option>
                         </select>
 
+                        <label for="" style="margin-left: 10pt; ">Рейтинг түрі</label>
+                        <select class="form-control" id="rating_type">
+                            <option value="average">Орташа</option>
+                            <option value="percentage">Дәлелденген пайыз</option>
+                            <option value="quantity">Дәлелденген саны</option>
+                        </select>
+
                         <label for="threshold_regional" style="margin-left: 10pt;"><span style="padding: 5px; background-color: #ccffff">Область</span></label>
                         <input type="text" style="width: 40pt" id="threshold_region" class="form-control" placeholder="Сан енгізіңіз" name="threshold_regional" value="{{opeThresholds 'region'}}">                        
                         
@@ -52,6 +50,7 @@
                         <label for="threshold_republic" style="margin-left: 10pt;"><span style="padding: 5px; background-color: #cce5ff">Республика</span></label>
                         <input type="text" style="width: 40pt" id="threshold_republic" class="form-control" placeholder="Сан енгізіңіз" name="threshold_republic" value="{{opeThresholds 'republic'}}">
                         
+
 
                         </div>
 
@@ -66,66 +65,78 @@
                     <tr class="bts-header">
                         <th style="text-align: center">#</th>
                         <th style="text-align: center">Мектеп</th>
-                        <th style="text-align: center">Сынып</th>
-                        <th style="text-align: center">Аты-жөні</th>
-                        <th style="text-align: center">Деңгейі</th>
                         <th style="text-align: center">
-                            <span style="{{getLabelStyle '1' 'region'}}">{{thresholdRatioRegion '1'}}</span><br>
-                            <span style="{{getLabelStyle '1' 'republic'}}">{{thresholdRatioRepublic '1'}}</span><br>
                             <!-- OPE<br>16.11 - 30.11 -->
                             OPE-1
                         </th>
                         <th style="text-align: center">
-                            <span style="{{getLabelStyle '2' 'region'}}">{{thresholdRatioRegion '2'}}</span><br>
-                            <span style="{{getLabelStyle '2' 'republic'}}">{{thresholdRatioRepublic '2'}}</span><br>
                             <!-- OPE<br>30.11 - 14.12 -->
                             OPE-2
                         </th>
                         <th style="text-align: center">
-                            <span style="{{getLabelStyle '3' 'region'}}">{{thresholdRatioRegion '3'}}</span><br>
-                            <span style="{{getLabelStyle '3' 'republic'}}">{{thresholdRatioRepublic '3'}}</span><br>
                             <!-- OPE<br>14.12 - 28.12 -->
                             OPE-3
                         </th>
                         <th style="text-align: center">
-                            <span style="{{getLabelStyle '4' 'region'}}">{{thresholdRatioRegion '4'}}</span><br>
-                            <span style="{{getLabelStyle '4' 'republic'}}">{{thresholdRatioRepublic '4'}}</span><br>
                             <!-- OPE<br>28.12 - 11.01 -->
                             OPE-4
                         </th>
                         <th style="text-align: center">
-                            <span style="{{getLabelStyle '5' 'region'}}">{{thresholdRatioRegion '5'}}</span><br>
-                            <span style="{{getLabelStyle '5' 'republic'}}">{{thresholdRatioRepublic '5'}}</span><br>
                             <!-- OPE<br>11.01 - 25.01 -->
                             OPE-5
                         </th>
                         <th style="text-align: center">
-                            <span style="{{getLabelStyle '6' 'region'}}">{{thresholdRatioRegion '6'}}</span><br>
-                            <span style="{{getLabelStyle '6' 'republic'}}">{{thresholdRatioRepublic '6'}}</span><br>
                             <!-- OPE<br>25.01 - 08.02 -->
                             OPE-6
                         </th>
-                        <th>Average</th>
+                        <th style="text-align:center">Average</th>
                     </tr>
                 </thead>
                 <tbody>
-                  {{#each opeList}}
+                  {{#each schools}}
 
                     <tr>
                       <td>{{math @index "+" 1}}</td>
-                      <td style="width:20%; text-align:center">{{schoolName schoolId}}</td>
-                      <td style="text-align: center">{{grade}} сынып</td>
-                      <td style="text-align: center">{{studentSurname}} {{studentName}}</td>
-                      <td style="text-align: center">{{level studentId}}</td>
-                      <td style="{{getLevelStyle studentId '1'}}">{{ope studentId "1"}}</td>
-                      <td style="{{getLevelStyle studentId '2'}}">{{ope studentId "2"}}</td>
-                      <td style="{{getLevelStyle studentId '3'}}">{{ope studentId "3"}}</td>
-                      <td style="{{getLevelStyle studentId '4'}}">{{ope studentId "4"}}</td>
-                      <td style="{{getLevelStyle studentId '5'}}">{{ope studentId "5"}}</td>
-                      <td style="{{getLevelStyle studentId '6'}}">{{ope studentId "6"}}</td>
-                      <td style="text-align: center">{{average studentId}}</td>
-                        <!-- <td>{{ope1 studentId}}</td> -->
+                      <td style="width:20%; text-align:center">{{shortName}}</td>
 
+                        {{#if isAverage}}
+                            {{#each (repeat 6)}}
+                                <td style="text-align:center">{{getAverage this ../schoolId}}</td>
+                            {{/each}}
+                            <td style="text-align: center">{{averageAverages schoolId}}</td>
+                        {{else}}
+                            {{#if isPercentage}}
+                                {{#each (repeat 6)}}
+                                    {{#with getPercentage this ../schoolId}}
+                                        <td style="text-align:center">
+                                            {{#if region}}<span style="{{getLabelStyle 'region'}}">{{region}}</span>{{/if}} 
+                                            {{#if republic}}<span style="{{getLabelStyle 'republic'}}">{{republic}}</span>{{/if}}
+                                        </td>
+                                    {{/with}}
+                                {{/each}}
+                                {{#with averagePercentages schoolId}}
+                                    <td style="text-align: center">
+                                        {{#if region}}<span style="{{getLabelStyle 'region'}}">{{region}}</span>{{/if}} 
+                                        {{#if republic}}<span style="{{getLabelStyle 'republic'}}">{{republic}}</span>{{/if}}
+                                    </td>
+                                {{/with}}
+                            {{else}}
+                                {{#each (repeat 6)}}
+                                    {{#with getQuantity this ../schoolId}}
+                                        <td style="text-align:center">
+                                            {{#if region}}<span style="{{getLabelStyle 'region'}}">{{region}}</span>{{/if}} 
+                                            {{#if republic}}<span style="{{getLabelStyle 'republic'}}">{{republic}}</span>{{/if}}
+                                        </td>
+                                    {{/with}}
+                                {{/each}}
+                                {{#with averageQuantities schoolId}}
+                                    <td style="text-align: center">
+                                        {{#if region}}<span style="{{getLabelStyle 'region'}}">{{region}}</span>{{/if}} 
+                                        {{#if republic}}<span style="{{getLabelStyle 'republic'}}">{{republic}}</span>{{/if}}
+                                    </td>
+                                {{/with}}
+                            {{/if}}
+                        {{/if}}
                     </tr>
                   {{/each}}
 

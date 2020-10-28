@@ -1,7 +1,6 @@
 import { Template } from 'meteor/templating';
 import { ReactiveVar } from 'meteor/reactive-var';
 import './adminOpeResults.html';
-import {ReactiveDict} from 'meteor/reactive-dict'
 
 Template.adminOpeResults.onCreated(function() {
     let template = this
@@ -9,6 +8,8 @@ Template.adminOpeResults.onCreated(function() {
     template.subjectId = new ReactiveVar('all')
     template.grade = new ReactiveVar('all')
     template.schoolId = new ReactiveVar('all');
+    template.threshold_region = new ReactiveVar();
+    template.threshold_republic = new ReactiveVar();
 
     template.subscribe('schools');
     template.subscribe('configs');
@@ -23,67 +24,114 @@ Template.adminOpeResults.helpers({
   opeList(){
     return OpeResults.find()
   },
-  opeThresholds() {
-    return Configs.findOne({_id: "opeThresholds"});
+  opeThresholds(level) {
+    let subjectId = Template.instance().subjectId.get();
+    return Configs.findOne({_id: "opeThresholds"})[level+ '_' + subjectId];
   },
   schools(){
     return Schools.find({},{sort:{schoolId:1}});
   },
-  thresholdRatioRegion1() {
-    // let list = Template.adminOpeResults.__helpers.get('opeList').call();
-    // let thresholds = Template.adminOpeResults.__helpers.get('opeThresholds').call();
-    // let n = 0;
-    // let m = 0;
-    // list.map((item) => {
-    //     if(item.ope1) {
-    //         let level = Students.findOne({studentId : item.studentId}).level;
-    //         if(level && (level === 'region' || level === 'republic')){
-    //             n++;
-    //             if(+item.ope1 > +thresholds.region) m++;
-    //         }
-    //     }
-    // })
-
-    // if(+n > 0) return m/n;
+  level(studentId) {
+    return Students.findOne({studentId}).level === 'none' ? '' : Students.findOne({studentId}).level;
   },
-  thresholdRatioRepublic1() {
-    // let list = Template.adminOpeResults.__helpers.get('opeList').call();
-    // let thresholds = Template.adminOpeResults.__helpers.get('opeThresholds').call();
-    // let n = 0;
-    // let m = 0;
-    // list.map((item) => {
-    //     if(item.ope1) {
-    //         // let level = Students.findOne({studentId : item.studentId}).level;
-    //         // if(level && level === 'republic'){
-    //         //     n++;
-    //         //     if(+item.ope1 > +thresholds.republic) m++;
-    //         // }
-    //     }
-    // })
+  getLevelStyle(studentId, opeNo) {
+    let level = Students.findOne({studentId}).level === 'none' ? '' : Students.findOne({studentId}).level;
+    if(!level) return 'text-align: center; white-space: nowrap';
+    let threshold = level === 'Область' ? Template.adminOpeResults.__helpers.get('opeThresholds')('region') : Template.adminOpeResults.__helpers.get('opeThresholds')('republic');
+    if(!threshold) return 'text-align: center; white-space: nowrap';
+    let opeResult = OpeResults.findOne({studentId});
+    let points = parseFloat(opeResult['ope' + opeNo]);
 
-    // if(+n > 0) return m/n;
-  }
+
+    if(level === 'Область') {
+        if(threshold && points){
+            if(+points >= +threshold) return 'text-align: center; white-space: nowrap; background-color: #b2fab4';
+            return 'text-align: center; white-space: nowrap; background-color: #ff867c';
+        }
+    }
+    if(level === 'Республика') {
+        if(threshold && points){
+            if(+points >= +threshold) return 'text-align: center; white-space: nowrap; background-color: #b2fab4';
+            return 'text-align: center; white-space: nowrap; background-color: #ff867c';
+        }
+    }
+
+    return 'text-align: center; white-space: nowrap';
+ },
+  thresholdRatioRegion(no) {
+    let threshold = Template.adminOpeResults.__helpers.get('opeThresholds')('region');
+    if(!threshold) return '';
+    let list = Template.adminOpeResults.__helpers.get('opeList').call();
+    let n = 0;
+    let m = 0;
+
+    list.map((item) => {
+        if(item['ope' + no]) {
+            let level = Students.findOne({studentId : item.studentId}).level;
+            if(level && (level === 'Область' || level === 'Республика')){
+                n++;
+                
+                if(+item['ope' + no] >= +threshold) m++;
+            }
+        }
+    })
+
+    if(+n > 0) return (m/n).toFixed(2);
+  },
+  thresholdRatioRepublic(no) {
+    let threshold = Template.adminOpeResults.__helpers.get('opeThresholds')('republic');
+    if(!threshold) return '';
+    let list = Template.adminOpeResults.__helpers.get('opeList').call();
+    let n = 0;
+    let m = 0;
+    list.map((item) => {
+        if(item['ope' + no]) {
+            let level = Students.findOne({studentId : item.studentId}).level;
+            if(level && level === 'Республика'){
+                n++;
+                if(+item['ope' + no] >= +threshold) m++;
+            }
+        }
+    })
+
+    if(+n > 0) return (m/n).toFixed(2);
+  },
+  getLabelStyle(opeNo, level) {
+    if(level === 'region')
+        if(Template.adminOpeResults.__helpers.get('thresholdRatioRegion')(opeNo))
+            return "padding: 2px; background-color: #ccffff";
+    if(level === 'republic')
+        if(Template.adminOpeResults.__helpers.get('thresholdRatioRepublic')(opeNo))
+            return "padding: 2px; background-color: #cce5ff";
+ },
 });
 
 Template.adminOpeResults.events({
     'change #schoolId' (event, template) {
+        event.preventDefault();
         template.schoolId.set(event.target.value);
     },
     'change #subjectId'(event,template) {
+        event.preventDefault();
         template.subjectId.set(event.target.value)
     },
     'change #grade'(event,template) {
+        event.preventDefault();
         template.grade.set(event.target.value)
     },
     'change #threshold_region'(event, template) {
-        Meteor.call('Configs.changeThresholdRegion', event.target.value, (err,res) => {
+        event.preventDefault();
+        template.threshold_region.set(event.target.value);
+        Meteor.call('Configs.changeThresholdRegion', template.threshold_region.get(), template.subjectId.get(), (err,res) => {
             if (err) {
                 alert(err.reason)
             } 
         })
     },
     'change #threshold_republic'(event, template) {
-        Meteor.call('Configs.changeThresholdRepublic', event.target.value, (err,res) => {
+        event.preventDefault();
+        template.threshold_republic.set(event.target.value);
+        Meteor.call('Configs.changeThresholdRepublic', template.threshold_republic.get(), template.subjectId.get(), (err,res) => {
             if (err) {
                 alert(err.reason)
             } 

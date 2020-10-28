@@ -37,6 +37,24 @@ Meteor.publish('adminOpeResults',function(academicYear, schoolId, subjectId, gra
     return this.ready()
 })
 
+Meteor.publish('schoolOpeResults', function(academicYear, subjectId, grade) {
+    if(this.userId) {
+        let school = Schools.findOne({userId: this.userId});
+        if(school) {
+            if(subjectId === 'all' && grade === 'all')
+                return OpeResults.find({academicYear, schoolId: school.schoolId});
+            else if(subjectId === 'all')
+                return OpeResults.find({academicYear, schoolId: school.schoolId, grade});
+            else if(grade === 'all')
+                return OpeResults.find({academicYear, schoolId: school.schoolId, olympiad: subjectId});   
+            else
+                return OpeResults.find({academicYear, schoolId: school.schoolId, olympiad: subjectId});
+        }
+    }
+    return this.ready();
+});
+
+
 Meteor.publish('opeResults',function(subjectId, grade) {
     if (this.userId) {
         let school = Schools.findOne({userId:this.userId})

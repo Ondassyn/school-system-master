@@ -10,6 +10,7 @@
 
                         <label for="" style="margin-left: 10pt; ">Пән</label>
                         <select class="form-control" id="subjectId">
+                            <option value="all">Жалпы</option>
                             <option value="01">Алгебра</option>
                             <option value="02">Физика</option>
                             <option value="03">Химия</option>
@@ -26,6 +27,7 @@
 
                         <label for="" style="margin-left: 10pt; ">Сынып</label>
                         <select class="form-control" id="grade">
+                            <option value="all">Жалпы</option>
                             <option value="7">7 сынып</option>
                             <option value="8">8 сынып</option>
                             <option value="9">9 сынып</option>
@@ -33,7 +35,16 @@
                             <option value="11">11 сынып</option>
                         </select>
 
+                        {{#if (opeThresholds 'region')}}
+                            <label for="threshold_regional" style="margin-left: 30pt;"><span style="padding: 5px; background-color: #ccffff">Область: </span></label>
+                            <span id="threshold_region">{{opeThresholds 'region'}}</span>                        
+                        {{/if}}
 
+                        {{#if (opeThresholds 'republic')}}
+                            <label for="threshold_republic" style="margin-left: 30pt;"><span style="padding: 5px; background-color: #cce5ff">Республика: </span></label>
+                            <span id="threshold_republic">{{opeThresholds 'republic'}}</span>
+                        {{/if}}
+                        
                         </div>
 
                     </div>
@@ -45,16 +56,47 @@
                 <thead>
                     <tr class="bts-header">
                         <th>#</th>
-                        <th>Сынып</th>
-                        <th>Аты-жөні</th>
-                        <th style="text-align: center">OPE<br>16.11 - 30.11</th>
-                        <th style="text-align: center">OPE<br>30.11 - 14.12</th>
-                        <th style="text-align: center">OPE<br>14.12 - 28.12</th>
-                        <th style="text-align: center">OPE<br>28.12 - 11.01</th>
-                        <th style="text-align: center">OPE<br>11.01 - 25.01</th>
-                        <th style="text-align: center">OPE<br>25.01 - 08.02</th>
+                        <th style="text-align: center">Сынып</th>
+                        <th style="text-align: center">Аты-жөні</th>
+                        <th style="text-align: center">Деңгейі</th>
+                        <th style="text-align: center">
+                            <span style="{{getLabelStyle '1' 'region'}}">{{thresholdRatioRegion '1'}}</span><br>
+                            <span style="{{getLabelStyle '1' 'republic'}}">{{thresholdRatioRepublic '1'}}</span><br>
+                            <!-- OPE<br>16.11 - 30.11 -->
+                            OPE-1
+                        </th>
+                        <th style="text-align: center">
+                            <span style="{{getLabelStyle '2' 'region'}}">{{thresholdRatioRegion '2'}}</span><br>
+                            <span style="{{getLabelStyle '2' 'republic'}}">{{thresholdRatioRepublic '2'}}</span><br>
+                            <!-- OPE<br>30.11 - 14.12 -->
+                            OPE-2
+                        </th>
+                        <th style="text-align: center">
+                            <span style="{{getLabelStyle '3' 'region'}}">{{thresholdRatioRegion '3'}}</span><br>
+                            <span style="{{getLabelStyle '3' 'republic'}}">{{thresholdRatioRepublic '3'}}</span><br>
+                            <!-- OPE<br>14.12 - 28.12 -->
+                            OPE-3
+                        </th>
+                        <th style="text-align: center">
+                            <span style="{{getLabelStyle '4' 'region'}}">{{thresholdRatioRegion '4'}}</span><br>
+                            <span style="{{getLabelStyle '4' 'republic'}}">{{thresholdRatioRepublic '4'}}</span><br>
+                            <!-- OPE<br>28.12 - 11.01 -->
+                            OPE-4
+                        </th>
+                        <th style="text-align: center">
+                            <span style="{{getLabelStyle '5' 'region'}}">{{thresholdRatioRegion '5'}}</span><br>
+                            <span style="{{getLabelStyle '5' 'republic'}}">{{thresholdRatioRepublic '5'}}</span><br>
+                            <!-- OPE<br>11.01 - 25.01 -->
+                            OPE-5
+                        </th>
+                        <th style="text-align: center">
+                            <span style="{{getLabelStyle '6' 'region'}}">{{thresholdRatioRegion '6'}}</span><br>
+                            <span style="{{getLabelStyle '6' 'republic'}}">{{thresholdRatioRepublic '6'}}</span><br>
+                            <!-- OPE<br>25.01 - 08.02 -->
+                            OPE-6
+                        </th>
 
-                        <th>Average</th>
+                        <th style="text-align: center">Average</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -64,6 +106,7 @@
                       <td>{{math @index "+" 1}}</td>
                       <td>{{grade}} {{division}}</td>
                       <td>{{surname}} {{name}} </td>
+                      <td style="text-align: center">{{level studentId}}</td>
 
                     {{#if editing}}
 
@@ -81,12 +124,12 @@
 
                     {{else}}
 
-                        <td style="text-align: center">{{ope studentId "1"}}</td>
-                        <td style="text-align: center">{{ope studentId "2"}}</td>
-                        <td style="text-align: center">{{ope studentId "3"}}</td>
-                        <td style="text-align: center">{{ope studentId "4"}}</td>
-                        <td style="text-align: center">{{ope studentId "5"}}</td>
-                        <td style="text-align: center">{{ope studentId "6"}}</td>
+                        <td style="{{getLevelStyle studentId '1'}}">{{ope studentId "1"}}</td>
+                        <td style="{{getLevelStyle studentId '2'}}">{{ope studentId "2"}}</td>
+                        <td style="{{getLevelStyle studentId '3'}}">{{ope studentId "3"}}</td>
+                        <td style="{{getLevelStyle studentId '4'}}">{{ope studentId "4"}}</td>
+                        <td style="{{getLevelStyle studentId '5'}}">{{ope studentId "5"}}</td>
+                        <td style="{{getLevelStyle studentId '6'}}">{{ope studentId "6"}}</td>
                         <td style="text-align: center">{{average studentId}}</td>
                         <!-- <td>{{ope1 studentId}}</td> -->
                         <td><button class="editItem btn btn-primary">Edit</button>

@@ -380,20 +380,20 @@ Meteor.methods({
         }
     },
 
-    'Configs.changeThresholdRegion': function(threshold) {
-        if(!this.userId || !Roles.userIsInRole(this.userId, ['admin'])) {
+    'Configs.changeThresholdRegion': function(threshold, subjectId) {
+        if(!this.userId || !Roles.userIsInRole(this.userId, ['admin']))
             throw new Meteor.Error(401, 'Please login as administrator')
-        }
 
-        if(Configs.update({_id: "opeThresholds"}, {$set: {region : threshold}}));
+        if(!Configs.update({_id: "opeThresholds"}, {$set: { ['region_' + subjectId] : threshold}}))
+            throw new Meteor.Error('No update in configs has been performed');
     },
 
-    'Configs.changeThresholdRepublic': function(threshold) {
-        if(!this.userId || !Roles.userIsInRole(this.userId, ['admin'])) {
+    'Configs.changeThresholdRepublic': function(threshold, subjectId) {
+        if(!this.userId || !Roles.userIsInRole(this.userId, ['admin']))
             throw new Meteor.Error(401, 'Please login as administrator')
-        }
 
-        if(Configs.upsert({_id: "opeThresholds"}, {$set: {republic : threshold}}));
+        if(!Configs.update({_id: "opeThresholds"}, {$set: {['republic_' + subjectId] : threshold}}))
+            throw new Meteor.Error('No update in configs has been performed');
     }
 
 })

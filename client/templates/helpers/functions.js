@@ -1,3 +1,5 @@
+const { _ } = require("core-js")
+
 Blaze.registerHelper("schoolName", function(schoolId) {
     return Schools.findOne({schoolId:schoolId}) ? Schools.findOne({schoolId:schoolId}).shortName : undefined
 })
@@ -80,6 +82,12 @@ Blaze.registerHelper("getStylе", function(point) {
     }
 })
 
+// Blaze.registerHelper("getOpeStyle", function(points, threshold) {
+//   let points = parseFloat(points);
+//   if(points >= threshold)
+//     return 'white-space: nowrap; background-color: #b2fab4';
+//   return 'white-space: nowrap; background-color: #ff867c';
+// })
 
 
 Blaze.registerHelper("subjectName", function(subjectId) {
@@ -153,6 +161,10 @@ Blaze.registerHelper("strelki", function(ubtPrev, ubtNext) {
       if(ubtPrev < ubtNext) return true;
 	       // return new Blaze.SafeString('<i class="glyphicon glyphicon-arrow-up"></i>');
     }
+})
+
+Blaze.registerHelper('repeat', function(max) {
+  return _.range(1, max+1);
 })
 
 Blaze.registerHelper("round", function(value,number) {
