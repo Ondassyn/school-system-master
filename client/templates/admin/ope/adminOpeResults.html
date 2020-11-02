@@ -46,12 +46,12 @@
                         </select>
 
                         <label for="threshold_regional" style="margin-left: 10pt;"><span style="padding: 5px; background-color: #ccffff">Область</span></label>
-                        <input type="text" style="width: 40pt" id="threshold_region" class="form-control" placeholder="Сан енгізіңіз" name="threshold_regional" value="{{opeThresholds 'region'}}">                        
-                        
+                        <!-- <input type="text" style="width: 40pt" id="threshold_region" class="form-control" placeholder="Сан енгізіңіз" name="threshold_regional" value="{{opeThresholds 'region'}}">                         -->
+                        <span>{{#if opeThresholds 'region'}}{{opeThresholds 'region'}}{{else}}-{{/if}}</span>
 
                         <label for="threshold_republic" style="margin-left: 10pt;"><span style="padding: 5px; background-color: #cce5ff">Республика</span></label>
-                        <input type="text" style="width: 40pt" id="threshold_republic" class="form-control" placeholder="Сан енгізіңіз" name="threshold_republic" value="{{opeThresholds 'republic'}}">
-                        
+                        <!-- <input type="text" style="width: 40pt" id="threshold_republic" class="form-control" placeholder="Сан енгізіңіз" name="threshold_republic" value="{{opeThresholds 'republic'}}"> -->
+                        <span>{{#if opeThresholds 'republic'}}{{opeThresholds 'republic'}}{{else}}-{{/if}}</span> 
 
                         </div>
 

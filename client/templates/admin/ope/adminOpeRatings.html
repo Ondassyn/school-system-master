@@ -39,17 +39,21 @@
                         <label for="" style="margin-left: 10pt; ">Рейтинг түрі</label>
                         <select class="form-control" id="rating_type">
                             <option value="average">Орташа</option>
-                            <option value="percentage">Дәлелденген пайыз</option>
-                            <option value="quantity">Дәлелденген саны</option>
+                            <option value="percentageRegion">"Область" дәлелденген пайыз</option>
+                            <option value="percentageRepublic">"Республика" дәлелденген пайыз</option>
+                            <option value="quantityRegion">"Область" дәлелденген саны</option>
+                            <option value="quantityRepublic">"Республика" дәлелденген саны</option>
+                            <option value="percentageBoth">Жалпы дәлелденген пайыз</option>
+                            <option value="quantityBoth">Жалпы дәлелденген саны</option>
                         </select>
 
                         <label for="threshold_regional" style="margin-left: 10pt;"><span style="padding: 5px; background-color: #ccffff">Область</span></label>
-                        <input type="text" style="width: 40pt" id="threshold_region" class="form-control" placeholder="Сан енгізіңіз" name="threshold_regional" value="{{opeThresholds 'region'}}">                        
-                        
+                        <!-- <input type="text" style="width: 40pt" id="threshold_region" class="form-control" placeholder="Сан енгізіңіз" name="threshold_regional" value="{{opeThresholds 'region'}}">                         -->
+                        <span>{{#if opeThresholds 'region'}}{{opeThresholds 'region'}}{{else}}-{{/if}}</span>
 
                         <label for="threshold_republic" style="margin-left: 10pt;"><span style="padding: 5px; background-color: #cce5ff">Республика</span></label>
-                        <input type="text" style="width: 40pt" id="threshold_republic" class="form-control" placeholder="Сан енгізіңіз" name="threshold_republic" value="{{opeThresholds 'republic'}}">
-                        
+                        <!-- <input type="text" style="width: 40pt" id="threshold_republic" class="form-control" placeholder="Сан енгізіңіз" name="threshold_republic" value="{{opeThresholds 'republic'}}"> -->
+                        <span>{{#if opeThresholds 'republic'}}{{opeThresholds 'republic'}}{{else}}-{{/if}}</span>
 
 
                         </div>
@@ -63,8 +67,8 @@
             <table style="margin-top: 15pt" class="table table-striped">
                 <thead>
                     <tr class="bts-header">
-                        <th style="text-align: center">#</th>
-                        <th style="text-align: center">Мектеп</th>
+                        <th>#</th>
+                        <th>Мектеп</th>
                         <th style="text-align: center">
                             <!-- OPE<br>16.11 - 30.11 -->
                             OPE-1
@@ -97,7 +101,7 @@
 
                     <tr>
                       <td>{{math @index "+" 1}}</td>
-                      <td style="width:20%; text-align:center">{{shortName}}</td>
+                      <td style="width:20%">{{shortName}}</td>
 
                         {{#if isAverage}}
                             {{#each (repeat 6)}}
@@ -105,36 +109,46 @@
                             {{/each}}
                             <td style="text-align: center">{{averageAverages schoolId}}</td>
                         {{else}}
-                            {{#if isPercentage}}
+                            {{#if isPercentageRegion}}
                                 {{#each (repeat 6)}}
-                                    {{#with getPercentage this ../schoolId}}
-                                        <td style="text-align:center">
-                                            {{#if region}}<span style="{{getLabelStyle 'region'}}">{{region}}</span>{{/if}} 
-                                            {{#if republic}}<span style="{{getLabelStyle 'republic'}}">{{republic}}</span>{{/if}}
-                                        </td>
-                                    {{/with}}
+                                    <td style="text-align:center">{{getPercentageRegion this ../schoolId}}</td>
                                 {{/each}}
-                                {{#with averagePercentages schoolId}}
-                                    <td style="text-align: center">
-                                        {{#if region}}<span style="{{getLabelStyle 'region'}}">{{region}}</span>{{/if}} 
-                                        {{#if republic}}<span style="{{getLabelStyle 'republic'}}">{{republic}}</span>{{/if}}
-                                    </td>
-                                {{/with}}
+                                <td style="text-align: center">{{averagePercentagesRegion schoolId}}</td>
                             {{else}}
-                                {{#each (repeat 6)}}
-                                    {{#with getQuantity this ../schoolId}}
-                                        <td style="text-align:center">
-                                            {{#if region}}<span style="{{getLabelStyle 'region'}}">{{region}}</span>{{/if}} 
-                                            {{#if republic}}<span style="{{getLabelStyle 'republic'}}">{{republic}}</span>{{/if}}
-                                        </td>
-                                    {{/with}}
-                                {{/each}}
-                                {{#with averageQuantities schoolId}}
-                                    <td style="text-align: center">
-                                        {{#if region}}<span style="{{getLabelStyle 'region'}}">{{region}}</span>{{/if}} 
-                                        {{#if republic}}<span style="{{getLabelStyle 'republic'}}">{{republic}}</span>{{/if}}
-                                    </td>
-                                {{/with}}
+                                {{#if isPercentageRepublic}}
+                                    {{#each (repeat 6)}}
+                                        <td style="text-align:center">{{getPercentageRepublic this ../schoolId}}</td>
+                                    {{/each}}
+                                    <td style="text-align: center">{{averagePercentagesRepublic schoolId}}</td>
+                                {{else}}
+                                    {{#if isQuantityRegion}}
+                                        {{#each (repeat 6)}}
+                                            <td style="text-align:center">{{getQuantityRegion this ../schoolId}}</td>
+                                        {{/each}}
+                                        <td style="text-align: center">{{averageQuantitiesRegion schoolId}}</td>
+                                    {{else}}
+                                        {{#if isQuantityRepublic}}
+                                            {{#each (repeat 6)}}
+                                                <td style="text-align:center">{{getQuantityRepublic this ../schoolId}}</td>
+                                            {{/each}}
+                                            <td style="text-align: center">{{averageQuantitiesRepublic schoolId}}</td>
+                                        {{else}}
+                                            {{#if isPercentageBoth}}
+                                                {{#each (repeat 6)}}
+                                                    <td style="text-align:center">{{getPercentageBoth this ../schoolId}}</td>
+                                                {{/each}}
+                                                <td style="text-align: center">{{averagePercentagesBoth schoolId}}</td>
+                                            {{else}}
+                                                {{#if isQuantityBoth}}
+                                                    {{#each (repeat 6)}}
+                                                        <td style="text-align:center">{{getQuantityBoth this ../schoolId}}</td>
+                                                    {{/each}}
+                                                    <td style="text-align: center">{{averageQuantitiesBoth schoolId}}</td>
+                                                {{/if}}
+                                            {{/if}}
+                                        {{/if}}
+                                    {{/if}}
+                                {{/if}}
                             {{/if}}
                         {{/if}}
                     </tr>

@@ -1,0 +1,181 @@
+<template name="adminOpeThresholds">
+    <div class="row">
+        
+        <h4 style="text-align: center; padding-bottom: 15pt">Деңгейлік ұпайлар</h4>
+        
+        {{#if Template.subscriptionsReady}}
+        <div>
+            <label for="" style="margin-left: 10pt;">Алгебра</label>
+            <div class="form-inline">
+                <span style="margin-left: 10pt;">Область</span>
+                <input type="text" style="width: 40pt" id="01_region" class="form-control" placeholder="Сан енгізіңіз" value="{{threshold '01' 'region'}}">                                
+                
+                <span style="margin-left: 10pt;">Республика</span>
+                <input type="text" style="width: 40pt" id="01_republic" class="form-control" placeholder="Сан енгізіңіз" value="{{threshold '01' 'republic'}}">                                
+            
+            </div>
+        </div>
+        
+        <div>
+            <label for="" style="margin-left: 10pt; margin-top: 15pt;">Физика</label>
+            <div class="form-inline">
+                <span style="margin-left: 10pt;">Область</span>
+                <input type="text" style="width: 40pt" id="02_region" class="form-control" placeholder="Сан енгізіңіз" value="{{threshold '02' 'region'}}">                                
+                
+                <span style="margin-left: 10pt;">Республика</span>
+                <input type="text" style="width: 40pt" id="02_republic" class="form-control" placeholder="Сан енгізіңіз" value="{{threshold '02' 'republic'}}">                                
+            
+            </div>
+        </div>
+        
+        <div>
+            <label for="" style="margin-left: 10pt; margin-top: 15pt;">Химия</label>
+            <div class="form-inline">
+                <span style="margin-left: 10pt;">Область</span>
+                <input type="text" style="width: 40pt" id="03_region" class="form-control" placeholder="Сан енгізіңіз" value="{{threshold '03' 'region'}}">                                
+                
+                <span style="margin-left: 10pt;">Республика</span>
+                <input type="text" style="width: 40pt" id="03_republic" class="form-control" placeholder="Сан енгізіңіз" value="{{threshold '03' 'republic'}}">                                
+            
+            </div>
+        </div>
+
+        <div>
+            <label for="" style="margin-left: 10pt; margin-top: 15pt;">Биология</label>
+            <div class="form-inline">
+                <span style="margin-left: 10pt;">Область</span>
+                <input type="text" style="width: 40pt" id="04_region" class="form-control" placeholder="Сан енгізіңіз" value="{{threshold '04' 'region'}}">                                
+                
+                <span style="margin-left: 10pt;">Республика</span>
+                <input type="text" style="width: 40pt" id="04_republic" class="form-control" placeholder="Сан енгізіңіз" value="{{threshold '04' 'republic'}}">                                
+            
+            </div>
+        </div>
+
+        <div>
+            <label for="" style="margin-left: 10pt; margin-top: 15pt;">Ағылшын тілі</label>
+            <div class="form-inline">
+                <span style="margin-left: 10pt;">Область</span>
+                <input type="text" style="width: 40pt" id="05_region" class="form-control" placeholder="Сан енгізіңіз" value="{{threshold '05' 'region'}}">                                
+                
+                <span style="margin-left: 10pt;">Республика</span>
+                <input type="text" style="width: 40pt" id="05_republic" class="form-control" placeholder="Сан енгізіңіз" value="{{threshold '05' 'republic'}}">                                
+            
+            </div>
+        </div>
+
+        <div>
+            <label for="" style="margin-left: 10pt; margin-top: 15pt;">География</label>
+            <div class="form-inline">
+                <span style="margin-left: 10pt;">Область</span>
+                <input type="text" style="width: 40pt" id="06_region" class="form-control" placeholder="Сан енгізіңіз" value="{{threshold '06' 'region'}}">                                
+                
+                <span style="margin-left: 10pt;">Республика</span>
+                <input type="text" style="width: 40pt" id="06_republic" class="form-control" placeholder="Сан енгізіңіз" value="{{threshold '06' 'republic'}}">                                
+            
+            </div>
+        </div>
+
+        <div>
+            <label for="" style="margin-left: 10pt; margin-top: 15pt;">Информатика</label>
+            <div class="form-inline">
+                <span style="margin-left: 10pt;">Область</span>
+                <input type="text" style="width: 40pt" id="08_region" class="form-control" placeholder="Сан енгізіңіз" value="{{threshold '08' 'region'}}">                                
+                
+                <span style="margin-left: 10pt;">Республика</span>
+                <input type="text" style="width: 40pt" id="08_republic" class="form-control" placeholder="Сан енгізіңіз" value="{{threshold '08' 'republic'}}">                                
+            
+            </div>
+        </div>
+
+        <div>
+            <label for="" style="margin-left: 10pt; margin-top: 15pt;">Қазақ тілі</label>
+            <div class="form-inline">
+                <span style="margin-left: 10pt;">Область</span>
+                <input type="text" style="width: 40pt" id="09_region" class="form-control" placeholder="Сан енгізіңіз" value="{{threshold '09' 'region'}}">                                
+                
+                <span style="margin-left: 10pt;">Республика</span>
+                <input type="text" style="width: 40pt" id="09_republic" class="form-control" placeholder="Сан енгізіңіз" value="{{threshold '09' 'republic'}}">                                
+            
+            </div>
+        </div>
+
+        <div>
+            <label for="" style="margin-left: 10pt; margin-top: 15pt;">Түрік тілі</label>
+            <div class="form-inline">
+                <span style="margin-left: 10pt;">Область</span>
+                <input type="text" style="width: 40pt" id="10_region" class="form-control" placeholder="Сан енгізіңіз" value="{{threshold '10' 'region'}}">                                
+                
+                <span style="margin-left: 10pt;">Республика</span>
+                <input type="text" style="width: 40pt" id="10_republic" class="form-control" placeholder="Сан енгізіңіз" value="{{threshold '10' 'republic'}}">                                
+            
+            </div>
+        </div>
+
+        <div>
+            <label for="" style="margin-left: 10pt; margin-top: 15pt;">Орыс тілі</label>
+            <div class="form-inline">
+                <span style="margin-left: 10pt;">Область</span>
+                <input type="text" style="width: 40pt" id="11_region" class="form-control" placeholder="Сан енгізіңіз" value="{{threshold '11' 'region'}}">                                
+                
+                <span style="margin-left: 10pt;">Республика</span>
+                <input type="text" style="width: 40pt" id="11_republic" class="form-control" placeholder="Сан енгізіңіз" value="{{threshold '11' 'republic'}}">                                
+            
+            </div>
+        </div>
+
+        <div>
+            <label for="" style="margin-left: 10pt; margin-top: 15pt;">Қазақстан тарихы</label>
+            <div class="form-inline">
+                <span style="margin-left: 10pt;">Область</span>
+                <input type="text" style="width: 40pt" id="12_region" class="form-control" placeholder="Сан енгізіңіз" value="{{threshold '12' 'region'}}">                                
+                
+                <span style="margin-left: 10pt;">Республика</span>
+                <input type="text" style="width: 40pt" id="12_republic" class="form-control" placeholder="Сан енгізіңіз" value="{{threshold '12' 'republic'}}">                                
+            
+            </div>
+        </div>
+              
+        <div>
+            <label for="" style="margin-left: 10pt; margin-top: 15pt;">Дене шынықтыру</label>
+            <div class="form-inline">
+                <span style="margin-left: 10pt;">Область</span>
+                <input type="text" style="width: 40pt" id="23_region" class="form-control" placeholder="Сан енгізіңіз" value="{{threshold '23' 'region'}}">                                
+                
+                <span style="margin-left: 10pt;">Республика</span>
+                <input type="text" style="width: 40pt" id="23_republic" class="form-control" placeholder="Сан енгізіңіз" value="{{threshold '23' 'republic'}}">                                
+            
+            </div>
+        </div>
+
+        <div>
+            <label for="" style="margin-left: 10pt; margin-top: 15pt;">Жалпы</label>
+            <div class="form-inline">
+                <span style="margin-left: 10pt;">Область</span>
+                <input type="text" style="width: 40pt" id="all_region" class="form-control" placeholder="Сан енгізіңіз" value="{{threshold 'all' 'region'}}">                                
+                
+                <span style="margin-left: 10pt;">Республика</span>
+                <input type="text" style="width: 40pt" id="all_republic" class="form-control" placeholder="Сан енгізіңіз" value="{{threshold 'all' 'republic'}}">                                
+            
+            </div>
+        </div>
+                        <!-- <option value="01">Алгебра</option>
+                        <option value="02">Физика</option>
+                        <option value="03">Химия</option>
+                        <option value="04">Биология</option>
+                        <option value="05">Ағылшын тілі</option>
+                        <option value="06">География</option>
+                        <option value="08">Информатика</option>
+                        <option value="09">Қазақ тілі</option>
+                        <option value="10">Түрік тілі</option>
+                        <option value="11">Орыс тілі</option>
+                        <option value="12">Қазақстан тарихы</option>
+                        <option value="23">Дене шынықтыру</option>
+                        <option value="all">Жалпы</option> -->
+
+        
+        {{else}}
+        <p>Loading...</p>
+        {{/if}}
+    </div>
+</template>

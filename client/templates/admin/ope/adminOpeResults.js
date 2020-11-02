@@ -118,24 +118,6 @@ Template.adminOpeResults.events({
     'change #grade'(event,template) {
         event.preventDefault();
         template.grade.set(event.target.value)
-    },
-    'change #threshold_region'(event, template) {
-        event.preventDefault();
-        template.threshold_region.set(event.target.value);
-        Meteor.call('Configs.changeThresholdRegion', template.threshold_region.get(), template.subjectId.get(), (err,res) => {
-            if (err) {
-                alert(err.reason)
-            } 
-        })
-    },
-    'change #threshold_republic'(event, template) {
-        event.preventDefault();
-        template.threshold_republic.set(event.target.value);
-        Meteor.call('Configs.changeThresholdRepublic', template.threshold_republic.get(), template.subjectId.get(), (err,res) => {
-            if (err) {
-                alert(err.reason)
-            } 
-        })
     }
 })
 
