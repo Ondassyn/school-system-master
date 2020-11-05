@@ -1,0 +1,73 @@
+<template name="adminOpeUpload">
+    <div class="row">
+        <div class="col-md-12">
+            <h4 for="upload" style="padding-bottom: 10pt">OPE Жүктеу</h4>
+            <div class="form-group">
+                <div class="form-inline">
+                    <div class="form-group">
+
+                        <label for="" style="margin-left: 10pt; ">Пән</label>
+                        <select class="form-control" id="subjectId">
+                            <option value="01">Алгебра</option>
+                            <option value="02">Физика</option>
+                            <option value="03">Химия</option>
+                            <option value="04">Биология</option>
+                            <option value="05">Ағылшын тілі</option>
+                            <option value="06">География</option>
+                            <option value="08">Информатика</option>
+                            <option value="09">Қазақ тілі</option>
+                            <option value="10">Түрік тілі</option>
+                            <option value="11">Орыс тілі</option>
+                            <option value="12">Қазақстан тарихы</option>
+                            <option value="23">Дене шынықтыру</option>
+                        </select>
+
+                        <label for="" style="margin-left: 10pt; ">OPE нөмірі</label>
+                        <select class="form-control" id="opeNumber">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                        </select>
+
+                        <a style="margin-right: 15pt" class="btn btn-default" id="download">Үлгі</a>
+                        <input type="file" class="form-control" id="upload" style="margin-right: 15pt">
+                        <a class="btn btn-primary" id="save">Сақтау</a>
+
+                    </div >
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="table-responsive">
+            <table class="table table-striped table-bordered table-hover" >
+                <thead>
+                    <tr>
+                        <th>School ID</th>
+                        <th>Student ID</th>
+                        <th>Тегі</th>
+                        <th>Аты</th>
+                        <th>OPE нәтижесі</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each results}}
+                    <tr>
+                        <td>{{schoolId}}</td>
+                        <td>{{studentId}}</td>
+                        <td>{{studentSurname}}</td>
+                        <td>{{studentName}}</td>
+                        <td style="text-align: center;">{{opeResult}}</td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+            </div>
+        </div>
+        <div id="out"></div>
+    </div>
+</template>

@@ -381,7 +381,7 @@ Meteor.methods({
     },
 
     'Configs.changeThresholdRegion': function(threshold, subjectId) {
-        if(!this.userId || !Roles.userIsInRole(this.userId, ['admin']))
+        if(!this.userId && !Roles.userIsInRole(this.userId, 'admin') && !Roles.userIsInRole(this.userId, 'edlight'))
             throw new Meteor.Error(401, 'Please login as administrator')
 
         if(!Configs.update({_id: "opeThresholds"}, {$set: { ['region_' + subjectId] : threshold}}))
@@ -389,7 +389,7 @@ Meteor.methods({
     },
 
     'Configs.changeThresholdRepublic': function(threshold, subjectId) {
-        if(!this.userId || !Roles.userIsInRole(this.userId, ['admin']))
+        if(!this.userId && !Roles.userIsInRole(this.userId, 'admin') && !Roles.userIsInRole(this.userId, 'edlight'))
             throw new Meteor.Error(401, 'Please login as administrator')
 
         if(!Configs.update({_id: "opeThresholds"}, {$set: {['republic_' + subjectId] : threshold}}))
