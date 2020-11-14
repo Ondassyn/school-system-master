@@ -155,6 +155,17 @@ Meteor.publish('btsAllResults',function(academicYear,grade,btsNo) {
     return this.ready()
 })
 
+Meteor.publish('btsResultsForSelection',function(academicYear, btsNo) {
+    if (this.userId) {
+        let school = Schools.findOne({userId: this.userId});
+        if(school)
+            return BtsResults.find({academicYear, schoolId: school.schoolId, btsNo});
+        else
+            return BtsResults.find({academicYear, btsNo});
+    }
+    return this.ready()
+})
+
 Meteor.publish('turkishAllResults',function(academicYear,grade) {
     if (this.userId) {
         return TurkishResults.find({academicYear:academicYear,grade:grade})
@@ -218,6 +229,17 @@ Meteor.publish('btsObjectivesSchoolRatings',function(academicYear,quarter) {
         if(!school) school = Schools.findOne({coordinatorId:this.userId})
         let cursor = BtsObjectivesRatings.find({academicYear:academicYear,quarter:quarter,schoolId:school.schoolId})
         return cursor
+    }
+    return this.ready()
+})
+
+Meteor.publish('btsSelected',function(academicYear, btsNo) {
+    if (this.userId) {
+        let school = Schools.findOne({userId: this.userId});
+        if(school)
+            return BtsSelected.find({academicYear, schoolId:school.schoolId, btsNo})
+        else    
+            return BtsSelected.find({academicYear, btsNo})
     }
     return this.ready()
 })

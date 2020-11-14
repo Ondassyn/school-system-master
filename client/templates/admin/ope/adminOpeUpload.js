@@ -45,10 +45,10 @@ Template.adminOpeUpload.events({
       const html = document.getElementById('out').innerHTML;
 
       var data = [];
-      var headers = ['schoolId', 'studentId', 'studentSurname', 'studentName', 'opeResult'];
+      var headers = ['schoolId', 'studentId', 'studentName', 'opeResult'];
 
       data.push(headers);
-        data.push(['001', '00001', 'Абаев', 'Абай', '10']);
+        data.push(['001', '00001', 'Абаев Абай', '10']);
 
       Meteor.call('download', data, (err, wb) => {
         if (err) throw err;

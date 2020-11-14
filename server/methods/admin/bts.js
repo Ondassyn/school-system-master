@@ -187,5 +187,21 @@ Meteor.methods({
             calculateObj(academicYear,btsNo,grade)
             //console.log("it's ok !")
 
+    },
+
+    'BtsSelected.addSet': function(academicYear, btsNo, schoolId, grade, selected) {
+        if (!this.userId && !Roles.userIsInRole(this.userId, ['admin']) && !Roles.userIsInRole(this.userId, ['edlight']))
+            throw new Meteor.Error(401, 'Please login as administrator')
+
+        if(academicYear && btsNo && schoolId && grade && selected && selected.length > 0){
+            let duplicate = BtsSelected.findOne({academicYear, btsNo, schoolId, grade});
+            
+            if(duplicate)
+                throw new Meteor.Error(500, 'Data already exists')
+
+            BtsSelected.insert({academicYear, btsNo, schoolId, grade, selected})
+        } else {
+            throw new Meteor.Error(500, 'Data is not properly formatted')
+        }
     }
 });
