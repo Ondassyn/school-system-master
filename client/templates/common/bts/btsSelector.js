@@ -118,8 +118,6 @@ Template.btsSelector.events({
         Meteor.call('BtsSelected.addSet', academicYear.get(), btsNo, schoolId, grade, selected, (err, res) => {
             if(err) {
                 alert(err.message);
-            } else {
-                alert('Random set of students is generated');
             }
         })
     },
@@ -153,7 +151,7 @@ Template.btsSelector.events({
         Meteor.call('download', data, (err, wb) => {
             if (err) throw err;
 
-            let sName = academicYear.get() + '_' + btsNo + '_' + schoolId + '_selected_students.xlsx';
+            let sName = academicYear.get() + '_' + template.btsNo.get() + '_' + schoolId + '_selected_students.xlsx';
             XLSX.writeFile(wb, sName);
         });
     },
@@ -253,5 +251,36 @@ Template.btsSelector.events({
                 }
             }
         })
+    },
+    'click #download_all' (event, template) {
+        let btsSelected = BtsSelected.find({}, {sort: {schoolId: 1, grade: 1}}).fetch();
+        if(!btsSelected || btsSelected.length === 0){
+            alert('No generated students to download');
+            return;
+        }
+
+        let data = [];
+        let headers = ['schoolId', 'grade', 'division', 'studentId', 'studentSurname', 'studentName'];
+
+        data.push(headers);
+
+        btsSelected.map((selected) => {
+            let selectedIds = selected.selected;
+            if(selectedIds.length === 0) return;
+            selectedIds.map((selectedId) => {        
+                let student = BtsResults.findOne({studentId:selectedId});
+                if(student){
+                    let dataRow = [selected.schoolId, +student.grade+1, student.division, student.studentId, student.surname, student.name];
+                    data.push(dataRow);
+                }
+            })
+        })
+
+        Meteor.call('download', data, (err, wb) => {
+            if (err) throw err;
+
+            let sName = academicYear.get() + '_' + template.btsNo.get() + '_all_selected_students.xlsx';
+            XLSX.writeFile(wb, sName);
+        });
     }
 })
