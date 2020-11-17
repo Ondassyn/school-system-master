@@ -26,7 +26,9 @@ Template.adminOpeResults.helpers({
   },
   opeThresholds(level) {
     let subjectId = Template.instance().subjectId.get();
-    return Configs.findOne({_id: "opeThresholds"})[level+ '_' + subjectId];
+    let configs = Configs.findOne({_id: "opeThresholds"});
+    if(configs) return configs[level+ '_' + subjectId];
+    return '';
   },
   schools(){
     return Schools.find({},{sort:{schoolId:1}});

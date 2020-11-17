@@ -118,7 +118,7 @@ Template.adminOpeRatings.helpers({
     },
     averageQuantitiesRegion(schoolId) {
         let averages = Session.get('regionQuantities_' + schoolId);
-        if(averages){
+        if(averages && averages.length > 0){
             let n = 0;
             let sum = 0;
             averages.map((average) => {
@@ -130,6 +130,7 @@ Template.adminOpeRatings.helpers({
             if(n !== 0) {
                 return (sum/n).toFixed(1);
             }
+            return 0;
         }
     },
     getQuantityRepublic(opeNo, schoolId) {
@@ -138,7 +139,7 @@ Template.adminOpeRatings.helpers({
     },
     averageQuantitiesRepublic(schoolId) {
         let averages = Session.get('republicQuantities_' + schoolId);
-        if(averages){
+        if(averages && averages.length > 0){
             let n = 0;
             let sum = 0;
             averages.map((average) => {
@@ -150,6 +151,7 @@ Template.adminOpeRatings.helpers({
             if(n !== 0) {
                 return (sum/n).toFixed(1);
             }
+            return 0;
         }
     },
     getPercentageBoth(opeNo, schoolId){
@@ -178,7 +180,7 @@ Template.adminOpeRatings.helpers({
     },
     averageQuantitiesBoth(schoolId) {
         let averages = Session.get('quantitiesBoth_' + schoolId);
-        if(averages){
+        if(averages  && averages.length > 0){
             let n = 0;
             let sum = 0;
             averages.map((average) => {
@@ -190,6 +192,7 @@ Template.adminOpeRatings.helpers({
             if(n !== 0) {
                 return (sum/n).toFixed(1);
             }
+            return 0;
         }
     },
     getLabelStyle(level) {
