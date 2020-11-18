@@ -11,12 +11,11 @@ Template.adminOpeResults.onCreated(function() {
     template.threshold_region = new ReactiveVar();
     template.threshold_republic = new ReactiveVar();
 
-    template.subscribe('schools');
-    template.subscribe('configs');
+    template.subscribe('adminOpeSchools');
+    template.subscribe('adminOpeConfigs');
 
     template.autorun(() => {
         template.subscribe("adminOpeResults", academicYear.get(), template.schoolId.get(), template.subjectId.get(), template.grade.get());
-        template.subscribe('adminStudents', template.schoolId.get(), template.subjectId.get(), template.grade.get());
     })
 })
 
@@ -31,28 +30,29 @@ Template.adminOpeResults.helpers({
     return '';
   },
   schools(){
-    return Schools.find({},{sort:{schoolId:1}});
+    return Schools.find().fetch();
   },
   level(studentId) {
-    return Students.findOne({studentId}).level === 'none' ? '' : Students.findOne({studentId}).level;
+    return OpeResults.findOne({studentId}).level === 'none' ? '' : OpeResults.findOne({studentId}).level;
   },
   getLevelStyle(studentId, opeNo) {
-    let level = Students.findOne({studentId}).level === 'none' ? '' : Students.findOne({studentId}).level;
+    let opeResult = OpeResults.findOne({studentId});
+    
+    let level = opeResult.level === 'none' ? '' : opeResult.level;
     if(!level) return 'text-align: center; white-space: nowrap';
     let threshold = level === 'Область' ? Template.adminOpeResults.__helpers.get('opeThresholds')('region') : Template.adminOpeResults.__helpers.get('opeThresholds')('republic');
     if(!threshold) return 'text-align: center; white-space: nowrap';
-    let opeResult = OpeResults.findOne({studentId});
+    
     let points = parseFloat(opeResult['ope' + opeNo]);
 
-
     if(level === 'Область') {
-        if(threshold && points){
+        if(threshold && !Number.isNaN(points)){
             if(+points >= +threshold) return 'text-align: center; white-space: nowrap; background-color: #b2fab4';
             return 'text-align: center; white-space: nowrap; background-color: #ff867c';
         }
     }
     if(level === 'Республика') {
-        if(threshold && points){
+        if(threshold && !Number.isNaN(points)){
             if(+points >= +threshold) return 'text-align: center; white-space: nowrap; background-color: #b2fab4';
             return 'text-align: center; white-space: nowrap; background-color: #ff867c';
         }
@@ -69,8 +69,8 @@ Template.adminOpeResults.helpers({
 
     list.map((item) => {
         if(item['ope' + no]) {
-            let level = Students.findOne({studentId : item.studentId}).level;
-            if(level && (level === 'Область' || level === 'Республика')){
+            let level = item.level;
+            if(level && (level === 'Область')){
                 n++;
                 
                 if(+item['ope' + no] >= +threshold) m++;
@@ -88,7 +88,7 @@ Template.adminOpeResults.helpers({
     let m = 0;
     list.map((item) => {
         if(item['ope' + no]) {
-            let level = Students.findOne({studentId : item.studentId}).level;
+            let level = item.level;
             if(level && level === 'Республика'){
                 n++;
                 if(+item['ope' + no] >= +threshold) m++;

@@ -13,26 +13,7 @@ Meteor.publish('students', function(){
     }
 })
 
-Meteor.publish('adminStudents', function(schoolId, olympiad, grade) {
-    if (this.userId) {
-        if(schoolId === 'all' && olympiad === 'all' && grade === 'all')
-            return Students.find({});
-        else if(schoolId === 'all'  && olympiad === 'all')
-            return Students.find({grade});
-        else if(schoolId === 'all'  && grade === 'all')
-            return Students.find({olympiad});
-        else if(grade === 'all'  && olympiad === 'all')
-            return Students.find({schoolId});
-        else if(schoolId === 'all')
-            return Students.find({olympiad, grade});
-        else if(olympiad === 'all')
-            return Students.find({schoolId, grade});
-        else if(grade === 'all')
-            return Students.find({olympiad, schoolId});
-        return Students.find({schoolId, olympiad, grade:grade});
-    }
-    return this.ready()
-})
+
 
 Meteor.publish('schoolStudents', function(olympiad, grade) {
     if(this.userId) {

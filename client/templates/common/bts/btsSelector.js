@@ -181,8 +181,14 @@ Template.btsSelector.events({
                         let results = BtsResults.find({schoolId, grade: previousGrade}, {sort: {total: -1}}).fetch();
                             
                         let n = results.length;
-                        let third = Math.floor(n/3);
+                        let third = Math.floor(0.3*n);
                         let tenth = Math.floor(n/10);
+                        if(tenth < 1) {
+                            if(n >= 3) {
+                                tenth = 1;
+                                third = 3;
+                            }
+                        }
                         
                         let selected = [];
                         let i = 0;
@@ -219,8 +225,8 @@ Template.btsSelector.events({
 
 
                         //check
-                        /*
-                        console.log(grade);
+                        
+                        console.log(schoolId + ' - ' + grade);
                         console.log('The number must be around: ' + (0.3*n).toFixed(2));
                         console.log('The actual number is: ' + selected.length);
                         
@@ -238,7 +244,7 @@ Template.btsSelector.events({
                         })
                         console.log('The expected average: ' + (+totalSum/+totalN));
                         console.log('The actual average: ' + (+actualSum/+actualN));
-                        */
+                        
 
                         Meteor.call('BtsSelected.addSet', academicYear.get(), btsNo, schoolId, grade, selected, (err, res) => {
                             if(err) {

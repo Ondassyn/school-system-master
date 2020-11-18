@@ -21,7 +21,7 @@ Template.adminOpeRatings.onCreated(function() {
     // })
 
     template.subscribe("adminOpeResults", academicYear.get(), 'all', 'all', 'all');
-    template.subscribe('adminStudents', 'all', 'all', 'all');
+    //template.subscribe('adminOpeStudents', 'all', 'all', 'all');
 
 })
 
@@ -73,11 +73,19 @@ Template.adminOpeRatings.helpers({
         return n === 0 ? '' : (sum/n).toFixed(1);
     },
     getPercentageRegion(opeNo, schoolId) {
+        if(Template.instance().subjectId.get() === 'all'){
+            let percentages = Session.get('regionPercentagesAll_' + schoolId);
+            if(percentages) if(percentages[opeNo]) return (+percentages[opeNo]*100).toFixed(0)  + '%';
+        }
         let percentages = Session.get('regionPercentages_' + schoolId);
-        if(percentages) if(percentages[opeNo]) return (+percentages[opeNo]*100) + '%';
+        if(percentages) if(percentages[opeNo]) return (+percentages[opeNo]*100).toFixed(0)  + '%';
     },
     averagePercentagesRegion(schoolId) {
-        let averages = Session.get('regionPercentages_' + schoolId);
+        let averages;
+        if(Template.instance().subjectId.get() === 'all')
+            averages = Session.get('regionPercentagesAll_' + schoolId);
+        else
+            averages = Session.get('regionPercentages_' + schoolId);
         if(averages){
             let n = 0;
             let sum = 0;
@@ -93,11 +101,19 @@ Template.adminOpeRatings.helpers({
         }
     },
     getPercentageRepublic(opeNo, schoolId) {
+        if(Template.instance().subjectId.get() === 'all'){
+            let percentages = Session.get('republicPercentagesAll_' + schoolId);
+            if(percentages) if(percentages[opeNo]) return (+percentages[opeNo]*100).toFixed(0) + '%';
+        }
         let percentages = Session.get('republicPercentages_' + schoolId);
-        if(percentages) if(percentages[opeNo]) return (+percentages[opeNo]*100) + '%';
+        if(percentages) if(percentages[opeNo]) return (+percentages[opeNo]*100).toFixed(0)  + '%';
     },
     averagePercentagesRepublic(schoolId) {
-        let averages = Session.get('republicPercentages_' + schoolId);
+        let averages;
+        if(Template.instance().subjectId.get() === 'all')
+            averages = Session.get('republicPercentagesAll_' + schoolId);
+        else
+            averages = Session.get('republicPercentages_' + schoolId);
         if(averages){
             let n = 0;
             let sum = 0;
@@ -113,11 +129,19 @@ Template.adminOpeRatings.helpers({
         }
     },
     getQuantityRegion(opeNo, schoolId) {
+        if(Template.instance().subjectId.get() === 'all'){
+            let quantities = Session.get('regionQuantitiesAll_' + schoolId);
+            if(quantities) return quantities[opeNo];;
+        }
         let quantities = Session.get('regionQuantities_' + schoolId);
         if(quantities) return quantities[opeNo];
     },
     averageQuantitiesRegion(schoolId) {
-        let averages = Session.get('regionQuantities_' + schoolId);
+        let averages;
+        if(Template.instance().subjectId.get() === 'all')
+            averages = Session.get('regionQuantitiesAll_' + schoolId);
+        else
+            averages = Session.get('regionQuantities_' + schoolId);
         if(averages && averages.length > 0){
             let n = 0;
             let sum = 0;
@@ -134,11 +158,19 @@ Template.adminOpeRatings.helpers({
         }
     },
     getQuantityRepublic(opeNo, schoolId) {
+        if(Template.instance().subjectId.get() === 'all'){
+            let quantities = Session.get('republicQuantitiesAll_' + schoolId);
+            if(quantities) return quantities[opeNo];
+        }
         let quantities = Session.get('republicQuantities_' + schoolId);
         if(quantities) return quantities[opeNo];
     },
     averageQuantitiesRepublic(schoolId) {
-        let averages = Session.get('republicQuantities_' + schoolId);
+        let averages;
+        if(Template.instance().subjectId.get() === 'all')
+            averages = Session.get('republicQuantitiesAll_' + schoolId);
+        else
+            averages = Session.get('republicQuantities_' + schoolId);
         if(averages && averages.length > 0){
             let n = 0;
             let sum = 0;
@@ -155,11 +187,19 @@ Template.adminOpeRatings.helpers({
         }
     },
     getPercentageBoth(opeNo, schoolId){
+        if(Template.instance().subjectId.get() === 'all') {
+            let percentagesBoth = Session.get('percentagesBothAll_' + schoolId);
+            if(percentagesBoth) if(percentagesBoth[opeNo]) return (+percentagesBoth[opeNo]).toFixed(0) + '%';
+        }
         let percentagesBoth = Session.get('percentagesBoth_' + schoolId);
-        if(percentagesBoth) if(percentagesBoth[opeNo]) return percentagesBoth[opeNo] + '%';
+        if(percentagesBoth) if(percentagesBoth[opeNo]) return (+percentagesBoth[opeNo]).toFixed(0)  + '%';
     },
     averagePercentagesBoth(schoolId) {
-        let averages = Session.get('percentagesBoth_' + schoolId);
+        let averages;
+        if(Template.instance().subjectId.get() === 'all')
+            averages = Session.get('percentagesBothAll_' + schoolId);
+        else
+            averages = Session.get('percentagesBoth_' + schoolId);
         if(averages){
             let n = 0;
             let sum = 0;
@@ -175,11 +215,19 @@ Template.adminOpeRatings.helpers({
         }
     },
     getQuantityBoth(opeNo, schoolId) {
+        if(Template.instance().subjectId.get() === 'all') {
+            let quantities = Session.get('quantitiesBothAll_' + schoolId);
+            if(quantities) return quantities[opeNo];
+        }
         let quantities = Session.get('quantitiesBoth_' + schoolId);
         if(quantities) return quantities[opeNo];
     },
     averageQuantitiesBoth(schoolId) {
-        let averages = Session.get('quantitiesBoth_' + schoolId);
+        let averages;
+        if(Template.instance().subjectId.get() === 'all')
+            averages = Session.get('quantitiesBothAll_' + schoolId);
+        else
+            averages = Session.get('quantitiesBoth_' + schoolId);
         if(averages  && averages.length > 0){
             let n = 0;
             let sum = 0;
@@ -210,6 +258,10 @@ let resetPercentages = function() {
         let schoolId = schoolObject.schoolId;
         Session.set('regionPercentages_' + schoolId, []);
         Session.set('republicPercentages_' + schoolId, []);
+        Session.set('regionPercentagesAll_' + schoolId, []);
+        Session.set('republicPercentagesAll_' + schoolId, []);
+        Session.set('percentagesBoth_' + schoolId, []);
+        Session.set('percentagesBothAll_' + schoolId, []);
     })
 }
 
@@ -220,8 +272,13 @@ let resetQuantities = function() {
         let schoolId = schoolObject.schoolId;
         Session.set('regionQuantities_' + schoolId, []);
         Session.set('republicQuantities_' + schoolId, []);
+        Session.set('regionQuantitiesAll_' + schoolId, []);
+        Session.set('republicQuantitiesAll_' + schoolId, []);
+        Session.set('quantitiesBoth_' + schoolId, []);
+        Session.set('quantitiesBothAll_' + schoolId, []);
     })
 }
+
 
 let resetAverages = function() {
     let schoolIds = Schools.find({}, {fields: {schoolId: 1, _id: 0}}).fetch();
@@ -323,10 +380,10 @@ let estimatePercentages = function(template) {
 
         opeResults.map((opeResult) => {
             for(i = 1; i <= opeNumber; i++) {  
-                let student = Students.findOne({studentId : opeResult.studentId});
-                if(!student) return;
+                // let student = Students.findOne({studentId : opeResult.studentId});
+                // if(!student) return;
                 
-                let level = student.level;
+                let level = opeResult.level;
                 if(opeResult['ope' + i]){
                     let points = parseFloat(opeResult['ope' + i].replace(/,/g, ''));
                     if(level && points){
@@ -397,23 +454,154 @@ let estimatePercentages = function(template) {
     })
 }
 
+let estimateGeneralPercentages = function(template) {
+    resetPercentages();
+    resetQuantities();
+
+    let opeThresholds = Configs.findOne({_id: 'opeThresholds'});
+    if(!opeThresholds) return;
+
+    let thresholds = Object.keys(opeThresholds);
+    if(thresholds.length === 0) return;
+
+    let grade = template.grade.get();
+
+    let opeNumber = 6;
+    let schoolIds = Schools.find({}, {fields: {schoolId: 1, _id: 0}}).fetch();
+
+    schoolIds.map((schoolObject) => {
+        let opeResults;
+        let schoolId = schoolObject.schoolId;
+        if(grade === 'all') {
+            opeResults = OpeResults.find({schoolId}).fetch();
+        } else {
+            opeResults = OpeResults.find({schoolId, grade}).fetch();
+        }
+
+        let msRegion = [null,0,0,0,0,0,0];
+        let nsRegion = [null,0,0,0,0,0,0];
+        let msRepublic = [null,0,0,0,0,0,0];
+        let nsRepublic = [null,0,0,0,0,0,0];
+
+        thresholds.filter(threshold => {
+            return threshold !== '_id';
+        }).map(threshold => {
+            let tokens = threshold.split('_');
+            let thresholdLevel = tokens[0];
+            let thresholdSubjectId = tokens[1];
+            
+
+            opeResults.filter((opeResult) => {
+                return opeResult.level && opeResult.level != 'none' && thresholdSubjectId === opeResult.olympiad;
+            }).map((opeResult) => {
+                for(i = 1; i <= opeNumber; i++) {  
+                    // let student = Students.findOne({studentId : opeResult.studentId});
+                    // if(!student) return;
+                    if(opeResult['ope' + i]){
+                        let points = parseFloat(opeResult['ope' + i].replace(/,/g, ''));
+                        if(!isNaN(points)){
+                            if(opeResult.level === 'Область' && thresholdLevel === 'region'){
+                                let thresholdRegion = parseFloat(opeThresholds[threshold].replace(/,/g, ''));
+                                if(!isNaN(thresholdRegion)) {
+                                    nsRegion[i]++;
+                                    if(+points >= +thresholdRegion) msRegion[i]++;
+                                }
+                            } else if(opeResult.level === 'Республика' && thresholdLevel === 'republic') {
+                                let thresholdRepublic = parseFloat(opeThresholds[threshold].replace(/,/g, ''));
+                                if(!isNaN(thresholdRepublic)) {
+                                    nsRepublic[i]++;
+                                    if(+points >= +thresholdRepublic)
+                                        msRepublic[i]++;
+                                }
+                            }
+                        }
+                    }
+                
+                }
+            })
+        })
+
+        let msBoth = [null,0,0,0,0,0,0];
+        let nsBoth = [null,0,0,0,0,0,0];
+
+        if(nsRegion) {
+            let percentages = [];
+            let quantities = [];
+            for(i = 1; i <= opeNumber; i++) {
+                if(nsRegion[i]) {
+                    percentages[i] = (msRegion[i]/nsRegion[i]).toFixed(3);
+                    quantities[i] = msRegion[i];
+                    msBoth[i] += msRegion[i];
+                    nsBoth[i] += nsRegion[i];
+                }
+            }
+            
+            //console.log('schoolId: ' + schoolId + ': ' + msRegion + ' ' + nsRegion)  
+
+            Session.set('regionPercentagesAll_' + schoolId, percentages);
+            Session.set('regionQuantitiesAll_' + schoolId, quantities);
+        }
+
+        if(nsRepublic) {
+            let averages = [];
+            let quantities = [];
+            for(i = 1; i <= opeNumber; i++) {
+                if(nsRepublic[i]) {
+                    averages[i] = (msRepublic[i]/nsRepublic[i]).toFixed(3);
+                    quantities[i] = msRepublic[i];
+                    msBoth[i] += msRepublic[i];
+                    nsBoth[i] += nsRepublic[i];
+                }
+            }
+            
+            Session.set('republicPercentagesAll_' + schoolId, averages);
+            Session.set('republicQuantitiesAll_' + schoolId, quantities);
+        }
+
+        let percentagesBoth = [];
+        let quantitiesBoth = [];
+        for(i = 1; i <= opeNumber; i++) {
+            if(nsBoth[i] !== 0){
+                percentagesBoth[i] = (msBoth[i]/nsBoth[i]*100).toFixed(0);
+                quantitiesBoth[i] = msBoth[i]
+            }
+        }
+
+        Session.set('percentagesBothAll_' + schoolId, percentagesBoth);
+        Session.set('quantitiesBothAll_' + schoolId, quantitiesBoth);
+
+    })
+}
+
 Template.adminOpeRatings.events({
     'change #subjectId'(event,template) {
         event.preventDefault();
         template.subjectId.set(event.target.value);
+        if(template.subjectId.get() === 'all') {
+            estimateGeneralPercentages(template);
+        } else {
+            estimatePercentages(template);
+        }
         estimateAverages(template);
-        estimatePercentages(template);
     },
     'change #grade'(event,template) {
         event.preventDefault();
         template.grade.set(event.target.value);
+        if(template.subjectId.get() === 'all') {
+            estimateGeneralPercentages(template);
+        } else {
+            estimatePercentages(template);
+        }
         estimateAverages(template);
-        estimatePercentages(template);
     },
     'change #rating_type'(event, template) {
         event.preventDefault();
         template.rating_type.set(event.target.value);
-        estimatePercentages(template);
+        if(template.subjectId.get() === 'all') {
+            estimateGeneralPercentages(template);
+        } else {
+            estimatePercentages(template);
+        }
         estimateAverages(template);
     }
 })

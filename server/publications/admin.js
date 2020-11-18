@@ -187,3 +187,60 @@ Meteor.publish("teacherAccounts",function() {
 	}
 	return this.ready()
 })
+
+Meteor.publish('adminOpeStudents', function(schoolId, olympiad, grade) {
+    if (this.userId) {
+        if(schoolId === 'all' && olympiad === 'all' && grade === 'all')
+            return Students.find({}, {fields: {studentId: 1, level: 1}});
+        else if(schoolId === 'all'  && olympiad === 'all')
+            return Students.find({grade}, {fields: {studentId: 1, level: 1}});
+        else if(schoolId === 'all'  && grade === 'all')
+            return Students.find({olympiad}, {fields: {studentId: 1, level: 1}});
+        else if(grade === 'all'  && olympiad === 'all')
+            return Students.find({schoolId}, {fields: {studentId: 1, level: 1}});
+        else if(schoolId === 'all')
+            return Students.find({olympiad, grade}, {fields: {studentId: 1, level: 1}});
+        else if(olympiad === 'all')
+            return Students.find({schoolId, grade}, {fields: {studentId: 1, level: 1}});
+        else if(grade === 'all')
+            return Students.find({olympiad, schoolId}, {fields: {studentId: 1, level: 1}});
+        return Students.find({schoolId, olympiad, grade:grade}, {fields: {studentId: 1, level: 1}});
+    }
+    return this.ready()
+})
+
+Meteor.publish("adminOpeSchools",function() {
+	if (this.userId) {
+		return Schools.find({}, {fields: {schoolId: 1, shortName: 1}})
+	}
+	return this.ready()
+})
+
+Meteor.publish("adminOpeConfigs",function() {
+	if (this.userId) {
+		return Configs.find({_id: 'opeThresholds'});
+	}
+	return this.ready()
+})
+
+
+Meteor.publish('adminOpeResults',function(academicYear, schoolId, subjectId, grade) {
+    if (this.userId) {
+        if(schoolId === 'all' && subjectId === 'all' && grade === 'all')
+            return OpeResults.find({academicYear});
+        else if(schoolId === 'all'  && subjectId === 'all')
+            return OpeResults.find({academicYear, grade});
+        else if(schoolId === 'all'  && grade === 'all')
+            return OpeResults.find({academicYear, olympiad:subjectId});
+        else if(grade === 'all'  && subjectId === 'all')
+            return OpeResults.find({academicYear, schoolId});
+        else if(schoolId === 'all')
+            return OpeResults.find({academicYear, olympiad:subjectId, grade});
+        else if(subjectId === 'all')
+            return OpeResults.find({academicYear, schoolId, grade});
+        else if(grade === 'all')
+            return OpeResults.find({academicYear, olympiad:subjectId, schoolId});
+        return OpeResults.find({academicYear: academicYear, schoolId, olympiad:subjectId, grade:grade});
+    }
+    return this.ready()
+})

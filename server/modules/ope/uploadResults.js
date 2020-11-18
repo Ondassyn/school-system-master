@@ -9,7 +9,8 @@ export const uploadResults = (academicYear,subjectId,opeNumber,results) => {
         let student = Students.findOne({studentId:parseInt(studentObj.studentId), schoolId});
 
         if (!student){
-            unregisteredStudents.push(studentObj.studentName);
+            if(studentObj.studentName.trim())
+                unregisteredStudents.push(studentObj.studentName.trim());
             return;        
         }
 
@@ -41,7 +42,8 @@ export const uploadResults = (academicYear,subjectId,opeNumber,results) => {
                 olympiad: subjectId,
                 ['ope' + opeNumber]: studentObj.opeResult,
                 average: (sum/n).toFixed(2),
-                academicYear
+                academicYear,
+                level: student.level
             }
 
             OpeResults.update({_id:recordInDb._id},{$set:studentRecord})
@@ -55,7 +57,8 @@ export const uploadResults = (academicYear,subjectId,opeNumber,results) => {
                 olympiad: subjectId,
                 ['ope' + opeNumber]: studentObj.opeResult,
                 average: studentObj.opeResult,
-                academicYear
+                academicYear,
+                level: student.level
             }
             OpeResults.insert(studentRecord);
         }
