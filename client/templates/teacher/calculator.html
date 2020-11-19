@@ -11,12 +11,24 @@
             <div class="form-group" style="margin-top: 20pt; width: 80%">
                 <label for="specialPosition">{{_ "question2"}}</label>
                 <select class="form-control" id="select" name="specialPosition">
-                    <option disabled="diabled" selected="selected" value="{{teacher.specialPosition}}">
+                    <option disabled="disabled" selected="selected" value="{{teacher.specialPosition}}">
                         {{teacher.specialPosition}}</option>
                     <option value="head">{{_ "question2_option1"}}</option>
                     <option value="vice-head">{{_ "question2_option2"}}</option>
-                    <option value="form-master">{{_ "question2_option3"}}</option>
+                    <option value="dorm-head">{{_ "question2_option3"}}</option>
+                    <option value="intern">{{_ "question2_option4"}}</option>
+                    <option value="trainee">{{_ "question2_option5"}}</option>
                     <option value="none">{{_ "option_none"}}</option>
+                </select>
+            </div>
+
+            <div class="form-group" style="margin-top: 20pt; width: 80%">
+                <label for="form-head">{{_ "question16"}}</label>
+                <select class="form-control" id="select" name="formHead">
+                    <option disabled="disabled" selected="selected" value="{{teacher.formHead}}">
+                        {{teacher.formHead}}</option>
+                    <option value="yes">{{_ "question16_option1"}}</option>
+                    <option value="no">{{_ "question16_option2"}}</option>
                 </select>
             </div>
 
@@ -44,7 +56,7 @@
             <div class="form-group" style="margin-top: 20pt; width: 80%">
                 <label for="academicDegree">{{_ "question6"}}</label>
                 <select class="form-control" id="select" name="academicDegree">
-                    <option disabled="diabled" selected="selected" value="{{teacher.academicDegree}}">
+                    <option disabled="disabled" selected="selected" value="{{teacher.academicDegree}}">
                         {{teacher.academicDegree}}</option>
                     <option value="bachelor">{{_ "question6_option1"}}</option>
                     <option value="master">{{_ "question6_option2"}}</option>
@@ -57,7 +69,7 @@
             <div class="form-group" style="margin-top: 20pt; width: 80%">
                 <label for="maritalStatus">{{_ "question7"}}</label>
                 <select class="form-control" id="select" name="maritalStatus">
-                    <option disabled="diabled" selected="selected" value="{{teacher.maritalStatus}}">
+                    <option disabled="disabled" selected="selected" value="{{teacher.maritalStatus}}">
                         {{teacher.maritalStatus}}</option>
                     <option value="married-to-employed">{{_ "question7_option1"}}</option>
                     <option value="married-to-unemployed">{{_ "question7_option2"}}</option>
@@ -69,7 +81,7 @@
             <div class="form-group" style="margin-top: 20pt; width: 80%">
                 <label for="workRegion">{{_ "question8"}}</label>
                 <select class="form-control" id="select" name="workRegion">
-                    <option disabled="diabled" selected="selected" value="{{teacher.workRegion}}">
+                    <option disabled="disabled" selected="selected" value="{{teacher.workRegion}}">
                         {{teacher.workRegion}}</option>
                     <option value="regionA">{{_ "question8_option1"}}</option>
                     <option value="regionB">{{_ "question8_option2"}}</option>
@@ -87,7 +99,7 @@
             <div class="form-group" style="margin-top: 20pt; width: 80%">
                 <label for="housing">{{_ "question9"}}</label>
                 <select class="form-control" id="select" name="housing">
-                    <option disabled="diabled" selected="selected" value="{{teacher.housing}}">
+                    <option disabled="disabled" selected="selected" value="{{teacher.housing}}">
                         {{teacher.housing}}</option>
                     <option value="regionA">{{_ "question8_option1"}}</option>
                     <option value="regionB">{{_ "question8_option2"}}</option>
@@ -141,7 +153,7 @@
             <div class="form-group" style="width: 80%">
                 <label for="tat">{{_ "question12"}}</label>
                 <select class="form-control" id="select" name="tat">
-                    <option disabled="diabled" selected="selected" value="{{teacher.tat}}">
+                    <option disabled="disabled" selected="selected" value="{{teacher.tat}}">
                         {{teacher.tat}}</option>
                     <option value="group1">{{_ "question12_option1"}}</option>
                     <option value="group2">{{_ "question12_option2"}}</option>
@@ -159,7 +171,7 @@
             <div class="form-group" style="margin-top: 20pt; width: 80%">
                 <label for="rotation">{{_ "question13"}}</label>
                 <select class="form-control" id="select" name="rotation">
-                    <option disabled="diabled" selected="selected" value="{{teacher.rotation}}">
+                    <option disabled="disabled" selected="selected" value="{{teacher.rotation}}">
                         {{teacher.rotation}}</option>
                     <option value="yes">{{_ "question13_option1"}}</option>
                     <option value="no">{{_ "question13_option2"}}</option>

@@ -8,9 +8,12 @@ import './calculator.html';
 const BASE_SALARY = 120000;
 const EXPERIENCE_COEFFICIENT_1 = 640;
 const EXPERIENCE_COEFFICIENT_2 = 80;
+const DORMMASTER = 15000;
 const FORMMASTER = 16000;
 const HEADMASTER = 40000;
 const VICE_HEADMASTER = 20000;
+const INTERN = 130000;
+const TRAINEE = 110000;
 const KIDS_1 = 8400;
 const KIDS_2 = 12600;
 const KIDS_3 = 16800;
@@ -33,6 +36,7 @@ const REGION_A_SINGLE = 17600;
 const REGION_B_SINGLE = 17600;
 const REGION_C_SINGLE = 17600;
 const REGION_D_SINGLE = 0;
+const REGION_A_INTERN = 15000;
 const HOUSING_A_MARRIED_EMPLOYED = 16000;
 const HOUSING_B_MARRIED_EMPLOYED = 16000;
 const HOUSING_C_MARRIED_EMPLOYED = 12000;
@@ -72,6 +76,7 @@ Template.calculator.onCreated(function() {
 
     template.workExperience = new ReactiveVar('');
     template.specialPosition = new ReactiveVar('');
+    template.formmaster = new ReactiveVar('');
     template.kids_6 = new ReactiveVar('');
     template.kids_7_16 = new ReactiveVar('');
     template.kids_17_22 = new ReactiveVar('');
@@ -90,15 +95,24 @@ Template.calculator.onCreated(function() {
 Template.calculator.helpers({
   	value1: function() {
         let workExperience = Template.instance().workExperience.get();
+        
+        let specialPosition = Template.instance().specialPosition.get();
+        if(specialPosition === 'intern')
+            return INTERN;
+        if(specialPosition === 'trainee')
+            return TRAINEE;
 
         return (BASE_SALARY + ((workExperience-1)*(EXPERIENCE_COEFFICIENT_1 + workExperience*EXPERIENCE_COEFFICIENT_2)));
     }, 
     value2: function() {
+        let isFormmaster = Template.instance().formmaster.get();
         let specialPosition = Template.instance().specialPosition.get();
+        if(specialPosition === 'trainee') return 0;
         
-        if(specialPosition !== 'form-master') return 0;
-
-        return FORMMASTER;
+        if(isFormmaster === 'yes' || specialPosition === 'dorm-master') {
+            return FORMMASTER;
+        }
+        return 0;
     },
     value3: function() {
         // =IF(((E3*$Лист1.C11)+($Сумма.E3*$Лист1.C9)+
@@ -122,11 +136,21 @@ Template.calculator.helpers({
             } else {
                 return bonus;
             }
+        } else if(specialPosition === 'dorm-head') {
+            let bonus = 0;
+            let maritalStatus = Template.instance().maritalStatus.get();
+            if(maritalStatus === 'married-to-employed' || maritalStatus === 'married-to-unemployed') {
+                bonus += DORMMASTER;
+            }
+            return bonus;
         } else {
             return 0;
         }
     }, 
     value4: function() {
+        let specialPosition = Template.instance().specialPosition.get();
+        if(specialPosition === 'trainee' || specialPosition === 'intern') return 0;
+
         let sum = 0;
 
         let kids_6 = Template.instance().kids_6.get();
@@ -140,6 +164,9 @@ Template.calculator.helpers({
         return sum;
     }, 
     value5: function() {
+        let specialPosition = Template.instance().specialPosition.get();
+        if(specialPosition === 'trainee' || specialPosition === 'intern') return 0;
+
         let degree = Template.instance().degree.get();
 
         if(degree === 'bachelor') return BACHELOR;
@@ -151,6 +178,12 @@ Template.calculator.helpers({
         let workingRegion = Template.instance().workRegion.get();
         let maritalStatus = Template.instance().maritalStatus.get();
 
+        let specialPosition = Template.instance().specialPosition.get();
+        if(specialPosition === 'trainee') return 0;
+        if(specialPosition === 'intern') {
+            if(workingRegion === 'regionA') return REGION_A_INTERN;
+            return 0;
+        }
         if(workingRegion === 'regionA' && maritalStatus === 'married-to-employed')
             return REGION_A_MARRIED_EMPLOYED;
         if(workingRegion === 'regionB' && maritalStatus === 'married-to-employed')
@@ -189,6 +222,9 @@ Template.calculator.helpers({
         let housing = Template.instance().housing.get();
         let maritalStatus = Template.instance().maritalStatus.get();
         let rotation = Template.instance().rotation.get();
+
+        let specialPosition = Template.instance().specialPosition.get();
+        if(specialPosition === 'trainee' || specialPosition === 'intern') return 0;
 
         if(rotation !== 'yes') return 0;
 
@@ -230,6 +266,9 @@ Template.calculator.helpers({
         let englishOption = Template.instance().englishOption.get();
         let ielts = Template.instance().ielts.get();
 
+        let specialPosition = Template.instance().specialPosition.get();
+        if(specialPosition === 'trainee') return 0;
+
         if(englishOption === 'option1' && ielts === '6.0')
             return ENGLISH_1;
         if(englishOption === 'option1' && ielts === '6.5')
@@ -270,17 +309,23 @@ Template.calculator.helpers({
     }, 
     value9: function() {
         let tat = Template.instance().tat.get();
+        let specialPosition = Template.instance().specialPosition.get();
+
+        if(specialPosition === 'trainee') return 0;
 
         if(tat === 'group1') return TAT_4;
         if(tat === 'group2') return TAT_3;
         if(tat === 'group3') return TAT_2;
-        if(tat === 'group4') return TAT_1;
+        if(tat === 'group4' || specialPosition === 'head') return TAT_1;
         
         return 0;
     },
     value10: function() {
         let rotation = Template.instance().rotation.get();
         let kindergarden = Template.instance().kindergarden.get();
+
+        let specialPosition = Template.instance().specialPosition.get();
+        if(specialPosition === 'trainee' || specialPosition === 'intern') return 0;
 
         if(rotation === 'yes') {
             if((+kindergarden)*KINDERGARDEN_COEFFICIENT > 20000) return 20000;
@@ -290,6 +335,9 @@ Template.calculator.helpers({
         return 0;
     },
     value11: function() {
+        let specialPosition = Template.instance().specialPosition.get();
+        if(specialPosition === 'trainee' || specialPosition === 'intern') return 0;
+
         let rotation = Template.instance().rotation.get();
 
         if(rotation !== 'yes') return 0;
@@ -331,7 +379,7 @@ Template.calculator.helpers({
 
         if(actualSalary - currentSalary < 0) return 0;
         else return (actualSalary - currentSalary);
-    }
+    },
 });
 
 Template.calculator.events({
@@ -353,5 +401,6 @@ Template.calculator.events({
         template.ielts.set(template.find('[name=ielts]').value);
         template.tat.set(template.find('[name=tat]').value);
         template.rotation.set(template.find('[name=rotation]').value);
+        template.formmaster.set(template.find('[name=formHead]').value);
     }
 })
