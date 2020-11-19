@@ -10,7 +10,7 @@ Template.schoolStudents.onCreated(function() {
     template.surname_search = new ReactiveVar("")
     template.grade_search = new ReactiveVar("")
     template.division_search = new ReactiveVar("")
-    template.subscribe("students")
+    template.subscribe("schoolStudents")
     template.subscribe("kboSubjects")
     template.subscribe("btsElectiveGroup")
 })
