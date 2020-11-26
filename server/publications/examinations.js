@@ -224,6 +224,17 @@ Meteor.publish('btsSelected',function(academicYear, btsNo) {
     return this.ready()
 })
 
+Meteor.publish('btsSelectedExtra',function(academicYear, btsNo) {
+    if (this.userId) {
+        let school = Schools.findOne({userId: this.userId});
+        if(school)
+            return BtsSelectedExtra.find({academicYear, schoolId:school.schoolId, btsNo})
+        else    
+            return BtsSelectedExtra.find({academicYear, btsNo})
+    }
+    return this.ready()
+})
+
 Meteor.publish('kboRating',function(academicYear,grade,kboNo) {
     if (this.userId) {
         let cursor = KboRatings.find({academicYear:academicYear,grade:grade,kboNo:kboNo})

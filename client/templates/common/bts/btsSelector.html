@@ -11,6 +11,8 @@
                 <div class="form-group" style="float: right">
                     <a class="btn btn-success" id="generate_all">Generate all</a>
                     <a class="btn btn-success" id="download_all">Download all</a>
+                    <a class="btn btn-success" id="generate_extras">Generate extra</a>
+                    <a class="btn btn-success" id="download_extras">Download extra</a>
                 </div>
 
             </div>
@@ -27,6 +29,7 @@
                         <th style="width: 80pt; text-align: center;">8 сынып</th>
                         <th style="width: 80pt; text-align: center;">9 сынып</th>
                         <th style="width: 80pt; text-align: center;">10 сынып</th>
+                        <th style="width: 80pt; text-align: center;">Қосалқы тізім</th>
 
                     </tr>
                 </thead>
@@ -63,7 +66,18 @@
                             {{else}}
                                 <a class="btn btn-info" id="{{schoolId}}_10">Generate</a>
                             {{/if}}
+                        </td>
 
+                        <td style="text-align: center">
+                            {{#if (generatedExtraList schoolId)}}
+                                <a class="btn btn-warning" id="{{schoolId}}_extra">Download extra list</a>
+                            {{else}}
+                                {{#if existsAll schoolId}}
+                                    <a class="btn btn-info" id="{{schoolId}}_extra">Generate extra list</a>
+                                {{else}}
+                                    <a class="btn btn-info" id="{{schoolId}}_extra" disabled>Generate extra list</a>
+                                {{/if}}
+                            {{/if}}
                         </td>
                     </tr>
                     

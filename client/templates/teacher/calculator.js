@@ -109,10 +109,13 @@ Template.calculator.helpers({
         let specialPosition = Template.instance().specialPosition.get();
         if(specialPosition === 'trainee') return 0;
         
-        if(isFormmaster === 'yes' || specialPosition === 'dorm-master') {
+        if(specialPosition === 'head' || specialPosition === 'vice-head' || specialPosition === 'dorm-master') return 0;
+
+        if(isFormmaster === 'yes') {
             return FORMMASTER;
         }
         return 0;
+        
     },
     value3: function() {
         // =IF(((E3*$Лист1.C11)+($Сумма.E3*$Лист1.C9)+
@@ -130,14 +133,14 @@ Template.calculator.helpers({
                 return (HEADMASTER + FORMMASTER)
             }
         } else if(specialPosition === 'vice-head') {
-            let bonus = (rotation === 'yes') ? VICE_HEADMASTER + FORMMASTER : VICE_HEADMASTER;
+            let bonus = VICE_HEADMASTER + FORMMASTER;
             if(bonus > 56000){
                 return 56000;
             } else {
                 return bonus;
             }
         } else if(specialPosition === 'dorm-head') {
-            let bonus = 0;
+            let bonus = FORMMASTER;
             let maritalStatus = Template.instance().maritalStatus.get();
             if(maritalStatus === 'married-to-employed' || maritalStatus === 'married-to-unemployed') {
                 bonus += DORMMASTER;

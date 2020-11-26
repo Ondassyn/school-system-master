@@ -203,5 +203,22 @@ Meteor.methods({
         } else {
             throw new Meteor.Error(500, 'Data is not properly formatted')
         }
+    }, 
+
+    'BtsSelectedExtra.addSet': function(academicYear, btsNo, schoolId, selected) {
+        if (!this.userId && !Roles.userIsInRole(this.userId, ['admin']) && !Roles.userIsInRole(this.userId, ['edlight']))
+            throw new Meteor.Error(401, 'Please login as administrator')
+
+        if(academicYear && btsNo && schoolId && selected && selected.length > 0){
+            let duplicate = BtsSelectedExtra.findOne({academicYear, btsNo, schoolId});
+            
+            if(duplicate)
+                throw new Meteor.Error(500, 'Data already exists')
+
+            BtsSelectedExtra.insert({academicYear, btsNo, schoolId, selected})
+        } else {
+            throw new Meteor.Error(500, 'Data is not properly formatted')
+        }
+            
     }
 });
