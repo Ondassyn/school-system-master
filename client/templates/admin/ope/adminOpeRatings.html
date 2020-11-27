@@ -38,6 +38,7 @@
 
                         <label for="" style="margin-left: 10pt; ">Рейтинг түрі</label>
                         <select class="form-control" id="rating_type">
+                            <option value="default" disabled selected>Опцияны таңдаңыз</option>
                             <option value="average">Орташа</option>
                             <option value="percentageRegion">"Область" дәлелденген пайыз</option>
                             <option value="percentageRepublic">"Республика" дәлелденген пайыз</option>
@@ -58,9 +59,11 @@
 
                         </div>
                         
+                        {{#if isOption}}
                         <div class="form-group" style="float: right">
                             <a class="btn btn-success" id="download">Download</a>
                         </div>
+                        {{/if}}
                     </div>
                 </div>
             </div>

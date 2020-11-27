@@ -12,7 +12,7 @@ Template.adminOpeRatings.onCreated(function() {
     template.grade = new ReactiveVar('all');
     template.threshold_region = new ReactiveVar();
     template.threshold_republic = new ReactiveVar();
-    template.rating_type = new ReactiveVar('average');
+    template.rating_type = new ReactiveVar('');
 
     Session.set('order', []);
 
@@ -44,6 +44,11 @@ Template.adminOpeRatings.helpers({
             })
             return ordered;
         }
+    },
+    isOption(){
+        let option = Template.instance().rating_type.get();
+        if(option === '' || option === 'default') return false;
+        return true;
     },
     opeThresholds(level) {
         let subjectId = Template.instance().subjectId.get();
