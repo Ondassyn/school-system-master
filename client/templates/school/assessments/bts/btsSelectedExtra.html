@@ -1,24 +1,25 @@
-<template name="btsSelected">
+<template name="btsSelectedExtra">
     <div class="row">
         <div class="col-md-12">
-            <h4 style="text-align: center;">БТС-{{btsNo}} Таңдалған оқушылар</h4>
+            <h4 style="text-align: center;">БТС-{{btsNo}} Қосалқы тізім</h4>
 
             
             {{#if Template.subscriptionsReady}}
-            {{#if exists}}
+            {{#if existsExtra}}
             <div class="form-inline" style="padding-bottom: 10pt">
                 <div class="form-group" style="margin-right: 10pt">
                     {{> academicYear}}
                 </div>
 
                 <div class="form-group" style="float: right">
-                    <a class="btn btn-success" id="download">Download</a>
+                    <a class="btn btn-success" id="download_extra">Download</a>                    
                 </div>
 
             </div>
 
+            
             <div class="table table-responsive" id="out">
-              <table class="table table-striped  table-bordered table-hover table-condensed"  border=1 cellpadding=0 cellspacing=0 width=100%>
+                <table class="table table-striped  table-bordered table-hover table-condensed"  border=1 cellpadding=0 cellspacing=0 width=100%>
 
                 <thead>
                     <tr class="bts-header center">
@@ -30,7 +31,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    {{#each selectedStudents '8'}}
+                    {{#each extraStudents}}
                     <tr>
                         <td style="width: 20pt; ">{{math @index "+" 1}}</td>
                         <td style="width: 55pt;text-align: center;">{{studentId}}</td>
@@ -40,31 +41,11 @@
                     </tr>
                     
                     {{/each}}
-                    {{#each selectedStudents '9'}}
-                    <tr>
-                        <td style="width: 20pt; ">{{math @index "+" 1}}</td>
-                        <td style="width: 55pt;text-align: center;">{{studentId}}</td>
-                        <td style="width: 80pt;text-align: center;">{{grade}}</td>
-                        <td style="width: 80pt;">{{name}}</td>
-                        <td style="width: 80pt;">{{surname}}</td>
-                    </tr>
-                    
-                    {{/each}}
-                    {{#each selectedStudents '10'}}
-                    <tr>
-                        <td style="width: 20pt; ">{{math @index "+" 1}}</td>
-                        <td style="width: 55pt;text-align: center;">{{studentId}}</td>
-                        <td style="width: 80pt;text-align: center;">{{grade}}</td>
-                        <td style="width: 80pt;">{{name}}</td>
-                        <td style="width: 80pt;">{{surname}}</td>
-                    </tr>
-                    
-                    {{/each}}
                 </tbody>
-              </table>
+                </table>
             </div>
             {{else}}
-                <h5 style="text-align: center;">Оқушылар әлі таңдалған жоқ</h5>
+                <h5 style="text-align: center;">Қосалқы оқушылар әлі таңдалған жоқ</h5>    
             {{/if}}
             {{else}}
             <p>Loading...</p>

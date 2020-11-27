@@ -1,12 +1,12 @@
 import { Template } from 'meteor/templating';
 import { Session } from 'meteor/session';
-import './btsSelected.html';
+import './btsSelectedExtra.html';
 import { Meteor } from 'meteor/meteor';
 import XLSX from 'xlsx';
 
-Template.btsSelected.onCreated(function(){
+Template.btsSelectedExtra.onCreated(function(){
     let template = this
-    document.title = "БТС Таңдалған оқушылар";
+    document.title = "БТС Қосалқы тізім";
     
     template.btsNo = new ReactiveVar();
 
@@ -14,21 +14,21 @@ Template.btsSelected.onCreated(function(){
     
     template.autorun(() => {
         template.btsNo.set(FlowRouter.getParam('btsNo'))
-        template.subscribe("btsSelected",academicYear.get(), template.btsNo.get());
+        template.subscribe("btsSelectedExtra", academicYear.get(), template.btsNo.get());
     })
 })
 
-Template.btsSelected.helpers({
+Template.btsSelectedExtra.helpers({
     btsNo() {
         return Template.instance().btsNo.get();
     },
-    selectedStudents(grade) {
+    extraStudents() {
         // schoolStore.delete("033");
         // schoolStore.delete("028");
         // schoolStore.delete("032");
         // schoolStore.delete("041");
         // schoolStore.delete("042");
-        let btsSelected = BtsSelected.findOne({grade});
+        let btsSelected = BtsSelectedExtra.findOne();
         
         if(!btsSelected) return;
         
@@ -38,21 +38,21 @@ Template.btsSelected.helpers({
         let selected = [];
         selectedIds.map((selectedId) => {
             let result = btsResults.find(btsResult => {return btsResult.studentId === selectedId});
-            result.grade = grade + result.division;
+            result.grade = (+result.grade+1) + result.division;
             
             if(result) selected.push(result)
         })
 
-        selected.sort((a, b) => {
-            if (a.grade.slice(-1) < b.grade.slice(-1)) return -1;
-            if (a.grade.slice(-1) > b.grade.slice(-1)) return 1;
-            return 0;
-        })
+        // selected.sort((a, b) => {
+        //     if (a.grade.slice(-1) < b.grade.slice(-1)) return -1;
+        //     if (a.grade.slice(-1) > b.grade.slice(-1)) return 1;
+        //     return 0;
+        // })
 
         return selected;
     },
-    exists() {
-        let results = BtsSelected.find().fetch();
+    existsExtra() {
+        let results = BtsSelectedExtra.find().fetch();
         if(results.length > 0) {
             return true;
         }
@@ -60,8 +60,8 @@ Template.btsSelected.helpers({
     }
 })
 
-Template.btsSelected.events({
-    'click #download'(event, template) {
+Template.btsSelectedExtra.events({
+    'click #download_extra'(event, template) {
         let btsNo = template.btsNo.get();
 
         // let selected = Session.get('selected');
@@ -71,14 +71,10 @@ Template.btsSelected.events({
         //     return;
         // } 
 
-        let eights = Template.btsSelected.__helpers.get('selectedStudents')('8');
-        let nines = Template.btsSelected.__helpers.get('selectedStudents')('9');
-        let tens = Template.btsSelected.__helpers.get('selectedStudents')('10');
+        let eights = Template.btsSelectedExtra.__helpers.get('extraStudents').call();
 
         let selected = [];
         if(eights) selected = [...selected, ...eights];
-        if(nines) selected = [...selected, ...nines];
-        if(tens) selected = [...selected, ...tens];
 
         let data = [];
         let headers = ['studentId', 'grade', 'studentName', 'studentSurname'];
@@ -95,7 +91,7 @@ Template.btsSelected.events({
         Meteor.call('download', data, (err, wb) => {
             if (err) throw err;
 
-            let sName = academicYear.get() + '_' + btsNo + '_selected_students.xlsx';
+            let sName = academicYear.get() + '_' + btsNo + '_extra_students.xlsx';
             XLSX.writeFile(wb, sName);
         });
     },

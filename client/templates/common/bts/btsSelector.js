@@ -116,7 +116,6 @@ Template.btsSelector.events({
                                 third = 3;
                             }
                         }
-                        console.log('n: ' + n);
                         let i = 0;
                         let infPrevention = 0;
                         while(i < tenth){
@@ -127,10 +126,8 @@ Template.btsSelector.events({
                                 i++;
                             }
                             infPrevention++;
-                            console.log('inf' + infPrevention)
                             if(infPrevention > 1000) break;
                         }
-                        console.log('i1: ' + i);
                         infPrevetion = 0;
                         while(i < 2*tenth) {
                             if(i === 3*tenth) break;
@@ -140,10 +137,8 @@ Template.btsSelector.events({
                                 i++;
                             }
                             infPrevention++;
-                            console.log('inf' + infPrevention)
                             if(infPrevention > 1000) break;
                         }
-                        console.log('i2: ' + i);
                         infPrevetion = 0;
                         while(i < 3*tenth) {
                             if(i === 3*tenth) break;
@@ -153,20 +148,18 @@ Template.btsSelector.events({
                                 i++;
                             }
                             infPrevention++;
-                            console.log('inf' + infPrevention)
                             if(infPrevention > 1000) break;
                         }
-                        console.log('i3: ' + i);
                         //check
                         
-                        console.log(schoolId + ' - ' + grade);
-                        console.log('The actual number is: ' + selected.length);
+                        // console.log(schoolId + ' - ' + grade);
+                        // console.log('The actual number is: ' + selected.length);
                         
-                        selected.map((id) => {
-                            if(selectedIds.includes(id)) {
-                                console.log('Duplicate ID: ' + id);
-                            }
-                        })
+                        // selected.map((id) => {
+                        //     if(selectedIds.includes(id)) {
+                        //         console.log('Duplicate ID: ' + id);
+                        //     }
+                        // })
                     } catch(err) {
                         console.log(err);
                     }

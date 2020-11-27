@@ -3,6 +3,7 @@ import { ReactiveVar } from 'meteor/reactive-var';
 import { Session } from 'meteor/session';
 import './adminOpeRatings.html';
 import { _ } from 'core-js';
+import XLSX from 'xlsx';
 
 Template.adminOpeRatings.onCreated(function() {
     let template = this
@@ -91,6 +92,7 @@ Template.adminOpeRatings.helpers({
         } else {
             let ret = (sum/n).toFixed(1);
             orderAveragesAverage.push({[schoolId]: ret});
+            Session.set('averagesAverage_' + schoolId, ret);
             return ret;
         }
     },
@@ -121,6 +123,7 @@ Template.adminOpeRatings.helpers({
                 let ret = (sum/n*100).toFixed(0);
                 orderPercentagesRegionAllAverage.push({[schoolId]: ret});
                 orderPercentagesRegionAverage.push({[schoolId]: ret});
+                Session.set('regionPercentagesAverage_' + schoolId, ret+'%');
                 return ret + '%';
             }
         }
@@ -152,6 +155,7 @@ Template.adminOpeRatings.helpers({
                 let ret = (sum/n*100).toFixed(0);
                 orderPercentagesRepublicAllAverage.push({[schoolId]: ret});
                 orderPercentagesRepublicAverage.push({[schoolId]: ret});
+                Session.set('republicPercentagesAverage_' + schoolId, ret);
                 return ret + '%';
             }
         }
@@ -183,10 +187,12 @@ Template.adminOpeRatings.helpers({
                 let ret = (sum/n).toFixed(1);;
                 orderQuantitiesRegionAllAverage.push({[schoolId]: ret});
                 orderQuantitiesRegionAverage.push({[schoolId]: ret});
+                Session.set('regionQuantitiesAverage_' + schoolId, ret);
                 return ret;
             }
 
             orderQuantitiesRegionAllAverage.push({[schoolId]: 0});
+            Session.set('regionQuantitiesAverage_' + schoolId, 0);
             orderQuantitiesRegionAverage.push({[schoolId]: 0});
             return 0;
         }
@@ -218,10 +224,12 @@ Template.adminOpeRatings.helpers({
                 let ret = (sum/n).toFixed(1);;
                 orderQuantitiesRepublicAllAverage.push({[schoolId]: ret});
                 orderQuantitiesRepublicAverage.push({[schoolId]: ret});
+                Session.set('republicQuantitiesAverage_' + schoolId, ret);
                 return ret;
             }
             orderQuantitiesRepublicAllAverage.push({[schoolId]: 0});
             orderQuantitiesRepublicAverage.push({[schoolId]: 0});
+            Session.set('republicQuantitiesAverage_' + schoolId, 0);
             return 0;
         }
     },
@@ -252,6 +260,7 @@ Template.adminOpeRatings.helpers({
                 let ret = (sum/n).toFixed(0);
                 orderPercentagesBothAllAverage.push({[schoolId]: ret});
                 orderPercentagesBothAverage.push({[schoolId]: ret});
+                Session.set('bothPercentagesAverage_' + schoolId, ret);
                 return ret + '%';
             }
         }
@@ -283,10 +292,12 @@ Template.adminOpeRatings.helpers({
                 let ret = (sum/n).toFixed(1);;
                 orderQuantitiesBothAllAverage.push({[schoolId]: ret});
                 orderQuantitiesBothAverage.push({[schoolId]: ret});
+                Session.set('bothQuantitiesAverage_' + schoolId, ret);
                 return ret;
             }
             orderQuantitiesBothAllAverage.push({[schoolId]: 0});
             orderQuantitiesBothAverage.push({[schoolId]: 0});
+            Session.set('bothQuantitiesAverage_' + schoolId, 0);
             return 0;
         }
     },
@@ -2562,6 +2573,121 @@ Template.adminOpeRatings.events({
             }
         }
     },
+    'click #download'(event, template) {
+        let rating_type = template.rating_type.get();
+        
+        let schools = Schools.find({}).fetch();
+
+        let data = [];
+        let headers = ['schoolName', 'ope1', 'ope2', 'ope3', 'ope4', 'ope5', 'ope6', 'average'];
+        data.push(headers);
+
+        if(rating_type === 'average') {
+            schools.map(school => {
+                let averages = Session.get('averages_' + school.schoolId);
+                let average = Session.get('averagesAverage_' + school.schoolId);
+                let dataRow = [school.shortName, averages[1], averages[2], averages[3], averages[4], averages[5], averages[6], average];
+
+                data.push(dataRow);
+            })            
+        } else if(rating_type === 'percentageRegion') {
+            schools.map(school => {
+                let averages = Session.get('regionPercentages_' + school.schoolId);
+                if(averages.length === 0) averages = Session.get('regionPercentagesAll_' + school.schoolId);
+                let average = Session.get('regionPercentagesAverage_' + school.schoolId);
+                let dataRow = [school.shortName];
+                for(let i = 1; i <= 6; i++) {
+                    if(averages[i]) {
+                        dataRow.push((+averages[i])*100 + '%');
+                    } else {
+                        dataRow.push('');
+                    }
+                } 
+                if(average) {
+                    dataRow.push(average);
+                } else {
+                    dataRow.push('');
+                }
+                
+                data.push(dataRow);
+            })   
+        } else if(rating_type === 'percentageRepublic') {
+            schools.map(school => {
+                let averages = Session.get('republicPercentages_' + school.schoolId);
+                if(averages.length === 0) averages = Session.get('republicPercentagesAll_' + school.schoolId);
+                let average = Session.get('republicPercentagesAverage_' + school.schoolId);
+                let dataRow = [school.shortName];
+                for(let i = 1; i <= 6; i++) {
+                    if(averages[i]) {
+                        dataRow.push((+averages[i])*100 + '%');
+                    } else {
+                        dataRow.push('');
+                    }
+                } 
+                if(average) {
+                    dataRow.push(average + '%');
+                } else {
+                    dataRow.push('');
+                }
+
+                data.push(dataRow);
+            })   
+        } else if(rating_type === 'quantityRegion') {
+            schools.map(school => {
+                let averages = Session.get('regionQuantities_' + school.schoolId);
+                if(averages.length === 0) averages = Session.get('regionQuantitiesAll_' + school.schoolId);
+                let average = Session.get('regionQuantitiesAverage_' + school.schoolId);
+                let dataRow = [school.shortName, averages[1], averages[2], averages[3], averages[4], averages[5], averages[6], average];
+
+                data.push(dataRow);
+            })   
+        } else if(rating_type === 'quantityRepublic') {
+            schools.map(school => {
+                let averages = Session.get('republicQuantities_' + school.schoolId);
+                if(averages.length === 0) averages = Session.get('republicQuantitiesAll_' + school.schoolId);
+                let average = Session.get('republicQuantitiesAverage_' + school.schoolId);
+                let dataRow = [school.shortName, averages[1], averages[2], averages[3], averages[4], averages[5], averages[6], average];
+
+                data.push(dataRow);
+            })   
+        }  else if(rating_type === 'percentageBoth') {
+            schools.map(school => {
+                let averages = Session.get('percentagesBoth_' + school.schoolId);
+                if(averages.length === 0) averages = Session.get('percentagesBothAll_' + school.schoolId);
+                let average = Session.get('bothPercentagesAverage_' + school.schoolId);
+                let dataRow = [school.shortName];
+                for(let i = 1; i <= 6; i++) {
+                    if(averages[i]) {
+                        dataRow.push((+averages[i])+ '%');
+                    } else {
+                        dataRow.push('');
+                    }
+                } 
+                if(average) {
+                    dataRow.push(average + '%');
+                } else {
+                    dataRow.push('');
+                }
+                data.push(dataRow);
+            })   
+        } else if(rating_type === 'quantityBoth') {
+            schools.map(school => {
+                let averages = Session.get('quantitiesBoth_' + school.schoolId);
+                if(averages.length === 0) averages = Session.get('quantitiesBothAll_' + school.schoolId);
+                let average = Session.get('bothQuantitiesAverage_' + school.schoolId);
+                let dataRow = [school.shortName, averages[1], averages[2], averages[3], averages[4], averages[5], averages[6], average];
+
+                data.push(dataRow);
+            })   
+        }
+        
+        Meteor.call('download', data, (err, wb) => {
+            if (err) throw err;
+
+            let sName = academicYear.get() + '_OPE_' + rating_type + '.xlsx';
+            XLSX.writeFile(wb, sName);
+        });
+    }
 })
 
 Template.adminOpeRatings.onRendered(function() {
