@@ -59,7 +59,7 @@ const ENGLISH_3 = 11200;
 const ENGLISH_4 = 14000;
 const ENGLISH_5_1 = 20000;
 const ENGLISH_5_2 = 16800;
-const ENGLISH_6_1 = 24000;
+const ENGLISH_6_1 = 36000;
 const ENGLISH_6_2 = 20000;
 const TAT_1 = 5600;
 const TAT_2 = 8400;
@@ -67,6 +67,7 @@ const TAT_3 = 11200;
 const TAT_4 = 14000;
 const KINDERGARDEN_COEFFICIENT = 0.2;
 const ROTATION = 0.25;
+const OCCUPIED_CHILD = 30000;
 
 
 Template.calculator.onCreated(function() {
@@ -90,6 +91,9 @@ Template.calculator.onCreated(function() {
     template.rotation = new ReactiveVar('');
     template.kindergarden = new ReactiveVar('');
     template.currentSalary = new ReactiveVar('');
+    template.age = new ReactiveVar('');
+    template.gender = new ReactiveVar('');
+    template.occupiedChildren = new ReactiveVar('');
 })
 
 Template.calculator.helpers({
@@ -180,6 +184,8 @@ Template.calculator.helpers({
     value6: function() {
         let workingRegion = Template.instance().workRegion.get();
         let maritalStatus = Template.instance().maritalStatus.get();
+        let age = Template.instance().age.get();
+        let gender = Template.instance().gender.get();
 
         let specialPosition = Template.instance().specialPosition.get();
         if(specialPosition === 'trainee') return 0;
@@ -187,6 +193,15 @@ Template.calculator.helpers({
             if(workingRegion === 'regionA') return REGION_A_INTERN;
             return 0;
         }
+        // if a woman is older than 26, then married to employed
+        // if a man is older than 28, than married to employed
+        if((gender === 'male' && +age > 28) || (gender === 'female' && +age > 26)) {
+            if(workingRegion === 'regionA') return REGION_A_MARRIED_EMPLOYED;
+            if(workingRegion === 'regionB') return REGION_B_MARRIED_EMPLOYED;
+            if(workingRegion === 'regionC') return REGION_C_MARRIED_EMPLOYED;
+            if(workingRegion === 'regionD') return REGION_D_MARRIED_EMPLOYED;
+        }
+        
         if(workingRegion === 'regionA' && maritalStatus === 'married-to-employed')
             return REGION_A_MARRIED_EMPLOYED;
         if(workingRegion === 'regionB' && maritalStatus === 'married-to-employed')
@@ -225,11 +240,22 @@ Template.calculator.helpers({
         let housing = Template.instance().housing.get();
         let maritalStatus = Template.instance().maritalStatus.get();
         let rotation = Template.instance().rotation.get();
+        let age = Template.instance().age.get();
+        let gender = Template.instance().gender.get();
 
         let specialPosition = Template.instance().specialPosition.get();
         if(specialPosition === 'trainee' || specialPosition === 'intern') return 0;
 
         if(rotation !== 'yes') return 0;
+
+        // if a woman is older than 26, then married to employed
+        // if a man is older than 28, than married to employed
+        if((gender === 'male' && +age > 28) || (gender === 'female' && +age > 26)) {
+            if(housing === 'regionA') return HOUSING_A_MARRIED_EMPLOYED;
+            if(housing === 'regionB') return HOUSING_B_MARRIED_EMPLOYED;
+            if(housing === 'regionC') return HOUSING_C_MARRIED_EMPLOYED;
+            if(housing === 'regionD') return HOUSING_D_MARRIED_EMPLOYED;
+        }
 
         if(housing === 'regionA' && maritalStatus === 'married-to-employed')
             return HOUSING_A_MARRIED_EMPLOYED;
@@ -337,6 +363,15 @@ Template.calculator.helpers({
 
         return 0;
     },
+    value14: function() {
+        let occupiedChildren = Template.instance().occupiedChildren.get();
+        let rotation = Template.instance().rotation.get();
+        
+        if(rotation !== 'yes') return 0;
+
+        if(occupiedChildren) return occupiedChildren * OCCUPIED_CHILD;
+        return 0;
+    },
     value11: function() {
         let specialPosition = Template.instance().specialPosition.get();
         if(specialPosition === 'trainee' || specialPosition === 'intern') return 0;
@@ -373,6 +408,7 @@ Template.calculator.helpers({
         total += Template.calculator.__helpers.get('value9').call();
         total += Template.calculator.__helpers.get('value10').call();
         total += Template.calculator.__helpers.get('value11').call();
+        total += Template.calculator.__helpers.get('value14').call();
 
         return total;
     },
@@ -383,6 +419,10 @@ Template.calculator.helpers({
         if(actualSalary - currentSalary < 0) return 0;
         else return (actualSalary - currentSalary);
     },
+    isCurrentLanguageKz: function() {
+        if(TAPi18n.getLanguage() === 'en') return true;
+        return false;
+    }
 });
 
 Template.calculator.events({
@@ -393,6 +433,8 @@ Template.calculator.events({
         template.kids_17_22.set(template.find('[name=kids_17_22]').value);
         template.kindergarden.set(template.find('[name=kindergardenFee]').value);
         template.currentSalary.set(template.find('[name=currentSalary]').value);
+        template.age.set(template.find('[name=age]').value);
+        template.occupiedChildren.set(template.find('[name=occupiedChildren]').value);
     },
     'change #select' (event, template) {
         template.specialPosition.set(template.find('[name=specialPosition]').value);
@@ -405,5 +447,6 @@ Template.calculator.events({
         template.tat.set(template.find('[name=tat]').value);
         template.rotation.set(template.find('[name=rotation]').value);
         template.formmaster.set(template.find('[name=formHead]').value);
+        template.gender.set(template.find('[name=gender]').value);
     }
 })

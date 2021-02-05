@@ -48,16 +48,10 @@
 
                           {{else}}
                             <th style="white-space: nowrap;" id="sortKazakh">Қазақ тілі</th>
-                            <th style="white-space: nowrap;" id="sortTur">Түрік тілі</th>
-                            <th style="white-space: nowrap;" id="sortRus">Орыс тілі</th>
+                            <th style="white-space: nowrap;" id="sortGeography">География</th>
                           {{/if}}
                         {{else}}
                           {{#if grade8_or_9}}
-
-                            <th style="white-space: nowrap;" id="sortKazakh">Қазақ тілі</th>
-                            <th style="white-space: nowrap;" id="sortTur">Түрік тілі</th>
-                            <th style="white-space: nowrap;" id="sortHistory">Қазақcтан тарихы</th>
-                            <th style="white-space: nowrap;" id="sortGeography">География</th>
                             <th style="white-space: nowrap;" id="sortPhysics">Физика</th>
                             <th style="white-space: nowrap;" id="sortChemistry">Химия</th>
                             <th style="white-space: nowrap;" id="sortBio">Биология</th>
@@ -65,9 +59,6 @@
                             {{else}}
 
                               {{#if grade10}}
-                                <th style="white-space: nowrap;" id="sortKazakh">Қазақ тілі</th>
-                                <th style="white-space: nowrap;" id="sortHistory">Қазақcтан тарихы</th>
-                                <th style="white-space: nowrap;" id="sortWorldHistory">Дүние тарихы</th>
                                 <th style="white-space: nowrap;" id="sortGeography">География</th>
                                 <th style="white-space: nowrap;" id="sortPhysics">Физика</th>
                                 <th style="white-space: nowrap;" id="sortChemistry">Химия</th>
@@ -76,10 +67,6 @@
                               {{else}}
 
                                 <th style="white-space: nowrap;" id="sortTur">Қазақ тілі</th>
-                                <th style="white-space: nowrap;" id="sortTur">Түрік тілі</th>
-                                <th style="white-space: nowrap;" id="sortRus">Орыс тілі</th>
-                                <th style="white-space: nowrap;" id="sortHistory">Қазақcтан тарихы</th>
-                                <th style="white-space: nowrap;" id="sortWorldHistory">Дүние тарихы</th>
                                 <th style="white-space: nowrap;" id="sortGeography">География</th>
                                 <th style="white-space: nowrap;" id="sortPhysics">Физика</th>
                                 <th style="white-space: nowrap;" id="sortChemistry">Химия</th>
@@ -118,18 +105,12 @@
 
                           {{else}}
                             <td style="{{getStylе kazakh_lang}}">{{round 2 kazakh_lang}}</td>
-                            <td style="{{getStylе turkish_lang}}">{{round 2 turkish_lang}}</td>
-                            <td style="{{getStylе russian_lang}}">{{round 2 russian_lang}}</td>
+                            <td style="{{getStylе geography}}">{{round 2 geography}}</td>
 
                           {{/if}}
 
                         {{else}}
                           {{#if grade8_or_9}}
-
-                            <td style="{{getStylе kazakh_lang}}">{{round 2 kazakh_lang}}</td>
-                            <td style="{{getStylе turkish_lang}}">{{round 2 turkish_lang}}</td>
-                            <td style="{{getStylе kazakh_history}}">{{round 2 kazakh_history}}</td>
-                            <td style="{{getStylе geography}}">{{round 2 geography}}</td>
                             <td style="{{getStylе physics}}">{{round 2 physics}}</td>
                             <td style="{{getStylе chemistry}}">{{round 2 chemistry}}</td>
                             <td style="{{getStylе biology}}">{{round 2 biology}}</td>
@@ -137,9 +118,6 @@
                             {{else}}
 
                               {{#if grade10}}
-                                <td style="{{getStylе kazakh_lang}}">{{#if kazakh_lang}}    {{round 2 kazakh_lang}}     {{/if}}</td>
-                                <td style="{{getStylе kazakh_history}}">{{#if kazakh_history}} {{round 2 kazakh_history}}  {{/if}}</td>
-                                <td style="{{getStylе world_history}}">{{#if world_history}}  {{round 2 world_history}}   {{/if}}</td>
                                 <td style="{{getStylе geography}}">{{#if geography}}      {{round 2 geography}}       {{/if}}</td>
                                 <td style="{{getStylе physics}}">{{#if physics}}        {{round 2 physics}}         {{/if}}</td>
                                 <td style="{{getStylе chemistry}}">{{#if chemistry}}      {{round 2 chemistry}}       {{/if}}</td>
@@ -148,10 +126,6 @@
                               {{else}}
 
                                 <td style="{{getStylе kazakh_lang}}">{{round 2 kazakh_lang}}</td>
-                                <td style="{{getStylе turkish_lang}}">{{round 2 turkish_lang}}</td>
-                                <td style="{{getStylе russian_lang}}">{{round 2 russian_lang}}</td>
-                                <td style="{{getStylе kazakh_history}}">{{round 2 kazakh_history}}</td>
-                                <td style="{{getStylе world_history}}">{{round 2 world_history}}</td>
                                 <td style="{{getStylе geography}}">{{round 2 geography}}</td>
                                 <td style="{{getStylе physics}}">{{round 2 physics}}</td>
                                 <td style="{{getStylе chemistry}}">{{round 2 chemistry}}</td>

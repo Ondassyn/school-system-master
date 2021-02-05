@@ -13,7 +13,9 @@ Meteor.publish('students', function(){
     }
 })
 
-
+Meteor.publish('schoolGradeStudents', function(schoolId, grade){
+    return schoolId && grade ? Students.find({schoolId,grade}) : this.ready();
+})
 
 
 Meteor.publish('allStudents', function(grade){

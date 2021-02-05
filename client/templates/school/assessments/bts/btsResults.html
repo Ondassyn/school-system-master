@@ -41,8 +41,8 @@
                         {{#if grade7 }}
                           {{#if btsNo1_or_2 }}
                             <th id="sortKazakh">Қазақ тілі</th>
-                            <th id="sortTur">Түрік тілі</th>
-                            <th id="sortRus">Орыс тілі</th>
+                            <th id="sortGeography">География</th>
+                            <!-- <th id="sortRus">Орыс тілі</th> -->
                           {{else}}
                             <th id="sortPhysics">Физика</th>
                             <th id="sortChemistry">Химия</th>
@@ -58,24 +58,34 @@
                           <th>Тарих</th>
                           <th>География</th> -->
                         {{else}}
-                          {{#if grade8_or_9 }}
-                            <th id="sortKazakh">Қазақ тілі</th>
+                          {{#if grade8 }}
+                            <!-- <th id="sortKazakh">Қазақ тілі</th>
                             <th id="sortTur">Түрік тілі</th>
                             <th id="sortHistory">Қазақстан тарихы</th>
-                            <th id="sortGeography">География</th>
+                            <th id="sortGeography">География</th> -->
                             <th id="sortPhysics">Физика</th>
-                            <th id="sortChemistry">Химия</th>
+                            <!-- <th id="sortChemistry">Химия</th> -->
                             <th id="sortBio">Биология</th>
 
                             {{else}} <!-- 10 grade -->
+                            {{#if grade9 }}
+                            <!-- <th id="sortKazakh">Қазақ тілі</th>
+                            <th id="sortTur">Түрік тілі</th>
+                            <th id="sortHistory">Қазақстан тарихы</th>
+                            <th id="sortGeography">География</th> -->
+                            <th id="sortPhysics">Физика</th>
+                            <th id="sortChemistry">Химия</th>
+                            <!-- <th id="sortBio">Биология</th> -->
+
+                            {{else}} <!-- 10 grade -->
                               {{#if grade10 }}
-                                <th id="sortKazakh">Қазақ тілі</th>
-                                <th id="sortHistory">Қазақстан тарихы</th>
+                                <!-- <th id="sortKazakh">Қазақ тілі</th>
+                                <th id="sortHistory">Қазақстан тарихы</th> -->
                                 <th id="sortGeography">География</th>
                                 <th id="sortPhysics">Физика</th>
                                 <th id="sortChemistry">Химия</th>
                                 <th id="sortBio">Биология</th>
-                                <th id="sortPhysics">Дүние тарихы</th>
+                              {{/if}}
                               {{/if}}
                           {{/if}}
                         {{/if}}
@@ -97,8 +107,8 @@
 
                           {{#if btsNo1_or_2 }}
                             <td class="center">{{kazakh_lang}}</td>
-                            <td class="center">{{turkish_lang}}</td>
-                            <td class="center">{{russian_lang}}</td>
+                            <td class="center">{{geography}}</td>
+                            <!-- <td class="center">{{russian_lang}}</td> -->
                           {{else}}
                             <td class="center">{{physics}}</td>
                             <td class="center">{{chemistry}}</td>
@@ -107,26 +117,35 @@
 
 
                         {{else}}
-                          {{#if grade8_or_9 }}
-                            <td class="center">{{kazakh_lang}}</td>
+                          {{#if grade8}}
+                            <!-- <td class="center">{{kazakh_lang}}</td>
                             <td class="center">{{turkish_lang}}</td>
                             <td class="center">{{kazakh_history}}</td>
-                            <td class="center">{{geography}}</td>
+                            <td class="center">{{geography}}</td> -->
                             <td class="center">{{physics}}</td>
-                            <td class="center">{{chemistry}}</td>
+                            <!-- <td class="center">{{chemistry}}</td> -->
                             <td class="center">{{biology}}</td>
 
                           {{else}} <!-- 10 grade -->
+                          {{#if grade9 }}
+                          <!-- <td class="center">{{kazakh_lang}}</td>
+                          <td class="center">{{turkish_lang}}</td>
+                          <td class="center">{{kazakh_history}}</td>
+                          <td class="center">{{geography}}</td> -->
+                          <td class="center">{{physics}}</td>
+                          <td class="center">{{chemistry}}</td>
+                          <!-- <td class="center">{{biology}}</td> -->
+
+                        {{else}}
                               {{#if grade10 }}
-                                <td class="center">{{kazakh_lang}}</td>
-                                <td class="center">{{kazakh_history}}</td>
+                                <!-- <td class="center">{{kazakh_lang}}</td>
+                                <td class="center">{{kazakh_history}}</td> -->
                                 <td class="center">{{geography}}</td>
                                 <td class="center">{{physics}}</td>
                                 <td class="center">{{chemistry}}</td>
                                 <td class="center">{{biology}}</td>
-                                <td class="center">{{world_history}}</td>
                               {{/if}}
-
+                            {{/if}}
                           {{/if}}
                         {{/if}}
 

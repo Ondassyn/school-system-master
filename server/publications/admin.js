@@ -191,7 +191,7 @@ Meteor.publish("teacherAccounts",function() {
 Meteor.publish('adminOpeStudents', function(schoolId, olympiad, grade) {
     if (this.userId) {
         if(schoolId === 'all' && olympiad === 'all' && grade === 'all')
-            return Students.find({}, {fields: {studentId: 1, level: 1}});
+            return Students.find({}, {fields: {schoolId: 1, level: 1, grade: 1, olympiad}});
         else if(schoolId === 'all'  && olympiad === 'all')
             return Students.find({grade}, {fields: {studentId: 1, level: 1}});
         else if(schoolId === 'all'  && grade === 'all')
@@ -242,5 +242,40 @@ Meteor.publish('adminOpeResults',function(academicYear, schoolId, subjectId, gra
             return OpeResults.find({academicYear, olympiad:subjectId, schoolId});
         return OpeResults.find({academicYear: academicYear, schoolId, olympiad:subjectId, grade:grade});
     }
+    return this.ready()
+})
+
+
+Meteor.publish('adminOpePaginatedResults',function(academicYear, schoolId, subjectId, grade, limit) {
+	if (this.userId) {
+		let cursor;
+        if(schoolId === 'all' && subjectId === 'all' && grade === 'all')
+            cursor = OpeResults.find({academicYear}, {sort: {_id: -1 }, limit: parseInt(limit)});
+        else if(schoolId === 'all'  && subjectId === 'all')
+			cursor = OpeResults.find({academicYear, grade});
+        else if(schoolId === 'all'  && grade === 'all')
+			cursor = OpeResults.find({academicYear, olympiad:subjectId});
+        else if(grade === 'all'  && subjectId === 'all')
+            cursor = OpeResults.find({academicYear, schoolId});
+        else if(schoolId === 'all')
+            cursor = OpeResults.find({academicYear, olympiad:subjectId, grade});
+        else if(subjectId === 'all')
+            cursor = OpeResults.find({academicYear, schoolId, grade});
+        else if(grade === 'all')
+            cursor = OpeResults.find({academicYear, olympiad:subjectId, schoolId});
+		else cursor = OpeResults.find({academicYear: academicYear, schoolId, olympiad:subjectId, grade:grade});
+		
+		return cursor
+    }
+    return this.ready()
+})
+
+Meteor.publish('adminSatResults',function(schoolId, grade) {
+    if(schoolId && grade) return SatResults.find({schoolId, grade});
+    return this.ready()
+})
+
+Meteor.publish('adminIeltsResults',function(schoolId, grade) {
+    if(schoolId && grade) return IeltsResults.find({schoolId, grade});
     return this.ready()
 })

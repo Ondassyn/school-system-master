@@ -36,23 +36,36 @@
                             <option value="11">11 сынып</option>
                         </select>
 
-                        <label for="" style="margin-left: 10pt; ">Рейтинг түрі</label>
+                        <!-- <label for="" style="margin-left: 10pt; ">Рейтинг түрі</label>
                         <select class="form-control" id="rating_type">
                             <option value="default" disabled selected>Опцияны таңдаңыз</option>
                             <option value="average">Орташа</option>
-                            <option value="percentageRegion">"Область" дәлелденген пайыз</option>
+                            <option value="region">Область</option>
+                            <option value="republic">Республика</option> -->
+                            <!-- <option value="both">Область және республика</option> -->
+                            <!-- <option value="percentageRegion">"Область" дәлелденген пайыз</option>
                             <option value="percentageRepublic">"Республика" дәлелденген пайыз</option>
                             <option value="quantityRegion">"Область" дәлелденген саны</option>
                             <option value="quantityRepublic">"Республика" дәлелденген саны</option>
                             <option value="percentageBoth">Жалпы дәлелденген пайыз</option>
-                            <option value="quantityBoth">Жалпы дәлелденген саны</option>
+                            <option value="quantityBoth">Жалпы дәлелденген саны</option> -->
+                        <!-- </select> -->
+
+                        <label for="" style="margin-left: 10pt; ">OPE нөмірі</label>
+                        <select class="form-control" id="ope_number">
+                            <option value="" disabled selected>Опцияны таңдаңыз</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
                         </select>
 
-                        <label for="threshold_regional" style="margin-left: 10pt;"><span style="padding: 5px; background-color: #ccffff">Область</span></label>
+                        <label for="threshold_regional" style="margin-left: 10pt;"><span style="padding: 5px; background-color: #ccffff">Область үшін ұпай саны</span></label>
                         <!-- <input type="text" style="width: 40pt" id="threshold_region" class="form-control" placeholder="Сан енгізіңіз" name="threshold_regional" value="{{opeThresholds 'region'}}">                         -->
                         <span>{{#if opeThresholds 'region'}}{{opeThresholds 'region'}}{{else}}-{{/if}}</span>
 
-                        <label for="threshold_republic" style="margin-left: 10pt;"><span style="padding: 5px; background-color: #cce5ff">Республика</span></label>
+                        <label for="threshold_republic" style="margin-left: 10pt;"><span style="padding: 5px; background-color: #cce5ff">Республика үшін ұпай саны</span></label>
                         <!-- <input type="text" style="width: 40pt" id="threshold_republic" class="form-control" placeholder="Сан енгізіңіз" name="threshold_republic" value="{{opeThresholds 'republic'}}"> -->
                         <span>{{#if opeThresholds 'republic'}}{{opeThresholds 'republic'}}{{else}}-{{/if}}</span>
 
@@ -70,93 +83,60 @@
 
             {{#if Template.subscriptionsReady}}
 
-            <table style="margin-top: 15pt" class="table table-striped">
+            <table style="margin-top: 15pt" class="table table-striped  table-bordered table-hover table-condensed"  border=1 cellpadding=0 cellspacing=0 width=100%>
                 <thead>
                     <tr class="bts-header">
                         <th>#</th>
-                        <th>Мектеп</th>
-                        <th id='ope1' style="text-align: center">
+                        <th style="border-right: 1pt solid darkgrey">Мектеп</th>
+                        <th id="total_number" style="text-align: center; border-right: 1pt solid darkgrey">Жалпы қатысты</th>   
+                        <th id='region_header' colspan="4" style="text-align: center; border-right: 1pt solid darkgrey">
                             <!-- OPE<br>16.11 - 30.11 -->
-                            OPE-1
+                            Область
                         </th>
-                        <th id='ope2' style="text-align: center">
+                        <th id='republic_header' colspan="4" style="text-align: center; border-right: 1pt solid darkgrey">
                             <!-- OPE<br>30.11 - 14.12 -->
-                            OPE-2
-                        </th>
-                        <th id='ope3' style="text-align: center">
-                            <!-- OPE<br>14.12 - 28.12 -->
-                            OPE-3
-                        </th>
-                        <th id='ope4' style="text-align: center">
-                            <!-- OPE<br>28.12 - 11.01 -->
-                            OPE-4
-                        </th>
-                        <th id='ope5' style="text-align: center">
-                            <!-- OPE<br>11.01 - 25.01 -->
-                            OPE-5
-                        </th>
-                        <th id='ope6' style="text-align: center">
-                            <!-- OPE<br>25.01 - 08.02 -->
-                            OPE-6
-                        </th>
-                        <th id='opeAverage' style="text-align:center">Average</th>
+                            Республика
+                        </th>     
+                                        
                     </tr>
                 </thead>
                 <tbody>
+                    
+                    <tr>
+                        <th scope="rowgroup"></th>
+                        <th scope="rowgroup" style="border-right: 1pt solid darkgrey"></th>
+                       
+                        <th style="border-right: 1pt solid darkgrey"></th>
+
+                        <th id="ope_region-m" style="font-weight: lighter; font-size: small; text-align:center" scope="rowgroup">Дәлелдеді</th>
+                        <th id="ope_region-n" style="font-weight: lighter; font-size: small; text-align:center" scope="rowgroup">Жүлделі катысты</th>
+                        <th id="ope_region-x" style="font-weight: lighter; font-size: small; text-align:center" scope="rowgroup">Жүлделі мақсат</th>
+                        <th id="ope_region-p" style="font-weight: lighter; font-size: small; text-align:center; border-right: 1pt solid darkgrey" scope="rowgroup">Дәлелдеу пайызы</th>
+                        
+                        <th id="ope_republic-m" style="font-weight: lighter; font-size: small; text-align:center" scope="rowgroup">Дәлелдеді</th>
+                        <th id="ope_republic-n" style="font-weight: lighter; font-size: small; text-align:center" scope="rowgroup">Жүлделі катысты</th>
+                        <th id="ope_republic-x" style="font-weight: lighter; font-size: small; text-align:center" scope="rowgroup">Жүлделі мақсат</th>
+                        <th id="ope_republic-p" style="font-weight: lighter; font-size: small; text-align:center; border-right: 1pt solid darkgrey" scope="rowgroup">Дәлелдеу пайызы</th>
+                    
+                    </tr>
                   {{#each schools}}
 
                     <tr>
                       <td>{{math @index "+" 1}}</td>
-                      <td style="width:20%">{{shortName}}</td>
+                      <td style="width:20%; border-right: 1pt solid darkgrey">{{shortName}}</td>
 
-                        {{#if isAverage}}
-                            {{#each (repeat 6)}}
-                                <td style="text-align:center">{{getAverage this ../schoolId}}</td>
-                            {{/each}}
-                            <td style="text-align: center">{{averageAverages schoolId}}</td>
-                        {{else}}
-                            {{#if isPercentageRegion}}
-                                {{#each (repeat 6)}}
-                                    <td style="text-align:center">{{getPercentageRegion this ../schoolId}}</td>
-                                {{/each}}
-                                <td style="text-align: center">{{averagePercentagesRegion schoolId}}</td>
-                            {{else}}
-                                {{#if isPercentageRepublic}}
-                                    {{#each (repeat 6)}}
-                                        <td style="text-align:center">{{getPercentageRepublic this ../schoolId}}</td>
-                                    {{/each}}
-                                    <td style="text-align: center">{{averagePercentagesRepublic schoolId}}</td>
-                                {{else}}
-                                    {{#if isQuantityRegion}}
-                                        {{#each (repeat 6)}}
-                                            <td style="text-align:center">{{getQuantityRegion this ../schoolId}}</td>
-                                        {{/each}}
-                                        <td style="text-align: center">{{averageQuantitiesRegion schoolId}}</td>
-                                    {{else}}
-                                        {{#if isQuantityRepublic}}
-                                            {{#each (repeat 6)}}
-                                                <td style="text-align:center">{{getQuantityRepublic this ../schoolId}}</td>
-                                            {{/each}}
-                                            <td style="text-align: center">{{averageQuantitiesRepublic schoolId}}</td>
-                                        {{else}}
-                                            {{#if isPercentageBoth}}
-                                                {{#each (repeat 6)}}
-                                                    <td style="text-align:center">{{getPercentageBoth this ../schoolId}}</td>
-                                                {{/each}}
-                                                <td style="text-align: center">{{averagePercentagesBoth schoolId}}</td>
-                                            {{else}}
-                                                {{#if isQuantityBoth}}
-                                                    {{#each (repeat 6)}}
-                                                        <td style="text-align:center">{{getQuantityBoth this ../schoolId}}</td>
-                                                    {{/each}}
-                                                    <td style="text-align: center">{{averageQuantitiesBoth schoolId}}</td>
-                                                {{/if}}
-                                            {{/if}}
-                                        {{/if}}
-                                    {{/if}}
-                                {{/if}}
-                            {{/if}}
-                        {{/if}}
+                      <td style="text-align: center; border-right: 1pt solid darkgrey">{{totalNumber schoolId}}</td>
+                            
+                        <td style="text-align: center">{{getQuantityRegion schoolId}}</td>
+                        <td style="text-align: center">{{getTotalRegion schoolId}}</td>
+                        <td style="text-align: center">{{getStatedRegion schoolId}}</td>
+                        <td style="text-align: center; border-right: 1pt solid darkgrey">{{getPercentageRegion schoolId}}</td>
+                        
+                        <td style="text-align: center">{{getQuantityRepublic schoolId}}</td>
+                        <td style="text-align: center">{{getTotalRepublic schoolId}}</td>
+                        <td style="text-align: center">{{getStatedRepublic schoolId}}</td>
+                        <td style="text-align: center; border-right: 1pt solid darkgrey">{{getPercentageRepublic schoolId}}</td>
+                            
                     </tr>
                   {{/each}}
 

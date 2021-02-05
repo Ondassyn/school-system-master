@@ -1,6 +1,7 @@
 import { Template } from 'meteor/templating';
 import { ReactiveVar } from 'meteor/reactive-var';
 import './schoolStudents.html';
+import Greeting from './Greeting.js';
 import XLSX from 'xlsx';
 
 Template.schoolStudents.onCreated(function() {
@@ -16,6 +17,9 @@ Template.schoolStudents.onCreated(function() {
 })
 
 Template.schoolStudents.helpers({
+    Greeting() {
+        return Greeting;
+    },
     students() {
         let name_search = new RegExp(Template.instance().name_search.get(), 'i')
         let surname_search = new RegExp(Template.instance().surname_search.get(), 'i')
@@ -33,7 +37,8 @@ Template.schoolStudents.helpers({
     },
 
     electiveGroups() {
-        return BtsElectiveGroup.find({},{sort:{subjectId:1}})
+        // return BtsElectiveGroup.find({},{sort:{subjectId:1}})
+        return BtsElectiveGroup.find({groupId: {$ne: '07'}}, {sort:{subjectId:1}})
     },
 
     levelGroups() {

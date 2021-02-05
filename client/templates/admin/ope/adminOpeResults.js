@@ -10,18 +10,36 @@ Template.adminOpeResults.onCreated(function() {
     template.schoolId = new ReactiveVar('all');
     template.threshold_region = new ReactiveVar();
     template.threshold_republic = new ReactiveVar();
+    Session.set('itemsLimit', 20);
 
     template.subscribe('adminOpeSchools');
     template.subscribe('adminOpeConfigs');
 
     template.autorun(() => {
-        template.subscribe("adminOpeResults", academicYear.get(), template.schoolId.get(), template.subjectId.get(), template.grade.get());
+        template.subscribe("adminOpePaginatedResults", academicYear.get(), template.schoolId.get(), template.subjectId.get(), template.grade.get());
     })
+
+    
 })
+
+lastScrollTop = 0;
+
+$(window).scroll(function(event){
+    event.preventDefault()
+    if($(window).scrollTop() + $(window).height() > $(document).height() - 100) { // to detect scroll event
+        var scrollTop = $(this).scrollTop();
+
+        if(scrollTop > lastScrollTop){ // detect scroll down
+            Session.set("itemsLimit", Session.get("itemsLimit") + 10); // when it reaches the end, add another 10 elements
+        }
+
+        lastScrollTop = scrollTop;
+    }
+});
 
 Template.adminOpeResults.helpers({
   opeList(){
-    return OpeResults.find()
+    return OpeResults.find({}, {sort: {schoolId: 1, grade: 1}, collation: {locale: "en_US", numericOrdering: true} ,limit: Session.get("itemsLimit")});
   },
   opeThresholds(level) {
     let subjectId = Template.instance().subjectId.get();
@@ -60,44 +78,44 @@ Template.adminOpeResults.helpers({
 
     return 'text-align: center; white-space: nowrap';
  },
-  thresholdRatioRegion(no) {
-    let threshold = Template.adminOpeResults.__helpers.get('opeThresholds')('region');
-    if(!threshold) return '';
-    let list = Template.adminOpeResults.__helpers.get('opeList').call();
-    let n = 0;
-    let m = 0;
+//   thresholdRatioRegion(no) {
+//     let threshold = Template.adminOpeResults.__helpers.get('opeThresholds')('region');
+//     if(!threshold) return '';
+//     let list = Template.adminOpeResults.__helpers.get('opeList').call();
+//     let n = 0;
+//     let m = 0;
 
-    list.map((item) => {
-        if(item['ope' + no]) {
-            let level = item.level;
-            if(level && (level === 'Область')){
-                n++;
+//     list.map((item) => {
+//         if(item['ope' + no]) {
+//             let level = item.level;
+//             if(level && (level === 'Область')){
+//                 n++;
                 
-                if(+item['ope' + no] >= +threshold) m++;
-            }
-        }
-    })
+//                 if(+item['ope' + no] >= +threshold) m++;
+//             }
+//         }
+//     })
 
-    if(+n > 0) return (m/n).toFixed(2);
-  },
-  thresholdRatioRepublic(no) {
-    let threshold = Template.adminOpeResults.__helpers.get('opeThresholds')('republic');
-    if(!threshold) return '';
-    let list = Template.adminOpeResults.__helpers.get('opeList').call();
-    let n = 0;
-    let m = 0;
-    list.map((item) => {
-        if(item['ope' + no]) {
-            let level = item.level;
-            if(level && level === 'Республика'){
-                n++;
-                if(+item['ope' + no] >= +threshold) m++;
-            }
-        }
-    })
+//     if(+n > 0) return (m/n).toFixed(2);
+//   },
+//   thresholdRatioRepublic(no) {
+//     let threshold = Template.adminOpeResults.__helpers.get('opeThresholds')('republic');
+//     if(!threshold) return '';
+//     let list = Template.adminOpeResults.__helpers.get('opeList').call();
+//     let n = 0;
+//     let m = 0;
+//     list.map((item) => {
+//         if(item['ope' + no]) {
+//             let level = item.level;
+//             if(level && level === 'Республика'){
+//                 n++;
+//                 if(+item['ope' + no] >= +threshold) m++;
+//             }
+//         }
+//     })
 
-    if(+n > 0) return (m/n).toFixed(2);
-  },
+//     if(+n > 0) return (m/n).toFixed(2);
+//   },
   getLabelStyle(opeNo, level) {
     if(level === 'region')
         if(Template.adminOpeResults.__helpers.get('thresholdRatioRegion')(opeNo))

@@ -144,6 +144,7 @@ Template.ketPetUpload.events({
                   res = XLSX.utils.sheet_to_json(wb.Sheets[wb.SheetNames[0]], {header : 0})
                   var selectedGrade = template.grade.get()
                   var checker = res;
+                  console.log(res);
                   // // console.log(checker);
                   // var index = 4;
                   //

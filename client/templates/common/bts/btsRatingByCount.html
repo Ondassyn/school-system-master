@@ -1,8 +1,12 @@
 <template name="btsRatingByCount">
     <div class="row">
         <div class="col-md-12">
+          <div style="text-align: center;padding-bottom: 20pt;">
             <h4 style="text-align: center;">БТС-{{btsNo}} Рейтинг Санмен</h4>
-
+            <label class="color-green">Өте жақсы</label>
+                <label class="color-yellow">Үлгерімі жоғары</label>
+                <label class="color-red">Үлгерімі төмен</label>
+          </div>
             <div class="form-inline" style="padding-bottom: 10pt">
                 <div class="form-group" style="margin-right: 10pt">
                     {{> academicYear}}
@@ -42,16 +46,10 @@
 
                           {{else}}
                             <th style="white-space: nowrap;" id="sortKazakh">Қазақ тілі</th>
-                            <th style="white-space: nowrap;" id="sortTur">Түрік тілі</th>
-                            <th style="white-space: nowrap;" id="sortRus">Орыс тілі</th>
+                            <th style="white-space: nowrap;" id="sortGeography">География</th>
                           {{/if}}
                         {{else}}
                           {{#if grade8_or_9}}
-
-                            <th style="white-space: nowrap;" id="sortKazakh">Қазақ тілі</th>
-                            <th style="white-space: nowrap;" id="sortTur">Түрік тілі</th>
-                            <th style="white-space: nowrap;" id="sortHistory">Қазақcтан тарихы</th>
-                            <th style="white-space: nowrap;" id="sortGeography">География</th>
                             <th style="white-space: nowrap;" id="sortPhysics">Физика</th>
                             <th style="white-space: nowrap;" id="sortChemistry">Химия</th>
                             <th style="white-space: nowrap;" id="sortBio">Биология</th>
@@ -59,9 +57,6 @@
                             {{else}}
 
                               {{#if grade10}}
-                                <th style="white-space: nowrap;" id="sortKazakh">Қазақ тілі</th>
-                                <th style="white-space: nowrap;" id="sortHistory">Қазақcтан тарихы</th>
-                                <th style="white-space: nowrap;" id="sortWorldHistory">Дүние тарихы</th>
                                 <th style="white-space: nowrap;" id="sortGeography">География</th>
                                 <th style="white-space: nowrap;" id="sortPhysics">Физика</th>
                                 <th style="white-space: nowrap;" id="sortChemistry">Химия</th>
@@ -70,10 +65,6 @@
                               {{else}}
 
                                 <th style="white-space: nowrap;" id="sortTur">Қазақ тілі</th>
-                                <th style="white-space: nowrap;" id="sortTur">Түрік тілі</th>
-                                <th style="white-space: nowrap;" id="sortRus">Орыс тілі</th>
-                                <th style="white-space: nowrap;" id="sortHistory">Қазақcтан тарихы</th>
-                                <th style="white-space: nowrap;" id="sortWorldHistory">Дүние тарихы</th>
                                 <th style="white-space: nowrap;" id="sortGeography">География</th>
                                 <th style="white-space: nowrap;" id="sortPhysics">Физика</th>
                                 <th style="white-space: nowrap;" id="sortChemistry">Химия</th>
@@ -112,18 +103,12 @@
 
                           {{else}}
                             <td style="white-space: nowrap;">{{round 2 kazakh_lang}}</td>
-                            <td style="white-space: nowrap;">{{round 2 turkish_lang}}</td>
-                            <td style="white-space: nowrap;">{{round 2 russian_lang}}</td>
+                            <td style="white-space: nowrap;">{{round 2 geography}}</td>
 
                           {{/if}}
 
                         {{else}}
                           {{#if grade8_or_9}}
-
-                            <td style="white-space: nowrap;">{{round 2 kazakh_lang}}</td>
-                            <td style="white-space: nowrap;">{{round 2 turkish_lang}}</td>
-                            <td style="white-space: nowrap;">{{round 2 kazakh_history}}</td>
-                            <td style="white-space: nowrap;">{{round 2 geography}}</td>
                             <td style="white-space: nowrap;">{{round 2 physics}}</td>
                             <td style="white-space: nowrap;">{{round 2 chemistry}}</td>
                             <td style="white-space: nowrap;">{{round 2 biology}}</td>
@@ -131,9 +116,6 @@
                             {{else}}
 
                               {{#if grade10}}
-                                <td style="white-space: nowrap;">{{#if kazakh_lang}}    {{round 2 kazakh_lang}}     {{/if}}</td>
-                                <td style="white-space: nowrap;">{{#if kazakh_history}} {{round 2 kazakh_history}}  {{/if}}</td>
-                                <td style="white-space: nowrap;">{{#if world_history}}  {{round 2 world_history}}   {{/if}}</td>
                                 <td style="white-space: nowrap;">{{#if geography}}      {{round 2 geography}}       {{/if}}</td>
                                 <td style="white-space: nowrap;">{{#if physics}}        {{round 2 physics}}         {{/if}}</td>
                                 <td style="white-space: nowrap;">{{#if chemistry}}      {{round 2 chemistry}}       {{/if}}</td>
@@ -142,10 +124,6 @@
                               {{else}}
 
                                 <td style="white-space: nowrap;">{{round 2 kazakh_lang}}</td>
-                                <td style="white-space: nowrap;">{{round 2 turkish_lang}}</td>
-                                <td style="white-space: nowrap;">{{round 2 russian_lang}}</td>
-                                <td style="white-space: nowrap;">{{round 2 kazakh_history}}</td>
-                                <td style="white-space: nowrap;">{{round 2 world_history}}</td>
                                 <td style="white-space: nowrap;">{{round 2 geography}}</td>
                                 <td style="white-space: nowrap;">{{round 2 physics}}</td>
                                 <td style="white-space: nowrap;">{{round 2 chemistry}}</td>
@@ -179,18 +157,12 @@
 
                           {{else}}
                             <td class="jaksiClass">{{kazakh_langJaksiCount}}</td>
-                            <td class="jaksiClass">{{turkish_langJaksiCount}}</td>
-                            <td class="jaksiClass">{{russian_langJaksiCount}}</td>
+                            <td class="jaksiClass">{{geographyJaksiCount}}</td>
 
                           {{/if}}
 
                         {{else}}
                           {{#if grade8_or_9}}
-
-                            <td class="jaksiClass">{{kazakh_langJaksiCount}}</td>
-                            <td class="jaksiClass">{{turkish_langJaksiCount}}</td>
-                            <td class="jaksiClass">{{kazakh_historyJaksiCount}}</td>
-                            <td class="jaksiClass">{{geographyJaksiCount}}</td>
                             <td class="jaksiClass">{{physicsJaksiCount}}</td>
                             <td class="jaksiClass">{{chemistryJaksiCount}}</td>
                             <td class="jaksiClass">{{biologyJaksiCount}}</td>
@@ -198,9 +170,6 @@
                             {{else}}
 
                               {{#if grade10}}
-                                <td class="jaksiClass">{{#if kazakh_langJaksiCount}}    {{kazakh_langJaksiCount}}     {{/if}}</td>
-                                <td class="jaksiClass">{{#if kazakh_historyJaksiCount}} {{kazakh_historyJaksiCount}}  {{/if}}</td>
-                                <td class="jaksiClass">{{#if world_historyJaksiCount}}  {{world_historyJaksiCount}}   {{/if}}</td>
                                 <td class="jaksiClass">{{#if geographyJaksiCount}}      {{geographyJaksiCount}}       {{/if}}</td>
                                 <td class="jaksiClass">{{#if physicsJaksiCount}}        {{physicsJaksiCount}}         {{/if}}</td>
                                 <td class="jaksiClass">{{#if chemistryJaksiCount}}      {{chemistryJaksiCount}}       {{/if}}</td>
@@ -209,10 +178,6 @@
                               {{else}}
 
                                 <td style="white-space: nowrap;">{{kazakh_lang}}</td>
-                                <td style="white-space: nowrap;">{{turkish_lang}}</td>
-                                <td style="white-space: nowrap;">{{russian_lang}}</td>
-                                <td style="white-space: nowrap;">{{kazakh_history}}</td>
-                                <td style="white-space: nowrap;">{{world_history}}</td>
                                 <td style="white-space: nowrap;">{{geography}}</td>
                                 <td style="white-space: nowrap;">{{physics}}</td>
                                 <td style="white-space: nowrap;">{{chemistry}}</td>
@@ -244,18 +209,12 @@
 
                           {{else}}
                             <td class="ortawaClass">{{kazakh_langOrtawaCount}}</td>
-                            <td class="ortawaClass">{{turkish_langOrtawaCount}}</td>
-                            <td class="ortawaClass">{{russian_langOrtawaCount}}</td>
+                            <td class="ortawaClass">{{geographyOrtawaCount}}</td>
 
                           {{/if}}
 
                         {{else}}
                           {{#if grade8_or_9}}
-
-                            <td class="ortawaClass">{{kazakh_langOrtawaCount}}</td>
-                            <td class="ortawaClass">{{turkish_langOrtawaCount}}</td>
-                            <td class="ortawaClass">{{kazakh_historyOrtawaCount}}</td>
-                            <td class="ortawaClass">{{geographyOrtawaCount}}</td>
                             <td class="ortawaClass">{{physicsOrtawaCount}}</td>
                             <td class="ortawaClass">{{chemistryOrtawaCount}}</td>
                             <td class="ortawaClass">{{biologyOrtawaCount}}</td>
@@ -263,9 +222,6 @@
                             {{else}}
 
                               {{#if grade10}}
-                                <td class="ortawaClass">{{#if kazakh_langOrtawaCount}}    {{kazakh_langOrtawaCount}}     {{/if}}</td>
-                                <td class="ortawaClass">{{#if kazakh_historyOrtawaCount}} {{kazakh_historyOrtawaCount}}  {{/if}}</td>
-                                <td class="ortawaClass">{{#if world_historyOrtawaCount}}  {{world_historyOrtawaCount}}   {{/if}}</td>
                                 <td class="ortawaClass">{{#if geographyOrtawaCount}}      {{geographyOrtawaCount}}       {{/if}}</td>
                                 <td class="ortawaClass">{{#if physicsOrtawaCount}}        {{physicsOrtawaCount}}         {{/if}}</td>
                                 <td class="ortawaClass">{{#if chemistryOrtawaCount}}      {{chemistryOrtawaCount}}       {{/if}}</td>
@@ -274,10 +230,6 @@
                               {{else}}
 
                                 <td style="white-space: nowrap;">{{kazakh_lang}}</td>
-                                <td style="white-space: nowrap;">{{turkish_lang}}</td>
-                                <td style="white-space: nowrap;">{{russian_lang}}</td>
-                                <td style="white-space: nowrap;">{{kazakh_history}}</td>
-                                <td style="white-space: nowrap;">{{world_history}}</td>
                                 <td style="white-space: nowrap;">{{geography}}</td>
                                 <td style="white-space: nowrap;">{{physics}}</td>
                                 <td style="white-space: nowrap;">{{chemistry}}</td>
@@ -309,18 +261,12 @@
 
                           {{else}}
                             <td class="nawarClass">{{kazakh_langNawarCount}}</td>
-                            <td class="nawarClass">{{turkish_langNawarCount}}</td>
-                            <td class="nawarClass">{{russian_langNawarCount}}</td>
+                            <td class="nawarClass">{{geographyNawarCount}}</td>
 
                           {{/if}}
 
                         {{else}}
                           {{#if grade8_or_9}}
-
-                            <td class="nawarClass">{{kazakh_langNawarCount}}</td>
-                            <td class="nawarClass">{{turkish_langNawarCount}}</td>
-                            <td class="nawarClass">{{kazakh_historyNawarCount}}</td>
-                            <td class="nawarClass">{{geographyNawarCount}}</td>
                             <td class="nawarClass">{{physicsNawarCount}}</td>
                             <td class="nawarClass">{{chemistryNawarCount}}</td>
                             <td class="nawarClass">{{biologyNawarCount}}</td>
@@ -328,9 +274,6 @@
                             {{else}}
 
                               {{#if grade10}}
-                                <td class="nawarClass">{{#if kazakh_langNawarCount}}    {{kazakh_langNawarCount}}     {{/if}}</td>
-                                <td class="nawarClass">{{#if kazakh_historyNawarCount}} {{kazakh_historyNawarCount}}  {{/if}}</td>
-                                <td class="nawarClass">{{#if world_historyNawarCount}}  {{world_historyNawarCount}}   {{/if}}</td>
                                 <td class="nawarClass">{{#if geographyNawarCount}}      {{geographyNawarCount}}       {{/if}}</td>
                                 <td class="nawarClass">{{#if physicsNawarCount}}        {{physicsNawarCount}}         {{/if}}</td>
                                 <td class="nawarClass">{{#if chemistryNawarCount}}      {{chemistryNawarCount}}       {{/if}}</td>
@@ -339,10 +282,6 @@
                               {{else}}
 
                                 <td style="white-space: nowrap;">{{round 2 kazakh_lang}}</td>
-                                <td style="white-space: nowrap;">{{round 2 turkish_lang}}</td>
-                                <td style="white-space: nowrap;">{{round 2 russian_lang}}</td>
-                                <td style="white-space: nowrap;">{{round 2 kazakh_history}}</td>
-                                <td style="white-space: nowrap;">{{round 2 world_history}}</td>
                                 <td style="white-space: nowrap;">{{round 2 geography}}</td>
                                 <td style="white-space: nowrap;">{{round 2 physics}}</td>
                                 <td style="white-space: nowrap;">{{round 2 chemistry}}</td>

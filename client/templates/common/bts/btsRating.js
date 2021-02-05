@@ -47,14 +47,16 @@ Template.btsRating.helpers({
         schoolStore.delete("042");
 
         for (const [key, value] of schoolStore.entries()) {
-          // console.log(key);
           schoolArray.push(value)
         }
 
         schoolArray2 = schoolArray;
-        console.log(schoolArray2);
 
-        return BtsRatings.find({},{sort: Session.get('Sort')});
+        let results = BtsRatings.find({},{sort: Session.get('Sort')});
+        console.log(results.fetch())
+        
+
+        return results;
     },
     schoolNotUploaded(){
       return schoolArray2;
@@ -65,8 +67,11 @@ Template.btsRating.helpers({
     grade7(){
         return "7" == Template.instance().grade.get()
     },
-    grade8_or_9(){
-        return "8" == Template.instance().grade.get() || "9" == Template.instance().grade.get()
+    grade8(){
+        return "8" == Template.instance().grade.get()
+    },
+    grade9(){
+        return "9" == Template.instance().grade.get()
     },
     grade10(){
         return "10" == Template.instance().grade.get()
@@ -107,8 +112,9 @@ Template.btsRating.events({
       }
 
       var headers = ["#", "Оқу жылы", "Мектеп аты", "Жалпы",
-      "Математика", "Қазақ тілі",       "Түрік тілі",
-      "Орыс тілі",  "Қазақcтан тарихы", "Дүние тарихы",
+      "Математика", "Қазақ тілі",
+    //   "Орыс тілі",  "Қазақcтан тарихы", "Дүние тарихы",
+        "Дүние тарихы",
       "География",  "Физика",           "Химия",        "Биология"];
 
 
@@ -123,10 +129,10 @@ Template.btsRating.events({
         let total = btsStore[i].total?btsStore[i].total.toFixed(2):0;
         let mathematic = btsStore[i].mathematic?btsStore[i].mathematic.toFixed(2):0;
         let kazakh_lang = btsStore[i].kazakh_lang?btsStore[i].kazakh_lang.toFixed(2):0;
-        let turkish_lang = btsStore[i].turkish_lang?btsStore[i].turkish_lang.toFixed(2):0;
-        let russian_lang = btsStore[i].russian_lang?btsStore[i].russian_lang.toFixed(2):0;
-        let kazakh_history = btsStore[i].kazakh_history?btsStore[i].kazakh_history.toFixed(2):0;
-        let world_history = btsStore[i].world_history?btsStore[i].world_history.toFixed(2):0;
+        // let turkish_lang = btsStore[i].turkish_lang?btsStore[i].turkish_lang.toFixed(2):0;
+        // let russian_lang = btsStore[i].russian_lang?btsStore[i].russian_lang.toFixed(2):0;
+        // let kazakh_history = btsStore[i].kazakh_history?btsStore[i].kazakh_history.toFixed(2):0;
+        // let world_history = btsStore[i].world_history?btsStore[i].world_history.toFixed(2):0;
         let geography = btsStore[i].geography?btsStore[i].geography.toFixed(2):0;
         let physics = btsStore[i].physics?btsStore[i].physics.toFixed(2):0;
         let chemistry = btsStore[i].chemistry?btsStore[i].chemistry.toFixed(2):0;
@@ -137,10 +143,10 @@ Template.btsRating.events({
           total,
           mathematic,
           kazakh_lang,
-          turkish_lang,
-          russian_lang,
-          kazakh_history,
-          world_history,
+        //   turkish_lang,
+        //   russian_lang,
+        //   kazakh_history,
+        //   world_history,
           geography,
           physics,
           chemistry,
@@ -149,8 +155,6 @@ Template.btsRating.events({
 
         data.push(content);
       }
-
-      console.log(data);
 
       if(data.length == 1){
           alert("Keep calm, there is no data to export");

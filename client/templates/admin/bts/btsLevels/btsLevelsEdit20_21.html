@@ -1,0 +1,193 @@
+<template name="btsLevelsEdit20_21">
+
+	<div class="row">
+		<div class="col-md-8">
+            {{#if Template.subscriptionsReady}}
+              <h4>Өзгерту</h4>
+							<h5>Жыл: {{levels.academicYear}}</h5>
+							<h5>БТС: {{levels.quarter}}</h5>
+							<h5 style="padding-bottom: 20pt">Вариант: {{levels.variant}}</h5>
+							{{#if grade7  levels.grade}}
+                {{#if day1 levels.day }}
+
+                  {{#if btsNo1_or_2 levels.quarter }}
+
+									  <div class="form-group">
+									      <label for="name">Математика</label>
+									      <input type="text" class="form-control" name="mathematic" value="{{levels.mathematic}}">
+									  </div>
+
+										<div class="form-group">
+										    <label for="name">Қазақ тілі (қазақ тобы)</label>
+										    <input type="text" class="form-control" name="kazakh_lang_kaz" value="{{levels.kazakh_lang_kaz}}">
+										</div>
+
+										<div class="form-group">
+										    <label for="name">Қазақ тілі (орыс тобы)</label>
+										    <input type="text" class="form-control" name="kazakh_lang_rus" value="{{levels.kazakh_lang_rus}}">
+										</div>
+
+									  <div class="form-group">
+									      <label for="name">Түрік тілі</label>
+									      <input type="text" class="form-control" name="turkish_lang" value="{{levels.turkish_lang}}">
+									  </div>
+                    <!-- {{> russian_lang_levels}} -->
+                  {{else}} <!-- BTS No 3-->
+										  <div class="form-group">
+										      <label for="name">Математика</label>
+										      <input type="text" class="form-control" name="mathematic" value="{{levels.mathematic}}">
+										  </div>
+
+										  <div class="form-group">
+										      <label for="name">Физика</label>
+										      <input type="text" class="form-control" name="physics" value="{{levels.physics}}">
+										  </div>
+
+										  <div class="form-group">
+										      <label for="name">Химия</label>
+										      <input type="text" class="form-control" name="chemistry" value="{{levels.chemistry}}">
+										  </div>
+
+										  <div class="form-group">
+										      <label for="name">Биология</label>
+										      <input type="text" class="form-control" name="biology" value="{{levels.biology}}">
+										  </div>
+                  {{/if}}
+
+                {{else}} <!-- day2-->
+                    <div class="form-group">
+                      <label for="name"> 7 сыныпта  БТС 2 күн жоқ </label>
+                    </div>
+
+                {{/if}}
+
+              {{else}}
+                {{#if grade8 levels.grade}}
+                  {{#if day1 levels.day}}
+									  <div class="form-group">
+									      <label for="name">Математика</label>
+									      <input type="text" class="form-control" name="mathematic" value="{{levels.mathematic}}">
+									  </div>
+
+									  <div class="form-group">
+										<label for="name">Физика</label>
+										<input type="text" class="form-control" name="physics" value="{{levels.physics}}">
+									</div>
+
+									<div class="form-group">
+										<label for="name">Биология</label>
+										<input type="text" class="form-control" name="biology" value="{{levels.biology}}">
+									</div>
+
+                  {{else}} <!-- grade 8 or 9, day 2 -->
+									  <div class="form-group">
+									      <label for="name">География</label>
+									      <input type="text" class="form-control" name="geography" value="{{levels.geography}}">
+									  </div>
+										  <div class="form-group">
+										      <label for="name">Физика</label>
+										      <input type="text" class="form-control" name="physics" value="{{levels.physics}}">
+										  </div>
+
+										  <div class="form-group">
+										      <label for="name">Химия</label>
+										      <input type="text" class="form-control" name="chemistry" value="{{levels.chemistry}}">
+										  </div>
+
+										  <div class="form-group">
+										      <label for="name">Биология</label>
+										      <input type="text" class="form-control" name="biology" value="{{levels.biology}}">
+										  </div>
+                  {{/if}} <!-- end day1 -->
+
+				{{else}} <!-- else grade8_or_9 -->
+				{{#if grade9 levels.grade}}
+                  {{#if day1 levels.day}}
+									  <div class="form-group">
+									      <label for="name">Математика</label>
+									      <input type="text" class="form-control" name="mathematic" value="{{levels.mathematic}}">
+									  </div>
+
+									  <div class="form-group">
+										<label for="name">Физика</label>
+										<input type="text" class="form-control" name="physics" value="{{levels.physics}}">
+									</div>
+
+									<div class="form-group">
+										<label for="name">Химия</label>
+										<input type="text" class="form-control" name="chemistry" value="{{levels.chemistry}}">
+									</div>
+
+                  {{else}} <!-- grade 8 or 9, day 2 -->
+									  <div class="form-group">
+									      <label for="name">География</label>
+									      <input type="text" class="form-control" name="geography" value="{{levels.geography}}">
+									  </div>
+										  <div class="form-group">
+										      <label for="name">Физика</label>
+										      <input type="text" class="form-control" name="physics" value="{{levels.physics}}">
+										  </div>
+
+										  <div class="form-group">
+										      <label for="name">Химия</label>
+										      <input type="text" class="form-control" name="chemistry" value="{{levels.chemistry}}">
+										  </div>
+
+										  <div class="form-group">
+										      <label for="name">Биология</label>
+										      <input type="text" class="form-control" name="biology" value="{{levels.biology}}">
+										  </div>
+                  {{/if}} <!-- end day1 -->
+
+                {{else}} <!-- else grade8_or_9 -->
+                  {{#if grade10 levels.grade}}
+                    {{#if day1 levels.day }}
+										  <div class="form-group">
+										      <label for="name">Математика</label>
+										      <input type="text" class="form-control" name="mathematic" value="{{levels.mathematic}}">
+										  </div>
+
+                    <!-- Elective subjects -->
+                    <div style="border: 2px solid grey; border-radius: 5px; padding: 10px;">
+                      <h3>Таңдау пәндері</h3>
+											<div class="form-group">
+										      <label for="name">География</label>
+										      <input type="text" class="form-control" name="geography" value="{{levels.geography}}">
+										  </div>
+											  <div class="form-group">
+											      <label for="name">Физика</label>
+											      <input type="text" class="form-control" name="physics" value="{{levels.physics}}">
+											  </div>
+
+											  <div class="form-group">
+											      <label for="name">Химия</label>
+											      <input type="text" class="form-control" name="chemistry" value="{{levels.chemistry}}">
+											  </div>
+
+											  <div class="form-group">
+											      <label for="name">Биология</label>
+											      <input type="text" class="form-control" name="biology" value="{{levels.biology}}">
+											  </div>
+											  <div class="form-group">
+												<label for="name">Дүние тарихы</label>
+												<input type="text" class="form-control" name="world_history" value="{{levels.world_history}}">
+											</div>
+
+                    </div>
+                    {{else}}
+                        <div class="form-group">
+                          <label for="name">10 сыныпта  БТС 2 күн жоқ </label>
+						</div>
+						{{/if}}
+                    {{/if}}
+                  {{/if}}
+                {{/if}}
+              {{/if}}
+
+            <button class="btn btn-primary" id="save">Сақтау</button>
+            {{else}}
+            <p>Loading...</p>
+            {{/if}}
+        </div>
+	</div>
+</template>

@@ -9,3 +9,21 @@ Meteor.publish('schoolStudents', function() {
     }
     return this.ready();
 })
+
+Meteor.publish('schoolSatResults',function(grade) {
+    if (this.userId) {
+        let school = Schools.findOne({userId:this.userId})
+        if(!school) school = Schools.findOne({coordinatorId:this.userId})
+        if(school) return SatResults.find({grade:grade, schoolId:school.schoolId})
+    }
+    return this.ready()
+})
+
+Meteor.publish('schoolIeltsResults',function(grade) {
+    if (this.userId) {
+        let school = Schools.findOne({userId:this.userId})
+        if(!school) school = Schools.findOne({coordinatorId:this.userId})
+        if(school) return IeltsResults.find({grade:grade, schoolId:school.schoolId})
+    }
+    return this.ready()
+})

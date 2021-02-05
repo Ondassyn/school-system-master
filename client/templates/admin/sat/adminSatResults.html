@@ -1,0 +1,146 @@
+<template name="adminSatResults">
+    <div class="row">
+        <div class="col-md-12">
+            <h4 style="text-align: center; padding-bottom: 15pt">SAT-IELTS Нәтижелері</h4>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-inline">
+                        <div class="form-group" style="margin-right: 15pt">
+                        {{> academicYear}}
+
+                        <label for="" style="margin-left: 10pt; ">Мектеп</label>
+                        <select class="form-control" id="school">
+                            {{#each schools}}
+                            <option value="{{schoolId}}">{{shortName}}</option>
+                            {{/each}}
+                        </select>
+
+                        <label for="" style="margin-left: 10pt; ">Сынып</label>
+                        <select class="form-control" id="grade">
+                            <option value="7">7 сынып</option>
+                            <option value="8">8 сынып</option>
+                            <option value="9">9 сынып</option>
+                            <option value="10">10 сынып</option>
+                            <option value="11">11 сынып</option>
+                        </select>
+
+                        <div class="checkbox">
+                            <label style="margin-left: 10pt; "><input id="showCertified" type="checkbox"> Тек сертификатталғандарды көрсету</label>
+                        </div>
+
+                        </div>
+
+                        <div class="form-group" style="float: right">
+                            <a class="btn btn-success" id="download">Download</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {{#if Template.subscriptionsReady}}
+
+            <table style="margin-top: 15pt" class="table table-striped table-bordered table-hover table-responsive table-condensed">
+                <thead>
+                    <tr class="sat-header">
+                        <th>#</th>
+                        <th>Сынып</th>
+                        <th style="border-right: 1pt solid darkgrey">Аты-жөні</th>
+                        <th style="text-align: center; border-right: 1pt solid darkgrey" colspan="3">SAT-1 Reasoning</th>
+                        <th style="text-align: center; border-right: 1pt solid darkgrey" colspan="7">SAT-2 Subject</th>
+                        <th style="text-align: center; border-right: 1pt solid darkgrey" colspan="5">IELTS</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th></th>
+                        <th></th>
+                        <th style="border-right: 1pt solid darkgrey"></th>
+
+                        <th id="sat-1_english" style="font-weight: lighter; font-size: small; text-align:center">Reading & Writing</th>
+                        <th id="sat-1_math" style="font-weight: lighter; font-size: small; text-align:center; border-right: 1pt solid darkgrey">Math</th>
+
+                        <th id="sat-1_total" style="font-weight: lighter; font-size: small; text-align:center; border-right: 1pt solid darkgrey">Total</th>
+
+                        <th id="sat-2_math-1" style="font-weight: lighter; font-size: small; text-align:center">Math-1</th>
+                        <th id="sat-2_math-2" style="font-weight: lighter; font-size: small; text-align:center">Math-2</th>
+                        <th id="sat-2_physics" style="font-weight: lighter; font-size: small; text-align:center">Physics</th>
+                        <th id="sat-2_chemistry" style="font-weight: lighter; font-size: small; text-align:center">Chemistry</th>
+                        <th id="sat-2_biology" style="font-weight: lighter; font-size: small; text-align:center">Biology</th>
+                        <th id="sat-2_world-history" style="font-weight: lighter; font-size: small; text-align:center; border-right: 1pt solid darkgrey">World History</th>
+
+                        <th id="sat-2_total" style="font-weight: lighter; font-size: small; text-align:center; border-right: 1pt solid darkgrey">Total</th>
+                    
+                        <th id="ielts_listening" style="font-weight: lighter; font-size: small; text-align:center">Listening</th>
+                        <th id="ielts_reading" style="font-weight: lighter; font-size: small; text-align:center">Reading</th>
+                        <th id="ielts_writing" style="font-weight: lighter; font-size: small; text-align:center">Writing</th>
+                        <th id="ielts_speaking" style="font-weight: lighter; font-size: small; text-align:center; border-right: 1pt solid darkgrey">Speaking</th>
+
+                        <th id="ielts_total" style="font-weight: lighter; font-size: small; text-align:center; border-right: 1pt solid darkgrey">Total</th>
+                    </tr>
+                  {{#each results}}
+
+                    <tr>
+                      <td>{{math @index "+" 1}}</td>
+                      <td>{{grade}} {{division}}</td>
+                      <td style="border-right: 1pt solid darkgrey">{{surname}} {{name}} </td>
+
+
+                    {{#if editing}}
+
+                        <td style="text-align: center"><input type="text" style="width: 30pt" id="editSat1English" value="{{sat1english}}"></td>
+                        <td style="text-align: center; border-right: 1pt solid darkgrey"><input type="text" style="width: 30pt" id="editSat1Math" value="{{sat1math}}"></td>
+                        <td style="text-align: center; border-right: 1pt solid darkgrey"><input type="text" style="width: 30pt" id="editSat1Total" value="{{sat1total}}"></td>
+                        
+                        <td style="text-align: center"><input type="text" style="width: 30pt" id="editSat2Math1" value="{{sat2math1}}"></td>
+                        <td style="text-align: center"><input type="text" style="width: 30pt" id="editSat2Math2" value="{{sat2math2}}"></td>
+                        <td style="text-align: center"><input type="text" style="width: 30pt" id="editSat2Physics" value="{{sat2physics}}"></td>
+                        <td style="text-align: center"><input type="text" style="width: 30pt" id="editSat2Chemistry" value="{{sat2chemistry}}"></td>
+                        <td style="text-align: center"><input type="text" style="width: 30pt" id="editSat2Biology" value="{{sat2biology}}"></td>
+                        <td style="text-align: center; border-right: 1pt solid darkgrey"><input type="text" style="width: 30pt" id="editSat2WorldHistory" value="{{sat2worldhistory}}"></td>
+                        <td style="text-align: center; border-right: 1pt solid darkgrey"><input type="text" style="width: 30pt" id="editSat2Total" value="{{sat2total}}"></td>
+                        <td style="text-align: center"><input type="text" style="width: 30pt" id="editIeltsListening" value="{{ieltslistening}}"></td>
+                        <td style="text-align: center"><input type="text" style="width: 30pt" id="editIeltsReading" value="{{ieltsreading}}"></td>
+                        <td style="text-align: center"><input type="text" style="width: 30pt" id="editIeltsWriting" value="{{ieltswriting}}"></td>
+                        <td style="text-align: center; border-right: 1pt solid darkgrey"><input type="text" style="width: 30pt" id="editIeltsSpeaking" value="{{ieltsspeaking}}"></td>
+                        <td style="text-align: center; border-right: 1pt solid darkgrey"><input type="text" style="width: 30pt" id="editIeltsTotal" value="{{ieltstotal}}"></td>
+                        
+                        <td>
+                            <button class="saveItem btn btn-success">Save</button>
+                            <button class="cancelItem btn btn-default">Cancel</button>
+                        </td>
+
+                    {{else}}
+
+                        <td style="text-align: center">{{sat1english}}</td>
+                        <td style="text-align: center; border-right: 1pt solid darkgrey">{{sat1math}}</td>
+                        <td style="text-align: center; border-right: 1pt solid darkgrey">{{sat1total}}</td>
+                        <td style="text-align: center">{{sat2math1}}</td>
+                        <td style="text-align: center">{{sat2math2}}</td>
+                        <td style="text-align: center">{{sat2physics}}</td>
+                        <td style="text-align: center">{{sat2chemistry}}</td>
+                        <td style="text-align: center">{{sat2biology}}</td>
+                        <td style="text-align: center; border-right: 1pt solid darkgrey">{{sat2worldhistory}}</td>
+                        <td style="text-align: center; border-right: 1pt solid darkgrey">{{sat2total}}</td>
+                        <td style="text-align: center">{{ieltslistening}}</td>
+                        <td style="text-align: center">{{ieltsreading}}</td>
+                        <td style="text-align: center">{{ieltswriting}}</td>
+                        <td style="text-align: center; border-right: 1pt solid darkgrey">{{ieltsspeaking}}</td>
+                        <td style="text-align: center; border-right: 1pt solid darkgrey">{{ieltstotal}}</td>
+                        
+                        <td>
+                            <button class="editItem btn btn-primary">Edit</button>
+                        </td>
+                        {{/if}}
+
+                    </tr>
+                  {{/each}}
+
+                </tbody>
+            </table>
+
+            {{else}}
+            <p>Loading...</p>
+            {{/if}}
+        </div>
+    </div>
+</template>

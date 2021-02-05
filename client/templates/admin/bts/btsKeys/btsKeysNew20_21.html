@@ -1,0 +1,168 @@
+<template name="btsKeysNew20_21">
+
+	<div class="row">
+		<div class="col-md-8">
+              <h4>БТС Жауап кілтін қосу</h4>
+              <div class="form-group">
+                  <div class="form-inline">
+                      <div class="form-group">
+                        <label for="exampleSelect1">БТС #</label>
+                        <select class="form-control" name="quarter" id="btsNo" style="margin-right: 15pt; width: 60pt">
+                            <option value="1" {{selected "btsNo" "1"}}>1</option>
+                            <option value="2" {{selected "btsNo" "2"}}>2</option>
+                            <option value="3" {{selected "btsNo" "3"}}>3</option>
+                            <!-- <option value="4" {{selected "btsNo" "4"}}>4</option> -->
+                        </select>
+                        <label for="exampleSelect1">Күн #</label>
+                        <select class="form-control" name="day" id="day" style="margin-right: 15pt; width: 60pt">
+                            <option value="1" {{selected "day" "1"}}>1</option>
+                            <!-- <option value="2" {{selected "day" "2"}}>2</option> -->
+                        </select>
+                        <label for="exampleSelect1">Сынып</label>
+                        <select class="form-control" name="grade" id="grade" style="margin-right: 15pt; width: 60pt">
+                            <option value="7" {{selected "grade" "7"}}>7</option>
+                            <option value="8" {{selected "grade" "8"}}>8</option>
+                            <option value="9" {{selected "grade" "9"}}>9</option>
+                            <option value="10" {{selected "grade" "10"}}>10</option>
+                        </select>
+              </div>
+                  </div>
+              </div>
+
+              <div class="form-group">
+                <label for="name">Вариант</label>
+                <input type="text" class="form-control" name="variant" style="width: 100pt">
+              </div>
+
+              {{#if grade7 }}
+                {{#if day1 }}
+
+                  {{#if btsNo1_or_2 }}
+                    {{> math}}
+                    {{> kazakh_lang_kaz}}
+                    {{> kazakh_lang_rus}}
+                    {{> geography}}
+                    <div class="form-group">
+                      <label for="name">Математика Бонус</label>
+                      <input type="text" class="form-control" name="mathematicBonus" value="{{keys.mathematicBonus}}">
+                    </div>
+                    <div class="form-group">
+                        <label for="name">Қазақ тілі Бонус (қазақ тобы)</label>
+                        <input type="text" class="form-control" name="kazakh_lang_kazBonus" value="{{keys.kazakh_lang_kazBonus}}">
+                    </div>
+                    <div class="form-group">
+                        <label for="name">Қазақ тілі Бонус (орыс тобы)</label>
+                        <input type="text" class="form-control" name="kazakh_lang_rusBonus" value="{{keys.kazakh_lang_rusBonus}}">
+                    </div>
+                    <div class="form-group">
+                      <label for="name">География Бонус</label>
+                      <input type="text" class="form-control" name="geographyBonus" value="{{keys.geographyBonus}}">
+                    </div>
+                    <!-- {{> russian_lang}} -->
+                  {{else}} <!-- BTS No 3-->
+                    {{> math}}
+                    {{> physics}}
+                    {{> chemistry}}
+                    {{> biology}}
+                  {{/if}}
+
+                {{else}} <!-- day2-->
+                    <div class="form-group">
+                      <label for="name"> 7 сыныпта  БТС 2 күн жоқ </label>
+                    </div>
+
+                {{/if}}
+
+              {{else}}
+                {{#if grade8}}
+                  {{#if day1 }}
+                      {{> math}}
+                      {{> physics}}
+                      {{> biology}}
+
+                      <div class="form-group">
+                        <label for="name">Математика Бонус</label>
+                        <input type="text" class="form-control" name="mathematicBonus" value="{{keys.mathematicBonus}}">
+                      </div>
+                      <div class="form-group">
+                          <label for="name">Физика Бонус</label>
+                          <input type="text" class="form-control" name="physicsBonus" value="{{keys.physicsBonus}}">
+                      </div>
+                      <div class="form-group">
+                          <label for="name">Биология Бонус</label>
+                          <input type="text" class="form-control" name="biologyBonus" value="{{keys.biologyBonus}}">
+                      </div>
+                  {{else}} <!-- grade 8 or 9, day 2 -->
+                    {{> geography}}
+                    {{> physics}}
+                    {{> chemistry}}
+                    {{> biology}}
+                  {{/if}} <!-- end day1 -->
+
+                {{else}} <!-- else grade8_or_9 -->
+                    {{#if grade9}}
+                      {{> math}}
+                      {{> physics}}
+                      {{> chemistry}}
+                      <div class="form-group">
+                        <label for="name">Математика Бонус</label>
+                        <input type="text" class="form-control" name="mathematicBonus" value="{{keys.mathematicBonus}}">
+                      </div>
+                      <div class="form-group">
+                          <label for="name">Физика Бонус</label>
+                          <input type="text" class="form-control" name="physicsBonus" value="{{keys.physicsBonus}}">
+                      </div>
+                      <div class="form-group">
+                          <label for="name">Химия Бонус</label>
+                          <input type="text" class="form-control" name="chemistryBonus" value="{{keys.chemistryBonus}}">
+                      </div>
+                  {{ else}}
+                  {{#if grade10 }}
+                    {{#if day1 }}
+                      {{> math}}
+                    <!-- Elective subjects -->
+                    <div style="border: 2px solid grey; border-radius: 5px; padding: 10px;">
+                      <h3>Таңдау пәндері</h3>
+                      {{> geography}}
+                      {{> physics}}
+                      {{> chemistry}}
+                      {{> biology}}
+                      {{> world_history}}
+                      <div class="form-group">
+                        <label for="name">Математика Бонус</label>
+                        <input type="text" class="form-control" name="mathematicBonus" value="{{keys.mathematicBonus}}">
+                      </div>
+                      <div class="form-group">
+                        <label for="name">География Бонус</label>
+                        <input type="text" class="form-control" name="geographyBonus" value="{{keys.geographyBonus}}">
+                      </div>
+                      <div class="form-group">
+                        <label for="name">Физика Бонус</label>
+                        <input type="text" class="form-control" name="physicsBonus" value="{{keys.physicsBonus}}">
+                      </div>
+                      <div class="form-group">
+                        <label for="name">Химия Бонус</label>
+                        <input type="text" class="form-control" name="chemistryBonus" value="{{keys.chemistryBonus}}">
+                      </div>
+                      <div class="form-group">
+                        <label for="name">Биология Бонус</label>
+                        <input type="text" class="form-control" name="biologyBonus" value="{{keys.biologyBonus}}">
+                      </div>
+                      <div class="form-group">
+                        <label for="name">Дүние тарихы Бонус</label>
+                        <input type="text" class="form-control" name="world_historyBonus" value="{{keys.world_historyBonus}}">
+                      </div>
+                    </div>
+                    {{else}}
+                        <div class="form-group">
+                          <label for="name">10 сыныпта  БТС 2 күн жоқ </label>
+                        </div>
+                        {{/if}}
+                    {{/if}}
+                  {{/if}}
+                {{/if}}
+              {{/if}}
+              <button class="btn btn-primary" id="save" style="margin-top: 10px">Сақтау</button>
+        </div>
+	</div>
+</template>

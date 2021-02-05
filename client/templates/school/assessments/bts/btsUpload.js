@@ -138,13 +138,12 @@ Template.btsUpload.events({
                       template.errors.set(true)
                       alert("Келесі окушыға күн дұрыс таңдалмады \n" + studObj.studentId + " " + studObj.name + " " + studObj.surname)
                   }
-
                   res.push(studObj);
 
                 }
             }
-            //console.log(res)
-            template.results.set(res)
+            
+            template.results.set(res);
         }
 
         function errorHandler(evt) {

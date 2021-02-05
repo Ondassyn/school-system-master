@@ -2,6 +2,7 @@ import { recheck } from "../../modules/bts/recheck";
 import { calculateObj } from "../../modules/bts/calculateObj"
 import { calcTotalRating } from "../../modules/bts/totalRating"
 import { calculateRating } from "../../modules/bts/rating"
+import { uploadXlsx } from "../../modules/bts/uploadXlsx";
 
 
 Meteor.methods({
@@ -220,5 +221,27 @@ Meteor.methods({
             throw new Meteor.Error(500, 'Data is not properly formatted')
         }
             
-    }
+    },
+
+    'BtsResults.UploadXlsx':function(academicYear,btsNo,day,grade,results) {
+        bts = Configs.findOne({
+            _id: 'btsUpload'
+        });
+        if (bts[btsNo] == 'disabled')
+            throw new Meteor.Error('upload-disabled', 'БТС жүктеу жабық. Өтініш, IT Department-ке хабарласыңыз.')
+
+        if(!Roles.userIsInRole(this.userId,'school') && !Roles.userIsInRole(this.userId,'admin'))
+            throw new Meteor.Error('access-denied', 'Access denied!')
+
+        // let school = Schools.findOne({
+        //     userId: this.userId
+        // })
+        // if(!school) school = Schools.findOne({coordinatorId:this.userId})
+
+        // if (school) {
+            uploadXlsx(academicYear,btsNo,day,grade,results);
+
+        // }
+
+    },
 });

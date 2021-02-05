@@ -1,0 +1,189 @@
+<template name="btsRatingByCategoryBonus">
+    <div class="row">
+        <div class="col-md-12">
+          <div style="text-align: center;padding-bottom: 20pt;">
+              <h4 style="text-align: center;">БТС-{{btsNo}} Рейтинг по темам</h4>
+              <label class="color-green">Өте жақсы</label>
+                <label class="color-yellow">Үлгерімі жоғары</label>
+                <label class="color-red">Үлгерімі төмен</label>
+          </div>
+            <div class="form-inline" style="padding-bottom: 10pt">
+                <div class="form-group" style="margin-right: 10pt">
+                    {{> academicYear}}
+                    <label for="" style="margin-left: 10pt;">Сынып</label>
+                    <select class="form-control" name='grade' id='select'>
+                        <option value="7">7 cынып</option>
+                        <option value="8">8 cынып</option>
+                        <option value="9">9 cынып</option>
+                        <option value="10">10 cынып</option>
+                    </select>
+                </div>
+
+                <!-- <div class="form-group" style="float: right">
+                    <a class="btn btn-success" id="export">Export</a>
+                </div> -->
+
+            </div>
+            {{#if Template.subscriptionsReady}}
+            <div class="table table-responsive" id="out">
+              <table class="table table-striped  table-bordered table-hover table-condensed"  border=1 cellpadding=0 cellspacing=0 width=100%>
+
+                <thead>
+                    <tr class="bts-header center">
+                        <th style="width: 20pt;  text-align: center;">#</th>
+                        <th style="width: 55pt;  margin-left: 20pt; ">Мектеп ID</th>
+                        <th style="margin-left: 70pt; ">Мектеп аты</th>
+                        <th style="white-space: nowrap" id="sortMath"  colspan="3">Математика</th>
+
+                        {{#if grade7}}
+
+                          {{#if btsNo1_or_2 }}
+                            <th style="white-space: nowrap" id="sortKazakh" colspan="3">Қазақ тілі</th>
+                            <th style="white-space: nowrap;" id="sortGeography" colspan="3">География</th>
+                          {{else}}
+                            <th style="white-space: nowrap;" id="sortPhysics" colspan="3">Физика</th>
+                            <th style="white-space: nowrap;" id="sortChemistry" colspan="3">Химия</th>
+                            <th style="white-space: nowrap;" id="sortBio" colspan="3">Биология</th>
+                          {{/if}}
+
+                        {{/if}}
+
+                        {{#if grade8_or_9}}
+
+                            <th style="white-space: nowrap;" id="sortPhysics" colspan="3">Физика</th>
+                            <th style="white-space: nowrap;" id="sortChemistry" colspan="3">Химия</th>
+                            <th style="white-space: nowrap;" id="sortBio" colspan="3">Биология</th>
+
+                        {{/if}}
+
+                        {{#if grade10}}
+                                <th style="white-space: nowrap;" id="sortGeography" colspan="3">География</th>
+                                <th style="white-space: nowrap;" id="sortPhysics" colspan="3">Физика</th>
+                                <th style="white-space: nowrap;" id="sortChemistry" colspan="3">Химия</th>
+                                <th style="white-space: nowrap;" id="sortBio" colspan="3">Биология</th>
+                        {{/if}}
+
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                      <th style="width: 20pt;  text-align: center;"></th>
+                      <th style="width: 55pt;  margin-left: 20pt; "></th>
+                      <th style="margin-left: 70pt; font-weight: lighter; font-size: small;"></th>
+
+                      <th style="font-weight: lighter;" id="mathBonusTopic1" value="topic1">{{mathematicBonusTopic1}}</th>
+                      <th style="font-weight: lighter;" id="mathBonusTopic1" value="topic2">{{mathematicBonusTopic2}}</th>
+                      <th style="font-weight: lighter;" id="mathBonusTopicTotal" value="default">Жалпы</th>
+
+                      {{#if grade7}}
+                      <th style="font-weight: lighter;" id="kazakh_langBonusTopic1" value="topic1">{{kazakh_langBonusTopic1}}</th>
+                      <th style="font-weight: lighter;" id="kazakh_langBonusTopic2" value="topic2">{{kazakh_langBonusTopic2}}</th>
+                      <th style="font-weight: lighter;" id="kazakh_langBonusTopicTotal" value="default">Жалпы</th>
+                      
+                      <th style="font-weight: lighter;" id="geographyBonusTopic1" value="topic1">{{geographyBonusTopic1}}</th>
+                      <th style="font-weight: lighter;" id="geographyBonusTopic2" value="topic2">{{geographyBonusTopic2}}</th>
+                      <th style="font-weight: lighter;" id="geographyBonusTopicTotal" value="default">Жалпы</th>
+                      {{/if}}
+
+                      {{#if grade8_or_9}}
+                      <th style="font-weight: lighter;" id="physicsBonusTopic1" value="topic1">{{physicsBonusTopic1}}</th>
+                      <th style="font-weight: lighter;" id="physicsBonusTopic2" value="topic2">{{physicsBonusTopic2}}</th>
+                      <th style="font-weight: lighter;" id="physicsBonusTopicTotal" value="default">Жалпы</th>
+                      
+                      <th style="font-weight: lighter;" id="chemistryBonusTopic1" value="topic1">{{chemistryBonusTopic1}}</th>
+                      <th style="font-weight: lighter;" id="chemistryBonusTopic2" value="topic2">{{chemistryBonusTopic2}}</th>
+                      <th style="font-weight: lighter;" id="chemistryBonusTopicTotal" value="default">Жалпы</th>
+                      
+                      <th style="font-weight: lighter;" id="biologyBonusTopic1" value="topic1">{{biologyBonusTopic1}}</th>
+                      <th style="font-weight: lighter;" id="biologyBonusTopic2" value="topic2">{{biologyBonusTopic2}}</th>
+                      <th style="font-weight: lighter;" id="biologyBonusTopicTotal" value="default">Жалпы</th>
+                      {{/if}}
+                      {{#if grade10}}
+                      
+                      <th style="font-weight: lighter;" id="geographyBonusTopic1" value="topic1">{{geographyBonusTopic1}}</th>
+                      <th style="font-weight: lighter;" id="geographyBonusTopic2" value="topic2">{{geographyBonusTopic2}}</th>
+                      <th style="font-weight: lighter;" id="geographyBonusTopicTotal" value="default">Жалпы</th>
+                      
+                      <th style="font-weight: lighter;" id="physicsBonusTopic1" value="topic1">{{physicsBonusTopic1}}</th>
+                      <th style="font-weight: lighter;" id="physicsBonusTopic2" value="topic2">{{physicsBonusTopic2}}</th>
+                      <th style="font-weight: lighter;" id="physicsBonusTopicTotal" value="default">Жалпы</th>
+                      
+                      <th style="font-weight: lighter;" id="chemistryBonusTopic1" value="topic1">{{chemistryBonusTopic1}}</th>
+                      <th style="font-weight: lighter;" id="chemistryBonusTopic2" value="topic2">{{chemistryBonusTopic2}}</th>
+                      <th style="font-weight: lighter;" id="chemistryBonusTopicTotal" value="default">Жалпы</th>
+                      
+                      <th style="font-weight: lighter;" id="biologyBonusTopic1" value="topic1">{{biologyBonusTopic1}}</th>
+                      <th style="font-weight: lighter;" id="biologyBonusTopic2" value="topic2">{{biologyBonusTopic2}}</th>
+                      <th style="font-weight: lighter;" id="biologyBonusTopicTotal" value="default">Жалпы</th>
+                      {{/if}}
+                    </tr>
+                    {{#each results}}
+
+                      <tr> <!--  total Category -->
+                          <td style="width: 20pt; ">{{math @index "+" 1}}</td>
+                          <td style="width: 55pt;  margin-left: 20pt; text-align: center;">{{schoolId}}</td>
+                          <td style="margin-left: 70pt; ">{{schoolName schoolId}}</td>
+
+                          <td style="{{getCategoryStylе (math 20 '*' mathematicBonusA)}}">{{round 2 mathematicBonusA}}</td>
+                          <td style="{{getCategoryStylе (math 20 '*' mathematicBonusB)}}">{{round 2 mathematicBonusB}}</td>
+                          <td style="{{getCategoryStylе (math 20 '*' mathematicBonus)}}">{{round 2 mathematicBonus}}</td>
+                          
+
+                          {{#if grade7}}
+                          <td style="{{getCategoryStylе (math 20 '*' kazakh_langBonusA)}}">{{round 2 kazakh_langBonusA}}</td>
+                          <td style="{{getCategoryStylе (math 20 '*' kazakh_langBonusB)}}">{{round 2 kazakh_langBonusB}}</td>
+                          <td style="{{getCategoryStylе (math 20 '*' kazakh_langBonus)}}">{{round 2 kazakh_langBonus}}</td>
+                          
+                          <td style="{{getCategoryStylе (math 20 '*' geographyBonusA)}}">{{round 2 geographyBonusA}}</td>
+                          <td style="{{getCategoryStylе (math 20 '*' geographyBonusB)}}">{{round 2 geographyBonusB}}</td>
+                          <td style="{{getCategoryStylе (math 20 '*' geographyBonus)}}">{{round 2 geographyBonus}}</td>
+                          {{/if}}
+                          {{#if grade8_or_9}}
+
+                          <td style="{{getCategoryStylе (math 20 '*' physicsBonusA)}}">{{round 2 physicsBonusA}}</td>
+                          <td style="{{getCategoryStylе (math 20 '*' physicsBonusB)}}">{{round 2 physicsBonusB}}</td>
+                          <td style="{{getCategoryStylе (math 20 '*' physicsBonus)}}">{{round 2 physicsBonus}}</td>
+
+                          <td style="{{getCategoryStylе (math 20 '*' chemistryBonusA)}}">{{round 2 chemistryBonusA}}</td>
+                          <td style="{{getCategoryStylе (math 20 '*' chemistryBonusB)}}">{{round 2 chemistryBonusB}}</td>
+                          <td style="{{getCategoryStylе (math 20 '*' chemistryBonus)}}">{{round 2 chemistryBonus}}</td>
+                          
+                          <td style="{{getCategoryStylе (math 20 '*' biologyBonusA)}}">{{round 2 biologyBonusA}}</td>
+                          <td style="{{getCategoryStylе (math 20 '*' biologyBonusB)}}">{{round 2 biologyBonusB}}</td>
+                          <td style="{{getCategoryStylе (math 20 '*' biologyBonus)}}">{{round 2 biologyBonus}}</td>
+
+                          {{/if}}
+
+                          {{#if grade10}}
+                            
+                          <td style="{{getCategoryStylе (math 20 '*' geographyBonusA)}}">{{round 2 geographyBonusA}}</td>
+                          <td style="{{getCategoryStylе (math 20 '*' geographyBonusB)}}">{{round 2 geographyBonusB}}</td>
+                          <td style="{{getCategoryStylе (math 20 '*' geographyBonus)}}">{{round 2 geographyBonus}}</td>
+                          
+                          <td style="{{getCategoryStylе (math 20 '*' physicsBonusA)}}">{{round 2 physicsBonusA}}</td>
+                          <td style="{{getCategoryStylе (math 20 '*' physicsBonusB)}}">{{round 2 physicsBonusB}}</td>
+                          <td style="{{getCategoryStylе (math 20 '*' physicsBonus)}}">{{round 2 physicsBonus}}</td>
+
+                          <td style="{{getCategoryStylе (math 20 '*' chemistryBonusA)}}">{{round 2 chemistryBonusA}}</td>
+                          <td style="{{getCategoryStylе (math 20 '*' chemistryBonusB)}}">{{round 2 chemistryBonusB}}</td>
+                          <td style="{{getCategoryStylе (math 20 '*' chemistryBonus)}}">{{round 2 chemistryBonus}}</td>
+                          
+                          <td style="{{getCategoryStylе (math 20 '*' biologyBonusA)}}">{{round 2 biologyBonusA}}</td>
+                          <td style="{{getCategoryStylе (math 20 '*' biologyBonusB)}}">{{round 2 biologyBonusB}}</td>
+                          <td style="{{getCategoryStylе (math 20 '*' biologyBonus)}}">{{round 2 biologyBonus}}</td>
+
+                          {{/if}}
+                      </tr>
+
+                      
+
+                    {{/each}}
+                </tbody>
+              </table>
+            </div>
+            {{else}}
+            <p>Loading...</p>
+            {{/if}}
+        </div>
+    </div>
+</template>

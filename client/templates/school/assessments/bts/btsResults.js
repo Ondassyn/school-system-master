@@ -6,7 +6,7 @@ import XLSX from 'xlsx';
 Template.btsResults.onCreated(function(){
     let template = this
     Session.setDefault('Sort',{total:-1});
-    template.grade = new ReactiveVar("7")
+    template.grade = new ReactiveVar("7");
     document.title = "БТС Мектеп Нәтижелері";
 
     template.subscribe("schools")
@@ -24,8 +24,11 @@ Template.btsResults.helpers({
     grade10(){
         return "10" == Template.instance().grade.get()
     },
-    grade8_or_9(){
-        return "8" == Template.instance().grade.get() || "9" == Template.instance().grade.get()
+    grade8(){
+        return "8" == Template.instance().grade.get()
+    },
+    grade9(){
+       return "9" == Template.instance().grade.get()
     },
     btsNo1_or_2(){
         return "2" == FlowRouter.getParam("btsNo") || "1" == FlowRouter.getParam("btsNo")
@@ -73,8 +76,7 @@ Template.btsResults.events({
       var curGrade = btsStore[0].grade;
       let okuJyly = academicYear.get();
       if(curGrade == '7'){
-        headers = ["#", "Оқу жылы","Оқушы ID", "Сынып", "Аты Жөні","Республика бойынша орны", "Жалпы", "Математика", "Қазақ тілі",
-        "Түрік тілі", "Орыс тілі"];
+        headers = ["#", "Оқу жылы","Оқушы ID", "Сынып", "Аты Жөні","Республика бойынша орны", "Жалпы", "Математика", "Қазақ тілі"];
 
           data.push(headers);
           for(var i = 0; i < btsStore.length; i++){
@@ -86,19 +88,15 @@ Template.btsResults.events({
             let total = btsStore[i].total;
             let mathematic = btsStore[i].mathematic;
             let kazakh_lang = btsStore[i].kazakh_lang;
-            let russian_lang = btsStore[i].russian_lang;
-            let turkish_lang = btsStore[i].turkish_lang;
+            // let russian_lang = btsStore[i].russian_lang;
 
-            let content = [idN, okuJyly, studentId, classN, studentInfo, place, total, mathematic, kazakh_lang,
-              turkish_lang, russian_lang];
+            let content = [idN, okuJyly, studentId, classN, studentInfo, place, total, mathematic, kazakh_lang];
 
             data.push(content);
           }
 
-      }else if (curGrade == '8' || curGrade == '9') {
-        headers = ["#", "Оқу жылы","Оқушы ID", "Сынып", "Аты Жөні","Республика бойынша орны","Жалпы","Математика", "Қазақ тілі",
-          "Түрік тілі", "Қазақстан тарихы",
-          "География", "Физика", "Химия", "Биология"];
+      }else if (curGrade == '8') {
+        headers = ["#", "Оқу жылы","Оқушы ID", "Сынып", "Аты Жөні","Республика бойынша орны","Жалпы","Математика",  "Физика", "Биология"];
 
           data.push(headers);
           for(var i = 0; i < btsStore.length; i++){
@@ -109,26 +107,50 @@ Template.btsResults.events({
             let place = btsStore[i].place;
             let total = btsStore[i].total;
             let mathematic = btsStore[i].mathematic;
-            let kazakh_lang = btsStore[i].kazakh_lang;
-            let turkish_lang = btsStore[i].turkish_lang;
-            let kazakh_history = btsStore[i].kazakh_history;
-            let geography = btsStore[i].geography;
+            // let kazakh_lang = btsStore[i].kazakh_lang;
+            // let turkish_lang = btsStore[i].turkish_lang;
+            // let kazakh_history = btsStore[i].kazakh_history;
+            // let geography = btsStore[i].geography;
             let physics = btsStore[i].physics;
-            let chemistry = btsStore[i].chemistry;
+            // let chemistry = btsStore[i].chemistry;
             let biology = btsStore[i].biology;
 
-            let content = [idN, okuJyly, studentId, classN, studentInfo, place, total, mathematic, kazakh_lang,
-              turkish_lang, kazakh_history,
-              geography, physics, chemistry, biology];
+            let content = [idN, okuJyly, studentId, classN, studentInfo, place, total, mathematic,
+              physics,  biology];
+
+            data.push(content);
+
+          }
+
+      }else if (curGrade == '9') {
+        headers = ["#", "Оқу жылы","Оқушы ID", "Сынып", "Аты Жөні","Республика бойынша орны","Жалпы","Математика", "Физика", "Химия"];
+
+          data.push(headers);
+          for(var i = 0; i < btsStore.length; i++){
+            let idN = i+1;
+            let studentInfo = btsStore[i].surname+" "+btsStore[i].name.trim();
+            let classN = btsStore[i].grade+" "+btsStore[i].division;
+            let studentId = btsStore[i].studentId;
+            let place = btsStore[i].place;
+            let total = btsStore[i].total;
+            let mathematic = btsStore[i].mathematic;
+            // let kazakh_lang = btsStore[i].kazakh_lang;
+            // let turkish_lang = btsStore[i].turkish_lang;
+            // let kazakh_history = btsStore[i].kazakh_history;
+            // let geography = btsStore[i].geography;
+            let physics = btsStore[i].physics;
+            let chemistry = btsStore[i].chemistry;
+            // let biology = btsStore[i].biology;
+
+            let content = [idN, okuJyly, studentId, classN, studentInfo, place, total, mathematic, physics, chemistry];
 
             data.push(content);
 
           }
 
       }else if (curGrade == '10') {
-        headers = ["#", "Оқу жылы","Оқушы ID", "Сынып", "Аты Жөні","Республика бойынша орны","Жалпы","Математика", "Қазақ тілі",
-          "Қазақстан тарихы", "География",  "Физика",
-          "Химия", "Биология",   "Дүние тарихы"];
+        headers = ["#", "Оқу жылы","Оқушы ID", "Сынып", "Аты Жөні","Республика бойынша орны","Жалпы","Математика", "География",  "Физика",
+          "Химия", "Биология"];
 
           data.push(headers);
           for(var i = 0; i < btsStore.length; i++){
@@ -139,19 +161,17 @@ Template.btsResults.events({
             let place = btsStore[i].place;
             let total = btsStore[i].total;
             let mathematic = btsStore[i].mathematic;
-            let kazakh_lang = btsStore[i].kazakh_lang;
-            let kazakh_history = btsStore[i].kazakh_history;
+            // let kazakh_lang = btsStore[i].kazakh_lang;
+            // let kazakh_history = btsStore[i].kazakh_history;
 
             let geography = btsStore[i].geography?btsStore[i].geography:'-';
             let physics = btsStore[i].physics?btsStore[i].physics:'-';
 
             let chemistry = btsStore[i].chemistry?btsStore[i].chemistry:'-';
             let biology = btsStore[i].biology?btsStore[i].biology:'-';
-            let world_history = btsStore[i].world_history?btsStore[i].world_history:'-';
 
-            let content = [idN, okuJyly, studentId, classN, studentInfo, place, total, mathematic, kazakh_lang,
-              kazakh_history, geography, physics,
-              chemistry, biology, world_history];
+            let content = [idN, okuJyly, studentId, classN, studentInfo, place, total, mathematic, geography, physics,
+              chemistry, biology];
 
             data.push(content);
 

@@ -1,0 +1,197 @@
+<template name="adminOpeRatingsCopy">
+    <div class="row">
+        <div class="col-md-12">
+            <h4 style="text-align: center; padding-bottom: 15pt">OPE Рейтинг</h4>
+            
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-inline">
+                        <div class="form-group" style="margin-right: 15pt">
+                        {{> academicYear}}
+
+                        <label for="" style="margin-left: 10pt; ">Пән</label>
+                        <select class="form-control" id="subjectId">
+                            <option value="all">Жалпы</option>
+                            <option value="01">Алгебра</option>
+                            <option value="02">Физика</option>
+                            <option value="03">Химия</option>
+                            <option value="04">Биология</option>
+                            <option value="05">Ағылшын тілі</option>
+                            <option value="06">География</option>
+                            <option value="08">Информатика</option>
+                            <option value="09">Қазақ тілі</option>
+                            <option value="10">Түрік тілі</option>
+                            <option value="11">Орыс тілі</option>
+                            <option value="12">Қазақстан тарихы</option>
+                            <option value="15">Құқық</option>
+                        </select>
+
+                        <label for="" style="margin-left: 10pt; ">Сынып</label>
+                        <select class="form-control" id="grade">
+                            <option value="all">Жалпы</option>
+                            <option value="7">7 сынып</option>
+                            <option value="8">8 сынып</option>
+                            <option value="9">9 сынып</option>
+                            <option value="10">10 сынып</option>
+                            <option value="11">11 сынып</option>
+                        </select>
+
+                        <label for="" style="margin-left: 10pt; ">Рейтинг түрі</label>
+                        <select class="form-control" id="rating_type">
+                            <option value="default" disabled selected>Опцияны таңдаңыз</option>
+                            <option value="average">Орташа</option>
+                            <option value="region">Область</option>
+                            <option value="republic">Республика</option>
+                            <!-- <option value="both">Область және республика</option> -->
+                            <!-- <option value="percentageRegion">"Область" дәлелденген пайыз</option>
+                            <option value="percentageRepublic">"Республика" дәлелденген пайыз</option>
+                            <option value="quantityRegion">"Область" дәлелденген саны</option>
+                            <option value="quantityRepublic">"Республика" дәлелденген саны</option>
+                            <option value="percentageBoth">Жалпы дәлелденген пайыз</option>
+                            <option value="quantityBoth">Жалпы дәлелденген саны</option> -->
+                        </select>
+
+                        <label for="threshold_regional" style="margin-left: 10pt;"><span style="padding: 5px; background-color: #ccffff">Область үшін ұпай саны</span></label>
+                        <!-- <input type="text" style="width: 40pt" id="threshold_region" class="form-control" placeholder="Сан енгізіңіз" name="threshold_regional" value="{{opeThresholds 'region'}}">                         -->
+                        <span>{{#if opeThresholds 'region'}}{{opeThresholds 'region'}}{{else}}-{{/if}}</span>
+
+                        <label for="threshold_republic" style="margin-left: 10pt;"><span style="padding: 5px; background-color: #cce5ff">Республика үшін ұпай саны</span></label>
+                        <!-- <input type="text" style="width: 40pt" id="threshold_republic" class="form-control" placeholder="Сан енгізіңіз" name="threshold_republic" value="{{opeThresholds 'republic'}}"> -->
+                        <span>{{#if opeThresholds 'republic'}}{{opeThresholds 'republic'}}{{else}}-{{/if}}</span>
+
+
+                        </div>
+                        
+                        {{#if isOption}}
+                        <div class="form-group" style="float: right">
+                            <a class="btn btn-success" id="download">Download</a>
+                        </div>
+                        {{/if}}
+                    </div>
+                </div>
+            </div>
+
+            {{#if Template.subscriptionsReady}}
+
+            <table style="margin-top: 15pt" class="table table-striped  table-bordered table-hover table-condensed"  border=1 cellpadding=0 cellspacing=0 width=100%>
+                <thead>
+                    <tr class="bts-header">
+                        <th>#</th>
+                        <th style="border-right: 1pt solid darkgrey">Мектеп</th>
+                        <th id='ope1' colspan="3" style="text-align: center; border-right: 1pt solid darkgrey">
+                            <!-- OPE<br>16.11 - 30.11 -->
+                            OPE-1
+                        </th>
+                        <th id='ope2' colspan="3" style="text-align: center; border-right: 1pt solid darkgrey">
+                            <!-- OPE<br>30.11 - 14.12 -->
+                            OPE-2
+                        </th>
+                        <th id='ope3' colspan="3" style="text-align: center; border-right: 1pt solid darkgrey">
+                            <!-- OPE<br>14.12 - 28.12 -->
+                            OPE-3
+                        </th>
+                        <th id='ope4' colspan="3" style="text-align: center; border-right: 1pt solid darkgrey">
+                            <!-- OPE<br>28.12 - 11.01 -->
+                            OPE-4
+                        </th>
+                        <th id='ope5' colspan="3" style="text-align: center; border-right: 1pt solid darkgrey">
+                            <!-- OPE<br>11.01 - 25.01 -->
+                            OPE-5
+                        </th>
+                        <th id='ope6' colspan="3" style="text-align: center; border-right: 1pt solid darkgrey">
+                            <!-- OPE<br>25.01 - 08.02 -->
+                            OPE-6
+                        </th>
+                        <th id='opeAverage' colspan="3" style="text-align:center">Average</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#unless isAverage}}
+                    <tr>
+                        <th scope="rowgroup"></th>
+                        <th scope="rowgroup" style="border-right: 1pt solid darkgrey"></th>
+                        
+                        <th id="ope1-m" style="font-weight: lighter; font-size: x-small; text-align:center" scope="rowgroup">Дәлелдеген саны</th>
+                        <th id="ope1-n" style="font-weight: lighter; font-size: x-small; text-align:center" scope="rowgroup">Дәлелдеуге мақсат</th>
+                        <th id="ope1-p" style="font-weight: lighter; font-size: x-small; text-align:center; border-right: 1pt solid darkgrey" scope="rowgroup">Дәлелдеген пайызы</th>
+                        
+                        <th id="ope2-m" style="font-weight: lighter; font-size: x-small; text-align:center" scope="rowgroup">Дәлелдеген саны</th>
+                        <th id="ope2-n" style="font-weight: lighter; font-size: x-small; text-align:center" scope="rowgroup">Дәлелдеуге мақсат</th>
+                        <th id="ope2-p" style="font-weight: lighter; font-size: x-small; text-align:center; border-right: 1pt solid darkgrey" scope="rowgroup">Дәлелдеген пайызы</th>
+                        
+                        <th id="ope3-m" style="font-weight: lighter; font-size: x-small; text-align:center" scope="rowgroup">Дәлелдеген саны</th>
+                        <th id="ope3-n" style="font-weight: lighter; font-size: x-small; text-align:center" scope="rowgroup">Дәлелдеуге мақсат</th>
+                        <th id="ope3-p" style="font-weight: lighter; font-size: x-small; text-align:center; border-right: 1pt solid darkgrey" scope="rowgroup">Дәлелдеген пайызы</th>
+                        
+                        <th id="ope4-m" style="font-weight: lighter; font-size: x-small; text-align:center" scope="rowgroup">Дәлелдеген саны</th>
+                        <th id="ope4-n" style="font-weight: lighter; font-size: x-small; text-align:center" scope="rowgroup">Дәлелдеуге мақсат</th>
+                        <th id="ope4-p" style="font-weight: lighter; font-size: x-small; text-align:center; border-right: 1pt solid darkgrey" scope="rowgroup">Дәлелдеген пайызы</th>
+                        
+                        <th id="ope5-m" style="font-weight: lighter; font-size: x-small; text-align:center" scope="rowgroup">Дәлелдеген саны</th>
+                        <th id="ope5-n" style="font-weight: lighter; font-size: x-small; text-align:center" scope="rowgroup">Дәлелдеуге мақсат</th>
+                        <th id="ope5-p" style="font-weight: lighter; font-size: x-small; text-align:center; border-right: 1pt solid darkgrey" scope="rowgroup">Дәлелдеген пайызы</th>
+                        
+                        <th id="ope6-m" style="font-weight: lighter; font-size: x-small; text-align:center" scope="rowgroup">Дәлелдеген саны</th>
+                        <th id="ope6-n" style="font-weight: lighter; font-size: x-small; text-align:center" scope="rowgroup">Дәлелдеуге мақсат</th>
+                        <th id="ope6-p" style="font-weight: lighter; font-size: x-small; text-align:center; border-right: 1pt solid darkgrey" scope="rowgroup">Дәлелдеген пайызы</th>
+                        
+                        <th id="average-m" style="font-weight: lighter; font-size: x-small; text-align:center" scope="rowgroup">Дәлелдеген саны</th>
+                        <th id="average-n" style="font-weight: lighter; font-size: x-small; text-align:center" scope="rowgroup">Дәлелдеуге мақсат</th>
+                        <th id="average-p" style="font-weight: lighter; font-size: x-small; text-align:center" scope="rowgroup">Дәлелдеген пайызы</th>
+                    </tr>
+                    {{/unless}}
+                  {{#each schools}}
+
+                    <tr>
+                      <td>{{math @index "+" 1}}</td>
+                      <td style="width:20%; border-right: 1pt solid darkgrey">{{shortName}}</td>
+
+                        {{#if isAverage}}
+                            {{#each (repeat 6)}}
+                                <td style="text-align:center; border-right: 1pt solid darkgrey" colspan="3">{{getAverage this ../schoolId}}</td>
+                            {{/each}}
+                            <td style="text-align: center" colspan="3">{{averageAverages schoolId}}</td>
+                        {{else}}
+                            {{#if isRegion}}
+                                {{#each (repeat 6)}}
+                                    <td style="text-align:center">{{getQuantityRegion this ../schoolId}}</td>
+                                    <td style="text-align:center">{{getTotalRegion this ../schoolId}}</td>
+                                    <td style="text-align:center; border-right: 1pt solid darkgrey">{{getPercentageRegion this ../schoolId}}</td>
+                                {{/each}}
+                                <td style="text-align: center">{{averageQuantitiesRegion schoolId}}</td>
+                                <td style="text-align: center">{{averageTotalsRegion schoolId}}</td>
+                                <td style="text-align: center">{{averagePercentagesRegion schoolId}}</td>
+                            {{else}}
+                                {{#if isRepublic}}
+                                    {{#each (repeat 6)}}
+                                        <td style="text-align:center">{{getQuantityRepublic this ../schoolId}}</td>
+                                        <td style="text-align:center">{{getTotalRepublic this ../schoolId}}</td>
+                                        <td style="text-align:center; border-right: 1pt solid darkgrey">{{getPercentageRepublic this ../schoolId}}</td>
+                                    {{/each}}
+                                    <td style="text-align: center">{{averageQuantitiesRepublic schoolId}}</td>
+                                    <td style="text-align: center">{{averageTotalsRepublic schoolId}}</td>
+                                    <td style="text-align: center">{{averagePercentagesRepublic schoolId}}</td>
+                                {{else}}
+                                        {{#each (repeat 6)}}
+                                        <td style="text-align:center">{{getQuantityBoth this ../schoolId}}</td>
+                                        <td style="text-align:center">{{getTotalBoth this ../schoolId}}</td>
+                                        <td style="text-align:center; border-right: 1pt solid darkgrey">{{getPercentageBoth this ../schoolId}}</td>
+                                        {{/each}}
+                                        <td style="text-align: center">{{averageQuantitiesBoth schoolId}}</td>
+                                        <td style="text-align: center">{{averageTotalsBoth schoolId}}</td>
+                                        <td style="text-align: center">{{averagePercentagesBoth schoolId}}</td>
+                                {{/if}}
+                            {{/if}}
+                        {{/if}}
+                    </tr>
+                  {{/each}}
+
+                </tbody>
+            </table>
+
+            {{else}}
+            <p>Loading...</p>
+            {{/if}}
+        </div>
+    </div>
+</template>

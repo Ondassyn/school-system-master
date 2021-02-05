@@ -8,7 +8,6 @@ Template.adminMainPage.onCreated(function() {
     document.title = "Басты бет";
     template.subscribe('subjects')
     template.subscribe('schools')
-    template.subscribe('userList')
     template.autorun(()=>{
         template.subscribe('allSchoolPerformaRatings', academicYear.get())
     })

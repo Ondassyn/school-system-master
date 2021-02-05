@@ -1,5 +1,5 @@
-import { upload0 } from "../../modules/bts/upload0";
-import { calculateRating } from "../../modules/bts/rating";
+import { upload0 } from "../../modules/bts/upload20_21";
+import { calculateRating } from "../../modules/bts/rating20_21";
 
 Meteor.methods({
     'BtsResults.Upload':function(academicYear,btsNo,day,results) {

@@ -1,4 +1,5 @@
 <template name="schoolStudents">
+    <div>{{> React component=Greeting}}</div>
     <div class="row">
         <div class="col-md-12">
             <h4 style="text-align: center;">Оқушылар тізімі</h4>
@@ -32,18 +33,18 @@
             </div>
             <br/>
             {{#if Template.subscriptionsReady}}
-            <div class="table table-responsive" id="out">
+            <div class="table table-responsive">
             <table class="table table-striped table-hover table-condensed">
                   <thead>
                     <tr class="bts-header " style="text-align: center;">
-                        <th style="width: 30pt">#</th>
-                        <th style="width: 60pt">Оқушы ID</th>
-                        <th style="width: 60pt">Сыныбы</th>
-                        <th name="sInfo" style="width: 150pt">Аты-жөні</th>
-                        <th style="width: 80pt">Toбы</th>
-                        <th style="width: 120pt">Олимпиада пәні</th>
-                        <th style="width: 220pt; text-align: center;">БТС таңдау пәндері</th>
-                        <th style="width: 80pt">Деңгей</th>
+                        <th>#</th>
+                        <th>Оқушы ID</th>
+                        <th>Сыныбы</th>
+                        <th name="sInfo">Аты-жөні</th>
+                        <th>Toбы</th>
+                        <th>Олимпиада пәні</th>
+                        <th style="text-align: center;">БТС таңдау пәндері</th>
+                        <th>Деңгей</th>
                         <!--  Student joba & cabinet part
                         <th style="width: 120pt">Жоба пәні</th>
                         <th style="width: 100pt">Парақшасы<br/>бар ма</th> -->
@@ -60,7 +61,7 @@
                         <td>{{surname}} {{name}}</td>
                         <td style="width: 30pt">{{languageGroup}}</td>
                         <td>
-                            <select class="form-control" style="width: 100pt" name="subjectId" id="kboSubject">
+                            <select class="form-control" name="subjectId" id="kboSubject">
                                 <option value="free">---</option>
                                 {{#each subjects}}
                                     <option value="{{subjectId}}" {{isOlympiadStudent ../studentId subjectId}}>

@@ -124,7 +124,7 @@ Template.btsRatingByCategory.events({
       }
 
       var headers = ["#", "Оқу жылы", "Мектеп аты",
-      "Математика", "Қазақ тілі", "Түрік тілі", "Қазақcтан тарихы", "Дүние тарихы",
+      "Математика", "Қазақ тілі", "Дүние тарихы",
       "География", "Физика", "Химия", "Биология"];
 
       data.push(headers);
@@ -138,9 +138,6 @@ Template.btsRatingByCategory.events({
         let mektepAty  = Schools.findOne({schoolId: btsStore[i].schoolId}) ? Schools.findOne({schoolId: btsStore[i].schoolId}).shortName : undefined;
         let mathematic = btsStore[i].mathematic?btsStore[i].mathematic.toFixed(2):0;
         let kazakh_lang = btsStore[i].kazakh_lang?btsStore[i].kazakh_lang.toFixed(2):0;
-        let turkish_lang = btsStore[i].turkish_lang?btsStore[i].turkish_lang.toFixed(2):0;
-        let kazakh_history = btsStore[i].kazakh_history?btsStore[i].kazakh_history.toFixed(2):0;
-        let world_history = btsStore[i].world_history?btsStore[i].world_history.toFixed(2):0;
         let geography = btsStore[i].geography?btsStore[i].geography.toFixed(2):0;
         let physics = btsStore[i].physics?btsStore[i].physics.toFixed(2):0;
         let chemistry = btsStore[i].chemistry?btsStore[i].chemistry.toFixed(2):0;
@@ -149,9 +146,6 @@ Template.btsRatingByCategory.events({
         let content = [idN, okuJyly, mektepAty,
           mathematic*5,
           kazakh_lang*5,
-          turkish_lang*5,
-          kazakh_history*5,
-          world_history*5,
           geography*5,
           physics*5,
           chemistry*5,
@@ -162,9 +156,6 @@ Template.btsRatingByCategory.events({
 
         let mathematicA = btsStore[i].mathematicA?btsStore[i].mathematicA.toFixed(2):0;
         let kazakh_langA = btsStore[i].kazakh_langA?btsStore[i].kazakh_langA.toFixed(2):0;
-        let turkish_langA = btsStore[i].turkish_langA?btsStore[i].turkish_langA.toFixed(2):0;
-        let kazakh_historyA = btsStore[i].kazakh_historyA?btsStore[i].kazakh_historyA.toFixed(2):0;
-        let world_historyA = btsStore[i].world_historyA?btsStore[i].world_historyA.toFixed(2):0;
         let geographyA = btsStore[i].geographyA?btsStore[i].geographyA.toFixed(2):0;
         let physicsA = btsStore[i].physicsA?btsStore[i].physicsA.toFixed(2):0;
         let chemistryA = btsStore[i].chemistryA?btsStore[i].chemistryA.toFixed(2):0;
@@ -173,9 +164,6 @@ Template.btsRatingByCategory.events({
         let contentA = [' ', ' ', 'Категория A',
           mathematicA,
           kazakh_langA,
-          turkish_langA,
-          kazakh_historyA,
-          world_historyA,
           geographyA,
           physicsA,
           chemistryA,
@@ -186,9 +174,6 @@ Template.btsRatingByCategory.events({
 
         let mathematicB = btsStore[i].mathematicB?btsStore[i].mathematicB.toFixed(2):0;
         let kazakh_langB = btsStore[i].kazakh_langB?btsStore[i].kazakh_langB.toFixed(2):0;
-        let turkish_langB = btsStore[i].turkish_langB?btsStore[i].turkish_langB.toFixed(2):0;
-        let kazakh_historyB = btsStore[i].kazakh_historyB?btsStore[i].kazakh_historyB.toFixed(2):0;
-        let world_historyB = btsStore[i].world_historyB?btsStore[i].world_historyB.toFixed(2):0;
         let geographyB = btsStore[i].geographyB?btsStore[i].geographyB.toFixed(2):0;
         let physicsB = btsStore[i].physicsB?btsStore[i].physicsB.toFixed(2):0;
         let chemistryB = btsStore[i].chemistryB?btsStore[i].chemistryB.toFixed(2):0;
@@ -197,9 +182,6 @@ Template.btsRatingByCategory.events({
         let contentB = [' ', ' ', 'Категория B',
           mathematicB,
           kazakh_langB,
-          turkish_langB,
-          kazakh_historyB,
-          world_historyB,
           geographyB,
           physicsB,
           chemistryB,

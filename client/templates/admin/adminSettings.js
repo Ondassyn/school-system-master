@@ -5,13 +5,13 @@ Template.adminSettings.onCreated(function() {
     let template = this
     template.reportPeriod = new ReactiveVar('16.11 - 30.11')
     document.title = "Баптаулар";
-    template.subscribe('subjects')
+    // template.subscribe('subjects')
     template.subscribe('schools')
     template.subscribe("configs")
-    template.subscribe('kboKeysGeneral')
-    template.subscribe('ketPetRating');
+    // template.subscribe('kboKeysGeneral')
+    // template.subscribe('ketPetRating');
     // template.subscribe('userList');
-    template.subscribe('kboGenelResults',academicYear.get())
+    // template.subscribe('kboGenelResults',academicYear.get())
     Session.set('editItemAdmin', null);
     Session.set('editItemEdlight', null);
     Session.equals('editSchoolAccount', null);

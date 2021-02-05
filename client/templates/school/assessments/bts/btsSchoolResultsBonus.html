@@ -1,0 +1,166 @@
+<template name="btsSchoolResultsBonus">
+    <div class="row">
+        <div class="col-md-12">
+            <h4 style="text-align: center;">БТС-{{btsNo}} Бонус Нәтижелері</h4>
+            <div class="form-inline" style="padding-bottom: 10pt">
+                <div class="form-group" style="margin-right: 10pt">
+                    {{> academicYear}}
+                    <label for="" style="margin-left: 10pt;">Сынып</label>
+                    <select class="form-control" name='grade' id='select'>
+                        <option value="6">6 cынып</option>
+                        <option value="7" selected>7 cынып</option>
+                        <option value="8">8 cынып</option>
+                        <option value="9">9 cынып</option>
+                        <option value="10">10 cынып</option>
+                    </select>
+                    
+                  </div>
+
+                    <div class="form-group" style="float: right">
+                        <a class="btn btn-success" id="export">Export</a>
+                    </div>
+
+              </div>
+
+            {{#if Template.subscriptionsReady}}
+            <div class="table table-responsive" id="out">
+              <table class="table table-striped  table-bordered table-hover table-condensed"  border=1 cellpadding=0 cellspacing=0 width=100%>
+
+                <thead>
+                    <tr class="bts-header center" style="white-space: nowrap;">
+                        <th class="absolute-style" style="width: 20pt; text-align: center;">#</th>
+                        <th class="absolute-style" style="width: 55pt;  margin-left: 19pt;">Оқушы ID</th>
+                        <th class="absolute-style" style="width: 50pt;  margin-left: 168pt;">Сынып</th>
+                        <th class="absolute-style" style="width: 80pt;  margin-left: 209pt;">Аты</th>
+                        <th class="absolute-style" style="width: 80pt;  margin-left: 280pt;">Жөні</th>
+                        <th style="white-space: nowrap; padding-left: 362pt;">Жалпы</th>
+                        <th>Математика</th>
+
+                        {{#if grade7 }}
+                          {{#if btsNo1_or_2 }}
+                            <th>Қазақ тілі</th>
+                            <th>География</th>
+                            <!-- <th>Орыс тілі</th> -->
+                          {{else}}
+                            <th>Физика</th>
+                            <th>Химия</th>
+                            <th>Биология</th>
+                          {{/if}}
+                          <!-- <th>Ағылшын тілі</th>
+                          <th>Қазақ әдебиеті</th>
+                          <th>Орыс тілі</th>
+                          <th>Алгебра</th>
+                          <th>Геометрия</th>
+                          <th>Информатика</th>
+                          <th>Жалпы тарих</th>
+                          <th>Тарих</th>
+                          <th>География</th> -->
+                        {{else}}
+                          {{#if grade8 }}
+                            <!-- <th>Қазақ тілі</th>
+                            <th>Түрік тілі</th>
+                            <th>Қазақстан тарихы</th>
+                            <th>География</th> -->
+                            <th>Физика</th>
+                            <!-- <th>Химия</th> -->
+                            <th>Биология</th>
+
+                            {{else}}
+                            {{#if grade9 }}
+                            <!-- <th>Қазақ тілі</th>
+                            <th>Түрік тілі</th>
+                            <th>Қазақстан тарихы</th>
+                            <th>География</th> -->
+                            <th>Физика</th>
+                            <th>Химия</th>
+                            <!-- <th>Биология</th> -->
+
+                            {{else}} <!-- 10 grade -->
+                              {{#if grade10 }}
+                                <!-- <th>Қазақ тілі</th>
+                                <th>Қазақстан тарихы</th> -->
+                                <th>География</th>
+                                <th>Физика</th>
+                                <th>Химия</th>
+                                <th>Биология</th>
+                              {{/if}}
+                            {{/if}}
+                          {{/if}}
+                        {{/if}}
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each results}}
+
+                    <!-- <th class="absolute-style" style="width: 55pt;  margin-left: 19pt;">Оқушы ID</th>
+                    <th class="absolute-style" style="width: 150pt; margin-left: 19pt;">Мектеп</th>
+                    <th class="absolute-style" style="width: 50pt;  margin-left: 168pt;">Сынып</th>
+                    <th class="absolute-style" style="width: 80pt;  margin-left: 209pt;">Аты</th>
+                    <th class="absolute-style" style="width: 80pt;  margin-left: 280pt;">Жөні</th> -->
+                    <tr>
+                        <td class="absolute-style" style="width: 20pt;">{{math @index "+" 1}}</td>
+                        <td class="absolute-style" style="width: 55pt;  margin-left: 19pt; text-align: center;">{{studentId}}</td>
+                        <td class="absolute-style" style="width: 50pt;  margin-left: 168pt; ">{{grade}}{{division}}</td>
+                        <td class="absolute-style" style="width: 80pt;  margin-left: 209pt;">{{name}}</td>
+                        <td class="absolute-style" style="width: 80pt;  margin-left: 280pt;">{{surname}}</td>
+                        <td class="center" style="white-space: nowrap; padding-left: 362pt;">{{totalBonus}}</td>
+                        <td class="center">{{mathematicBonus}}</td>
+
+                        {{#if grade7 }}
+
+                          {{#if btsNo1_or_2 }}
+                            <td class="center">{{kazakh_langBonus}}</td>
+                            <td class="center">{{geographyBonus}}</td>
+                            <!-- <td class="center">{{russian_lang}}</td> -->
+                          {{else}}
+                            <td class="center">{{physicsBonus}}</td>
+                            <td class="center">{{chemistryBonus}}</td>
+                            <td class="center">{{biologyBonus}}</td>
+                          {{/if}}
+
+
+                        {{else}}
+                          {{#if grade8 }}
+                            <!-- <td class="center">{{kazakh_lang}}</td>
+                            <td class="center">{{turkish_lang}}</td>
+                            <td class="center">{{kazakh_history}}</td>
+                            <td class="center">{{geography}}</td> -->
+                            <td class="center">{{physicsBonus}}</td>
+                            <!-- <td class="center">{{chemistry}}</td> -->
+                            <td class="center">{{biologyBonus}}</td>
+
+                          {{else}} 
+                          {{#if grade9 }}
+                            <!-- <td class="center">{{kazakh_lang}}</td>
+                            <td class="center">{{turkish_lang}}</td>
+                            <td class="center">{{kazakh_history}}</td>
+                            <td class="center">{{geography}}</td> -->
+                            <td class="center">{{physicsBonus}}</td>
+                            <td class="center">{{chemistryBonus}}</td>
+                            <!-- <td class="center">{{biology}}</td> -->
+
+                          {{else}}<!-- 10 grade -->
+                              {{#if grade10 }}
+                                <!-- <td class="center">{{kazakh_lang}}</td>
+                                <td class="center">{{kazakh_history}}</td> -->
+                                <td class="center">{{geographyBonus}}</td>
+                                <td class="center">{{physicsBonus}}</td>
+                                <td class="center">{{chemistryBonus}}</td>
+                                <td class="center">{{biologyBonus}}</td>
+                              {{/if}}
+                              {{/if}}
+                          {{/if}}
+                        {{/if}}
+
+                    </tr>
+                    
+                    {{/each}}
+                </tbody>
+              </table>
+            </div>
+            {{else}}
+            <p>Loading...</p>
+            {{/if}}
+        </div>
+    </div>
+</template>

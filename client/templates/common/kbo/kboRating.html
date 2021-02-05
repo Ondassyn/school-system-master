@@ -52,18 +52,18 @@
                         <td>{{math @index "+" 1}}</td>
                         <td>{{schoolId}}</td>
                         <td style="white-space: nowrap">{{schoolName schoolId}}</td>
-                        <td>{{points "01"}}</td>
-                        <td>{{points "02"}}</td>
-                        <td>{{points "03"}}</td>
-                        <td>{{points "04"}}</td>
-                        <td>{{points "05"}}</td>
-                        <td>{{points "06"}}</td>
-                        <td>{{points "07"}}</td>
-                        <td>{{points "10"}}</td>
-                        <td>{{points "11"}}</td>
-                        <td>{{points "12"}}</td>
-                        <td>{{points "15"}}</td>
-                        <td>{{total}}</td>
+                        <td>{{math (points "01") "*" 2}}</td>
+                        <td>{{math (points "02") "*" 2}}</td>
+                        <td>{{math (points "03") "*" 2}}</td>
+                        <td>{{math (points "04") "*" 2}}</td>
+                        <td>{{math (points "05") "*" 2}}</td>
+                        <td>{{math (points "06") "*" 2}}</td>
+                        <td>{{math (points "07") "*" 2}}</td>
+                        <td>{{math (points "10") "*" 2}}</td>
+                        <td>{{math (points "11") "*" 2}}</td>
+                        <td>{{math (points "12") "*" 2}}</td>
+                        <td>{{math (points "15") "*" 2}}</td>
+                        <td>{{math (total) "*" 2}}</td>
                     </tr>
                     {{/each}}
                 </tbody>

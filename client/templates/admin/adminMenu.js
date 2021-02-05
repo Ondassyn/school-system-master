@@ -2,8 +2,7 @@ import { Template } from 'meteor/templating';
 import { ReactiveVar } from 'meteor/reactive-var';
 import './adminMenu.html';
 Template.adminMenu.onCreated(function() {
-    let template = this
-
+    let template = this;
 })
 
 Template.adminMenu.helpers({

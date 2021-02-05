@@ -21,19 +21,25 @@ export const calculateRating = (academicYear,kboNo,schoolId) => {
             total:0
         };
         _.each(subjects,function(subject) {
+            // console.log("SubjectId: " + subject.subjectId);
             gradeRating[subject.subjectId]=0;
             let results = KboResults.find({academicYear:academicYear,schoolId:schoolId,kboNo:kboNo,grade:grade,subjectId:subject.subjectId}).fetch();
             if (results.length!==0) {
                 _.each(results,function(result) {
                     let answerKey = KboKeys.findOne({academicYear:academicYear,kboNo:kboNo,variant:result.variant})
                     if (answerKey) {
-                        let amountOfQuestions = parseAnswerKey(answerKey.keys).length*2
+                        let amountOfQuestions = parseAnswerKey(answerKey.keys).length
+                        // console.log('answerKeys: ' + answerKey.keys);
+                        // console.log("🚀 ~ file: rating.js ~ line 31 ~ _.each ~ amountOfQuestions", amountOfQuestions)
                         gradeRating[subject.subjectId]+=(100*result.result)/amountOfQuestions;
+                        // console.log("🚀 ~ file: rating.js ~ line 33 ~ _.each ~ gradeRating[subject.subjectId]", gradeRating[subject.subjectId])
                         gradeRating.total+= (100*result.result)/amountOfQuestions;
+                        // console.log("🚀 ~ file: rating.js ~ line 35 ~ _.each ~ gradeRating.total", gradeRating.total)
 
                     }
                 });
                 gradeRating[subject.subjectId]=(gradeRating[subject.subjectId]/results.length).toFixed(2);
+                // console.log("🚀 ~ file: rating.js ~ line 40 ~ _.each ~ gradeRating[subject.subjectId]", gradeRating[subject.subjectId])
             } else {
                 gradeRating[subject.subjectId] = 0;
             }
@@ -52,18 +58,25 @@ export const calculateRating = (academicYear,kboNo,schoolId) => {
     });
 
     _.each(subjects,function(subject) {
+        // console.log("General SubjectId: " + subject.subjectId);
         generalRating[subject.subjectId] = 0;
         let results = KboResults.find({academicYear:academicYear,schoolId:schoolId,kboNo:kboNo,subjectId:subject.subjectId}).fetch();
         if (results.length!==0) {
             _.each(results,function(result) {
+                // console.log("Result: " + result.result)
                 let answerKey = KboKeys.findOne({academicYear:academicYear,kboNo:kboNo,variant:result.variant})
                 if (answerKey) {
-                    let amountOfQuestions = parseAnswerKey(answerKey.keys).length*2
+                    let amountOfQuestions = parseAnswerKey(answerKey.keys).length
+                    // console.log('Amount of questions: ' + amountOfQuestions);
                     generalRating[subject.subjectId]+=(100*result.result)/amountOfQuestions;
+                    // console.log("🚀 ~ file: rating.js ~ line 64 ~ _.each ~ generalRating[subject.subjectId]", generalRating[subject.subjectId])
                     generalRating.total+=(100*result.result)/amountOfQuestions;
+                    // console.log("🚀 ~ file: rating.js ~ line 66 ~ _.each ~ generalRating.total", generalRating.total)
                 }
             });
             generalRating[subject.subjectId]=(generalRating[subject.subjectId]/results.length).toFixed(2);
+            // console.log("Length: " + results.length)
+            // console.log("🚀 ~ file: rating.js ~ line 70 ~ _.each ~ generalRating[subject.subjectId]", generalRating[subject.subjectId])
         }
     });
 
@@ -74,10 +87,10 @@ export const calculateRating = (academicYear,kboNo,schoolId) => {
         let sameRating = KboRatings.findOne({academicYear:academicYear,schoolId:schoolId,kboNo:kboNo,grade:'all'});
         if (sameRating===undefined){
             KboRatings.insert(generalRating);
-            console.log("insert: "+generalRating.schoolId);
+            // console.log("insert: "+generalRating.schoolId);
         }else {
             KboRatings.update(sameRating,{$set:generalRating});
-            console.log("update: "+generalRating.schoolId);
+            // console.log("update: "+generalRating.schoolId);
         }
     }
 
