@@ -1,9 +1,9 @@
 import { Template } from "meteor/templating";
 import { ReactiveVar } from "meteor/reactive-var";
-import "./adminSatResults.html";
+import "./adminUbtOfficialResults.html";
 import XLSX from "xlsx";
 
-Template.adminSatResults.onCreated(function () {
+Template.adminUbtOfficialResults.onCreated(function () {
   let template = this;
   document.title = "SAT-IELTS Нәтижелері";
   template.grade = new ReactiveVar("all");
@@ -23,7 +23,7 @@ Template.adminSatResults.onCreated(function () {
       template.grade.get()
     );
     template.subscribe(
-      "adminSatResults",
+      "adminUbtOfficialResults",
       template.schoolId.get(),
       template.grade.get()
     );
@@ -35,7 +35,7 @@ Template.adminSatResults.onCreated(function () {
   });
 });
 
-Template.adminSatResults.helpers({
+Template.adminUbtOfficialResults.helpers({
   schools() {
     return Schools.find({}, { sort: { shortName: 1 } }).fetch();
   },
@@ -177,7 +177,7 @@ var saveItem = function (template) {
   Session.set("editItemId", null);
 };
 
-Template.adminSatResults.events({
+Template.adminUbtOfficialResults.events({
   "click .editItem": function () {
     Session.set("editItemId", this.studentId);
   },
@@ -634,6 +634,6 @@ Template.adminSatResults.events({
   },
 });
 
-Template.adminSatResults.onRendered(function () {
+Template.adminUbtOfficialResults.onRendered(function () {
   this.$('[data-toggle="tooltip"]').tooltip({ trigger: "hover" });
 });

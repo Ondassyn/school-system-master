@@ -1,272 +1,295 @@
 /*
-* возвращает ответы для теста в виде массива символов
-* */
+ * возвращает ответы для теста в виде массива символов
+ * */
 export const parseAnswerKey = (keys) => {
-    let keysArray = [];
-    let current = [];
-    let inStack = false
-    for(let i=0; i<keys.length;i++) {
-        if (keys[i]=="[") {
-            current = [];
-            inStack = true;
-        }
-        else if (keys[i]=="]") {
-            keysArray.push(current);
-            current = [];
-            inStack=false;
-        } else {
-            if (inStack) {
-                current.push(keys[i]);
-            } else {
-                keysArray.push([keys[i]])
-                current=[]
-            }
-        }
+  let keysArray = [];
+  let current = [];
+  let inStack = false;
+  for (let i = 0; i < keys.length; i++) {
+    if (keys[i] == "[") {
+      current = [];
+      inStack = true;
+    } else if (keys[i] == "]") {
+      keysArray.push(current);
+      current = [];
+      inStack = false;
+    } else {
+      if (inStack) {
+        current.push(keys[i]);
+      } else {
+        keysArray.push([keys[i]]);
+        current = [];
+      }
     }
-    return keysArray;
-}
+  }
+  return keysArray;
+};
+
+export const parseAnswerKeysToMap = (keys) => {
+  let toReturn = new Map();
+  let index = 0;
+  for (let i = 0; i < keys.length; i++) {
+    if (keys.charCodeAt(i) > 64 && keys.charCodeAt(i) < 91) {
+      toReturn.set(index, keys[i]);
+      index++;
+    } else if (keys.charCodeAt(i) > 96 && keys.charCodeAt(i) < 123) {
+      toReturn.set(index, keys[i].toUpperCase());
+      index++;
+    } else if (keys.charCodeAt(i) === 91) {
+      let hasNewEntry = false;
+      while (++i < keys.length) {
+        if (keys.charCodeAt(i) === 93) break;
+        if (toReturn.has(index)) {
+          toReturn.set(index, toReturn.get(index) + keys[i]);
+        } else {
+          toReturn.set(index, keys[i]);
+          hasNewEntry = true;
+        }
+      }
+      if (hasNewEntry) index++;
+    }
+  }
+  return toReturn;
+};
 
 export const parseLevelKey = (keys) => {
-    let keysArray = [];
-    let current = [];
-    let inStack = false
-    for(let i=0; i<keys.length;i++) {
-        if (keys[i]=="[") {
-            current = [];
-            inStack = true;
+  let keysArray = [];
+  let current = [];
+  let inStack = false;
+  for (let i = 0; i < keys.length; i++) {
+    if (keys[i] == "[") {
+      current = [];
+      inStack = true;
+    } else if (keys[i] == "]") {
+      keysArray.push(current);
+      current = [];
+      inStack = false;
+    } else {
+      if (inStack) {
+        current.push(keys[i]);
+      } else {
+        keysArray.push([keys[i]]);
+        current = [];
+      }
+    }
+  }
+  return keysArray;
+};
+
+export const checkA = (ansKeys, studentKeys, levelKeys) => {
+  let s = 0;
+  let percentA = 0;
+  let countA = 0;
+  for (let i = 0; i < levelKeys.length; i++) {
+    if (levelKeys[i] == "A") {
+      countA++;
+      let stKeys = studentKeys.slice(i * 5, i * 5 + 5);
+      stKeys = stKeys.replace(/\s/g, "").split("");
+
+      let p = 0;
+      let sum = 0;
+
+      if (ansKeys[i].length == 5) {
+        p = 1;
+      } else if (stKeys.length <= ansKeys[i].length) {
+        for (let j = 0; j < stKeys.length; j++) {
+          if (ansKeys[i].includes(stKeys[j])) sum += 1;
         }
-        else if (keys[i]=="]") {
-            keysArray.push(current);
-            current = [];
-            inStack=false;
+        if (sum == ansKeys[i].length) {
+          p = 1;
+        } else if (sum < ansKeys[i].length) {
+          if (ansKeys[i].length == 2 && sum == 1) {
+            p = 1;
+          } else if (sum > 1) {
+            p = 1;
+          }
         } else {
-            if (inStack) {
-                current.push(keys[i]);
-            } else {
-                keysArray.push([keys[i]])
-                current=[]
-            }
+          p = 0;
         }
+      }
+      s += p;
     }
-    return keysArray;
-}
+  }
 
-export const checkA = (ansKeys,studentKeys,levelKeys) => {
+  percentA = (s / countA) * 100;
+  return percentA;
+};
 
-    let s=0
-    let percentA=0
-    let countA=0
-    for(let i=0;i<levelKeys.length;i++){
+export const checkB = (ansKeys, studentKeys, levelKeys) => {
+  let s = 0;
+  let percentB = 0;
+  let countB = 0;
 
-        if(levelKeys[i] == "A"){
-            countA++
-            let stKeys=studentKeys.slice(i*5,i*5+5)
-            stKeys = stKeys.replace(/\s/g,'').split("")
+  for (let i = 0; i < levelKeys.length; i++) {
+    if (levelKeys[i] == "B") {
+      countB++;
+      let stKeys = studentKeys.slice(i * 5, i * 5 + 5);
+      stKeys = stKeys.replace(/\s/g, "").split("");
 
-            let p=0
-            let sum=0
+      let p = 0;
+      let sum = 0;
 
-            if (ansKeys[i].length == 5) {
-                p=1
-            } else if (stKeys.length <= ansKeys[i].length) {
-                for(let j=0;j<stKeys.length;j++) {
-                    if(ansKeys[i].includes(stKeys[j]))
-                        sum+=1
-                }
-                if(sum == ansKeys[i].length) {
-                    p=1
-                } else if(sum < ansKeys[i].length) {
-                    if (ansKeys[i].length == 2 && sum == 1) {
-                        p=1
-                    } else if (sum > 1) {
-                        p=1
-                    }
-                } else {
-                    p=0
-                }
-
-            }
-            s+=p;
+      if (ansKeys[i].length == 5) {
+        p = 1;
+      } else if (stKeys.length <= ansKeys[i].length) {
+        for (let j = 0; j < stKeys.length; j++) {
+          if (ansKeys[i].includes(stKeys[j])) sum += 1;
         }
+        if (sum == ansKeys[i].length) {
+          p = 1;
+        } else if (sum < ansKeys[i].length) {
+          if (ansKeys[i].length == 2 && sum == 1) {
+            p = 1;
+          } else if (sum > 1) {
+            p = 1;
+          }
+        } else {
+          p = 0;
+        }
+      }
+      s += p;
     }
+  }
 
-    percentA = (s/countA)*100
-    return percentA;
-}
+  percentB = (s / countB) * 100;
+  return percentB;
+};
 
-export const checkB = (ansKeys,studentKeys,levelKeys) => {
+export const checkC = (ansKeys, studentKeys, levelKeys) => {
+  let s = 0;
+  let percentC = 0;
+  let countC = 0;
+  for (let i = 0; i < levelKeys.length; i++) {
+    if (levelKeys[i] == "C") {
+      countC++;
+      let stKeys = studentKeys.slice(i * 5, i * 5 + 5);
+      stKeys = stKeys.replace(/\s/g, "").split("");
 
-    let s=0
-    let percentB=0
-    let countB=0
+      let p = 0;
+      let sum = 0;
 
-    for(let i=0;i<levelKeys.length;i++){
-
-        if(levelKeys[i] == "B"){
-            countB++
-            let stKeys=studentKeys.slice(i*5,i*5+5)
-            stKeys = stKeys.replace(/\s/g,'').split("")
-
-            let p=0
-            let sum=0
-
-            if (ansKeys[i].length == 5) {
-                p=1
-            } else if (stKeys.length <= ansKeys[i].length) {
-                for(let j=0;j<stKeys.length;j++) {
-                    if(ansKeys[i].includes(stKeys[j]))
-                        sum+=1
-                }
-                if(sum == ansKeys[i].length) {
-                    p=1
-                } else if(sum < ansKeys[i].length) {
-                    if (ansKeys[i].length == 2 && sum == 1) {
-                        p=1
-                    } else if (sum > 1) {
-                        p=1
-                    }
-                } else {
-                    p=0
-                }
-
-            }
-            s+=p;
+      if (ansKeys[i].length == 5) {
+        p = 1;
+      } else if (stKeys.length <= ansKeys[i].length) {
+        for (let j = 0; j < stKeys.length; j++) {
+          if (ansKeys[i].includes(stKeys[j])) sum += 1;
         }
+        if (sum == ansKeys[i].length) {
+          p = 1;
+        } else if (sum < ansKeys[i].length) {
+          if (ansKeys[i].length == 2 && sum == 1) {
+            p = 1;
+          } else if (sum > 1) {
+            p = 1;
+          }
+        } else {
+          p = 0;
+        }
+      }
+      s += p;
     }
+  }
 
-    percentB = (s/countB)*100
-    return percentB;
-}
+  percentC = (s / countC) * 100;
+  return percentC;
+};
 
-export const checkC = (ansKeys,studentKeys,levelKeys) => {
+export const check = (ansKeys, studentKeys) => {
+  let s = 0;
+  for (let i = 0; i < ansKeys.length; i++) {
+    let stKeys = studentKeys.slice(i * 5, i * 5 + 5);
+    stKeys = stKeys.replace(/\s/g, "").split("");
 
-    let s=0
-    let percentC=0
-    let countC=0
-    for(let i=0;i<levelKeys.length;i++){
+    let p = 0;
+    let sum = 0;
 
-        if(levelKeys[i] == "C"){
-            countC++
-            let stKeys=studentKeys.slice(i*5,i*5+5)
-            stKeys = stKeys.replace(/\s/g,'').split("")
-
-            let p=0
-            let sum=0
-
-            if (ansKeys[i].length == 5) {
-                p=1
-            } else if (stKeys.length <= ansKeys[i].length) {
-                for(let j=0;j<stKeys.length;j++) {
-                    if(ansKeys[i].includes(stKeys[j]))
-                        sum+=1
-                }
-                if(sum == ansKeys[i].length) {
-                    p=1
-                } else if(sum < ansKeys[i].length) {
-                    if (ansKeys[i].length == 2 && sum == 1) {
-                        p=1
-                    } else if (sum > 1) {
-                        p=1
-                    }
-                } else {
-                    p=0
-                }
-
-            }
-            s+=p;
+    if (ansKeys[i].length == 5) {
+      p = 1;
+    } else if (stKeys.length <= ansKeys[i].length) {
+      for (let j = 0; j < stKeys.length; j++) {
+        if (ansKeys[i].includes(stKeys[j]) || ansKeys[i] == "T") {
+          sum += 1;
         }
+      }
+      if (sum == ansKeys[i].length) {
+        p = 1;
+      } else if (sum < ansKeys[i].length) {
+        if (ansKeys[i].length == 2 && sum == 1) {
+          p = 1;
+        } else if (sum > 1) {
+          p = 1;
+        }
+      } else {
+        p = 0;
+      }
     }
+    s += p;
+  }
 
-    percentC = (s/countC)*100
-    return percentC;
-}
+  return s;
+};
 
-export const check = (ansKeys,studentKeys) => {
-    let s=0;
-    for (let i = 0; i < ansKeys.length; i++) {
-
-        let stKeys=studentKeys.slice(i*5,i*5+5)
-        stKeys = stKeys.replace(/\s/g,'').split("")
-        
-        let p=0
-        let sum=0
-
-        if (ansKeys[i].length == 5) {
-            p=1
-        } else if (stKeys.length <= ansKeys[i].length) {
-            for(let j=0;j<stKeys.length;j++) {
-                if(ansKeys[i].includes(stKeys[j]) || ansKeys[i] == 'T'){
-                    sum+=1
-                }
-            }
-            if(sum == ansKeys[i].length) {
-                p=1
-            } else if(sum < ansKeys[i].length) {
-                if (ansKeys[i].length == 2 && sum == 1) {
-                    p=1
-                } else if (sum > 1) {
-                    p=1
-                }
-            } else {
-                p=0
-            }
-        }
-        s+=p;
+export const checkBijectivelyMap = (answerKeys, studentKeys) => {
+  let total = 0;
+  for (let i = 0; i < studentKeys.length; i++) {
+    let answer = answerKeys.get(i);
+    if (
+      answer &&
+      (answer === "T" ||
+        answer === "X" ||
+        answer.includes(studentKeys[i].toUpperCase()))
+    ) {
+      total++;
     }
+  }
+  return total;
+};
 
-    return s;
-}
+export const checkTurkish = (ansKeys, studentKeys) => {
+  let s = 0;
+  for (let i = 0; i < ansKeys.length; i++) {
+    let stKeys = studentKeys.slice(i * 5, i * 5 + 5);
+    stKeys = stKeys.replace(/\s/g, "").split("");
 
-export const checkTurkish = (ansKeys,studentKeys) => {
-    let s=0;
-    for (let i=0;i<ansKeys.length;i++) {
+    let p = 0;
+    let sum = 0;
+    let empty = 0;
 
-        let stKeys=studentKeys.slice(i*5,i*5+5)
-        stKeys = stKeys.replace(/\s/g,'').split("")
-
-        let p=0
-        let sum=0
-        let empty=0
-
-        if (ansKeys[i].length == 5) {
-            p=1
-        } else if (stKeys.length <= ansKeys[i].length) {
-            for(let j=0;j<stKeys.length;j++) {
-                if(ansKeys[i].includes(stKeys[j]))
-                    sum+=1
-            }
-            if(sum == ansKeys[i].length) {
-                p=1
-            } else if(sum < ansKeys[i].length) {
-                if (ansKeys[i].length == 2 && sum == 1) {
-                    p=1
-                } else if (sum > 1) {
-                    p=1
-                }
-            } else {
-                p=0
-            }
-
+    if (ansKeys[i].length == 5) {
+      p = 1;
+    } else if (stKeys.length <= ansKeys[i].length) {
+      for (let j = 0; j < stKeys.length; j++) {
+        if (ansKeys[i].includes(stKeys[j])) sum += 1;
+      }
+      if (sum == ansKeys[i].length) {
+        p = 1;
+      } else if (sum < ansKeys[i].length) {
+        if (ansKeys[i].length == 2 && sum == 1) {
+          p = 1;
+        } else if (sum > 1) {
+          p = 1;
         }
-        s+=p;
+      } else {
+        p = 0;
+      }
     }
+    s += p;
+  }
 
-    return s;
-}
+  return s;
+};
 
-export const checkTurkishEmpty = (ansKeys,studentKeys) => {
-    let empty=0
-    for (let i=0;i<ansKeys.length;i++) {
+export const checkTurkishEmpty = (ansKeys, studentKeys) => {
+  let empty = 0;
+  for (let i = 0; i < ansKeys.length; i++) {
+    let stKeys = studentKeys.slice(i * 5, i * 5 + 5);
+    stKeys = stKeys.replace(/\s/g, "").split("");
 
-        let stKeys=studentKeys.slice(i*5,i*5+5)
-        stKeys = stKeys.replace(/\s/g,'').split("")
-
-        let p=0
-        let sum=0
-        if(stKeys.length == 0){
-            empty+=1
-        }
-
+    let p = 0;
+    let sum = 0;
+    if (stKeys.length == 0) {
+      empty += 1;
+    }
 
     //     if (ansKeys[i].length == 5) {
     //         p=1
@@ -291,7 +314,6 @@ export const checkTurkishEmpty = (ansKeys,studentKeys) => {
     //         }
 
     //     }
-
-     }
-    return empty;
-}
+  }
+  return empty;
+};

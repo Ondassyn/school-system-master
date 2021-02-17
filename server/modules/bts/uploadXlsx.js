@@ -4,13 +4,13 @@ export const uploadXlsx = (academicYear,btsNo,day, grade, results) => {
     let unregisteredStudents = [];
     let subjectsList;
     if(grade === '7'){
-        subjectsList = ['mathematic', 'kazakh_lang', 'turkish_lang']
+        subjectsList = ['mathematic', 'kazakh_lang', 'geography', 'mathematicBonus', 'kazakh_langBonus', 'geographyBonus']
     } else if(grade === '8'){
-        subjectsList = ['mathematic', 'physics', 'biology']
+        subjectsList = ['mathematic', 'physics', 'biology', 'mathematicBonus', 'physicsBonus', 'biologyBonus']
     } else  if(grade === '9'){
-        subjectsList = ['mathematic', 'physics', 'chemistry']
+        subjectsList = ['mathematic', 'physics', 'chemistry', 'mathematicBonus', 'physicsBonus', 'chemistryBonus']
     } else if(grade === '10'){
-        subjectsList = ['mathematic', 'physics', 'biology', 'geography', 'chemistry']
+        subjectsList = ['mathematic', 'physics', 'biology', 'geography', 'chemistry', 'mathematicBonus', 'physicsBonus', 'biologyBonus', 'geographyBonus', 'chemistryBonus']
     }
 
     let schools = [];
@@ -32,7 +32,7 @@ export const uploadXlsx = (academicYear,btsNo,day, grade, results) => {
 
         let recordInDb = BtsResults.findOne({academicYear:academicYear,studentId:student.studentId,schoolId, btsNo, grade})
         
-
+        
         if (recordInDb) {
             let studentRecord = {
                 academicYear: academicYear,
@@ -91,7 +91,6 @@ export const uploadXlsx = (academicYear,btsNo,day, grade, results) => {
                 totalB: 0
             }
 
-            
 
             let total = 0;
             subjectsList.map(subject => {

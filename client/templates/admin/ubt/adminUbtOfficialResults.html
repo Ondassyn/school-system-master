@@ -1,7 +1,7 @@
-<template name="adminSatResults">
+<template name="adminUbtOfficialResults">
     <div class="row">
         <div class="col-md-12">
-            <h4 style="text-align: center; padding-bottom: 15pt">SAT-IELTS Нәтижелері</h4>
+            <h4 style="text-align: center; padding-bottom: 15pt">ҰБТ ресми нәтижелері</h4>
             <div class="row">
                 <div class="col-md-12">
                     <div class="form-inline">
@@ -15,18 +15,14 @@
                             {{/each}}
                         </select>
 
-                        <label for="" style="margin-left: 10pt; ">Сынып</label>
-                        <select class="form-control" id="grade">
-                            <option value="all">Жалпы</option>
-                            <option value="7">7 сынып</option>
-                            <option value="8">8 сынып</option>
-                            <option value="9">9 сынып</option>
-                            <option value="10">10 сынып</option>
-                            <option value="11">11 сынып</option>
+                        <label for="" style="margin-left: 10pt; ">Кезең</label>
+                        <select class="form-control" id="period">
+                            <option value="january">Қаңтар</option>
+                            <option value="march-june">Наурыз-Маусым</option>
                         </select>
 
                         <div class="checkbox">
-                            <label style="margin-left: 10pt; "><input id="showCertified" type="checkbox"> Тек сертификатталғандарды көрсету</label>
+                            <label style="margin-left: 10pt; "><input id="showCertified" type="checkbox"> Тек нәтижелері барларды көрсету</label>
                         </div>
 
                         </div>
@@ -45,77 +41,29 @@
                         <th>#</th>
                         <th>Сынып</th>
                         <th style="border-right: 1pt solid darkgrey">Аты-жөні</th>
-                        {{#if isSat1Hidden}}
-                        <th style="text-align: center; border-right: 1pt solid darkgrey">
-                            <span id="sat1-expand" class="glyphicon glyphicon-plus"></span>
-                        </th>
-                        {{else}}
-                        <th style="text-align: center; border-right: 1pt solid darkgrey" colspan="3">SAT-1 Reasoning
-                            <span style="float: right" id="sat1-hide" class="glyphicon glyphicon-minus"></span>
-                        </th>
-                        {{/if}}
-
-                        {{#if isSat2Hidden}}
-                        <th style="text-align: center; border-right: 1pt solid darkgrey">
-                            <span id="sat2-expand" class="glyphicon glyphicon-plus"></span>
-                        </th>
-                        {{else}}
-                        <th style="text-align: center; border-right: 1pt solid darkgrey" colspan="7">SAT-2 Subject
-                            <span style="float: right" id="sat2-hide" class="glyphicon glyphicon-minus"></span>
-                        </th>
-                        {{/if}}
-
-                        {{#if isIeltsHidden}}
-                        <th style="text-align: center; border-right: 1pt solid darkgrey">
-                            <span id="ielts-expand" class="glyphicon glyphicon-plus"></span>
-                        </th>
-                        {{else}}
-                        <th style="text-align: center; border-right: 1pt solid darkgrey" colspan="5">IELTS
-                            <span style="float: right" id="ielts-hide" class="glyphicon glyphicon-minus"></span>
-                        </th>
-                        {{/if}}
-
+                        
+                        <th id="math_literacy" style="text-align: center">Математикалық сауаттылық</th>
+                        <th id="reading_literacy" style="text-align: center">Оқу сауаттылығы</th>
+                        <th id="kazakh_history" style="text-align: center; border-right: 1pt solid darkgrey">Қазақстан тарихы</th>
+                        
+                        <th id="math" style="text-align: center">Математика</th>
+                        <th id="physics" style="text-align: center">Математика</th>
+                        <th id="chemistry" style="text-align: center">Математика</th>
+                        <th id="biology" style="text-align: center">Математика</th>
+                        <th id="geography" style="text-align: center">Математика</th>
+                        <th id="foreign_language" style="text-align: center">Математика</th>
+                        <th id="world_history" style="text-align: center">Математика</th>
+                        <th id="community_rights" style="text-align: center">Математика</th>
+                        <th id="kazakh_language" style="text-align: center">Математика</th>
+                        <th id="kazakh_literature" style="text-align: center">Математика</th>
+                        <th id="russian_language" style="text-align: center">Математика</th>
+                        <th id="russian_literature" style="text-align: center">Математика</th>
+                        <th id="creative_exam_1" style="text-align: center">Математика</th>
+                        <th id="creativw_exam_2" style="text-align: center">Математика</th> 
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <th></th>
-                        <th></th>
-                        <th style="border-right: 1pt solid darkgrey"></th>
-
-                        {{#if isSat1Hidden}}
-                        <th style="border-right: 1pt solid darkgrey"></th>
-                        {{else}}
-                        <th id="sat-1_english" style="font-weight: lighter; font-size: small; text-align:center">Reading & Writing</th>
-                        <th id="sat-1_math" style="font-weight: lighter; font-size: small; text-align:center; border-right: 1pt solid darkgrey">Math</th>
-
-                        <th id="sat-1_total" style="font-weight: lighter; font-size: small; text-align:center; border-right: 1pt solid darkgrey">Total</th>
-                        {{/if}}
-
-                        {{#if isSat2Hidden}}
-                        <th style="border-right: 1pt solid darkgrey"></th>
-                        {{else}}
-                        <th id="sat-2_math-1" style="font-weight: lighter; font-size: small; text-align:center">Math-1</th>
-                        <th id="sat-2_math-2" style="font-weight: lighter; font-size: small; text-align:center">Math-2</th>
-                        <th id="sat-2_physics" style="font-weight: lighter; font-size: small; text-align:center">Physics</th>
-                        <th id="sat-2_chemistry" style="font-weight: lighter; font-size: small; text-align:center">Chemistry</th>
-                        <th id="sat-2_biology" style="font-weight: lighter; font-size: small; text-align:center">Biology</th>
-                        <th id="sat-2_world-history" style="font-weight: lighter; font-size: small; text-align:center; border-right: 1pt solid darkgrey">World History</th>
-
-                        <th id="sat-2_total" style="font-weight: lighter; font-size: small; text-align:center; border-right: 1pt solid darkgrey">Total</th>
-                        {{/if}}
-
-                        {{#if isIeltsHidden}}
-                        <th style="border-right: 1pt solid darkgrey"></th>
-                        {{else}}
-                        <th id="ielts_listening" style="font-weight: lighter; font-size: small; text-align:center">Listening</th>
-                        <th id="ielts_reading" style="font-weight: lighter; font-size: small; text-align:center">Reading</th>
-                        <th id="ielts_writing" style="font-weight: lighter; font-size: small; text-align:center">Writing</th>
-                        <th id="ielts_speaking" style="font-weight: lighter; font-size: small; text-align:center; border-right: 1pt solid darkgrey">Speaking</th>
-
-                        <th id="ielts_total" style="font-weight: lighter; font-size: small; text-align:center; border-right: 1pt solid darkgrey">Total</th>
-                        {{/if}}
-                    </tr>
+                    
                   {{#each results}}
 
                     <tr>
