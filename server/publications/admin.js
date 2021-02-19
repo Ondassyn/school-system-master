@@ -339,7 +339,7 @@ Meteor.publish("adminIeltsResults", function (schoolId, grade) {
   return this.ready();
 });
 
-Meteor.publish("adminUbtOfficialResults", function (schoolId) {
-  if (schoolId) return UbtOfficialResults.find({ schoolId });
+Meteor.publish("adminUbtOfficialResults", function (schoolId, period) {
+  if (schoolId) return UbtOfficialResults.find({ schoolId, period });
   return this.ready();
 });

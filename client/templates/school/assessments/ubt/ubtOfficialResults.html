@@ -1,0 +1,129 @@
+<template name="ubtOfficialResults">
+    <div class="row">
+        <div class="col-md-12">
+            <h4 style="text-align: center; padding-bottom: 15pt">ҰБТ ресми нәтижелері</h4>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-inline">
+                        <div class="form-group" style="margin-right: 15pt">
+                        {{> academicYear}}
+
+                        <label for="" style="margin-left: 10pt; ">Кезең</label>
+                        <select class="form-control" id="period">
+                            <option value="january">Қаңтар</option>
+                            <option value="march-june">Наурыз-Маусым</option>
+                        </select>
+
+                        <div class="checkbox">
+                            <label style="margin-left: 10pt; "><input id="showCertified" type="checkbox"> Тек нәтижелері барларды көрсету</label>
+                        </div>
+
+                        </div>
+
+                        <div class="form-group" style="float: right">
+                            <a class="btn btn-success" id="download">Download</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {{#if Template.subscriptionsReady}}
+
+            <table style="margin-top: 15pt" class="table table-striped table-bordered table-hover table-responsive table-condensed">
+                <thead>
+                    <tr class="sat-header">
+                        <th>#</th>
+                        <th>Сынып</th>
+                        <th style="border-right: 1pt solid darkgrey">Аты-жөні</th>
+                        
+                        <th id="total" style="text-align: center; border-right: 1pt solid darkgrey">Жалпы</th>
+
+                        <th id="math_literacy" style="text-align: center">Математикалық сауаттылық</th>
+                        <th id="reading_literacy" style="text-align: center">Оқу сауаттылығы</th>
+                        <th id="kazakh_history" style="text-align: center; border-right: 1pt solid darkgrey">Қазақстан тарихы</th>
+                        
+                        <th id="algebra" style="text-align: center">Математика</th>
+                        <th id="physics" style="text-align: center">Физика</th>
+                        <th id="chemistry" style="text-align: center">Химия</th>
+                        <th id="biology" style="text-align: center">Биология</th>
+                        <th id="geography" style="text-align: center">География</th>
+                        <th id="foreign_language" style="text-align: center">Шет тілі</th>
+                        <th id="world_history" style="text-align: center">Дүниежүзі тарих</th>
+                        <th id="community_rights" style="text-align: center">Адам. Қоғам</th>
+                        <th id="kazakh_russian_language" style="text-align: center">Қазақ/Орыс тілі</th>
+                        <th id="kazakh_russian_literature" style="text-align: center">Қазақ/Орыс әдебиеті</th>
+                        <th id="creative_exam_1" style="text-align: center">Шығармашылық емтихан-1</th>
+                        <th id="creative_exam_2" style="text-align: center">Шығармашылық емтихан-2</th> 
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                  {{#each results}}
+
+                    <tr>
+                      <td>{{math @index "+" 1}}</td>
+                      <td>{{grade}} {{division}}</td>
+                      <td style="border-right: 1pt solid darkgrey">{{surname}} {{name}} </td>
+
+
+                    {{#if editing}}
+                        <td style="text-align: center; border-right: 1pt solid darkgrey;"><input type="text" style="width: 25pt" id="edit_total" value="{{total}}"></td>
+                        
+                        <td style="text-align: center"><input type="text" style="width: 25pt" id="edit_math_literacy" value="{{math_literacy}}"></td>
+                        <td style="text-align: center"><input type="text" style="width: 25pt" id="edit_reading_literacy" value="{{reading_literacy}}"></td>
+                        <td style="text-align: center; border-right: 1pt solid darkgrey;"><input type="text" style="width: 25pt" id="edit_kazakh_history" value="{{kazakh_history}}"></td>
+
+                        <td style="text-align: center"><input type="text" style="width: 25pt" id="edit_algebra" value="{{algebra}}"></td>
+                        <td style="text-align: center"><input type="text" style="width: 25pt" id="edit_physics" value="{{physics}}"></td>
+                        <td style="text-align: center"><input type="text" style="width: 25pt" id="edit_chemistry" value="{{chemistry}}"></td>
+                        <td style="text-align: center"><input type="text" style="width: 25pt" id="edit_biology" value="{{biology}}"></td>
+                        <td style="text-align: center"><input type="text" style="width: 25pt" id="edit_geography" value="{{geography}}"></td>
+                        <td style="text-align: center"><input type="text" style="width: 25pt" id="edit_foreign_language" value="{{foreign_language}}"></td>
+                        <td style="text-align: center"><input type="text" style="width: 25pt" id="edit_world_history" value="{{world_history}}"></td>
+                        <td style="text-align: center"><input type="text" style="width: 25pt" id="edit_community_rights" value="{{community_rights}}"></td>
+                        <td style="text-align: center"><input type="text" style="width: 25pt" id="edit_kazakh_russian_language" value="{{kazakh_russian_language}}"></td>
+                        <td style="text-align: center"><input type="text" style="width: 25pt" id="edit_kazakh_russian_literature" value="{{kazakh_russian_literature}}"></td>
+                        <td style="text-align: center"><input type="text" style="width: 25pt" id="edit_creative_exam_1" value="{{creative_exam_1}}"></td>
+                        <td style="text-align: center"><input type="text" style="width: 25pt" id="edit_creative_exam_2" value="{{creative_exam_2}}"></td>
+
+                        <td>
+                            <button class="saveItem btn btn-success">Save</button>
+                            <button class="cancelItem btn btn-default">Cancel</button>
+                        </td>
+
+                    {{else}}
+
+                        <td style="text-align: center; border-right: 1pt solid darkgrey">{{total}}</td>
+                        <td style="text-align: center">{{math_literacy}}</td>
+                        <td style="text-align: center">{{reading_literacy}}</td>
+                        <td style="text-align: center; border-right: 1pt solid darkgrey">{{kazakh_history}}</td>
+
+                        <td style="text-align: center">{{algebra}}</td>
+                        <td style="text-align: center">{{physics}}</td>
+                        <td style="text-align: center">{{chemistry}}</td>
+                        <td style="text-align: center">{{biology}}</td>
+                        <td style="text-align: center">{{geography}}</td>
+                        <td style="text-align: center">{{foreign_language}}</td>
+                        <td style="text-align: center">{{world_history}}</td>
+                        <td style="text-align: center">{{community_rights}}</td>
+                        <td style="text-align: center">{{kazakh_russian_language}}</td>
+                        <td style="text-align: center">{{kazakh_russian_literature}}</td>
+                        <td style="text-align: center">{{creative_exam_1}}</td>
+                        <td style="text-align: center">{{creative_exam_2}}</td>
+
+                        <td>
+                            <button class="editItem btn btn-primary">Edit</button>
+                        </td>
+                    {{/if}}
+
+                    </tr>
+                  {{/each}}
+
+                </tbody>
+            </table>
+
+            {{else}}
+            <p>Loading...</p>
+            {{/if}}
+        </div>
+    </div>
+</template>

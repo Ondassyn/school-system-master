@@ -1,29 +1,23 @@
 import { Template } from "meteor/templating";
 import { ReactiveVar } from "meteor/reactive-var";
-import "./adminUbtOfficialResults.html";
+import "./ubtOfficialResults.html";
 import XLSX from "xlsx";
 
-Template.adminUbtOfficialResults.onCreated(function () {
+Template.ubtOfficialResults.onCreated(function () {
   let template = this;
   document.title = "ҰБТ ресми нәтижелері";
-  template.schoolId = new ReactiveVar("033");
   template.showCertified = new ReactiveVar(false);
   template.order = new ReactiveVar([]);
   template.period = new ReactiveVar("january");
 
-  template.subscribe("schools");
+  template.subscribe("schoolStudents");
 
   template.autorun(() => {
-    template.subscribe("schoolGradeStudents", template.schoolId.get(), "11");
-    template.subscribe(
-      "adminUbtOfficialResults",
-      template.schoolId.get(),
-      template.period.get()
-    );
+    template.subscribe("schoolUbtOfficialResults", template.period.get());
   });
 });
 
-Template.adminUbtOfficialResults.helpers({
+Template.ubtOfficialResults.helpers({
   schools() {
     return Schools.find({}, { sort: { shortName: 1 } }).fetch();
   },
@@ -31,7 +25,7 @@ Template.adminUbtOfficialResults.helpers({
     let returnList = [];
 
     let students = Students.find(
-      {},
+      { grade: "11" },
       { sort: { division: 1, surname: 1 } }
     ).fetch();
 
@@ -117,10 +111,9 @@ var saveItem = function (template) {
   };
 
   Meteor.call(
-    "Ubt.updateAdminUbtOfficialResults",
+    "Ubt.updateSchoolUbtOfficialResults",
     academicYear.get(),
     template.period.get(),
-    template.schoolId.get(),
     Session.get("editItemId"),
     editItem
   );
@@ -128,7 +121,7 @@ var saveItem = function (template) {
   Session.set("editItemId", null);
 };
 
-Template.adminUbtOfficialResults.events({
+Template.ubtOfficialResults.events({
   "click .editItem": function () {
     Session.set("editItemId", this.studentId);
   },
@@ -471,9 +464,9 @@ Template.adminUbtOfficialResults.events({
   },
   "click #download"(event, template) {
     //let grade = Template.instance().grade.get();
-    let schoolId = Template.instance().schoolId.get();
+    // let schoolId = Template.instance().schoolId.get();
     let students = Students.find(
-      {},
+      { grade: "11" },
       { sort: { division: 1, surname: 1 } }
     ).fetch();
 
@@ -586,12 +579,12 @@ Template.adminUbtOfficialResults.events({
     Meteor.call("download", data, (err, wb) => {
       if (err) throw err;
 
-      let sName = academicYear.get() + "_UBT_" + schoolId + ".xlsx";
+      let sName = academicYear.get() + "_UBT_" + ".xlsx";
       XLSX.writeFile(wb, sName);
     });
   },
 });
 
-Template.adminUbtOfficialResults.onRendered(function () {
+Template.ubtOfficialResults.onRendered(function () {
   this.$('[data-toggle="tooltip"]').tooltip({ trigger: "hover" });
 });

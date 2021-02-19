@@ -1,18 +1,14 @@
 import { Meteor } from "meteor/meteor";
 
 Meteor.methods({
-  "Sat.updateSchoolSatResults": function (
+  "Sat.updateAdminSatResults": function (
     academicYear,
     studentId,
     grade,
-    editItem
+    editItem,
+    schoolId
   ) {
-    if (
-      Roles.userIsInRole(this.userId, "school") ||
-      Roles.userIsInRole(this.userId, "schoolCoordinator") ||
-      Roles.userIsInRole(this.userId, "admin")
-    ) {
-      let schoolId = Schools.findOne({ userId: this.userId }).schoolId;
+    if (Roles.userIsInRole(this.userId, "admin")) {
       let satResult = SatResults.findOne({ academicYear, studentId });
 
       if (satResult) {
@@ -82,18 +78,14 @@ Meteor.methods({
       throw new Meteor.Error("auth-error", "School rights required.");
     }
   },
-  "Ielts.updateSchoolIeltsResults": function (
+  "Ielts.updateAdminIeltsResults": function (
     academicYear,
     studentId,
     grade,
-    editItem
+    editItem,
+    schoolId
   ) {
-    if (
-      Roles.userIsInRole(this.userId, "school") ||
-      Roles.userIsInRole(this.userId, "schoolCoordinator") ||
-      Roles.userIsInRole(this.userId, "admin")
-    ) {
-      let schoolId = Schools.findOne({ userId: this.userId }).schoolId;
+    if (Roles.userIsInRole(this.userId, "admin")) {
       let ieltsResult = IeltsResults.findOne({ academicYear, studentId });
 
       if (ieltsResult) {

@@ -158,7 +158,7 @@ var saveItem = function (template) {
   };
 
   Meteor.call(
-    "Sat.updateSatResults",
+    "Sat.updateAdminSatResults",
     academicYear.get(),
     Session.get("editItemId"),
     Template.instance().grade.get(),
@@ -166,7 +166,7 @@ var saveItem = function (template) {
     template.schoolId.get()
   );
   Meteor.call(
-    "Ielts.updateIeltsResults",
+    "Ielts.updateAdminIeltsResults",
     academicYear.get(),
     Session.get("editItemId"),
     Template.instance().grade.get(),
