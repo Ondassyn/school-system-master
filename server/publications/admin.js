@@ -338,3 +338,8 @@ Meteor.publish("adminIeltsResults", function (schoolId, grade) {
   if (schoolId && grade) return IeltsResults.find({ schoolId, grade });
   return this.ready();
 });
+
+Meteor.publish("adminUbtOfficialResults", function (schoolId) {
+  if (schoolId) return UbtOfficialResults.find({ schoolId });
+  return this.ready();
+});

@@ -42,24 +42,24 @@
                         <th>Сынып</th>
                         <th style="border-right: 1pt solid darkgrey">Аты-жөні</th>
                         
+                        <th id="total" style="text-align: center; border-right: 1pt solid darkgrey">Жалпы</th>
+
                         <th id="math_literacy" style="text-align: center">Математикалық сауаттылық</th>
                         <th id="reading_literacy" style="text-align: center">Оқу сауаттылығы</th>
                         <th id="kazakh_history" style="text-align: center; border-right: 1pt solid darkgrey">Қазақстан тарихы</th>
                         
-                        <th id="math" style="text-align: center">Математика</th>
-                        <th id="physics" style="text-align: center">Математика</th>
-                        <th id="chemistry" style="text-align: center">Математика</th>
-                        <th id="biology" style="text-align: center">Математика</th>
-                        <th id="geography" style="text-align: center">Математика</th>
-                        <th id="foreign_language" style="text-align: center">Математика</th>
-                        <th id="world_history" style="text-align: center">Математика</th>
-                        <th id="community_rights" style="text-align: center">Математика</th>
-                        <th id="kazakh_language" style="text-align: center">Математика</th>
-                        <th id="kazakh_literature" style="text-align: center">Математика</th>
-                        <th id="russian_language" style="text-align: center">Математика</th>
-                        <th id="russian_literature" style="text-align: center">Математика</th>
-                        <th id="creative_exam_1" style="text-align: center">Математика</th>
-                        <th id="creativw_exam_2" style="text-align: center">Математика</th> 
+                        <th id="algebra" style="text-align: center">Математика</th>
+                        <th id="physics" style="text-align: center">Физика</th>
+                        <th id="chemistry" style="text-align: center">Химия</th>
+                        <th id="biology" style="text-align: center">Биология</th>
+                        <th id="geography" style="text-align: center">География</th>
+                        <th id="foreign_language" style="text-align: center">Шет тілі</th>
+                        <th id="world_history" style="text-align: center">Дүниежүзі тарих</th>
+                        <th id="community_rights" style="text-align: center">Адам. Қоғам</th>
+                        <th id="kazakh_russian_language" style="text-align: center">Қазақ/Орыс тілі</th>
+                        <th id="kazakh_russian_literature" style="text-align: center">Қазақ/Орыс әдебиеті</th>
+                        <th id="creative_exam_1" style="text-align: center">Шығармашылық емтихан-1</th>
+                        <th id="creative_exam_2" style="text-align: center">Шығармашылық емтихан-2</th> 
                     </tr>
                 </thead>
                 <tbody>
@@ -73,36 +73,24 @@
 
 
                     {{#if editing}}
+                        <td style="text-align: center; border-right: 1pt solid darkgrey;"><input type="text" style="width: 25pt" id="edit_total" value="{{total}}"></td>
+                        
+                        <td style="text-align: center"><input type="text" style="width: 25pt" id="edit_math_literacy" value="{{math_literacy}}"></td>
+                        <td style="text-align: center"><input type="text" style="width: 25pt" id="edit_reading_literacy" value="{{reading_literacy}}"></td>
+                        <td style="text-align: center; border-right: 1pt solid darkgrey;"><input type="text" style="width: 25pt" id="edit_kazakh_history" value="{{kazakh_history}}"></td>
 
-                        {{#if isSat1Hidden}}
-                        <td style="border-right: 1pt solid darkgrey"></td>
-                        {{else}}
-                        <td style="text-align: center"><input type="text" style="width: 30pt" id="editSat1English" value="{{sat1english}}"></td>
-                        <td style="text-align: center; border-right: 1pt solid darkgrey"><input type="text" style="width: 30pt" id="editSat1Math" value="{{sat1math}}"></td>
-                        <td style="text-align: center; border-right: 1pt solid darkgrey"><input type="text" style="width: 30pt" id="editSat1Total" value="{{sat1total}}"></td>
-                        {{/if}}
-
-                        {{#if isSat2Hidden}}
-                        <td style="border-right: 1pt solid darkgrey"></td>
-                        {{else}}
-                        <td style="text-align: center"><input type="text" style="width: 30pt" id="editSat2Math1" value="{{sat2math1}}"></td>
-                        <td style="text-align: center"><input type="text" style="width: 30pt" id="editSat2Math2" value="{{sat2math2}}"></td>
-                        <td style="text-align: center"><input type="text" style="width: 30pt" id="editSat2Physics" value="{{sat2physics}}"></td>
-                        <td style="text-align: center"><input type="text" style="width: 30pt" id="editSat2Chemistry" value="{{sat2chemistry}}"></td>
-                        <td style="text-align: center"><input type="text" style="width: 30pt" id="editSat2Biology" value="{{sat2biology}}"></td>
-                        <td style="text-align: center; border-right: 1pt solid darkgrey"><input type="text" style="width: 30pt" id="editSat2WorldHistory" value="{{sat2worldhistory}}"></td>
-                        <td style="text-align: center; border-right: 1pt solid darkgrey"><input type="text" style="width: 30pt" id="editSat2Total" value="{{sat2total}}"></td>
-                        {{/if}}
-
-                        {{#if isIeltsHidden}}
-                        <td style="border-right: 1pt solid darkgrey"></td>
-                        {{else}}
-                        <td style="text-align: center"><input type="text" style="width: 30pt" id="editIeltsListening" value="{{ieltslistening}}"></td>
-                        <td style="text-align: center"><input type="text" style="width: 30pt" id="editIeltsReading" value="{{ieltsreading}}"></td>
-                        <td style="text-align: center"><input type="text" style="width: 30pt" id="editIeltsWriting" value="{{ieltswriting}}"></td>
-                        <td style="text-align: center; border-right: 1pt solid darkgrey"><input type="text" style="width: 30pt" id="editIeltsSpeaking" value="{{ieltsspeaking}}"></td>
-                        <td style="text-align: center; border-right: 1pt solid darkgrey"><input type="text" style="width: 30pt" id="editIeltsTotal" value="{{ieltstotal}}"></td>
-                        {{/if}}
+                        <td style="text-align: center"><input type="text" style="width: 25pt" id="edit_algebra" value="{{algebra}}"></td>
+                        <td style="text-align: center"><input type="text" style="width: 25pt" id="edit_physics" value="{{physics}}"></td>
+                        <td style="text-align: center"><input type="text" style="width: 25pt" id="edit_chemistry" value="{{chemistry}}"></td>
+                        <td style="text-align: center"><input type="text" style="width: 25pt" id="edit_biology" value="{{biology}}"></td>
+                        <td style="text-align: center"><input type="text" style="width: 25pt" id="edit_geography" value="{{geography}}"></td>
+                        <td style="text-align: center"><input type="text" style="width: 25pt" id="edit_foreign_language" value="{{foreign_language}}"></td>
+                        <td style="text-align: center"><input type="text" style="width: 25pt" id="edit_world_history" value="{{world_history}}"></td>
+                        <td style="text-align: center"><input type="text" style="width: 25pt" id="edit_community_rights" value="{{community_rights}}"></td>
+                        <td style="text-align: center"><input type="text" style="width: 25pt" id="edit_kazakh_russian_language" value="{{kazakh_russian_language}}"></td>
+                        <td style="text-align: center"><input type="text" style="width: 25pt" id="edit_kazakh_russian_literature" value="{{kazakh_russian_literature}}"></td>
+                        <td style="text-align: center"><input type="text" style="width: 25pt" id="edit_creative_exam_1" value="{{creative_exam_1}}"></td>
+                        <td style="text-align: center"><input type="text" style="width: 25pt" id="edit_creative_exam_2" value="{{creative_exam_2}}"></td>
 
                         <td>
                             <button class="saveItem btn btn-success">Save</button>
@@ -111,40 +99,28 @@
 
                     {{else}}
 
-                        {{#if isSat1Hidden}}
-                        <td style="border-right: 1pt solid darkgrey"></td>
-                        {{else}}
-                        <td style="text-align: center">{{sat1english}}</td>
-                        <td style="text-align: center; border-right: 1pt solid darkgrey">{{sat1math}}</td>
-                        <td style="text-align: center; border-right: 1pt solid darkgrey">{{sat1total}}</td>
-                        {{/if}}
+                        <td style="text-align: center; border-right: 1pt solid darkgrey">{{total}}</td>
+                        <td style="text-align: center">{{math_literacy}}</td>
+                        <td style="text-align: center">{{reading_literacy}}</td>
+                        <td style="text-align: center; border-right: 1pt solid darkgrey">{{kazakh_history}}</td>
 
-                        {{#if isSat2Hidden}}
-                        <td style="border-right: 1pt solid darkgrey"></td>
-                        {{else}}
-                        <td style="text-align: center">{{sat2math1}}</td>
-                        <td style="text-align: center">{{sat2math2}}</td>
-                        <td style="text-align: center">{{sat2physics}}</td>
-                        <td style="text-align: center">{{sat2chemistry}}</td>
-                        <td style="text-align: center">{{sat2biology}}</td>
-                        <td style="text-align: center; border-right: 1pt solid darkgrey">{{sat2worldhistory}}</td>
-                        <td style="text-align: center; border-right: 1pt solid darkgrey">{{sat2total}}</td>
-                        {{/if}}
-
-                        {{#if isIeltsHidden}}
-                        <td style="border-right: 1pt solid darkgrey"></td>
-                        {{else}}
-                        <td style="text-align: center">{{ieltslistening}}</td>
-                        <td style="text-align: center">{{ieltsreading}}</td>
-                        <td style="text-align: center">{{ieltswriting}}</td>
-                        <td style="text-align: center; border-right: 1pt solid darkgrey">{{ieltsspeaking}}</td>
-                        <td style="text-align: center; border-right: 1pt solid darkgrey">{{ieltstotal}}</td>
-                        {{/if}}
+                        <td style="text-align: center">{{algebra}}</td>
+                        <td style="text-align: center">{{physics}}</td>
+                        <td style="text-align: center">{{chemistry}}</td>
+                        <td style="text-align: center">{{biology}}</td>
+                        <td style="text-align: center">{{geography}}</td>
+                        <td style="text-align: center">{{foreign_language}}</td>
+                        <td style="text-align: center">{{world_history}}</td>
+                        <td style="text-align: center">{{community_rights}}</td>
+                        <td style="text-align: center">{{kazakh_russian_language}}</td>
+                        <td style="text-align: center">{{kazakh_russian_literature}}</td>
+                        <td style="text-align: center">{{creative_exam_1}}</td>
+                        <td style="text-align: center">{{creative_exam_2}}</td>
 
                         <td>
                             <button class="editItem btn btn-primary">Edit</button>
                         </td>
-                        {{/if}}
+                    {{/if}}
 
                     </tr>
                   {{/each}}

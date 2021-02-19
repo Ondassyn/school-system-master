@@ -5,33 +5,16 @@ import XLSX from "xlsx";
 
 Template.adminUbtOfficialResults.onCreated(function () {
   let template = this;
-  document.title = "SAT-IELTS Нәтижелері";
-  template.grade = new ReactiveVar("all");
+  document.title = "ҰБТ ресми нәтижелері";
   template.schoolId = new ReactiveVar("033");
   template.showCertified = new ReactiveVar(false);
   template.order = new ReactiveVar([]);
-  template.isSat1Hidden = new ReactiveVar(false);
-  template.isSat2Hidden = new ReactiveVar(false);
-  template.isIeltsHidden = new ReactiveVar(false);
 
   template.subscribe("schools");
 
   template.autorun(() => {
-    template.subscribe(
-      "schoolGradeStudents",
-      template.schoolId.get(),
-      template.grade.get()
-    );
-    template.subscribe(
-      "adminUbtOfficialResults",
-      template.schoolId.get(),
-      template.grade.get()
-    );
-    template.subscribe(
-      "adminIeltsResults",
-      template.schoolId.get(),
-      template.grade.get()
-    );
+    template.subscribe("schoolGradeStudents", template.schoolId.get(), "11");
+    template.subscribe("adminUbtOfficialResults", template.schoolId.get());
   });
 });
 
@@ -64,55 +47,34 @@ Template.adminUbtOfficialResults.helpers({
         studentId: student.studentId,
         grade: student.grade,
         division: student.division,
-        name: student.name,
         surname: student.surname,
-        sat1english: "",
-        sat1math: "",
-        sat1total: "",
-        sat2worldhistory: "",
-        sat2math1: "",
-        sat2math2: "",
-        sat2biology: "",
-        sat2chemistry: "",
-        sat2physics: "",
-        sat2total: "",
-        sat2math1: "",
-        ieltslistening: "",
-        ieltsreading: "",
-        ieltswriting: "",
-        ieltsspeaking: "",
-        ieltstotal: "",
+        name: student.name,
       };
 
-      let satResult = SatResults.findOne({
+      let ubtResult = UbtOfficialResults.findOne({
         academicYear: academicYear.get(),
         studentId: student.studentId,
       });
-      if (satResult) {
+      if (ubtResult) {
         isCertified = true;
-        returnObject.sat1english = satResult.sat1_english;
-        returnObject.sat1math = satResult.sat1_math;
-        returnObject.sat1total = satResult.sat1_total;
-        returnObject.sat2worldhistory = satResult.sat2_world_history;
-        returnObject.sat2math1 = satResult.sat2_math1;
-        returnObject.sat2math2 = satResult.sat2_math2;
-        returnObject.sat2biology = satResult.sat2_biology;
-        returnObject.sat2chemistry = satResult.sat2_chemistry;
-        returnObject.sat2physics = satResult.sat2_physics;
-        returnObject.sat2total = satResult.sat2_total;
-      }
-
-      let ieltsResult = IeltsResults.findOne({
-        academicYear: academicYear.get(),
-        studentId: student.studentId,
-      });
-      if (ieltsResult) {
-        isCertified = true;
-        returnObject.ieltslistening = ieltsResult.listening;
-        returnObject.ieltsreading = ieltsResult.reading;
-        returnObject.ieltswriting = ieltsResult.writing;
-        returnObject.ieltsspeaking = ieltsResult.speaking;
-        returnObject.ieltstotal = ieltsResult.total;
+        returnObject["total"] = ubtResult.total;
+        returnObject["math_literacy"] = ubtResult.math_literacy;
+        returnObject["reading_literacy"] = ubtResult.reading_literacy;
+        returnObject["kazakh_history"] = ubtResult.kazakh_history;
+        returnObject["algebra"] = ubtResult.algebra;
+        returnObject["physics"] = ubtResult.physics;
+        returnObject["chemistry"] = ubtResult.chemistry;
+        returnObject["biology"] = ubtResult.biology;
+        returnObject["geography"] = ubtResult.geography;
+        returnObject["foreign_language"] = ubtResult.foreign_language;
+        returnObject["world_history"] = ubtResult.world_history;
+        returnObject["community_rights"] = ubtResult.community_rights;
+        returnObject["kazakh_russian_language"] =
+          ubtResult.kazakh_russian_language;
+        returnObject["kazakh_russian_literature"] =
+          ubtResult.kazakh_russian_literature;
+        returnObject["creative_exam_1"] = ubtResult.creative_exam_1;
+        returnObject["creative_exam_2"] = ubtResult.creative_exam_2;
       }
 
       if (showCertified) {
@@ -127,51 +89,34 @@ Template.adminUbtOfficialResults.helpers({
   editing() {
     return Session.equals("editItemId", this.studentId);
   },
-  isSat1Hidden() {
-    return Template.instance().isSat1Hidden.get();
-  },
-  isSat2Hidden() {
-    return Template.instance().isSat2Hidden.get();
-  },
-  isIeltsHidden() {
-    return Template.instance().isIeltsHidden.get();
-  },
 });
 
 var saveItem = function (template) {
   var editItem = {
-    sat1_english: $("#editSat1English").val(),
-    sat1_math: $("#editSat1Math").val(),
-    sat1_total: $("#editSat1Total").val(),
-    sat2_world_history: $("#editSat2WorldHistory").val(),
-    sat2_math1: $("#editSat2Math1").val(),
-    sat2_math2: $("#editSat2Math2").val(),
-    sat2_biology: $("#editSat2Biology").val(),
-    sat2_chemistry: $("#editSat2Chemistry").val(),
-    sat2_physics: $("#editSat2Physics").val(),
-    sat2_total: $("#editSat2Total").val(),
-    ielts_listening: $("#editIeltsListening").val(),
-    ielts_reading: $("#editIeltsReading").val(),
-    ielts_writing: $("#editIeltsWriting").val(),
-    ielts_speaking: $("#editIeltsSpeaking").val(),
-    ielts_total: $("#editIeltsTotal").val(),
+    total: $("#edit_total").val(),
+    math_literacy: $("#edit_math_literacy").val(),
+    reading_literacy: $("#edit_reading_literacy").val(),
+    kazakh_history: $("#edit_kazakh_history").val(),
+    algebra: $("#edit_algebra").val(),
+    physics: $("#edit_physics").val(),
+    chemistry: $("#edit_chemistry").val(),
+    biology: $("#edit_biology").val(),
+    geography: $("#edit_geography").val(),
+    foreign_language: $("#edit_foreign_language").val(),
+    world_history: $("#edit_world_history").val(),
+    community_rights: $("#edit_community_rights").val(),
+    kazakh_russian_language: $("#edit_kazakh_russian_language").val(),
+    kazakh_russian_literature: $("#edit_kazakh_russian_literature").val(),
+    creative_exam_1: $("#edit_creative_exam_1").val(),
+    creative_exam_2: $("#edit_creative_exam_2").val(),
   };
 
   Meteor.call(
-    "Sat.updateSatResults",
+    "Ubt.updateUbtOfficialResults",
     academicYear.get(),
+    template.schoolId.get(),
     Session.get("editItemId"),
-    Template.instance().grade.get(),
-    editItem,
-    template.schoolId.get()
-  );
-  Meteor.call(
-    "Ielts.updateIeltsResults",
-    academicYear.get(),
-    Session.get("editItemId"),
-    Template.instance().grade.get(),
-    editItem,
-    template.schoolId.get()
+    editItem
   );
 
   Session.set("editItemId", null);
@@ -190,311 +135,323 @@ Template.adminUbtOfficialResults.events({
   "change #school"(event, template) {
     template.schoolId.set(event.target.value);
   },
-  "change #grade"(event, template) {
-    template.grade.set(event.target.value);
-  },
   "change #showCertified"(event, template) {
     template.showCertified.set(event.target.checked);
   },
-  "click #sat1-hide"(event, template) {
-    template.isSat1Hidden.set(true);
-  },
-  "click #sat1-expand"(event, template) {
-    template.isSat1Hidden.set(false);
-  },
-  "click #sat2-hide"(event, template) {
-    template.isSat2Hidden.set(true);
-  },
-  "click #sat2-expand"(event, template) {
-    template.isSat2Hidden.set(false);
-  },
-  "click #ielts-hide"(event, template) {
-    template.isIeltsHidden.set(true);
-  },
-  "click #ielts-expand"(event, template) {
-    template.isIeltsHidden.set(false);
-  },
-  "click #sat-1_english"(event, template) {
-    let satResults = SatResults.find(
-      {},
-      {
-        sort: { sat1_english: -1 },
-        fields: { studentId: 1, sat1_english: 1, _id: 0 },
-      }
-    ).fetch();
-    let order = satResults
-      .filter(
-        (satResult) => satResult.sat1_english || satResult.sat1_english === 0
-      )
-      .map((satResult) => satResult.studentId);
-    let oldOrder = template.order.get();
-
-    if (JSON.stringify(order) === JSON.stringify(oldOrder)) {
-      template.order.set(order.reverse());
-    } else {
-      template.order.set(order);
-    }
-  },
-  "click #sat-1_math"(event, template) {
-    let satResults = SatResults.find(
-      {},
-      {
-        sort: { sat1_math: -1 },
-        fields: { studentId: 1, sat1_math: 1, _id: 0 },
-      }
-    ).fetch();
-    let order = satResults
-      .filter((satResult) => satResult.sat1_math || satResult.sat1_math === 0)
-      .map((satResult) => satResult.studentId);
-    let oldOrder = template.order.get();
-
-    if (JSON.stringify(order) === JSON.stringify(oldOrder)) {
-      template.order.set(order.reverse());
-    } else {
-      template.order.set(order);
-    }
-  },
-  "click #sat-1_total"(event, template) {
-    let satResults = SatResults.find(
-      {},
-      {
-        sort: { sat1_total: -1 },
-        fields: { studentId: 1, sat1_total: 1, _id: 0 },
-      }
-    ).fetch();
-    let order = satResults
-      .filter((satResult) => satResult.sat1_total || satResult.sat1_total === 0)
-      .map((satResult) => satResult.studentId);
-    let oldOrder = template.order.get();
-
-    if (JSON.stringify(order) === JSON.stringify(oldOrder)) {
-      template.order.set(order.reverse());
-    } else {
-      template.order.set(order);
-    }
-  },
-  "click #sat-2_world-history"(event, template) {
-    let satResults = SatResults.find(
-      {},
-      {
-        sort: { sat2_world_history: -1 },
-        fields: { studentId: 1, sat2_world_history: 1, _id: 0 },
-      }
-    ).fetch();
-    let order = satResults
-      .filter(
-        (satResult) =>
-          satResult.sat2_world_history || satResult.sat2_world_history === 0
-      )
-      .map((satResult) => satResult.studentId);
-    let oldOrder = template.order.get();
-
-    if (JSON.stringify(order) === JSON.stringify(oldOrder)) {
-      template.order.set(order.reverse());
-    } else {
-      template.order.set(order);
-    }
-  },
-  "click #sat-2_math-1"(event, template) {
-    let satResults = SatResults.find(
-      {},
-      {
-        sort: { sat2_math1: -1 },
-        fields: { studentId: 1, sat2_math1: 1, _id: 0 },
-      }
-    ).fetch();
-    let order = satResults
-      .filter((satResult) => satResult.sat2_math1 || satResult.sat2_math1 === 0)
-      .map((satResult) => satResult.studentId);
-    let oldOrder = template.order.get();
-
-    if (JSON.stringify(order) === JSON.stringify(oldOrder)) {
-      template.order.set(order.reverse());
-    } else {
-      template.order.set(order);
-    }
-  },
-  "click #sat-2_math-2"(event, template) {
-    let satResults = SatResults.find(
-      {},
-      {
-        sort: { sat2_math2: -1 },
-        fields: { studentId: 1, sat2_math2: 1, _id: 0 },
-      }
-    ).fetch();
-    let order = satResults
-      .filter((satResult) => satResult.sat2_math2 || satResult.sat2_math2 === 0)
-      .map((satResult) => satResult.studentId);
-    let oldOrder = template.order.get();
-
-    if (JSON.stringify(order) === JSON.stringify(oldOrder)) {
-      template.order.set(order.reverse());
-    } else {
-      template.order.set(order);
-    }
-  },
-  "click #sat-2_biology"(event, template) {
-    let satResults = SatResults.find(
-      {},
-      {
-        sort: { sat2_biology: -1 },
-        fields: { studentId: 1, sat2_biology: 1, _id: 0 },
-      }
-    ).fetch();
-    let order = satResults
-      .filter(
-        (satResult) => satResult.sat2_biology || satResult.sat2_biology === 0
-      )
-      .map((satResult) => satResult.studentId);
-    let oldOrder = template.order.get();
-
-    if (JSON.stringify(order) === JSON.stringify(oldOrder)) {
-      template.order.set(order.reverse());
-    } else {
-      template.order.set(order);
-    }
-  },
-  "click #sat-2_chemistry"(event, template) {
-    let satResults = SatResults.find(
-      {},
-      {
-        sort: { sat2_chemistry: -1 },
-        fields: { studentId: 1, sat2_chemistry: 1, _id: 0 },
-      }
-    ).fetch();
-    let order = satResults
-      .filter(
-        (satResult) =>
-          satResult.sat2_chemistry || satResult.sat2_chemistry === 0
-      )
-      .map((satResult) => satResult.studentId);
-    let oldOrder = template.order.get();
-
-    if (JSON.stringify(order) === JSON.stringify(oldOrder)) {
-      template.order.set(order.reverse());
-    } else {
-      template.order.set(order);
-    }
-  },
-  "click #sat-2_physics"(event, template) {
-    let satResults = SatResults.find(
-      {},
-      {
-        sort: { sat2_physics: -1 },
-        fields: { studentId: 1, sat2_physics: 1, _id: 0 },
-      }
-    ).fetch();
-    let order = satResults
-      .filter(
-        (satResult) => satResult.sat2_physics || satResult.sat2_physics === 0
-      )
-      .map((satResult) => satResult.studentId);
-    let oldOrder = template.order.get();
-
-    if (JSON.stringify(order) === JSON.stringify(oldOrder)) {
-      template.order.set(order.reverse());
-    } else {
-      template.order.set(order);
-    }
-  },
-  "click #sat-2_total"(event, template) {
-    let satResults = SatResults.find(
-      {},
-      {
-        sort: { sat2_total: -1 },
-        fields: { studentId: 1, sat2_total: 1, _id: 0 },
-      }
-    ).fetch();
-    let order = satResults
-      .filter((satResult) => satResult.sat2_total || satResult.sat2_total === 0)
-      .map((satResult) => satResult.studentId);
-    let oldOrder = template.order.get();
-
-    if (JSON.stringify(order) === JSON.stringify(oldOrder)) {
-      template.order.set(order.reverse());
-    } else {
-      template.order.set(order);
-    }
-  },
-  "click #ielts_listening"(event, template) {
-    let ieltsResults = IeltsResults.find(
-      {},
-      {
-        sort: { listening: -1 },
-        fields: { studentId: 1, listening: 1, _id: 0 },
-      }
-    ).fetch();
-    let order = ieltsResults
-      .filter(
-        (ieltsResult) => ieltsResult.listening || ieltsResult.listening === 0
-      )
-      .map((ieltsResult) => ieltsResult.studentId);
-    let oldOrder = template.order.get();
-
-    if (JSON.stringify(order) === JSON.stringify(oldOrder)) {
-      template.order.set(order.reverse());
-    } else {
-      template.order.set(order);
-    }
-  },
-  "click #ielts_reading"(event, template) {
-    let ieltsResults = IeltsResults.find(
-      {},
-      { sort: { reading: -1 }, fields: { studentId: 1, reading: 1, _id: 0 } }
-    ).fetch();
-    let order = ieltsResults
-      .filter((ieltsResult) => ieltsResult.reading || ieltsResult.reading === 0)
-      .map((ieltsResult) => ieltsResult.studentId);
-    let oldOrder = template.order.get();
-
-    if (JSON.stringify(order) === JSON.stringify(oldOrder)) {
-      template.order.set(order.reverse());
-    } else {
-      template.order.set(order);
-    }
-  },
-  "click #ielts_writing"(event, template) {
-    let ieltsResults = IeltsResults.find(
-      {},
-      { sort: { writing: -1 }, fields: { studentId: 1, writing: 1, _id: 0 } }
-    ).fetch();
-    let order = ieltsResults
-      .filter((ieltsResult) => ieltsResult.writing || ieltsResult.writing === 0)
-      .map((ieltsResult) => ieltsResult.studentId);
-    let oldOrder = template.order.get();
-
-    if (JSON.stringify(order) === JSON.stringify(oldOrder)) {
-      template.order.set(order.reverse());
-    } else {
-      template.order.set(order);
-    }
-  },
-  "click #ielts_speaking"(event, template) {
-    let ieltsResults = IeltsResults.find(
-      {},
-      { sort: { speaking: -1 }, fields: { studentId: 1, speaking: 1, _id: 0 } }
-    ).fetch();
-    let order = ieltsResults
-      .filter(
-        (ieltsResult) => ieltsResult.speaking || ieltsResult.speaking === 0
-      )
-      .map((ieltsResult) => ieltsResult.studentId);
-    let oldOrder = template.order.get();
-
-    if (JSON.stringify(order) === JSON.stringify(oldOrder)) {
-      template.order.set(order.reverse());
-    } else {
-      template.order.set(order);
-    }
-  },
-  "click #ielts_total"(event, template) {
-    let ieltsResults = IeltsResults.find(
+  "click #total"(event, template) {
+    let ubtResults = UbtOfficialResults.find(
       {},
       { sort: { total: -1 }, fields: { studentId: 1, total: 1, _id: 0 } }
     ).fetch();
-    let order = ieltsResults
-      .filter((ieltsResult) => ieltsResult.total || ieltsResult.total === 0)
-      .map((ieltsResult) => ieltsResult.studentId);
+    let order = ubtResults
+      .filter((ubtResult) => ubtResult.total || ubtResult.total === 0)
+      .map((ubtResult) => ubtResult.studentId);
+    let oldOrder = template.order.get();
+
+    if (JSON.stringify(order) === JSON.stringify(oldOrder)) {
+      template.order.set(order.reverse());
+    } else {
+      template.order.set(order);
+    }
+  },
+  "click #math_literacy"(event, template) {
+    let ubtResults = UbtOfficialResults.find(
+      {},
+      {
+        sort: { math_literacy: -1 },
+        fields: { studentId: 1, math_literacy: 1, _id: 0 },
+      }
+    ).fetch();
+    let order = ubtResults
+      .filter(
+        (ubtResult) => ubtResult.math_literacy || ubtResult.math_literacy === 0
+      )
+      .map((ubtResult) => ubtResult.studentId);
+    let oldOrder = template.order.get();
+
+    if (JSON.stringify(order) === JSON.stringify(oldOrder)) {
+      template.order.set(order.reverse());
+    } else {
+      template.order.set(order);
+    }
+  },
+  "click #reading_literacy"(event, template) {
+    let ubtResults = UbtOfficialResults.find(
+      {},
+      {
+        sort: { reading_literacy: -1 },
+        fields: { studentId: 1, reading_literacy: 1, _id: 0 },
+      }
+    ).fetch();
+    let order = ubtResults
+      .filter(
+        (ubtResult) =>
+          ubtResult.reading_literacy || ubtResult.reading_literacy === 0
+      )
+      .map((ubtResult) => ubtResult.studentId);
+    let oldOrder = template.order.get();
+
+    if (JSON.stringify(order) === JSON.stringify(oldOrder)) {
+      template.order.set(order.reverse());
+    } else {
+      template.order.set(order);
+    }
+  },
+  "click #kazakh_history"(event, template) {
+    let ubtResults = UbtOfficialResults.find(
+      {},
+      {
+        sort: { kazakh_history: -1 },
+        fields: { studentId: 1, kazakh_history: 1, _id: 0 },
+      }
+    ).fetch();
+    let order = ubtResults
+      .filter(
+        (ubtResult) =>
+          ubtResult.kazakh_history || ubtResult.kazakh_history === 0
+      )
+      .map((ubtResult) => ubtResult.studentId);
+    let oldOrder = template.order.get();
+
+    if (JSON.stringify(order) === JSON.stringify(oldOrder)) {
+      template.order.set(order.reverse());
+    } else {
+      template.order.set(order);
+    }
+  },
+  "click #algebra"(event, template) {
+    let ubtResults = UbtOfficialResults.find(
+      {},
+      { sort: { algebra: -1 }, fields: { studentId: 1, algebra: 1, _id: 0 } }
+    ).fetch();
+    let order = ubtResults
+      .filter((ubtResult) => ubtResult.algebra || ubtResult.algebra === 0)
+      .map((ubtResult) => ubtResult.studentId);
+    let oldOrder = template.order.get();
+
+    if (JSON.stringify(order) === JSON.stringify(oldOrder)) {
+      template.order.set(order.reverse());
+    } else {
+      template.order.set(order);
+    }
+  },
+  "click #physics"(event, template) {
+    let ubtResults = UbtOfficialResults.find(
+      {},
+      { sort: { physics: -1 }, fields: { studentId: 1, physics: 1, _id: 0 } }
+    ).fetch();
+    let order = ubtResults
+      .filter((ubtResult) => ubtResult.physics || ubtResult.physics === 0)
+      .map((ubtResult) => ubtResult.studentId);
+    let oldOrder = template.order.get();
+
+    if (JSON.stringify(order) === JSON.stringify(oldOrder)) {
+      template.order.set(order.reverse());
+    } else {
+      template.order.set(order);
+    }
+  },
+  "click #chemistry"(event, template) {
+    let ubtResults = UbtOfficialResults.find(
+      {},
+      {
+        sort: { chemistry: -1 },
+        fields: { studentId: 1, chemistry: 1, _id: 0 },
+      }
+    ).fetch();
+    let order = ubtResults
+      .filter((ubtResult) => ubtResult.chemistry || ubtResult.chemistry === 0)
+      .map((ubtResult) => ubtResult.studentId);
+    let oldOrder = template.order.get();
+
+    if (JSON.stringify(order) === JSON.stringify(oldOrder)) {
+      template.order.set(order.reverse());
+    } else {
+      template.order.set(order);
+    }
+  },
+  "click #biology"(event, template) {
+    let ubtResults = UbtOfficialResults.find(
+      {},
+      { sort: { biology: -1 }, fields: { studentId: 1, biology: 1, _id: 0 } }
+    ).fetch();
+    let order = ubtResults
+      .filter((ubtResult) => ubtResult.biology || ubtResult.biology === 0)
+      .map((ubtResult) => ubtResult.studentId);
+    let oldOrder = template.order.get();
+
+    if (JSON.stringify(order) === JSON.stringify(oldOrder)) {
+      template.order.set(order.reverse());
+    } else {
+      template.order.set(order);
+    }
+  },
+  "click #geography"(event, template) {
+    let ubtResults = UbtOfficialResults.find(
+      {},
+      {
+        sort: { geography: -1 },
+        fields: { studentId: 1, geography: 1, _id: 0 },
+      }
+    ).fetch();
+    let order = ubtResults
+      .filter((ubtResult) => ubtResult.geography || ubtResult.geography === 0)
+      .map((ubtResult) => ubtResult.studentId);
+    let oldOrder = template.order.get();
+
+    if (JSON.stringify(order) === JSON.stringify(oldOrder)) {
+      template.order.set(order.reverse());
+    } else {
+      template.order.set(order);
+    }
+  },
+  "click #foreign_language"(event, template) {
+    let ubtResults = UbtOfficialResults.find(
+      {},
+      {
+        sort: { foreign_language: -1 },
+        fields: { studentId: 1, foreign_language: 1, _id: 0 },
+      }
+    ).fetch();
+    let order = ubtResults
+      .filter(
+        (ubtResult) =>
+          ubtResult.foreign_language || ubtResult.foreign_language === 0
+      )
+      .map((ubtResult) => ubtResult.studentId);
+    let oldOrder = template.order.get();
+
+    if (JSON.stringify(order) === JSON.stringify(oldOrder)) {
+      template.order.set(order.reverse());
+    } else {
+      template.order.set(order);
+    }
+  },
+  "click #world_history"(event, template) {
+    let ubtResults = UbtOfficialResults.find(
+      {},
+      {
+        sort: { world_history: -1 },
+        fields: { studentId: 1, world_history: 1, _id: 0 },
+      }
+    ).fetch();
+    let order = ubtResults
+      .filter(
+        (ubtResult) => ubtResult.world_history || ubtResult.world_history === 0
+      )
+      .map((ubtResult) => ubtResult.studentId);
+    let oldOrder = template.order.get();
+
+    if (JSON.stringify(order) === JSON.stringify(oldOrder)) {
+      template.order.set(order.reverse());
+    } else {
+      template.order.set(order);
+    }
+  },
+  "click #community_rights"(event, template) {
+    let ubtResults = UbtOfficialResults.find(
+      {},
+      {
+        sort: { community_rights: -1 },
+        fields: { studentId: 1, community_rights: 1, _id: 0 },
+      }
+    ).fetch();
+    let order = ubtResults
+      .filter(
+        (ubtResult) =>
+          ubtResult.community_rights || ubtResult.community_rights === 0
+      )
+      .map((ubtResult) => ubtResult.studentId);
+    let oldOrder = template.order.get();
+
+    if (JSON.stringify(order) === JSON.stringify(oldOrder)) {
+      template.order.set(order.reverse());
+    } else {
+      template.order.set(order);
+    }
+  },
+  "click #kazakh_russian_language"(event, template) {
+    let ubtResults = UbtOfficialResults.find(
+      {},
+      {
+        sort: { kazakh_russian_language: -1 },
+        fields: { studentId: 1, kazakh_russian_language: 1, _id: 0 },
+      }
+    ).fetch();
+    let order = ubtResults
+      .filter(
+        (ubtResult) =>
+          ubtResult.kazakh_russian_language ||
+          ubtResult.kazakh_russian_language === 0
+      )
+      .map((ubtResult) => ubtResult.studentId);
+    let oldOrder = template.order.get();
+
+    if (JSON.stringify(order) === JSON.stringify(oldOrder)) {
+      template.order.set(order.reverse());
+    } else {
+      template.order.set(order);
+    }
+  },
+  "click #kazakh_russian_literature"(event, template) {
+    let ubtResults = UbtOfficialResults.find(
+      {},
+      {
+        sort: { kazakh_russian_literature: -1 },
+        fields: { studentId: 1, kazakh_russian_literature: 1, _id: 0 },
+      }
+    ).fetch();
+    let order = ubtResults
+      .filter(
+        (ubtResult) =>
+          ubtResult.kazakh_russian_literature ||
+          ubtResult.kazakh_russian_literature === 0
+      )
+      .map((ubtResult) => ubtResult.studentId);
+    let oldOrder = template.order.get();
+
+    if (JSON.stringify(order) === JSON.stringify(oldOrder)) {
+      template.order.set(order.reverse());
+    } else {
+      template.order.set(order);
+    }
+  },
+  "click #creative_exam_1"(event, template) {
+    let ubtResults = UbtOfficialResults.find(
+      {},
+      {
+        sort: { creative_exam_1: -1 },
+        fields: { studentId: 1, creative_exam_1: 1, _id: 0 },
+      }
+    ).fetch();
+    let order = ubtResults
+      .filter(
+        (ubtResult) =>
+          ubtResult.creative_exam_1 || ubtResult.creative_exam_1 === 0
+      )
+      .map((ubtResult) => ubtResult.studentId);
+    let oldOrder = template.order.get();
+
+    if (JSON.stringify(order) === JSON.stringify(oldOrder)) {
+      template.order.set(order.reverse());
+    } else {
+      template.order.set(order);
+    }
+  },
+  "click #creative_exam_2"(event, template) {
+    let ubtResults = UbtOfficialResults.find(
+      {},
+      {
+        sort: { creative_exam_2: -1 },
+        fields: { studentId: 1, creative_exam_2: 1, _id: 0 },
+      }
+    ).fetch();
+    let order = ubtResults
+      .filter(
+        (ubtResult) =>
+          ubtResult.creative_exam_2 || ubtResult.creative_exam_2 === 0
+      )
+      .map((ubtResult) => ubtResult.studentId);
     let oldOrder = template.order.get();
 
     if (JSON.stringify(order) === JSON.stringify(oldOrder)) {
@@ -514,23 +471,24 @@ Template.adminUbtOfficialResults.events({
     let data = [];
 
     let headers = [
-      "Сынып",
-      "Аты-жөні",
-      "Reading & Writing (SAT-1)",
-      "Math (SAT-1)",
-      "Total (SAT-1)",
-      "Math-1 (SAT-2)",
-      "Math-2 (SAT-2)",
-      "Physics (SAT-2)",
-      "Chemistry (SAT-2)",
-      "Biology (SAT-2)",
-      "World History (SAT-2)",
-      "Total (SAT-2)",
-      "Listening (IELTS)",
-      "Reading (IELTS)",
-      "Writing (IELTS)",
-      "Speaking (IELTS)",
-      "Total (IELTS)",
+      "Grade",
+      "Name",
+      "Total",
+      "Math literacy",
+      "Reading literacy",
+      "Kazakh history",
+      "Math",
+      "Physics",
+      "Chemistry",
+      "Biology",
+      "Geography",
+      "Foreign language",
+      "World history",
+      "Community rights",
+      "Kazakh/russian language",
+      "Kazakh/russian literature",
+      "Creative exam-1",
+      "Creative exam-2",
     ];
     data.push(headers);
 
@@ -541,11 +499,7 @@ Template.adminUbtOfficialResults.events({
       let studentId = student.studentId;
       let grade = student.grade;
 
-      let satResult = SatResults.findOne({
-        academicYear: academicYear.get(),
-        studentId,
-      });
-      let ieltsResult = IeltsResults.findOne({
+      let ubtResult = UbtOfficialResults.findOne({
         academicYear: academicYear.get(),
         studentId,
       });
@@ -555,60 +509,61 @@ Template.adminUbtOfficialResults.events({
         student.surname + "" + student.name,
       ];
 
-      if (satResult) {
+      if (ubtResult) {
         isCertified = true;
-        if (satResult.sat1_english || satResult.sat1_english === 0)
-          dataRow.push(satResult.sat1_english);
+        if (ubtResult.total || ubtResult.total === 0)
+          dataRow.push(ubtResult.total);
         else dataRow.push("");
-        if (satResult.sat1_math || satResult.sat1_math === 0)
-          dataRow.push(satResult.sat1_math);
+        if (ubtResult.math_literacy || ubtResult.math_literacy === 0)
+          dataRow.push(ubtResult.math_literacy);
         else dataRow.push("");
-        if (satResult.sat1_total || satResult.sat1_total === 0)
-          dataRow.push(satResult.sat1_total);
+        if (ubtResult.reading_literacy || ubtResult.reading_literacy === 0)
+          dataRow.push(ubtResult.reading_literacy);
         else dataRow.push("");
-
-        if (satResult.sat2_math1 || satResult.sat2_math1 === 0)
-          dataRow.push(satResult.sat2_math1);
+        if (ubtResult.kazakh_history || ubtResult.kazakh_history === 0)
+          dataRow.push(ubtResult.kazakh_history);
         else dataRow.push("");
-        if (satResult.sat2_math2 || satResult.sat2_math2 === 0)
-          dataRow.push(satResult.sat2_math2);
+        if (ubtResult.algebra || ubtResult.algebra === 0)
+          dataRow.push(ubtResult.algebra);
         else dataRow.push("");
-        if (satResult.sat2_physics || satResult.sat2_physics === 0)
-          dataRow.push(satResult.sat2_physics);
+        if (ubtResult.physics || ubtResult.physics === 0)
+          dataRow.push(ubtResult.physics);
         else dataRow.push("");
-        if (satResult.sat2_chemistry || satResult.sat2_chemistry === 0)
-          dataRow.push(satResult.sat2_chemistry);
+        if (ubtResult.chemistry || ubtResult.chemistry === 0)
+          dataRow.push(ubtResult.chemistry);
         else dataRow.push("");
-        if (satResult.sat2_biology || satResult.sat2_biology === 0)
-          dataRow.push(satResult.sat2_biology);
+        if (ubtResult.biology || ubtResult.biology === 0)
+          dataRow.push(ubtResult.biology);
         else dataRow.push("");
-        if (satResult.sat2_world_history || satResult.sat2_world_history === 0)
-          dataRow.push(satResult.sat2_world_history);
+        if (ubtResult.geography || ubtResult.geography === 0)
+          dataRow.push(ubtResult.geography);
         else dataRow.push("");
-
-        if (satResult.sat2_total || satResult.sat2_total === 0)
-          dataRow.push(satResult.sat2_total);
+        if (ubtResult.foreign_language || ubtResult.foreign_language === 0)
+          dataRow.push(ubtResult.foreign_language);
         else dataRow.push("");
-      } else {
-        dataRow.push[("", "", "", "", "", "", "", "", "", "")];
-      }
-
-      if (ieltsResult) {
-        isCertified = true;
-        if (ieltsResult.listening || ieltsResult.listening === 0)
-          dataRow.push(ieltsResult.listening);
+        if (ubtResult.world_history || ubtResult.world_history === 0)
+          dataRow.push(ubtResult.world_history);
         else dataRow.push("");
-        if (ieltsResult.reading || ieltsResult.reading === 0)
-          dataRow.push(ieltsResult.reading);
+        if (ubtResult.community_rights || ubtResult.community_rights === 0)
+          dataRow.push(ubtResult.community_rights);
         else dataRow.push("");
-        if (ieltsResult.writing || ieltsResult.writing === 0)
-          dataRow.push(ieltsResult.writing);
+        if (
+          ubtResult.kazakh_russian_language ||
+          ubtResult.kazakh_russian_language === 0
+        )
+          dataRow.push(ubtResult.kazakh_russian_language);
         else dataRow.push("");
-        if (ieltsResult.speaking || ieltsResult.speaking === 0)
-          dataRow.push(ieltsResult.speaking);
+        if (
+          ubtResult.kazakh_russian_literature ||
+          ubtResult.kazakh_russian_literature === 0
+        )
+          dataRow.push(ubtResult.kazakh_russian_literature);
         else dataRow.push("");
-        if (ieltsResult.total || ieltsResult.total === 0)
-          dataRow.push(ieltsResult.total);
+        if (ubtResult.creative_exam_1 || ubtResult.creative_exam_1 === 0)
+          dataRow.push(ubtResult.creative_exam_1);
+        else dataRow.push("");
+        if (ubtResult.creative_exam_2 || ubtResult.creative_exam_2 === 0)
+          dataRow.push(ubtResult.creative_exam_2);
         else dataRow.push("");
       }
 
@@ -622,13 +577,7 @@ Template.adminUbtOfficialResults.events({
     Meteor.call("download", data, (err, wb) => {
       if (err) throw err;
 
-      let sName =
-        academicYear.get() +
-        "_SAT-IELTS_" +
-        schoolId +
-        "_" +
-        template.grade.get() +
-        ".xlsx";
+      let sName = academicYear.get() + "_SAT-IELTS_" + schoolId + ".xlsx";
       XLSX.writeFile(wb, sName);
     });
   },
