@@ -28,10 +28,11 @@
 
                 <thead>
                     <tr class="bts-header center">
-                        <th class="absolute-style" style="width: 20pt;  text-align: center;">#</th>
-                        <th class="absolute-style" style="width: 55pt;  margin-left: 20pt; ">Мектеп ID</th>
-                        <th class="absolute-style" style="width: 270pt; margin-left: 70pt; ">Мектеп аты</th>
-                        <th style="white-space: nowrap; padding-left: 350pt;"  id="sortTotal">Жалпы</th>
+                        <th style="width: 20pt;  text-align: center;">#</th>
+                        <th style="margin-left: 20pt; ">Мектеп ID</th>
+                        <th style="margin-left: 70pt; ">Мектеп аты</th>
+                        <th id="sortTotalNumber">Қатысушылар саны</th>
+                        <th style="white-space: nowrap"  id="sortTotal">Жалпы</th>
 
                         <th style="white-space: nowrap" id="sortMath">Математика</th>
 
@@ -103,10 +104,11 @@
                 <tbody>
                     {{#each results}}
                     <tr>
-                        <td class="absolute-style" style="width: 20pt; ">{{math @index "+" 1}}</td>
-                        <td class="absolute-style" style="width: 55pt;  margin-left: 20pt; text-align: center;">{{schoolId}}</td>
-                        <td class="absolute-style" style="width: 270pt; margin-left: 70pt; ">{{schoolName schoolId}}</td>
-                        <td style="padding-left: 350pt; white-space: nowrap;">{{round 2 total}} % </td>
+                        <td style="width: 20pt; ">{{math @index "+" 1}}</td>
+                        <td style="width: 55pt;  margin-left: 20pt; text-align: center;">{{schoolId}}</td>
+                        <td style="margin-left: 70pt; ">{{schoolName schoolId}}</td>
+                        <td>{{totalNumber schoolId}}</td>
+                        <td style="white-space: nowrap;">{{round 2 total}} % </td>
 
 
                         <td style="white-space: nowrap;">{{round 2 mathematic}}</td>
