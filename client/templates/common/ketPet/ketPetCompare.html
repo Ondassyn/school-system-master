@@ -55,27 +55,43 @@
                         {{/if}}
                     </tr>
                 </thead>
-
+                
                 <tbody>
                     <tr>
                         <th></th>
                         <th></th>
                         <th style="border-right: 1pt solid darkgrey"></th>
-                        <th id="total_number_previous_year" style="text-align: center">{{previousYear}}</th>
-                        <th id="total_number_current_year" style="text-align: center; border-right: 1pt solid darkgrey">{{currentYear}}</th>
-                        <th id="fail_number_previous_year" style="text-align: center">{{previousYear}}</th>
-                        <th id="fail_number_current_year" style="text-align:center; border-right: 1pt solid darkgrey">{{currentYear}}</th>
-                        <th id="fail_percentage_previous_year" style="text-align: center">{{previousYear}}</th>
-                        <th id="fail_percentage_current_year" style="text-align:center; border-right: 1pt solid darkgrey">{{currentYear}}</th>
-                        <th id="a1_number_previous_year" style="text-align: center">{{previousYear}}</th>
-                        <th id="a1_number_current_year" style="text-align:center; border-right: 1pt solid darkgrey">{{currentYear}}</th>
-                        <th id="a2_pass_number_previous_year" style="text-align: center">{{previousYear}}</th>
-                        <th id="a2_pass_number_current_year" style="text-align:center; border-right: 1pt solid darkgrey">{{currentYear}}</th>
-                        <th id="a2_merit_number_previous_year" style="text-align: center">{{previousYear}}</th>
-                        <th id="a2_merit_number_current_year" style="text-align:center; border-right: 1pt solid darkgrey">{{currentYear}}</th>
-                        <th id="b1_distinction_number_previous_year" style="text-align: center">{{previousYear}}</th>
-                        <th id="b1_distinction_number_current_year" style="text-align:center; border-right: 1pt solid darkgrey">{{currentYear}}</th>
-                        
+                        {{#if isGrade7}}
+                        <th class="subheader" name="total_number_previous_year_7" style="text-align: center">{{previousYear}}</th>
+                        <th class="subheader" name="total_number_current_year_7" style="text-align: center; border-right: 1pt solid darkgrey">{{currentYear}}</th>
+                        <th class="subheader" name="fail_number_previous_year_7" style="text-align: center">{{previousYear}}</th>
+                        <th class="subheader" name="fail_number_current_year_7" style="text-align:center; border-right: 1pt solid darkgrey">{{currentYear}}</th>
+                        <th class="subheader" name="fail_percentage_previous_year_7" style="text-align: center">{{previousYear}}</th>
+                        <th class="subheader" name="fail_percentage_current_year_7" style="text-align:center; border-right: 1pt solid darkgrey">{{currentYear}}</th>
+                        <th class="subheader" name="a1_number_previous_year" style="text-align: center">{{previousYear}}</th>
+                        <th class="subheader" name="a1_number_current_year" style="text-align:center; border-right: 1pt solid darkgrey">{{currentYear}}</th>
+                        <th class="subheader" name="a2_pass_number_previous_year" style="text-align: center">{{previousYear}}</th>
+                        <th class="subheader" name="a2_pass_number_current_year" style="text-align:center; border-right: 1pt solid darkgrey">{{currentYear}}</th>
+                        <th class="subheader" name="a2_merit_number_previous_year" style="text-align: center">{{previousYear}}</th>
+                        <th class="subheader" name="a2_merit_number_current_year" style="text-align:center; border-right: 1pt solid darkgrey">{{currentYear}}</th>
+                        <th class="subheader" name="b1_distinction_number_previous_year" style="text-align: center">{{previousYear}}</th>
+                        <th class="subheader" name="b1_distinction_number_current_year" style="text-align:center; border-right: 1pt solid darkgrey">{{currentYear}}</th>
+                        {{else}}
+                        <th class="subheader" name="total_number_previous_year_8" style="text-align: center">{{previousYear}}</th>
+                        <th class="subheader" name="total_number_current_year_8" style="text-align: center; border-right: 1pt solid darkgrey">{{currentYear}}</th>
+                        <th class="subheader" name="fail_number_previous_year_8" style="text-align: center">{{previousYear}}</th>
+                        <th class="subheader" name="fail_number_current_year_8" style="text-align:center; border-right: 1pt solid darkgrey">{{currentYear}}</th>
+                        <th class="subheader" name="fail_percentage_previous_year_8" style="text-align: center">{{previousYear}}</th>
+                        <th class="subheader" name="fail_percentage_current_year_8" style="text-align:center; border-right: 1pt solid darkgrey">{{currentYear}}</th>
+                        <th class="subheader" name="a2_number_previous_year" style="text-align: center">{{previousYear}}</th>
+                        <th class="subheader" name="a2_number_current_year" style="text-align:center; border-right: 1pt solid darkgrey">{{currentYear}}</th>
+                        <th class="subheader" name="b1_pass_number_previous_year" style="text-align: center">{{previousYear}}</th>
+                        <th class="subheader" name="b1_pass_number_current_year" style="text-align:center; border-right: 1pt solid darkgrey">{{currentYear}}</th>
+                        <th class="subheader" name="b1_merit_number_previous_year" style="text-align: center">{{previousYear}}</th>
+                        <th class="subheader" name="b1_merit_number_current_year" style="text-align:center; border-right: 1pt solid darkgrey">{{currentYear}}</th>
+                        <th class="subheader" name="b2_distinction_number_previous_year" style="text-align: center">{{previousYear}}</th>
+                        <th class="subheader" name="b2_distinction_number_current_year" style="text-align:center; border-right: 1pt solid darkgrey">{{currentYear}}</th>
+                        {{/if}}
                     </tr>
                     {{#each results}}
                     <tr>

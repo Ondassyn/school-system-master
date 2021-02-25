@@ -17,10 +17,10 @@ Template.academicYear.events({
     previousYear.set(prev - 1 + "-" + prev);
   },
   "click .next"() {
+    previousYear.set(academicYear.get());
     let years = academicYear.get().split("-");
     let next = +years[1];
     next++;
     academicYear.set(years[1] + "-" + next);
-    previousYear.set(next + "-" + next);
   },
 });

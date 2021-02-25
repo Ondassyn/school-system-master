@@ -241,6 +241,33 @@ Template.ketPetCompare.helpers({
   },
 });
 
+let dict = {
+  total_number_previous_year_7: "sCount7Grade",
+  total_number_current_year_7: "sCount7Grade",
+  total_number_previous_year_8: "sCount8Grade",
+  total_number_current_year_8: "sCount8Grade",
+  fail_number_previous_year_7: "grade7Fail",
+  fail_number_current_year_7: "grade7Fail",
+  fail_number_previous_year_8: "grade8Fail",
+  fail_number_current_year_8: "grade8Fail",
+  a1_number_previous_year: "grade7A1",
+  a1_number_current_year: "grade7A1",
+  a2_pass_number_previous_year: "grade7PassA2",
+  a2_pass_number_current_year: "grade7PassA2",
+  a2_merit_number_previous_year: "grade7MeritA2",
+  a2_merit_number_current_year: "grade7MeritA2",
+  b1_distinction_number_previous_year: "grade7DistB1",
+  b1_distinction_number_current_year: "grade7DistB1",
+  a2_number_previous_year: "grade8A2",
+  a2_number_current_year: "grade8A2",
+  b1_pass_number_previous_year: "grade8PassB1",
+  b1_pass_number_current_year: "grade8PassB1",
+  b1_merit_number_previous_year: "grade8MeritB1",
+  b1_merit_number_current_year: "grade8MeritB1",
+  b2_distinction_number_previous_year: "grade8DistB2",
+  b2_distinction_number_current_year: "grade8DistB2",
+};
+
 Template.ketPetCompare.events({
   "change #exam_period"(event, template) {
     template.examPeriod.set(event.target.value);
@@ -248,25 +275,86 @@ Template.ketPetCompare.events({
   "change #grade"(event, template) {
     template.grade.set(event.target.value);
   },
-  "click #total_number_previous_year"(event, template) {
-    // let satResults = SatResults.find(
-    //   {},
-    //   {
-    //     sort: { sat1_english: -1 },
-    //     fields: { studentId: 1, sat1_english: 1, _id: 0 },
-    //   }
-    // ).fetch();
-    // let order = satResults
-    //   .filter(
-    //     (satResult) => satResult.sat1_english || satResult.sat1_english === 0
-    //   )
-    //   .map((satResult) => satResult.studentId);
-    // let oldOrder = template.order.get();
-    // if (JSON.stringify(order) === JSON.stringify(oldOrder)) {
-    //   template.order.set(order.reverse());
-    // } else {
-    //   template.order.set(order);
-    // }
+  "click .subheader"(event, template) {
+    let name = event.target.getAttribute("name");
+    let grade = template.grade.get();
+    let ratings;
+    let order;
+    if (name.includes("percentage")) {
+      let fail_number_arg = "grade" + grade + "Fail";
+      let total_number_arg = "sCount" + grade + "Grade";
+      if (name.includes("previous")) {
+        ratings = KetPetRatings.find(
+          { academicYear: previousYear.get() },
+          {
+            fields: {
+              schoolId: 1,
+              [fail_number_arg]: 1,
+              [total_number_arg]: 1,
+              _id: 0,
+            },
+          }
+        ).fetch();
+      } else {
+        ratings = KetPetRatings.find(
+          { academicYear: academicYear.get() },
+          {
+            fields: {
+              schoolId: 1,
+              [fail_number_arg]: 1,
+              [total_number_arg]: 1,
+              _id: 0,
+            },
+          }
+        ).fetch();
+      }
+      order = [];
+      let objects = ratings
+        .filter(
+          (rating) =>
+            (rating[fail_number_arg] || rating[fail_number_arg]) &&
+            rating[total_number_arg]
+        )
+        .map((rating) => {
+          return {
+            [rating.schoolId]:
+              rating[fail_number_arg] / rating[total_number_arg],
+          };
+        });
+      objects.sort(function (a, b) {
+        return Object.values(b) - Object.values(a);
+      });
+      objects.map((o) => {
+        order.push(Object.keys(o)[0]);
+      });
+    } else {
+      if (name.includes("previous")) {
+        ratings = KetPetRatings.find(
+          { academicYear: previousYear.get() },
+          {
+            sort: { [dict[name]]: -1 },
+            fields: { schoolId: 1, [dict[name]]: 1, _id: 0 },
+          }
+        ).fetch();
+      } else {
+        ratings = KetPetRatings.find(
+          { academicYear: academicYear.get() },
+          {
+            sort: { [dict[name]]: -1 },
+            fields: { schoolId: 1, [dict[name]]: 1, _id: 0 },
+          }
+        ).fetch();
+      }
+      order = ratings
+        .filter((rating) => rating[dict[name]] || rating[dict[name]] === 0)
+        .map((rating) => rating.schoolId);
+    }
+    let oldOrder = template.order.get();
+    if (JSON.stringify(order) === JSON.stringify(oldOrder)) {
+      template.order.set(order.reverse());
+    } else {
+      template.order.set(order);
+    }
   },
   // "click #export"(event, template) {
   //   const html = document.getElementById("out").innerHTML;
