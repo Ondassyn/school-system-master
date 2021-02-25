@@ -343,3 +343,19 @@ Meteor.publish("adminUbtOfficialResults", function (schoolId, period) {
   if (schoolId) return UbtOfficialResults.find({ schoolId, period });
   return this.ready();
 });
+
+Meteor.publish(
+  "adminKetPetRatingsCompare",
+  function (academicYear, examPeriod) {
+    if (this.userId) {
+      let year = +academicYear.split("-")[0];
+      let previousYear = year - 1 + "-" + year;
+
+      return KetPetRatings.find({
+        academicYear: { $in: [previousYear, academicYear] },
+        examPeriod,
+      });
+    }
+    return this.ready();
+  }
+);

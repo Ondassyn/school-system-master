@@ -1,86 +1,94 @@
-const { _ } = require("core-js")
+const { _ } = require("core-js");
 
-Blaze.registerHelper("schoolName", function(schoolId) {
-    return Schools.findOne({schoolId:schoolId}) ? Schools.findOne({schoolId:schoolId}).shortName : undefined
-})
+Blaze.registerHelper("schoolName", function (schoolId) {
+  return Schools.findOne({ schoolId: schoolId })
+    ? Schools.findOne({ schoolId: schoolId }).shortName
+    : undefined;
+});
 
-Blaze.registerHelper("ope", function(studentId, number) {
+Blaze.registerHelper("ope", function (studentId, number) {
+  if (number == 1)
+    return OpeResults.findOne({ studentId: studentId })
+      ? OpeResults.findOne({ studentId: studentId }).ope1
+      : undefined;
+  if (number == 2)
+    return OpeResults.findOne({ studentId: studentId })
+      ? OpeResults.findOne({ studentId: studentId }).ope2
+      : undefined;
+  if (number == 3)
+    return OpeResults.findOne({ studentId: studentId })
+      ? OpeResults.findOne({ studentId: studentId }).ope3
+      : undefined;
+  if (number == 4)
+    return OpeResults.findOne({ studentId: studentId })
+      ? OpeResults.findOne({ studentId: studentId }).ope4
+      : undefined;
+  if (number == 5)
+    return OpeResults.findOne({ studentId: studentId })
+      ? OpeResults.findOne({ studentId: studentId }).ope5
+      : undefined;
+  if (number == 6)
+    return OpeResults.findOne({ studentId: studentId })
+      ? OpeResults.findOne({ studentId: studentId }).ope6
+      : undefined;
+});
 
-    if(number == 1) return OpeResults.findOne({studentId:studentId}) ? OpeResults.findOne({studentId:studentId}).ope1 : undefined
-    if(number == 2) return OpeResults.findOne({studentId:studentId}) ? OpeResults.findOne({studentId:studentId}).ope2 : undefined
-    if(number == 3) return OpeResults.findOne({studentId:studentId}) ? OpeResults.findOne({studentId:studentId}).ope3 : undefined
-    if(number == 4) return OpeResults.findOne({studentId:studentId}) ? OpeResults.findOne({studentId:studentId}).ope4 : undefined
-    if(number == 5) return OpeResults.findOne({studentId:studentId}) ? OpeResults.findOne({studentId:studentId}).ope5 : undefined
-    if(number == 6) return OpeResults.findOne({studentId:studentId}) ? OpeResults.findOne({studentId:studentId}).ope6 : undefined
+Blaze.registerHelper("average", function (studentId) {
+  return OpeResults.findOne({ studentId: studentId })
+    ? OpeResults.findOne({ studentId: studentId }).average
+    : undefined;
+});
 
-})
+Blaze.registerHelper("getTotalStylе", function (total) {
+  var total = parseFloat(total);
+  if (total >= 55) {
+    return "text-align: center; padding-left: 350pt; white-space: nowrap; background-color: #b2fab4";
+  } else if (total >= 40 && total < 55) {
+    return "text-align: center; padding-left: 350pt; white-space: nowrap; background-color: #ffff8b";
+  } else {
+    return "text-align: center; padding-left: 350pt; white-space: nowrap; background-color: #ff867c";
+  }
+});
 
-Blaze.registerHelper("average", function(studentId) {
-    return OpeResults.findOne({studentId:studentId}) ? OpeResults.findOne({studentId:studentId}).average : undefined
-})
+Blaze.registerHelper("getTotalCategoryStylе", function (total) {
+  var total = parseFloat(total);
+  if (total >= 55) {
+    return "text-align: center; padding-left: 470pt; white-space: nowrap; background-color: #b2fab4";
+  } else if (total >= 40 && total < 55) {
+    return "text-align: center; padding-left: 470pt; white-space: nowrap; background-color: #ffff8b";
+  } else {
+    return "text-align: center; padding-left: 470pt; white-space: nowrap; background-color: #ff867c";
+  }
+});
 
-Blaze.registerHelper("getTotalStylе", function(total) {
-    var total = parseFloat(total)
-    if(total>=55){
+Blaze.registerHelper("getCategoryStylе", function (total) {
+  var total = parseFloat(total);
+  if (!total || total == 0.0) {
+    return "white-space: nowrap;";
+  }
 
-      return 'text-align: center; padding-left: 350pt; white-space: nowrap; background-color: #b2fab4'
+  if (total >= 55) {
+    return "text-align: center; white-space: nowrap; background-color: #b2fab4";
+  } else if (total >= 40 && total < 55) {
+    return "text-align: center; white-space: nowrap; background-color: #ffff8b";
+  } else {
+    return "text-align: center; white-space: nowrap; background-color: #ff867c";
+  }
+});
 
-    }else if(total>=40 && total < 55){
-
-      return 'text-align: center; padding-left: 350pt; white-space: nowrap; background-color: #ffff8b'
-
-    }else{
-      return 'text-align: center; padding-left: 350pt; white-space: nowrap; background-color: #ff867c'
-    }
-})
-
-Blaze.registerHelper("getTotalCategoryStylе", function(total) {
-    var total = parseFloat(total)
-    if(total>=55){
-
-      return 'text-align: center; padding-left: 470pt; white-space: nowrap; background-color: #b2fab4'
-
-    }else if(total>=40 && total < 55){
-
-      return 'text-align: center; padding-left: 470pt; white-space: nowrap; background-color: #ffff8b'
-
-    }else{
-      return 'text-align: center; padding-left: 470pt; white-space: nowrap; background-color: #ff867c'
-    }
-})
-
-Blaze.registerHelper("getCategoryStylе", function(total) {
-    var total = parseFloat(total)
-    if(!total || total == 0.0){
-      return 'white-space: nowrap;'
-    }
-
-    if(total>=55){
-
-      return 'text-align: center; white-space: nowrap; background-color: #b2fab4'
-
-    }else if(total>=40 && total < 55){
-
-      return 'text-align: center; white-space: nowrap; background-color: #ffff8b'
-
-    }else{
-      return 'text-align: center; white-space: nowrap; background-color: #ff867c'
-    }
-})
-
-Blaze.registerHelper("getStylе", function(point) {
-    var point = parseFloat(point)
-    if(!point || point == 0.0){
-      return 'white-space: nowrap;'
-    }
-    if(point>=11){
-      return 'white-space: nowrap; background-color: #b2fab4'
-    }else if(point>=8 && point < 11){
-      return 'white-space: nowrap; background-color: #ffff8b'
-    }else{
-      return 'white-space: nowrap; background-color: #ff867c'
-    }
-})
+Blaze.registerHelper("getStylе", function (point) {
+  var point = parseFloat(point);
+  if (!point || point == 0.0) {
+    return "white-space: nowrap;";
+  }
+  if (point >= 11) {
+    return "white-space: nowrap; background-color: #b2fab4";
+  } else if (point >= 8 && point < 11) {
+    return "white-space: nowrap; background-color: #ffff8b";
+  } else {
+    return "white-space: nowrap; background-color: #ff867c";
+  }
+});
 
 // Blaze.registerHelper("getOpeStyle", function(points, threshold) {
 //   let points = parseFloat(points);
@@ -89,98 +97,107 @@ Blaze.registerHelper("getStylе", function(point) {
 //   return 'white-space: nowrap; background-color: #ff867c';
 // })
 
+Blaze.registerHelper("subjectName", function (subjectId) {
+  return Subjects.findOne({ subjectId: subjectId })
+    ? Subjects.findOne({ subjectId: subjectId }).name_kz
+    : undefined;
+});
 
-Blaze.registerHelper("subjectName", function(subjectId) {
-    return Subjects.findOne({subjectId:subjectId}) ? Subjects.findOne({subjectId:subjectId}).name_kz : undefined
-})
+Blaze.registerHelper("subjectFromEnglish", function (subject) {
+  return Subjects.findOne({ name_en: subject })
+    ? Subjects.findOne({ name_en: subject }).name_kz
+    : undefined;
+});
 
-Blaze.registerHelper("subjectFromEnglish", function(subject) {
-    return Subjects.findOne({name_en:subject}) ? Subjects.findOne({name_en:subject}).name_kz : undefined
-})
+Blaze.registerHelper("monthName", function (monthId) {
+  return TimeFormat.findOne({ monthId: monthId })
+    ? TimeFormat.findOne({ monthId: monthId }).monthKazakh
+    : undefined;
+});
 
-Blaze.registerHelper("monthName", function(monthId) {
-    return TimeFormat.findOne({monthId:monthId}) ? TimeFormat.findOne({monthId:monthId}).monthKazakh : undefined
-})
+Blaze.registerHelper("eventName", function (event) {
+  return SchoolPerformaCriterias.findOne({ criteria: event })
+    ? SchoolPerformaCriterias.findOne({ criteria: event }).criteria_kaz
+    : undefined;
+});
 
-Blaze.registerHelper("eventName", function(event) {
-    return SchoolPerformaCriterias.findOne({criteria:event}) ? SchoolPerformaCriterias.findOne({criteria:event}).criteria_kaz : undefined
-})
+Blaze.registerHelper("olympiadName", function (olympiadId) {
+  return Olympiads.findOne({ olympiadId: olympiadId })
+    ? Olympiads.findOne({ olympiadId: olympiadId }).name
+    : undefined;
+});
 
-Blaze.registerHelper("olympiadName", function(olympiadId) {
-    return Olympiads.findOne({olympiadId:olympiadId}) ? Olympiads.findOne({olympiadId:olympiadId}).name : undefined
-})
+Blaze.registerHelper("math", function (lvalue, operator, rvalue, options) {
+  lvalue = parseFloat(lvalue);
+  rvalue = parseFloat(rvalue);
 
-Blaze.registerHelper("math", function(lvalue, operator, rvalue, options) {
-    lvalue = parseFloat(lvalue);
-    rvalue = parseFloat(rvalue);
+  return {
+    "+": lvalue + rvalue,
+    "-": lvalue - rvalue,
+    "*": lvalue * rvalue,
+    "/": lvalue / rvalue,
+    "%": lvalue % rvalue,
+    "<": lvalue < rvalue,
+    ">": lvalue > rvalue,
+  }[operator];
+});
 
-    return {
-        "+": lvalue + rvalue,
-        "-": lvalue - rvalue,
-        "*": lvalue * rvalue,
-        "/": lvalue / rvalue,
-        "%": lvalue % rvalue,
-        "<": lvalue < rvalue,
-        ">": lvalue > rvalue
-    }[operator];
-})
+Blaze.registerHelper("swapToChars", function (index, value) {
+  value = parseFloat(value);
+  console.log("index: " + index);
 
-Blaze.registerHelper("swapToChars", function(index, value) {
-    value = parseFloat(value);
-    console.log("index: "+index);
+  if (index == 12) {
+    if (value == 0) return "жоқ";
+    if (value == 1) return "exam";
+    if (value == 2) return "exam + uploaded";
+  } else if (index == 13) {
+    if (value == 0) return "жоқ";
+    if (value == 1) return "иә";
+  }
 
-    if(index==12){
-      if(value == 0) return "жоқ"
-      if(value == 1) return "exam"
-      if(value == 2) return "exam + uploaded"
+  return value;
+});
 
-    }else if(index==13){
-      if(value == 0) return "жоқ"
-      if(value == 1) return "иә"
-    }
+Blaze.registerHelper("swapToChars2", function (index, value) {
+  value = parseFloat(value);
 
-    return value;
-})
+  if (index == 13) {
+    if (value == 0) return "жоқ";
+    if (value == 1) return "иә";
+  }
 
-Blaze.registerHelper("swapToChars2", function(index, value) {
-    value = parseFloat(value);
+  return value;
+});
 
-    if(index==13){
-      if(value == 0) return "жоқ"
-      if(value == 1) return "иә"
-    }
+Blaze.registerHelper("strelki", function (ubtPrev, ubtNext) {
+  ubtPrev = parseInt(ubtPrev);
+  ubtNext = parseInt(ubtNext);
 
-    return value;
-})
+  if (ubtNext != 0) {
+    if (ubtPrev < ubtNext) return true;
+    // return new Blaze.SafeString('<i class="glyphicon glyphicon-arrow-up"></i>');
+  }
+});
 
-Blaze.registerHelper("strelki", function(ubtPrev, ubtNext) {
-    ubtPrev = parseInt(ubtPrev)
-    ubtNext = parseInt(ubtNext)
+Blaze.registerHelper("repeat", function (max) {
+  return _.range(1, max + 1);
+});
 
-    if(ubtNext != 0){
-      if(ubtPrev < ubtNext) return true;
-	       // return new Blaze.SafeString('<i class="glyphicon glyphicon-arrow-up"></i>');
-    }
-})
+Blaze.registerHelper("round", function (value, number) {
+  return number.toFixed(value);
+});
 
-Blaze.registerHelper('repeat', function(max) {
-  return _.range(1, max+1);
-})
+Blaze.registerHelper("notZero", function (value) {
+  return value != null && value != 0 && value != 0.0;
+});
 
-Blaze.registerHelper("round", function(value,number) {
-    return number.toFixed(value)
-})
-
-Blaze.registerHelper("notZero", function(value) {
-    return value != null  &&  value != 0 && value != 0.00
-})
-
-Blaze.registerHelper("divide", function(value,number) {
-    return value/number
-})
+Blaze.registerHelper("divide", function (value, number) {
+  return value / number;
+});
 let date = new Date();
 let year = date.getFullYear();
-let nextYear = year+1;
+let nextYear = year + 1;
 
 // academicYear = new ReactiveVar(year+'-'+nextYear)
-academicYear = new ReactiveVar('2020-2021')
+academicYear = new ReactiveVar("2020-2021");
+previousYear = new ReactiveVar("2019-2020");

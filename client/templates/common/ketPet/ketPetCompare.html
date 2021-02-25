@@ -1,0 +1,109 @@
+<template name="ketPetCompare">
+    <div class="row">
+        <div class="col-md-12">
+            <h4 style="text-align: center; padding-bottom: 15pt">KET-PET Салыстыру</h4>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-inline">
+                        <div class="form-group" style="margin-right: 15pt">
+                          {{> academicYear}}
+
+                          <label style="margin-left: 10pt;">Емтихан таңдаңыз</label>
+                          <select class="form-control" name='grade' id='grade'>
+                              <option value="all">Жалпы</option>
+                              <option value="7">KET 7 cынып</option>
+                              <option value="8">PET 8 cынып</option>
+                          </select>
+
+                          <label style="margin-left: 10pt;">Тоқсан таңдаңыз</label>
+                          <select class="form-control" id="exam_period">
+                              <option value="2">2 тоқсан</option>
+                              <option value="4">4 тоқсан</option>
+                          </select>
+
+                        </div>
+
+                        <div class="form-group" style="float: right">
+                            <a class="btn btn-success" id="export">Export</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            {{#if Template.subscriptionsReady}}
+
+            <div  class="table table-responsive" id="out">
+              <table style="margin-top: 15pt" class="table table-striped table-bordered">
+
+                <thead>
+                    <tr class="bts-header">
+                        <th>#</th>
+                        <th style="text-align:center" id="sortTotal">Мектеп ID</th>
+                        <th style="text-align:center; border-right: 1pt solid darkgrey" id="school_name">Мектеп аты</th>
+                        <th style="text-align:center; border-right: 1pt solid darkgrey" id="total_number" colspan="2">Қатысушылар саны</th>
+                        <th style="text-align:center; border-right: 1pt solid darkgrey" id="fail_number" colspan="2">Fail саны</th>
+                        <th style="text-align:center; border-right: 1pt solid darkgrey" id="fail_percentage" colspan="2">Fail пайызы</th>
+                        <th style="text-align:center; border-right: 1pt solid darkgrey" id="a1" colspan="2">A1</th>
+                        <th style="text-align:center; border-right: 1pt solid darkgrey" id="a2_pass" colspan="2">A2 pass</th>
+                        <th style="text-align:center; border-right: 1pt solid darkgrey" id="a2_pass_with_merit" colspan="2">A2 pass with merit</th>
+                        <th style="text-align:center; border-right: 1pt solid darkgrey" id="b1_pass_with_distinction" colspan="2">B1 pass with distinction</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <th></th>
+                        <th></th>
+                        <th style="border-right: 1pt solid darkgrey"></th>
+                        <th id="total_number_previous_year" style="text-align: center">{{previousYear}}</th>
+                        <th id="total_number_current_year" style="text-align: center; border-right: 1pt solid darkgrey">{{currentYear}}</th>
+                        <th id="total_number_previous_year" style="text-align: center">{{previousYear}}</th>
+                        <th id="total_number_current_year" style="text-align:center; border-right: 1pt solid darkgrey">{{currentYear}}</th>
+                        <th id="fail_number_previous_year" style="text-align: center">{{previousYear}}</th>
+                        <th id="fail_number_current_year" style="text-align:center; border-right: 1pt solid darkgrey">{{currentYear}}</th>
+                        <th id="fail_percentage_previous_year" style="text-align: center">{{previousYear}}</th>
+                        <th id="fail_percentage_current_year" style="text-align:center; border-right: 1pt solid darkgrey">{{currentYear}}</th>
+                        <th id="a1_pass_number_previous_year" style="text-align: center">{{previousYear}}</th>
+                        <th id="a1_pass_number_current_year" style="text-align:center; border-right: 1pt solid darkgrey">{{currentYear}}</th>
+                        <th id="a2_merit_number_previous_year" style="text-align: center">{{previousYear}}</th>
+                        <th id="a2_merit_number_current_year" style="text-align:center; border-right: 1pt solid darkgrey">{{currentYear}}</th>
+                        <th id="b1_distinction_number_previous_year" style="text-align: center">{{previousYear}}</th>
+                        <th id="b1_distinction_number_current_year" style="text-align:center; border-right: 1pt solid darkgrey">{{currentYear}}</th>
+                        
+                    </tr>
+                    {{#each results}}
+                    <tr>
+                        <td>{{math @index "+" 1}}</td>
+                        <td style="text-align:center;">{{schoolId}}</td>
+                        <td style="border-right: 1pt solid darkgrey">{{school}}</td>
+                        <td style="text-align: center;">{{totalNumberPreviousYear}}</td>
+                        <td style="text-align: center; border-right: 1pt solid darkgrey">{{totalNumberCurrentYear}}</td>
+                        <td style="text-align: center;">{{failNumberPreviousYear}}</td>
+                        <td style="text-align: center; border-right: 1pt solid darkgrey">{{failNumberCurrentYear}}</td>
+                        {{#if failPercentagePreviousYear}}
+                        <td style="text-align: center;">{{round "2" failPercentagePreviousYear}} %</td>
+                        {{else}} <td style="border-right: 1pt solid darkgrey"></td> {{/if}}
+                        {{#if failPercentageCurrentYear}}
+                        <td style="text-align: center; border-right: 1pt solid darkgrey">{{round "2" failPercentageCurrentYear}} %</td>
+                        {{else}} <td style="border-right: 1pt solid darkgrey"></td> {{/if}}
+                        <td style="text-align: center;">{{a1NumberPreviousYear}}</td>
+                        <td style="text-align: center; border-right: 1pt solid darkgrey">{{a1NumberCurrentYear}}</td>
+                        <td style="text-align: center;">{{a2PassNumberPreviousYear}}</td>
+                        <td style="text-align: center; border-right: 1pt solid darkgrey">{{a2PassNumberCurrentYear}}</td>
+                        <td style="text-align: center;">{{a2MeritNumberPreviousYear}}</td>
+                        <td style="text-align: center; border-right: 1pt solid darkgrey">{{a2MeritNumberCurrentYear}}</td>
+                        <td style="text-align: center;">{{b1DistinctionNumberPreviousYear}}</td>
+                        <td style="text-align: center; border-right: 1pt solid darkgrey">{{b1DistinctionNumberCurrentYear}}</td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+              </table>
+            </div>
+
+
+            {{else}}
+            <p>Loading...</p>
+            {{/if}}
+        </div>
+    </div>
+</template>
