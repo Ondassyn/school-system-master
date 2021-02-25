@@ -9,7 +9,7 @@ Template.ketPetCompare.onCreated(function () {
   document.title = "KET-PET Рейтинг";
   template.examPeriod = new ReactiveVar("2");
   template.order = new ReactiveVar([]);
-  template.grade = new ReactiveVar("all");
+  template.grade = new ReactiveVar("7");
 
   template.subscribe("schools");
 
@@ -28,6 +28,12 @@ Template.ketPetCompare.helpers({
   },
   previousYear() {
     return academicYear.get().split("-")[0];
+  },
+  isGrade7() {
+    return Template.instance().grade.get() === "7";
+  },
+  isGrade8() {
+    return Template.instance().grade.get() === "8";
   },
   results() {
     let returnList = [];
@@ -106,8 +112,8 @@ Template.ketPetCompare.helpers({
             ? ratingPreviousYear.grade7A1
             : 0;
         if (grade !== "7")
-          a1NumberPreviousYear += ratingPreviousYear.grade8A1
-            ? ratingPreviousYear.grade8A1
+          a1NumberPreviousYear += ratingPreviousYear.grade8A2
+            ? ratingPreviousYear.grade8A2
             : 0;
 
         a2PassNumberPreviousYear = 0;
@@ -116,8 +122,8 @@ Template.ketPetCompare.helpers({
             ? ratingPreviousYear.grade7PassA2
             : 0;
         if (grade !== "7")
-          a2PassNumberPreviousYear += ratingPreviousYear.grade8PassA2
-            ? ratingPreviousYear.grade8PassA2
+          a2PassNumberPreviousYear += ratingPreviousYear.grade8PassB1
+            ? ratingPreviousYear.grade8PassB1
             : 0;
 
         a2MeritNumberPreviousYear = 0;
@@ -126,8 +132,8 @@ Template.ketPetCompare.helpers({
             ? ratingPreviousYear.grade7MeritA2
             : 0;
         if (grade !== "7")
-          a2MeritNumberPreviousYear += ratingPreviousYear.grade8MeritA2
-            ? ratingPreviousYear.grade8MeritA2
+          a2MeritNumberPreviousYear += ratingPreviousYear.grade8MeritB1
+            ? ratingPreviousYear.grade8MeritB1
             : 0;
 
         b1DistinctionNumberPreviousYear = 0;
@@ -136,17 +142,19 @@ Template.ketPetCompare.helpers({
             ? ratingPreviousYear.grade7DistB1
             : 0;
         if (grade !== "7")
-          b1DistinctionNumberPreviousYear += ratingPreviousYear.grade8DistB1
-            ? ratingPreviousYear.grade8DistB1
+          b1DistinctionNumberPreviousYear += ratingPreviousYear.grade8DistB2
+            ? ratingPreviousYear.grade8DistB2
             : 0;
       }
 
       if (ratingCurrentYear) {
         totalNumberCurrentYear = 0;
+
         if (grade !== "8")
           totalNumberCurrentYear += ratingCurrentYear.sCount7Grade
             ? +ratingCurrentYear.sCount7Grade
             : 0;
+
         if (grade !== "7")
           totalNumberCurrentYear += ratingCurrentYear.sCount8Grade
             ? +ratingCurrentYear.sCount8Grade
@@ -172,8 +180,8 @@ Template.ketPetCompare.helpers({
             ? ratingCurrentYear.grade7A1
             : 0;
         if (grade !== "7")
-          a1NumberCurrentYear += ratingCurrentYear.grade8A1
-            ? ratingCurrentYear.grade8A1
+          a1NumberCurrentYear += ratingCurrentYear.grade8A2
+            ? ratingCurrentYear.grade8A2
             : 0;
 
         a2PassNumberCurrentYear = 0;
@@ -182,8 +190,8 @@ Template.ketPetCompare.helpers({
             ? ratingCurrentYear.grade7PassA2
             : 0;
         if (grade !== "7")
-          a2PassNumberCurrentYear += ratingCurrentYear.grade8PassA2
-            ? ratingCurrentYear.grade8PassA2
+          a2PassNumberCurrentYear += ratingCurrentYear.grade8PassB1
+            ? ratingCurrentYear.grade8PassB1
             : 0;
 
         a2MeritNumberCurrentYear = 0;
@@ -192,8 +200,8 @@ Template.ketPetCompare.helpers({
             ? ratingCurrentYear.grade7MeritA2
             : 0;
         if (grade !== "7")
-          a2MeritNumberCurrentYear += ratingCurrentYear.grade8MeritA2
-            ? ratingCurrentYear.grade8MeritA2
+          a2MeritNumberCurrentYear += ratingCurrentYear.grade8MeritB1
+            ? ratingCurrentYear.grade8MeritB1
             : 0;
 
         b1DistinctionNumberCurrentYear = 0;
@@ -202,8 +210,8 @@ Template.ketPetCompare.helpers({
             ? ratingCurrentYear.grade7DistB1
             : 0;
         if (grade !== "7")
-          b1DistinctionNumberCurrentYear += ratingCurrentYear.grade8DistB1
-            ? ratingCurrentYear.grade8DistB1
+          b1DistinctionNumberCurrentYear += ratingCurrentYear.grade8DistB2
+            ? ratingCurrentYear.grade8DistB2
             : 0;
       }
 

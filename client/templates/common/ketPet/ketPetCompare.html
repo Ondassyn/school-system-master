@@ -10,7 +10,6 @@
 
                           <label style="margin-left: 10pt;">Емтихан таңдаңыз</label>
                           <select class="form-control" name='grade' id='grade'>
-                              <option value="all">Жалпы</option>
                               <option value="7">KET 7 cынып</option>
                               <option value="8">PET 8 cынып</option>
                           </select>
@@ -43,10 +42,17 @@
                         <th style="text-align:center; border-right: 1pt solid darkgrey" id="total_number" colspan="2">Қатысушылар саны</th>
                         <th style="text-align:center; border-right: 1pt solid darkgrey" id="fail_number" colspan="2">Fail саны</th>
                         <th style="text-align:center; border-right: 1pt solid darkgrey" id="fail_percentage" colspan="2">Fail пайызы</th>
+                        {{#if isGrade7}}
                         <th style="text-align:center; border-right: 1pt solid darkgrey" id="a1" colspan="2">A1</th>
                         <th style="text-align:center; border-right: 1pt solid darkgrey" id="a2_pass" colspan="2">A2 pass</th>
                         <th style="text-align:center; border-right: 1pt solid darkgrey" id="a2_pass_with_merit" colspan="2">A2 pass with merit</th>
                         <th style="text-align:center; border-right: 1pt solid darkgrey" id="b1_pass_with_distinction" colspan="2">B1 pass with distinction</th>
+                        {{else}}
+                        <th style="text-align:center; border-right: 1pt solid darkgrey" id="a2" colspan="2">A2</th>
+                        <th style="text-align:center; border-right: 1pt solid darkgrey" id="b1_pass" colspan="2">B1 pass</th>
+                        <th style="text-align:center; border-right: 1pt solid darkgrey" id="b1_pass_with_merit" colspan="2">B1 pass with merit</th>
+                        <th style="text-align:center; border-right: 1pt solid darkgrey" id="b2_pass_with_distinction" colspan="2">B2 pass with distinction</th>
+                        {{/if}}
                     </tr>
                 </thead>
 
@@ -57,14 +63,14 @@
                         <th style="border-right: 1pt solid darkgrey"></th>
                         <th id="total_number_previous_year" style="text-align: center">{{previousYear}}</th>
                         <th id="total_number_current_year" style="text-align: center; border-right: 1pt solid darkgrey">{{currentYear}}</th>
-                        <th id="total_number_previous_year" style="text-align: center">{{previousYear}}</th>
-                        <th id="total_number_current_year" style="text-align:center; border-right: 1pt solid darkgrey">{{currentYear}}</th>
                         <th id="fail_number_previous_year" style="text-align: center">{{previousYear}}</th>
                         <th id="fail_number_current_year" style="text-align:center; border-right: 1pt solid darkgrey">{{currentYear}}</th>
                         <th id="fail_percentage_previous_year" style="text-align: center">{{previousYear}}</th>
                         <th id="fail_percentage_current_year" style="text-align:center; border-right: 1pt solid darkgrey">{{currentYear}}</th>
-                        <th id="a1_pass_number_previous_year" style="text-align: center">{{previousYear}}</th>
-                        <th id="a1_pass_number_current_year" style="text-align:center; border-right: 1pt solid darkgrey">{{currentYear}}</th>
+                        <th id="a1_number_previous_year" style="text-align: center">{{previousYear}}</th>
+                        <th id="a1_number_current_year" style="text-align:center; border-right: 1pt solid darkgrey">{{currentYear}}</th>
+                        <th id="a2_pass_number_previous_year" style="text-align: center">{{previousYear}}</th>
+                        <th id="a2_pass_number_current_year" style="text-align:center; border-right: 1pt solid darkgrey">{{currentYear}}</th>
                         <th id="a2_merit_number_previous_year" style="text-align: center">{{previousYear}}</th>
                         <th id="a2_merit_number_current_year" style="text-align:center; border-right: 1pt solid darkgrey">{{currentYear}}</th>
                         <th id="b1_distinction_number_previous_year" style="text-align: center">{{previousYear}}</th>
