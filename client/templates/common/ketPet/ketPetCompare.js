@@ -22,6 +22,8 @@ Template.ketPetCompare.onCreated(function () {
   });
 });
 
+let out = [];
+
 Template.ketPetCompare.helpers({
   currentYear() {
     return academicYear.get().split("-")[1];
@@ -79,6 +81,8 @@ Template.ketPetCompare.helpers({
       let b1DistinctionNumberPreviousYear;
       let b1DistinctionNumberCurrentYear;
 
+      let outArray = [];
+
       if (ratingPreviousYear) {
         totalNumberPreviousYear = 0;
 
@@ -92,6 +96,8 @@ Template.ketPetCompare.helpers({
             ? +ratingPreviousYear.sCount8Grade
             : 0;
 
+        outArray[0] = totalNumberPreviousYear;
+
         failNumberPreviousYear = 0;
         if (grade !== "8")
           failNumberPreviousYear += ratingPreviousYear.grade7Fail
@@ -102,9 +108,13 @@ Template.ketPetCompare.helpers({
             ? +ratingPreviousYear.grade8Fail
             : 0;
 
+        outArray[2] = failNumberPreviousYear;
+
         failPercentagePreviousYear = totalNumberPreviousYear
           ? (failNumberPreviousYear / totalNumberPreviousYear) * 100
           : 0;
+
+        outArray[4] = failPercentagePreviousYear;
 
         a1NumberPreviousYear = 0;
         if (grade !== "8")
@@ -116,6 +126,8 @@ Template.ketPetCompare.helpers({
             ? ratingPreviousYear.grade8A2
             : 0;
 
+        outArray[6] = a1NumberPreviousYear;
+
         a2PassNumberPreviousYear = 0;
         if (grade !== "8")
           a2PassNumberPreviousYear += ratingPreviousYear.grade7PassA2
@@ -125,6 +137,8 @@ Template.ketPetCompare.helpers({
           a2PassNumberPreviousYear += ratingPreviousYear.grade8PassB1
             ? ratingPreviousYear.grade8PassB1
             : 0;
+
+        outArray[8] = a2PassNumberPreviousYear;
 
         a2MeritNumberPreviousYear = 0;
         if (grade !== "8")
@@ -136,6 +150,8 @@ Template.ketPetCompare.helpers({
             ? ratingPreviousYear.grade8MeritB1
             : 0;
 
+        outArray[10] = a2MeritNumberPreviousYear;
+
         b1DistinctionNumberPreviousYear = 0;
         if (grade !== "8")
           b1DistinctionNumberPreviousYear += ratingPreviousYear.grade7DistB1
@@ -145,6 +161,8 @@ Template.ketPetCompare.helpers({
           b1DistinctionNumberPreviousYear += ratingPreviousYear.grade8DistB2
             ? ratingPreviousYear.grade8DistB2
             : 0;
+
+        outArray[12] = b1DistinctionNumberPreviousYear;
       }
 
       if (ratingCurrentYear) {
@@ -160,6 +178,8 @@ Template.ketPetCompare.helpers({
             ? +ratingCurrentYear.sCount8Grade
             : 0;
 
+        outArray[1] = totalNumberCurrentYear;
+
         failNumberCurrentYear = 0;
         if (grade !== "8")
           failNumberCurrentYear += ratingCurrentYear.grade7Fail
@@ -170,9 +190,13 @@ Template.ketPetCompare.helpers({
             ? +ratingCurrentYear.grade8Fail
             : 0;
 
+        outArray[3] = failNumberCurrentYear;
+
         failPercentageCurrentYear = totalNumberCurrentYear
           ? (failNumberCurrentYear / totalNumberCurrentYear) * 100
           : 0;
+
+        outArray[5] = failPercentageCurrentYear;
 
         a1NumberCurrentYear = 0;
         if (grade !== "8")
@@ -184,6 +208,8 @@ Template.ketPetCompare.helpers({
             ? ratingCurrentYear.grade8A2
             : 0;
 
+        outArray[7] = a1NumberCurrentYear;
+
         a2PassNumberCurrentYear = 0;
         if (grade !== "8")
           a2PassNumberCurrentYear += ratingCurrentYear.grade7PassA2
@@ -193,6 +219,8 @@ Template.ketPetCompare.helpers({
           a2PassNumberCurrentYear += ratingCurrentYear.grade8PassB1
             ? ratingCurrentYear.grade8PassB1
             : 0;
+
+        outArray[9] = a2PassNumberCurrentYear;
 
         a2MeritNumberCurrentYear = 0;
         if (grade !== "8")
@@ -204,6 +232,8 @@ Template.ketPetCompare.helpers({
             ? ratingCurrentYear.grade8MeritB1
             : 0;
 
+        outArray[11] = a2MeritNumberCurrentYear;
+
         b1DistinctionNumberCurrentYear = 0;
         if (grade !== "8")
           b1DistinctionNumberCurrentYear += ratingCurrentYear.grade7DistB1
@@ -213,6 +243,8 @@ Template.ketPetCompare.helpers({
           b1DistinctionNumberCurrentYear += ratingCurrentYear.grade8DistB2
             ? ratingCurrentYear.grade8DistB2
             : 0;
+
+        outArray[13] = b1DistinctionNumberCurrentYear;
       }
 
       let returnObject = {
@@ -234,9 +266,11 @@ Template.ketPetCompare.helpers({
         b1DistinctionNumberCurrentYear,
       };
 
+      var index = out.findIndex((o) => o.schoolId === schoolId);
+      if (index === -1) out.push({ schoolId, outArray });
+      else out[index] = { schoolId, outArray };
       returnList.push(returnObject);
     });
-
     return returnList;
   },
 });
@@ -356,77 +390,84 @@ Template.ketPetCompare.events({
       template.order.set(order);
     }
   },
-  // "click #export"(event, template) {
-  //   const html = document.getElementById("out").innerHTML;
+  "click #export"(event, template) {
+    const html = document.getElementById("out").innerHTML;
 
-  //   var data = [];
-  //   let okuJyly = academicYear.get();
+    var data = [];
+    let grade = template.grade.get();
 
-  //   headers = [
-  //     "#",
-  //     "Оқу жылы",
-  //     "Тоқсан",
-  //     "Мектеп ID",
-  //     "Мектеп аты",
-  //     "KET (7 сынып) Орта балл",
-  //     "Average level KET ",
-  //     "PET (8 сынып) Орта балл",
-  //     "Average level PET",
-  //     "Жалпы",
-  //   ];
+    if (grade === "7") {
+      headers = [
+        "Оқу жылы",
+        "Тоқсан",
+        "Мектеп ID",
+        "Мектеп аты",
+        "Қатысушылар саны (" + previousYear.get() + ")",
+        "Қатысушылар саны (" + academicYear.get() + ")",
+        "Fail саны (" + previousYear.get() + ")",
+        "Fail саны (" + academicYear.get() + ")",
+        "Fail пайызы (" + previousYear.get() + ")",
+        "Fail пайызы (" + academicYear.get() + ")",
+        "A1 (" + previousYear.get() + ")",
+        "A1 (" + academicYear.get() + ")",
+        "A2 pass (" + previousYear.get() + ")",
+        "A2 pass (" + academicYear.get() + ")",
+        "A2 pass with merit (" + previousYear.get() + ")",
+        "A2 pass with merit (" + academicYear.get() + ")",
+        "B1 pass with distinction (" + previousYear.get() + ")",
+        "B1 pass with distinction (" + previousYear.get() + ")",
+      ];
+    } else {
+      headers = [
+        "Оқу жылы",
+        "Тоқсан",
+        "Мектеп ID",
+        "Мектеп аты",
+        "Қатысушылар саны (" + previousYear.get() + ")",
+        "Қатысушылар саны (" + academicYear.get() + ")",
+        "Fail саны (" + previousYear.get() + ")",
+        "Fail саны (" + academicYear.get() + ")",
+        "Fail пайызы (" + previousYear.get() + ")",
+        "Fail пайызы (" + academicYear.get() + ")",
+        "A2 (" + previousYear.get() + ")",
+        "A2 (" + academicYear.get() + ")",
+        "B1 pass (" + previousYear.get() + ")",
+        "B1 pass (" + academicYear.get() + ")",
+        "B1 pass with merit (" + previousYear.get() + ")",
+        "B1 pass with merit (" + academicYear.get() + ")",
+        "B2 pass with distinction (" + previousYear.get() + ")",
+        "B2 pass with distinction (" + previousYear.get() + ")",
+      ];
+    }
+    data.push(headers);
+    let lines = out;
 
-  //   data.push(headers);
-  //   var resultStore = KetPetRatings.find({}, { sort: { total: -1 } }).fetch();
+    lines.map((line) => {
+      let schoolId = line.schoolId;
+      let schoolName = Schools.findOne({ schoolId }).shortName;
+      let outArray = line.outArray;
+      let row = [
+        academicYear.get(),
+        template.examPeriod.get(),
+        schoolId,
+        schoolName,
+        ...outArray,
+      ];
+      data.push(row);
+    });
 
-  //   for (var i = 0; i < resultStore.length; i++) {
-  //     let idN = i + 1;
-  //     let examPeriod = resultStore[i].examPeriod;
-  //     let schoolId = resultStore[i].schoolId;
-  //     let mektepAty = Schools.findOne({ schoolId: resultStore[i].schoolId })
-  //       ? Schools.findOne({ schoolId: resultStore[i].schoolId }).shortName
-  //       : undefined;
+    Meteor.call("download", data, (err, wb) => {
+      if (err) throw err;
 
-  //     let total7Grade = resultStore[i].total7Grade;
-  //     let total7Level = resultStore[i].total7Level;
-  //     let total8Grade = resultStore[i].total8Grade;
-  //     let total8Level = resultStore[i].total8Level;
-  //     let total = resultStore[i].total;
-
-  //     let content = [
-  //       idN,
-  //       okuJyly,
-  //       examPeriod,
-  //       schoolId,
-  //       mektepAty,
-  //       total7Grade,
-  //       total7Level,
-  //       total8Grade,
-  //       total8Level,
-  //       total,
-  //     ];
-
-  //     data.push(content);
-  //   }
-
-  //   Meteor.call("download", data, (err, wb) => {
-  //     if (err) throw err;
-
-  //     let sName =
-  //       "KET-PET rating " +
-  //       template.examPeriod.get() +
-  //       "токсан " +
-  //       okuJyly +
-  //       ".xlsx";
-  //     XLSX.writeFile(wb, sName);
-  //   });
-  // },
-
-  // "click #sortTotal"(event, template) {
-  //   Session.set("Sort", { total: -1 });
-  // },
-  // "click #reportType1"(event, template) {
-  //   Session.set("Sort", { reportType1: -1 });
-  // },
+      let sName =
+        "KET-PET Салыстыру " +
+        template.examPeriod.get() +
+        " токсан " +
+        academicYear.get() +
+        ".xlsx";
+      XLSX.writeFile(wb, sName);
+    });
+  },
 });
 
 Template.ketPetCompare.onRendered(function () {
