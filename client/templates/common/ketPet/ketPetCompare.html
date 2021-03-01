@@ -41,7 +41,7 @@
                         <th style="text-align:center; border-right: 1pt solid darkgrey" id="school_name">Мектеп аты</th>
                         <th style="text-align:center; border-right: 1pt solid darkgrey" id="total_number" colspan="2">Қатысушылар саны</th>
                         <th style="text-align:center; border-right: 1pt solid darkgrey" id="fail_number" colspan="2">Fail саны</th>
-                        <th style="text-align:center; border-right: 1pt solid darkgrey" id="fail_percentage" colspan="2">Fail пайызы</th>
+                        <th style="text-align:center; border-right: 1pt solid darkgrey" id="fail_percentage" colspan="3">Fail пайызы</th>
                         {{#if isGrade7}}
                         <th style="text-align:center; border-right: 1pt solid darkgrey" id="a1" colspan="2">A1</th>
                         <th style="text-align:center; border-right: 1pt solid darkgrey" id="a2_pass" colspan="2">A2 pass</th>
@@ -67,7 +67,8 @@
                         <th class="subheader" name="fail_number_previous_year_7" style="text-align: center">{{previousYear}}</th>
                         <th class="subheader" name="fail_number_current_year_7" style="text-align:center; border-right: 1pt solid darkgrey">{{currentYear}}</th>
                         <th class="subheader" name="fail_percentage_previous_year_7" style="text-align: center">{{previousYear}}</th>
-                        <th class="subheader" name="fail_percentage_current_year_7" style="text-align:center; border-right: 1pt solid darkgrey">{{currentYear}}</th>
+                        <th class="subheader" name="fail_percentage_current_year_7" style="text-align:center">{{currentYear}}</th>
+                        <th class="subheader" name="fail_percentage_difference_year_7" style="text-align:center; border-right: 1pt solid darkgrey;">Айырмашылық</th>
                         <th class="subheader" name="a1_number_previous_year" style="text-align: center">{{previousYear}}</th>
                         <th class="subheader" name="a1_number_current_year" style="text-align:center; border-right: 1pt solid darkgrey">{{currentYear}}</th>
                         <th class="subheader" name="a2_pass_number_previous_year" style="text-align: center">{{previousYear}}</th>
@@ -102,11 +103,18 @@
                         <td style="text-align: center; border-right: 1pt solid darkgrey">{{totalNumberCurrentYear}}</td>
                         <td style="text-align: center;">{{failNumberPreviousYear}}</td>
                         <td style="text-align: center; border-right: 1pt solid darkgrey">{{failNumberCurrentYear}}</td>
-                        {{#if failPercentagePreviousYear}}
+                        {{#if isValidNumber failPercentagePreviousYear}}
                         <td style="text-align: center;">{{round "2" failPercentagePreviousYear}} %</td>
-                        {{else}} <td style="border-right: 1pt solid darkgrey"></td> {{/if}}
-                        {{#if failPercentageCurrentYear}}
-                        <td style="text-align: center; border-right: 1pt solid darkgrey">{{round "2" failPercentageCurrentYear}} %</td>
+                        {{else}} 
+                        <td></td> 
+                        {{/if}}
+                        {{#if isValidNumber failPercentageCurrentYear}}
+                        <td style="text-align: center">{{round "2" failPercentageCurrentYear}} %</td>
+                        {{else}} 
+                        <td></td> 
+                        {{/if}}
+                        {{#if isValidNumber failPercentageDifference}}
+                        <td style="text-align: center; border-right: 1pt solid darkgrey; {{setGradientStyle failPercentageDifference}}">{{round "2" failPercentageDifference}} %</td>
                         {{else}} <td style="border-right: 1pt solid darkgrey"></td> {{/if}}
                         <td style="text-align: center;">{{a1NumberPreviousYear}}</td>
                         <td style="text-align: center; border-right: 1pt solid darkgrey">{{a1NumberCurrentYear}}</td>

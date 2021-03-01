@@ -10,6 +10,8 @@ Template.ketPetCompare.onCreated(function () {
   template.examPeriod = new ReactiveVar("2");
   template.order = new ReactiveVar([]);
   template.grade = new ReactiveVar("7");
+  Session.set("maxFailPercentageDifference", Number.MIN_VALUE);
+  Session.set("minFailPercentageDifference", Number.MAX_VALUE);
 
   template.subscribe("schools");
 
@@ -36,6 +38,9 @@ Template.ketPetCompare.helpers({
   },
   isGrade8() {
     return Template.instance().grade.get() === "8";
+  },
+  isValidNumber(number) {
+    return number || number === 0;
   },
   results() {
     let returnList = [];
@@ -126,7 +131,7 @@ Template.ketPetCompare.helpers({
             ? ratingPreviousYear.grade8A2
             : 0;
 
-        outArray[6] = a1NumberPreviousYear;
+        outArray[7] = a1NumberPreviousYear;
 
         a2PassNumberPreviousYear = 0;
         if (grade !== "8")
@@ -138,7 +143,7 @@ Template.ketPetCompare.helpers({
             ? ratingPreviousYear.grade8PassB1
             : 0;
 
-        outArray[8] = a2PassNumberPreviousYear;
+        outArray[9] = a2PassNumberPreviousYear;
 
         a2MeritNumberPreviousYear = 0;
         if (grade !== "8")
@@ -150,7 +155,7 @@ Template.ketPetCompare.helpers({
             ? ratingPreviousYear.grade8MeritB1
             : 0;
 
-        outArray[10] = a2MeritNumberPreviousYear;
+        outArray[11] = a2MeritNumberPreviousYear;
 
         b1DistinctionNumberPreviousYear = 0;
         if (grade !== "8")
@@ -162,7 +167,7 @@ Template.ketPetCompare.helpers({
             ? ratingPreviousYear.grade8DistB2
             : 0;
 
-        outArray[12] = b1DistinctionNumberPreviousYear;
+        outArray[13] = b1DistinctionNumberPreviousYear;
       }
 
       if (ratingCurrentYear) {
@@ -208,7 +213,7 @@ Template.ketPetCompare.helpers({
             ? ratingCurrentYear.grade8A2
             : 0;
 
-        outArray[7] = a1NumberCurrentYear;
+        outArray[8] = a1NumberCurrentYear;
 
         a2PassNumberCurrentYear = 0;
         if (grade !== "8")
@@ -220,7 +225,7 @@ Template.ketPetCompare.helpers({
             ? ratingCurrentYear.grade8PassB1
             : 0;
 
-        outArray[9] = a2PassNumberCurrentYear;
+        outArray[10] = a2PassNumberCurrentYear;
 
         a2MeritNumberCurrentYear = 0;
         if (grade !== "8")
@@ -232,7 +237,7 @@ Template.ketPetCompare.helpers({
             ? ratingCurrentYear.grade8MeritB1
             : 0;
 
-        outArray[11] = a2MeritNumberCurrentYear;
+        outArray[12] = a2MeritNumberCurrentYear;
 
         b1DistinctionNumberCurrentYear = 0;
         if (grade !== "8")
@@ -244,9 +249,25 @@ Template.ketPetCompare.helpers({
             ? ratingCurrentYear.grade8DistB2
             : 0;
 
-        outArray[13] = b1DistinctionNumberCurrentYear;
+        outArray[14] = b1DistinctionNumberCurrentYear;
       }
-
+      let failPercentageDifference;
+      if (
+        (failPercentagePreviousYear || failPercentagePreviousYear === 0) &&
+        (failPercentageCurrentYear || failPercentageCurrentYear === 0)
+      ) {
+        failPercentageDifference =
+          failPercentageCurrentYear - failPercentagePreviousYear;
+        if (
+          failPercentageDifference > Session.get("maxFailPercentageDifference")
+        )
+          Session.set("maxFailPercentageDifference", failPercentageDifference);
+        if (
+          failPercentageDifference < Session.get("minFailPercentageDifference")
+        )
+          Session.set("minFailPercentageDifference", failPercentageDifference);
+      }
+      outArray[6] = failPercentageDifference;
       let returnObject = {
         schoolId,
         school: school.shortName,
@@ -256,6 +277,7 @@ Template.ketPetCompare.helpers({
         failNumberCurrentYear,
         failPercentagePreviousYear,
         failPercentageCurrentYear,
+        failPercentageDifference,
         a1NumberPreviousYear,
         a1NumberCurrentYear,
         a2PassNumberPreviousYear,
@@ -272,6 +294,34 @@ Template.ketPetCompare.helpers({
       returnList.push(returnObject);
     });
     return returnList;
+  },
+  setGradientStyle(value) {
+    let maxValue = Session.get("maxFailPercentageDifference");
+    if (maxValue === Number.MIN_VALUE) return "";
+    let minValue = Session.get("minFailPercentageDifference");
+    if (minValue === Number.MAX_VALUE) return "";
+
+    let red = 255;
+    let green = 0;
+    let blue = 0;
+    let opacity = 0.65;
+
+    let normalizedValue = (value - minValue) / (maxValue - minValue);
+    let scaledValue = parseInt(normalizedValue * 255, 10);
+    red -= scaledValue;
+    green += scaledValue;
+
+    return (
+      "background-color: rgb(" +
+      red +
+      ", " +
+      green +
+      ", " +
+      blue +
+      ", " +
+      opacity +
+      ");"
+    );
   },
 });
 
@@ -315,52 +365,22 @@ Template.ketPetCompare.events({
     let ratings;
     let order;
     if (name.includes("percentage")) {
-      let fail_number_arg = "grade" + grade + "Fail";
-      let total_number_arg = "sCount" + grade + "Grade";
-      if (name.includes("previous")) {
-        ratings = KetPetRatings.find(
-          { academicYear: previousYear.get() },
-          {
-            fields: {
-              schoolId: 1,
-              [fail_number_arg]: 1,
-              [total_number_arg]: 1,
-              _id: 0,
-            },
-          }
-        ).fetch();
-      } else {
-        ratings = KetPetRatings.find(
-          { academicYear: academicYear.get() },
-          {
-            fields: {
-              schoolId: 1,
-              [fail_number_arg]: 1,
-              [total_number_arg]: 1,
-              _id: 0,
-            },
-          }
-        ).fetch();
+      let relevantIndex = -1;
+      if (name.includes("difference")) {
+        relevantIndex = 6;
+      } else if (name.includes("previous")) {
+        relevantIndex = 4;
+      } else if (name.includes("current")) {
+        relevantIndex = 5;
       }
+
       order = [];
-      let objects = ratings
+      out
         .filter(
-          (rating) =>
-            (rating[fail_number_arg] || rating[fail_number_arg]) &&
-            rating[total_number_arg]
+          (o) => o.outArray[relevantIndex] || o.outArray[relevantIndex] === 0
         )
-        .map((rating) => {
-          return {
-            [rating.schoolId]:
-              rating[fail_number_arg] / rating[total_number_arg],
-          };
-        });
-      objects.sort(function (a, b) {
-        return Object.values(b) - Object.values(a);
-      });
-      objects.map((o) => {
-        order.push(Object.keys(o)[0]);
-      });
+        .sort((a, b) => b.outArray[relevantIndex] - a.outArray[relevantIndex])
+        .map((o) => order.push(o.schoolId));
     } else {
       if (name.includes("previous")) {
         ratings = KetPetRatings.find(
@@ -408,6 +428,7 @@ Template.ketPetCompare.events({
         "Fail саны (" + academicYear.get() + ")",
         "Fail пайызы (" + previousYear.get() + ")",
         "Fail пайызы (" + academicYear.get() + ")",
+        "Fail пайыздық айырмашылығы",
         "A1 (" + previousYear.get() + ")",
         "A1 (" + academicYear.get() + ")",
         "A2 pass (" + previousYear.get() + ")",
@@ -429,6 +450,7 @@ Template.ketPetCompare.events({
         "Fail саны (" + academicYear.get() + ")",
         "Fail пайызы (" + previousYear.get() + ")",
         "Fail пайызы (" + academicYear.get() + ")",
+        "Fail пайыздық айырмашылығы",
         "A2 (" + previousYear.get() + ")",
         "A2 (" + academicYear.get() + ")",
         "B1 pass (" + previousYear.get() + ")",
