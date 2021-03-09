@@ -18,7 +18,8 @@
                         <label for="" style="margin-left: 10pt; ">Кезең</label>
                         <select class="form-control" id="period">
                             <option value="january">Қаңтар</option>
-                            <option value="march-june">Наурыз-Маусым</option>
+                            <option value="march">Наурыз</option>
+                            <option value="april-june">Сәуір-Маусым</option>
                         </select>
 
                         <div class="checkbox">
@@ -58,8 +59,6 @@
                         <th id="community_rights" style="text-align: center">Адам. Қоғам</th>
                         <th id="kazakh_russian_language" style="text-align: center">Қазақ/Орыс тілі</th>
                         <th id="kazakh_russian_literature" style="text-align: center">Қазақ/Орыс әдебиеті</th>
-                        <th id="creative_exam_1" style="text-align: center">Шығармашылық емтихан-1</th>
-                        <th id="creative_exam_2" style="text-align: center">Шығармашылық емтихан-2</th> 
                     </tr>
                 </thead>
                 <tbody>
@@ -89,9 +88,7 @@
                         <td style="text-align: center"><input type="text" style="width: 25pt" id="edit_community_rights" value="{{community_rights}}"></td>
                         <td style="text-align: center"><input type="text" style="width: 25pt" id="edit_kazakh_russian_language" value="{{kazakh_russian_language}}"></td>
                         <td style="text-align: center"><input type="text" style="width: 25pt" id="edit_kazakh_russian_literature" value="{{kazakh_russian_literature}}"></td>
-                        <td style="text-align: center"><input type="text" style="width: 25pt" id="edit_creative_exam_1" value="{{creative_exam_1}}"></td>
-                        <td style="text-align: center"><input type="text" style="width: 25pt" id="edit_creative_exam_2" value="{{creative_exam_2}}"></td>
-
+                       
                         <td>
                             <button class="saveItem btn btn-success">Save</button>
                             <button class="cancelItem btn btn-default">Cancel</button>
@@ -114,9 +111,7 @@
                         <td style="text-align: center">{{community_rights}}</td>
                         <td style="text-align: center">{{kazakh_russian_language}}</td>
                         <td style="text-align: center">{{kazakh_russian_literature}}</td>
-                        <td style="text-align: center">{{creative_exam_1}}</td>
-                        <td style="text-align: center">{{creative_exam_2}}</td>
-
+                    
                         <td>
                             <button class="editItem btn btn-primary">Edit</button>
                         </td>

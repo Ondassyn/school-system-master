@@ -359,3 +359,7 @@ Meteor.publish(
     return this.ready();
   }
 );
+
+Meteor.publish("examinationActivityLog", function () {
+  return ExaminationActivityLog.find({});
+});

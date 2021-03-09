@@ -44,6 +44,17 @@ Meteor.methods({
           : "";
 
         SatResults.update({ academicYear, studentId }, { $set: satResult });
+        ExaminationActivityLog.insert({
+          createdAt: new Date(),
+          userRole: "admin",
+          examName: "SAT",
+          examNo: "",
+          action: "update",
+          academicYear,
+          schoolId,
+          grade,
+          studentId,
+        });
       } else {
         let satRecord = {
           studentId,
@@ -73,6 +84,17 @@ Meteor.methods({
         };
 
         SatResults.insert(satRecord);
+        ExaminationActivityLog.insert({
+          createdAt: new Date(),
+          userRole: "admin",
+          examName: "SAT",
+          examNo: "",
+          action: "insert",
+          academicYear,
+          schoolId,
+          grade,
+          studentId,
+        });
       }
     } else {
       throw new Meteor.Error("auth-error", "School rights required.");
@@ -106,6 +128,17 @@ Meteor.methods({
           : "";
 
         IeltsResults.update({ academicYear, studentId }, { $set: ieltsResult });
+        ExaminationActivityLog.insert({
+          createdAt: new Date(),
+          userRole: "admin",
+          examName: "IELTS",
+          examNo: "",
+          action: "update",
+          academicYear,
+          schoolId,
+          grade,
+          studentId,
+        });
       } else {
         let ieltsRecord = {
           studentId,
@@ -124,6 +157,17 @@ Meteor.methods({
         };
 
         IeltsResults.insert(ieltsRecord);
+        ExaminationActivityLog.insert({
+          createdAt: new Date(),
+          academicYear,
+          userRole: "admin",
+          examName: "IELTS",
+          examNo: "",
+          action: "insert",
+          schoolId,
+          grade,
+          studentId,
+        });
       }
     } else {
       throw new Meteor.Error("auth-error", "School rights required.");

@@ -72,8 +72,6 @@ Template.ubtOfficialResults.helpers({
           ubtResult.kazakh_russian_language;
         returnObject["kazakh_russian_literature"] =
           ubtResult.kazakh_russian_literature;
-        returnObject["creative_exam_1"] = ubtResult.creative_exam_1;
-        returnObject["creative_exam_2"] = ubtResult.creative_exam_2;
       }
 
       if (showCertified) {
@@ -106,8 +104,6 @@ var saveItem = function (template) {
     community_rights: $("#edit_community_rights").val(),
     kazakh_russian_language: $("#edit_kazakh_russian_language").val(),
     kazakh_russian_literature: $("#edit_kazakh_russian_literature").val(),
-    creative_exam_1: $("#edit_creative_exam_1").val(),
-    creative_exam_2: $("#edit_creative_exam_2").val(),
   };
 
   Meteor.call(
@@ -418,50 +414,7 @@ Template.ubtOfficialResults.events({
       template.order.set(order);
     }
   },
-  "click #creative_exam_1"(event, template) {
-    let ubtResults = UbtOfficialResults.find(
-      {},
-      {
-        sort: { creative_exam_1: -1 },
-        fields: { studentId: 1, creative_exam_1: 1, _id: 0 },
-      }
-    ).fetch();
-    let order = ubtResults
-      .filter(
-        (ubtResult) =>
-          ubtResult.creative_exam_1 || ubtResult.creative_exam_1 === 0
-      )
-      .map((ubtResult) => ubtResult.studentId);
-    let oldOrder = template.order.get();
 
-    if (JSON.stringify(order) === JSON.stringify(oldOrder)) {
-      template.order.set(order.reverse());
-    } else {
-      template.order.set(order);
-    }
-  },
-  "click #creative_exam_2"(event, template) {
-    let ubtResults = UbtOfficialResults.find(
-      {},
-      {
-        sort: { creative_exam_2: -1 },
-        fields: { studentId: 1, creative_exam_2: 1, _id: 0 },
-      }
-    ).fetch();
-    let order = ubtResults
-      .filter(
-        (ubtResult) =>
-          ubtResult.creative_exam_2 || ubtResult.creative_exam_2 === 0
-      )
-      .map((ubtResult) => ubtResult.studentId);
-    let oldOrder = template.order.get();
-
-    if (JSON.stringify(order) === JSON.stringify(oldOrder)) {
-      template.order.set(order.reverse());
-    } else {
-      template.order.set(order);
-    }
-  },
   "click #download"(event, template) {
     //let grade = Template.instance().grade.get();
     // let schoolId = Template.instance().schoolId.get();
@@ -560,12 +513,6 @@ Template.ubtOfficialResults.events({
           ubtResult.kazakh_russian_literature === 0
         )
           dataRow.push(ubtResult.kazakh_russian_literature);
-        else dataRow.push("");
-        if (ubtResult.creative_exam_1 || ubtResult.creative_exam_1 === 0)
-          dataRow.push(ubtResult.creative_exam_1);
-        else dataRow.push("");
-        if (ubtResult.creative_exam_2 || ubtResult.creative_exam_2 === 0)
-          dataRow.push(ubtResult.creative_exam_2);
         else dataRow.push("");
       }
 

@@ -78,19 +78,22 @@ Meteor.methods({
           editItem.kazakh_russian_literature === "0"
             ? Number(editItem.kazakh_russian_literature)
             : "";
-        ubtResult.creative_exam_1 =
-          editItem.creative_exam_1 || editItem.creative_exam_1 === "0"
-            ? Number(editItem.creative_exam_1)
-            : "";
-        ubtResult.creative_exam_2 =
-          editItem.creative_exam_2 || editItem.creative_exam_2 === "0"
-            ? Number(editItem.creative_exam_2)
-            : "";
 
         UbtOfficialResults.update(
           { academicYear, studentId },
           { $set: ubtResult }
         );
+        ExaminationActivityLog.insert({
+          createdAt: new Date(),
+          userRole: "admin",
+          examName: "ҰБТ",
+          examNo: period,
+          action: "update",
+          academicYear,
+          schoolId,
+          grade: "11",
+          studentId,
+        });
       } else {
         let ubtRecord = {
           studentId,
@@ -155,17 +158,20 @@ Meteor.methods({
             editItem.kazakh_russian_literature === "0"
               ? Number(editItem.kazakh_russian_literature)
               : "",
-          creative_exam_1:
-            editItem.creative_exam_1 || editItem.creative_exam_1 === "0"
-              ? Number(editItem.creative_exam_1)
-              : "",
-          creative_exam_2:
-            editItem.creative_exam_2 || editItem.creative_exam_2 === "0"
-              ? Number(editItem.creative_exam_2)
-              : "",
         };
 
         UbtOfficialResults.insert(ubtRecord);
+        ExaminationActivityLog.insert({
+          createdAt: new Date(),
+          userRole: "admin",
+          examName: "ҰБТ",
+          examNo: period,
+          action: "insert",
+          academicYear,
+          schoolId,
+          grade: "11",
+          studentId,
+        });
       }
     } else {
       throw new Meteor.Error("auth-error", "Admin rights required.");
