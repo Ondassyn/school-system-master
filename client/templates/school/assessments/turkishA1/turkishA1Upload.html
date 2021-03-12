@@ -1,0 +1,87 @@
+<template name="turkishA1Upload">
+
+    <div class="row">
+        <div class="col-md-12">
+            <h4 style="text-align: center; padding-bottom: 15pt">KET and PET емтихан жүктеу</h4>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-inline">
+                          <!-- {{> academicYear}} -->
+
+                          <div class="form-group" >
+                            <label for="name">Xlsx файл</label>
+                            <a style="margin-right: 5pt; margin-left: 5pt;" class="btn btn-default" id="download_xlsx">Үлгі</a>
+                            <input type="file" class="form-control" id="xlsx_upload" style="margin-right: 15pt;">
+                            <a class="btn btn-primary" id="save_xlsx">Сақтау</a>
+                          </div>
+                          
+                          <div class="form-group" style="float: right">
+                            <label for="name">Тхт файл</label>
+                            <input type="file" accept="text/plain" class="form-control" id="txt_upload">
+                            <a class="btn btn-primary" id="save_txt">Сақтау</a>
+                          </div>
+
+                        
+
+                    </div>
+                </div>
+            </div>
+
+            {{#if Template.subscriptionsReady}}
+
+            <div  class="table table-responsive" id="out">
+              <table style="margin-top: 15pt" class="table table-striped">
+
+                <thead>
+                    <tr class="bts-header">
+                        <th>#</th>
+                        <th>Студент ID</th>
+                        <th>Тегі</th>
+                        <th>Аты</th>
+
+                        {{#if isXlsx}}
+                          <th style="text-align: center">Dinleme</th>
+                          <th style="text-align: center">Okuma</th>
+                          <th style="text-align: center">Yazma</th>
+                          <th style="text-align: center">Konuşma</th>
+                        {{else}}
+                          <th>Cevaplar</th>
+                        {{/if}}
+
+                    </tr>
+                </thead>
+
+                <tbody>
+                    {{#each results}}
+                    <tr>
+                        <td>{{math @index "+" 1}}</td>
+                        <td>{{studentId}}</td>
+
+                        {{#if isXlsx}}
+                        
+                          <td>{{studentSurname}}</td>
+                          <td>{{studentName}}</td>
+                        
+                          <td style="text-align: center">{{Dinleme}}</td>
+                          <td style="text-align: center">{{Okuma}}</td>
+                          <td style="text-align: center">{{Yazma}}</td>
+                          <td style="text-align: center">{{Konusma}}</td>
+                        {{else}}
+                          <td>{{surname}}</td>
+                          <td>{{name}}</td>
+
+                          <td>{{keys}}</td>
+                        {{/if}}
+
+                    </tr>
+                    {{/each}}
+                </tbody>
+              </table>
+            </div>
+
+            {{else}}
+            <p>Loading...</p>
+            {{/if}}
+        </div>
+    </div>
+</template>

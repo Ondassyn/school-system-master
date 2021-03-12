@@ -17,11 +17,21 @@ Meteor.publish("students", function () {
 });
 
 Meteor.publish("schoolGradeStudents", function (schoolId, grade) {
-  if (schoolId && grade && grade === "all") return Students.find({ schoolId });
-  return schoolId && grade ? Students.find({ schoolId, grade }) : this.ready();
+  if (this.userId) {
+    if (schoolId && grade && grade === "all")
+      return Students.find({ schoolId });
+    return schoolId && grade
+      ? Students.find({ schoolId, grade })
+      : this.ready();
+  }
+  return this.ready();
 });
 
 Meteor.publish("allStudents", function (grade) {
+  return Students.find({ grade: grade });
+});
+
+Meteor.publish("gradeStudents", function (grade) {
   return Students.find({ grade: grade });
 });
 

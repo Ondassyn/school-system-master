@@ -1,0 +1,66 @@
+<template name="turkishA1AdminResults">
+
+  <div class="row">
+        <div class="col-md-12">
+            <h4 style="text-align: center;">Түрік тілі A1 Нәтижелері</h4>
+            <div class="form-inline" style="padding-bottom: 10pt">
+                <div class="form-group" style="margin-right: 10pt">
+                    {{> academicYear}}
+                </div>
+
+                <div class="form-group" style="float: right">
+                    <a class="btn btn-success" id="export">Export</a>
+                </div>
+
+            </div>
+            {{#if Template.subscriptionsReady}}
+            <div class="table table-responsive" id="out">
+              <table style="margin-top: 15pt" class="table table-striped">
+
+                <thead>
+                    <tr class="bts-header">
+                        <th>#</th>
+                        <th>Студент ID</th>
+                        <th>Сынып</th>
+                        <th>Тегі</th>
+                        <th>Аты</th>
+
+                        <th style="text-align: center" id="total">Toplam</th>
+                  
+                        <th style="text-align: center" id="listening">Dinleme</th>
+                        <th style="text-align: center" id="reading">Okuma</th>
+                        <th style="text-align: center" id="writing">Yazma</th>
+                        <th style="text-align: center" id="speaking">Konuşma</th>
+
+                    </tr>
+                </thead>
+
+                <tbody>
+                    {{#each results}}
+                    <tr>
+                        <td>{{math @index "+" 1}}</td>
+                        <td>{{studentId}}</td>
+                        <td>{{grade}}{{division}}</td>
+                        <td>{{surname}}</td>
+                        <td>{{name}}</td>
+
+                        <td style="text-align: center">{{total}}</td>
+
+                        <td style="text-align: center">{{#if listening}} {{listening}} {{else}} {{listening_preliminary}} {{/if}}</td>
+                        <td style="text-align: center">{{#if reading}} {{reading}} {{else}} {{reading_preliminary}} {{/if}}</td>
+                        <td style="text-align: center">{{writing}}</td>
+                        <td style="text-align: center">{{speaking}}</td>
+                        
+                    </tr>
+                    {{/each}}
+                </tbody>
+              </table>
+            </div>
+            {{else}}
+            <p>Loading...</p>
+            {{/if}}
+        </div>
+    </div>
+
+
+</template>

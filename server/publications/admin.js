@@ -57,6 +57,27 @@ Meteor.publish("turkishKeys", function (academicYear) {
   return this.ready();
 });
 
+Meteor.publish("turkishA1Keys", function (academicYear) {
+  if (this.userId) {
+    return TurkishA1Keys.find({ academicYear });
+  }
+  return this.ready();
+});
+
+Meteor.publish("turkishA1Results", function (academicYear) {
+  if (this.userId) {
+    return TurkishA1Results.find({ academicYear });
+  }
+  return this.ready();
+});
+
+Meteor.publish("turkishA1Ratings", function (academicYear) {
+  if (this.userId) {
+    return TurkishA1Ratings.find({ academicYear });
+  }
+  return this.ready();
+});
+
 Meteor.publish("btsLevels", function (academicYear, quarter) {
   if (this.userId) {
     return BtsLevels.find({ academicYear: academicYear, quarter: quarter });

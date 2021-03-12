@@ -2,6 +2,7 @@ import { Template } from "meteor/templating";
 import { ReactiveVar } from "meteor/reactive-var";
 import "./ubtOfficialResults.html";
 import XLSX from "xlsx";
+import { Meteor } from "meteor/meteor";
 
 Template.ubtOfficialResults.onCreated(function () {
   let template = this;
@@ -15,6 +16,8 @@ Template.ubtOfficialResults.onCreated(function () {
   template.autorun(() => {
     template.subscribe("schoolUbtOfficialResults", template.period.get());
   });
+
+  console.log(Meteor.userId());
 });
 
 Template.ubtOfficialResults.helpers({
