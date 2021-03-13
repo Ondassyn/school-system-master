@@ -71,6 +71,15 @@ Meteor.publish("turkishA1Results", function (academicYear) {
   return this.ready();
 });
 
+Meteor.publish("turkishA1AdminResults", function (academicYear, schoolId) {
+  if (!schoolId) return;
+  if (this.userId) {
+    if (schoolId === "all") return TurkishA1Results.find({ academicYear });
+    return TurkishA1Results.find({ academicYear, schoolId });
+  }
+  return this.ready();
+});
+
 Meteor.publish("turkishA1Ratings", function (academicYear) {
   if (this.userId) {
     return TurkishA1Ratings.find({ academicYear });
