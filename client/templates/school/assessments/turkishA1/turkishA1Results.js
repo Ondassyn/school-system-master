@@ -11,7 +11,7 @@ Template.turkishA1Results.onCreated(function () {
   template.state = new ReactiveVar("results");
 
   template.autorun(() => {
-    template.subscribe("turkishA1Results", academicYear.get());
+    template.subscribe("turkishA1SchoolResults", academicYear.get());
   });
 });
 

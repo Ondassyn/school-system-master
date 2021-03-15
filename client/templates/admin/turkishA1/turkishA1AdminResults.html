@@ -28,6 +28,7 @@
                   <thead>
                       <tr class="bts-header">
                           <th>#</th>
+                          <th>Мектеп</th>
                           <th>Студент ID</th>
                           <th>Сынып</th>
                           <th>Тегі</th>
@@ -47,6 +48,7 @@
                       {{#each results}}
                       <tr>
                           <td>{{math @index "+" 1}}</td>
+                          <td>{{school}}</td>
                           <td>{{studentId}}</td>
                           <td>{{grade}}{{division}}</td>
                           <td>{{surname}}</td>

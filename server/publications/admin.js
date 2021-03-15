@@ -64,13 +64,6 @@ Meteor.publish("turkishA1Keys", function (academicYear) {
   return this.ready();
 });
 
-Meteor.publish("turkishA1Results", function (academicYear) {
-  if (this.userId) {
-    return TurkishA1Results.find({ academicYear });
-  }
-  return this.ready();
-});
-
 Meteor.publish("turkishA1AdminResults", function (academicYear, schoolId) {
   if (!schoolId) return;
   if (this.userId) {

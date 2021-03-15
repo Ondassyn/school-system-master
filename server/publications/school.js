@@ -40,3 +40,12 @@ Meteor.publish("schoolUbtOfficialResults", function (period) {
   }
   return this.ready();
 });
+
+Meteor.publish("turkishA1SchoolResults", function (academicYear) {
+  if (this.userId) {
+    let school = Schools.findOne({ userId: this.userId });
+    if (!school) school = Schools.findOne({ coordinatorId: this.userId });
+    return TurkishA1Results.find({ academicYear, schoolId: school.schoolId });
+  }
+  return this.ready();
+});

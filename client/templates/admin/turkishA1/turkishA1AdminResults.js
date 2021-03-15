@@ -25,7 +25,16 @@ Template.turkishA1AdminResults.helpers({
     return Schools.find({}, { sort: { shortName: 1 } });
   },
   results() {
-    return TurkishA1Results.find({}, { sort: Session.get("Sort") });
+    let results = TurkishA1Results.find(
+      {},
+      { sort: Session.get("Sort") }
+    ).fetch();
+    results.map((result) => {
+      result["school"] = Schools.findOne({
+        schoolId: result.schoolId,
+      }).shortName;
+    });
+    return results;
   },
 });
 
