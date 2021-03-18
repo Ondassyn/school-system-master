@@ -32,14 +32,16 @@ export const uploadTxt = (academicYear, schoolId, results) => {
       reading_preliminary: 0,
     };
 
-    studentRecord["listening_preliminary"] = check(
-      parseAnswerKey(answerKey.listening),
-      studentObj.keys.slice(0, 100)
-    );
-    studentRecord["reading_preliminary"] = check(
-      parseAnswerKey(answerKey.reading),
-      studentObj.keys.slice(100, 200)
-    );
+    studentRecord["listening_preliminary"] =
+      check(
+        parseAnswerKey(answerKey.listening),
+        studentObj.keys.slice(0, 100)
+      ) * 1.25;
+    studentRecord["reading_preliminary"] =
+      check(
+        parseAnswerKey(answerKey.reading),
+        studentObj.keys.slice(100, 200)
+      ) * 1.25;
 
     let recordInDb = TurkishA1Results.findOne({
       academicYear: academicYear,

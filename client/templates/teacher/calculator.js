@@ -165,6 +165,8 @@ Template.calculator.helpers({
   value4: function () {
     let specialPosition = Template.instance().specialPosition.get();
     if (specialPosition === "trainee" || specialPosition === "intern") return 0;
+    let gender = Template.instance().gender.get();
+    if (gender !== "male") return 0;
 
     let sum = 0;
 

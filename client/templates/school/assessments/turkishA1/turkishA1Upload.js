@@ -14,7 +14,7 @@ Template.turkishA1Upload.onCreated(function () {
   template.subscribe("gradeStudents", "7");
   template.autorun(() => {
     template.subscribe("turkishA1Keys", academicYear.get());
-    template.subscribe("turkishA1Results", academicYear.get());
+    template.subscribe("turkishA1SchoolResults", academicYear.get());
   });
 });
 
