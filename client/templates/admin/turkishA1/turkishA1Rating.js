@@ -20,12 +20,20 @@ Template.turkishA1Rating.helpers({
       {},
       { sort: Session.get("Sort") }
     ).fetch();
+    let unregisteredSchools = Schools.find({}).fetch();
     results.map((result) => {
       result["school"] = Schools.findOne({
         schoolId: result.schoolId,
       }).shortName;
+      unregisteredSchools = unregisteredSchools.filter(
+        (school) => school.schoolId !== result.schoolId
+      );
     });
+    Session.set("unregisteredSchools", unregisteredSchools);
     return results;
+  },
+  unregisteredSchools() {
+    return Session.get("unregisteredSchools");
   },
 });
 

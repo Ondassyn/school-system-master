@@ -178,7 +178,7 @@ export const uploadXlsx = (academicYear, schoolId, results) => {
     if (ratingRecordInDb) {
       TurkishA1Ratings.update(
         { _id: ratingRecordInDb._id },
-        { $set: ratingRecordInDb }
+        { $set: ratingRecord }
       );
     } else {
       TurkishA1Ratings.insert(ratingRecord);
