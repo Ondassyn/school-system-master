@@ -42,6 +42,32 @@ Template.adminSatResults.helpers({
   results() {
     let returnList = [];
 
+    let sat1EnglishTotal = 0;
+    let sat1EnglishN = 0;
+    let sat1MathTotal = 0;
+    let sat1MathN = 0;
+    let sat1TotalTotal = 0;
+    let sat1TotalN = 0;
+    let ieltsListeningTotal = 0;
+    let ieltsListeningN = 0;
+    let ieltsReadingTotal = 0;
+    let ieltsReadingN = 0;
+    let ieltsSpeakingTotal = 0;
+    let ieltsSpeakingN = 0;
+    let ieltsWritingTotal = 0;
+    let ieltsWritingN = 0;
+    let ieltsTotalTotal = 0;
+    let ieltsTotalN = 0;
+
+    Session.set("sat1EnglishAverage", undefined);
+    Session.set("sat1MathAverage", undefined);
+    Session.set("sat1TotalAverage", undefined);
+    Session.set("ieltsWritingAverage", undefined);
+    Session.set("ieltsSpeakingAverage", undefined);
+    Session.set("ieltsReadingAverage", undefined);
+    Session.set("ieltsListeningAverage", undefined);
+    Session.set("ieltsTotalAverage", undefined);
+
     let students = Students.find(
       {},
       { sort: { division: 1, surname: 1 } }
@@ -91,8 +117,20 @@ Template.adminSatResults.helpers({
       if (satResult) {
         isCertified = true;
         returnObject.sat1english = satResult.sat1_english;
+        if (satResult.sat1_english || satResult.sat1_english === 0) {
+          sat1EnglishTotal += satResult.sat1_english;
+          sat1EnglishN++;
+        }
         returnObject.sat1math = satResult.sat1_math;
+        if (satResult.sat1_math || satResult.sat1_math === 0) {
+          sat1MathTotal += satResult.sat1_math;
+          sat1MathN++;
+        }
         returnObject.sat1total = satResult.sat1_total;
+        if (satResult.sat1_total || satResult.sat1_total === 0) {
+          sat1TotalTotal += satResult.sat1_total;
+          sat1TotalN++;
+        }
         // returnObject.sat2worldhistory = satResult.sat2_world_history;
         // returnObject.sat2math1 = satResult.sat2_math1;
         // returnObject.sat2math2 = satResult.sat2_math2;
@@ -109,10 +147,30 @@ Template.adminSatResults.helpers({
       if (ieltsResult) {
         isCertified = true;
         returnObject.ieltslistening = ieltsResult.listening;
+        if (ieltsResult.listening || ieltsResult.listening === 0) {
+          ieltsListeningTotal += ieltsResult.listening;
+          ieltsListeningN++;
+        }
         returnObject.ieltsreading = ieltsResult.reading;
+        if (ieltsResult.reading || ieltsResult.reading === 0) {
+          ieltsReadingTotal += ieltsResult.reading;
+          ieltsReadingN++;
+        }
         returnObject.ieltswriting = ieltsResult.writing;
+        if (ieltsResult.writing || ieltsResult.writing === 0) {
+          ieltsWritingTotal += ieltsResult.writing;
+          ieltsWritingN++;
+        }
         returnObject.ieltsspeaking = ieltsResult.speaking;
+        if (ieltsResult.speaking || ieltsResult.speaking === 0) {
+          ieltsSpeakingTotal += ieltsResult.speaking;
+          ieltsSpeakingN++;
+        }
         returnObject.ieltstotal = ieltsResult.total;
+        if (ieltsResult.total || ieltsResult.total === 0) {
+          ieltsTotalTotal += ieltsResult.total;
+          ieltsTotalN++;
+        }
       }
 
       if (showCertified) {
@@ -121,6 +179,50 @@ Template.adminSatResults.helpers({
         returnList.push(returnObject);
       }
     });
+
+    if (sat1EnglishN !== 0) {
+      Session.set(
+        "sat1EnglishAverage",
+        (sat1EnglishTotal / sat1EnglishN).toFixed(2)
+      );
+    }
+    if (sat1MathN !== 0) {
+      Session.set("sat1MathAverage", (sat1MathTotal / sat1MathN).toFixed(2));
+    }
+    if (sat1TotalN !== 0) {
+      Session.set("sat1TotalAverage", (sat1TotalTotal / sat1TotalN).toFixed(2));
+    }
+    if (ieltsListeningN !== 0) {
+      Session.set(
+        "ieltsListeningAverage",
+        (ieltsListeningTotal / ieltsListeningN).toFixed(2)
+      );
+    }
+    if (ieltsReadingN !== 0) {
+      Session.set(
+        "ieltsReadingAverage",
+        (ieltsReadingTotal / ieltsReadingN).toFixed(2)
+      );
+    }
+    if (ieltsWritingN !== 0) {
+      Session.set(
+        "ieltsWritingAverage",
+        (ieltsWritingTotal / ieltsWritingN).toFixed(2)
+      );
+    }
+    if (ieltsSpeakingN !== 0) {
+      Session.set(
+        "ieltsSpeakingAverage",
+        (ieltsSpeakingTotal / ieltsSpeakingN).toFixed(2)
+      );
+    }
+
+    if (ieltsTotalN !== 0) {
+      Session.set(
+        "ieltsTotalAverage",
+        (ieltsTotalTotal / ieltsTotalN).toFixed(2)
+      );
+    }
 
     return returnList;
   },
@@ -135,6 +237,30 @@ Template.adminSatResults.helpers({
   // },
   isIeltsHidden() {
     return Template.instance().isIeltsHidden.get();
+  },
+  sat1EnglishAverage() {
+    return Session.get("sat1EnglishAverage");
+  },
+  sat1MathAverage() {
+    return Session.get("sat1MathAverage");
+  },
+  sat1TotalAverage() {
+    return Session.get("sat1TotalAverage");
+  },
+  ieltsListeningAverage() {
+    return Session.get("ieltsListeningAverage");
+  },
+  ieltsReadingAverage() {
+    return Session.get("ieltsReadingAverage");
+  },
+  ieltsWritingAverage() {
+    return Session.get("ieltsWritingAverage");
+  },
+  ieltsSpeakingAverage() {
+    return Session.get("ieltsSpeakingAverage");
+  },
+  ieltsTotalAverage() {
+    return Session.get("ieltsTotalAverage");
   },
 });
 

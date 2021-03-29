@@ -83,10 +83,10 @@
                         {{#if isSat1Hidden}}
                         <th style="border-right: 1pt solid darkgrey"></th>
                         {{else}}
-                        <th id="sat-1_english" style="font-weight: lighter; font-size: small; text-align:center">Reading & Writing</th>
-                        <th id="sat-1_math" style="font-weight: lighter; font-size: small; text-align:center; border-right: 1pt solid darkgrey">Math</th>
+                        <th id="sat-1_english" style="font-weight: lighter; font-size: small; text-align:center">Reading & Writing<br>{{sat1EnglishAverage}}</th>
+                        <th id="sat-1_math" style="font-weight: lighter; font-size: small; text-align:center; border-right: 1pt solid darkgrey">Math<br>{{sat1MathAverage}}</th>
 
-                        <th id="sat-1_total" style="font-weight: lighter; font-size: small; text-align:center; border-right: 1pt solid darkgrey">Total</th>
+                        <th id="sat-1_total" style="font-weight: lighter; font-size: small; text-align:center; border-right: 1pt solid darkgrey">Total<br>{{sat1TotalAverage}}</th>
                         {{/if}}
 
                         <!-- {{#if isSat2Hidden}}
@@ -105,12 +105,12 @@
                         {{#if isIeltsHidden}}
                         <th style="border-right: 1pt solid darkgrey"></th>
                         {{else}}
-                        <th id="ielts_listening" style="font-weight: lighter; font-size: small; text-align:center">Listening</th>
-                        <th id="ielts_reading" style="font-weight: lighter; font-size: small; text-align:center">Reading</th>
-                        <th id="ielts_writing" style="font-weight: lighter; font-size: small; text-align:center">Writing</th>
-                        <th id="ielts_speaking" style="font-weight: lighter; font-size: small; text-align:center; border-right: 1pt solid darkgrey">Speaking</th>
+                        <th id="ielts_listening" style="font-weight: lighter; font-size: small; text-align:center">Listening<br>{{ieltsListeningAverage}}</th>
+                        <th id="ielts_reading" style="font-weight: lighter; font-size: small; text-align:center">Reading<br>{{ieltsReadingAverage}}</th>
+                        <th id="ielts_writing" style="font-weight: lighter; font-size: small; text-align:center">Writing<br>{{ieltsWritingAverage}}</th>
+                        <th id="ielts_speaking" style="font-weight: lighter; font-size: small; text-align:center; border-right: 1pt solid darkgrey">Speaking<br>{{ieltsSpeakingAverage}}</th>
 
-                        <th id="ielts_total" style="font-weight: lighter; font-size: small; text-align:center; border-right: 1pt solid darkgrey">Total</th>
+                        <th id="ielts_total" style="font-weight: lighter; font-size: small; text-align:center; border-right: 1pt solid darkgrey">Total<br>{{ieltsTotalAverage}}</th>
                         {{/if}}
                     </tr>
                   {{#each results}}
