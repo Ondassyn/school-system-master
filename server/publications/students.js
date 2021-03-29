@@ -27,6 +27,17 @@ Meteor.publish("schoolGradeStudents", function (schoolId, grade) {
   return this.ready();
 });
 
+Meteor.publish("schoolSatStudents", function (schoolId, grade) {
+  if (this.userId) {
+    if (schoolId && grade && grade === "all")
+      return Students.find({ schoolId, grade: { $in: ["10", "11"] } });
+    return schoolId && grade
+      ? Students.find({ schoolId, grade })
+      : this.ready();
+  }
+  return this.ready();
+});
+
 Meteor.publish("allStudents", function (grade) {
   return Students.find({ grade: grade });
 });

@@ -18,9 +18,6 @@
                         <label for="" style="margin-left: 10pt; ">Сынып</label>
                         <select class="form-control" id="grade">
                             <option value="all">Жалпы</option>
-                            <option value="7">7 сынып</option>
-                            <option value="8">8 сынып</option>
-                            <option value="9">9 сынып</option>
                             <option value="10">10 сынып</option>
                             <option value="11">11 сынып</option>
                         </select>
@@ -55,7 +52,7 @@
                         </th>
                         {{/if}}
 
-                        {{#if isSat2Hidden}}
+                        <!-- {{#if isSat2Hidden}}
                         <th style="text-align: center; border-right: 1pt solid darkgrey">
                             <span id="sat2-expand" class="glyphicon glyphicon-plus"></span>
                         </th>
@@ -63,7 +60,7 @@
                         <th style="text-align: center; border-right: 1pt solid darkgrey" colspan="7">SAT-2 Subject
                             <span style="float: right" id="sat2-hide" class="glyphicon glyphicon-minus"></span>
                         </th>
-                        {{/if}}
+                        {{/if}} -->
 
                         {{#if isIeltsHidden}}
                         <th style="text-align: center; border-right: 1pt solid darkgrey">
@@ -92,7 +89,7 @@
                         <th id="sat-1_total" style="font-weight: lighter; font-size: small; text-align:center; border-right: 1pt solid darkgrey">Total</th>
                         {{/if}}
 
-                        {{#if isSat2Hidden}}
+                        <!-- {{#if isSat2Hidden}}
                         <th style="border-right: 1pt solid darkgrey"></th>
                         {{else}}
                         <th id="sat-2_math-1" style="font-weight: lighter; font-size: small; text-align:center">Math-1</th>
@@ -103,7 +100,7 @@
                         <th id="sat-2_world-history" style="font-weight: lighter; font-size: small; text-align:center; border-right: 1pt solid darkgrey">World History</th>
 
                         <th id="sat-2_total" style="font-weight: lighter; font-size: small; text-align:center; border-right: 1pt solid darkgrey">Total</th>
-                        {{/if}}
+                        {{/if}} -->
 
                         {{#if isIeltsHidden}}
                         <th style="border-right: 1pt solid darkgrey"></th>
@@ -134,7 +131,7 @@
                         <td style="text-align: center; border-right: 1pt solid darkgrey"><input type="text" style="width: 30pt" id="editSat1Total" value="{{sat1total}}"></td>
                         {{/if}}
 
-                        {{#if isSat2Hidden}}
+                        <!-- {{#if isSat2Hidden}}
                         <td style="border-right: 1pt solid darkgrey"></td>
                         {{else}}
                         <td style="text-align: center"><input type="text" style="width: 30pt" id="editSat2Math1" value="{{sat2math1}}"></td>
@@ -144,7 +141,7 @@
                         <td style="text-align: center"><input type="text" style="width: 30pt" id="editSat2Biology" value="{{sat2biology}}"></td>
                         <td style="text-align: center; border-right: 1pt solid darkgrey"><input type="text" style="width: 30pt" id="editSat2WorldHistory" value="{{sat2worldhistory}}"></td>
                         <td style="text-align: center; border-right: 1pt solid darkgrey"><input type="text" style="width: 30pt" id="editSat2Total" value="{{sat2total}}"></td>
-                        {{/if}}
+                        {{/if}} -->
 
                         {{#if isIeltsHidden}}
                         <td style="border-right: 1pt solid darkgrey"></td>
@@ -171,7 +168,7 @@
                         <td style="text-align: center; border-right: 1pt solid darkgrey">{{sat1total}}</td>
                         {{/if}}
 
-                        {{#if isSat2Hidden}}
+                        <!-- {{#if isSat2Hidden}}
                         <td style="border-right: 1pt solid darkgrey"></td>
                         {{else}}
                         <td style="text-align: center">{{sat2math1}}</td>
@@ -181,7 +178,7 @@
                         <td style="text-align: center">{{sat2biology}}</td>
                         <td style="text-align: center; border-right: 1pt solid darkgrey">{{sat2worldhistory}}</td>
                         <td style="text-align: center; border-right: 1pt solid darkgrey">{{sat2total}}</td>
-                        {{/if}}
+                        {{/if}} -->
 
                         {{#if isIeltsHidden}}
                         <td style="border-right: 1pt solid darkgrey"></td>

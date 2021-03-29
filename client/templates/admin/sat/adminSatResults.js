@@ -11,14 +11,14 @@ Template.adminSatResults.onCreated(function () {
   template.showCertified = new ReactiveVar(false);
   template.order = new ReactiveVar([]);
   template.isSat1Hidden = new ReactiveVar(false);
-  template.isSat2Hidden = new ReactiveVar(false);
+  // template.isSat2Hidden = new ReactiveVar(false);
   template.isIeltsHidden = new ReactiveVar(false);
 
   template.subscribe("schools");
 
   template.autorun(() => {
     template.subscribe(
-      "schoolGradeStudents",
+      "schoolSatStudents",
       template.schoolId.get(),
       template.grade.get()
     );
@@ -69,14 +69,14 @@ Template.adminSatResults.helpers({
         sat1english: "",
         sat1math: "",
         sat1total: "",
-        sat2worldhistory: "",
-        sat2math1: "",
-        sat2math2: "",
-        sat2biology: "",
-        sat2chemistry: "",
-        sat2physics: "",
-        sat2total: "",
-        sat2math1: "",
+        // sat2worldhistory: "",
+        // sat2math1: "",
+        // sat2math2: "",
+        // sat2biology: "",
+        // sat2chemistry: "",
+        // sat2physics: "",
+        // sat2total: "",
+        // sat2math1: "",
         ieltslistening: "",
         ieltsreading: "",
         ieltswriting: "",
@@ -93,13 +93,13 @@ Template.adminSatResults.helpers({
         returnObject.sat1english = satResult.sat1_english;
         returnObject.sat1math = satResult.sat1_math;
         returnObject.sat1total = satResult.sat1_total;
-        returnObject.sat2worldhistory = satResult.sat2_world_history;
-        returnObject.sat2math1 = satResult.sat2_math1;
-        returnObject.sat2math2 = satResult.sat2_math2;
-        returnObject.sat2biology = satResult.sat2_biology;
-        returnObject.sat2chemistry = satResult.sat2_chemistry;
-        returnObject.sat2physics = satResult.sat2_physics;
-        returnObject.sat2total = satResult.sat2_total;
+        // returnObject.sat2worldhistory = satResult.sat2_world_history;
+        // returnObject.sat2math1 = satResult.sat2_math1;
+        // returnObject.sat2math2 = satResult.sat2_math2;
+        // returnObject.sat2biology = satResult.sat2_biology;
+        // returnObject.sat2chemistry = satResult.sat2_chemistry;
+        // returnObject.sat2physics = satResult.sat2_physics;
+        // returnObject.sat2total = satResult.sat2_total;
       }
 
       let ieltsResult = IeltsResults.findOne({
@@ -130,9 +130,9 @@ Template.adminSatResults.helpers({
   isSat1Hidden() {
     return Template.instance().isSat1Hidden.get();
   },
-  isSat2Hidden() {
-    return Template.instance().isSat2Hidden.get();
-  },
+  // isSat2Hidden() {
+  //   return Template.instance().isSat2Hidden.get();
+  // },
   isIeltsHidden() {
     return Template.instance().isIeltsHidden.get();
   },
@@ -143,13 +143,13 @@ var saveItem = function (template) {
     sat1_english: $("#editSat1English").val(),
     sat1_math: $("#editSat1Math").val(),
     sat1_total: $("#editSat1Total").val(),
-    sat2_world_history: $("#editSat2WorldHistory").val(),
-    sat2_math1: $("#editSat2Math1").val(),
-    sat2_math2: $("#editSat2Math2").val(),
-    sat2_biology: $("#editSat2Biology").val(),
-    sat2_chemistry: $("#editSat2Chemistry").val(),
-    sat2_physics: $("#editSat2Physics").val(),
-    sat2_total: $("#editSat2Total").val(),
+    // sat2_world_history: $("#editSat2WorldHistory").val(),
+    // sat2_math1: $("#editSat2Math1").val(),
+    // sat2_math2: $("#editSat2Math2").val(),
+    // sat2_biology: $("#editSat2Biology").val(),
+    // sat2_chemistry: $("#editSat2Chemistry").val(),
+    // sat2_physics: $("#editSat2Physics").val(),
+    // sat2_total: $("#editSat2Total").val(),
     ielts_listening: $("#editIeltsListening").val(),
     ielts_reading: $("#editIeltsReading").val(),
     ielts_writing: $("#editIeltsWriting").val(),
@@ -202,12 +202,12 @@ Template.adminSatResults.events({
   "click #sat1-expand"(event, template) {
     template.isSat1Hidden.set(false);
   },
-  "click #sat2-hide"(event, template) {
-    template.isSat2Hidden.set(true);
-  },
-  "click #sat2-expand"(event, template) {
-    template.isSat2Hidden.set(false);
-  },
+  // "click #sat2-hide"(event, template) {
+  //   template.isSat2Hidden.set(true);
+  // },
+  // "click #sat2-expand"(event, template) {
+  //   template.isSat2Hidden.set(false);
+  // },
   "click #ielts-hide"(event, template) {
     template.isIeltsHidden.set(true);
   },
@@ -273,149 +273,149 @@ Template.adminSatResults.events({
       template.order.set(order);
     }
   },
-  "click #sat-2_world-history"(event, template) {
-    let satResults = SatResults.find(
-      {},
-      {
-        sort: { sat2_world_history: -1 },
-        fields: { studentId: 1, sat2_world_history: 1, _id: 0 },
-      }
-    ).fetch();
-    let order = satResults
-      .filter(
-        (satResult) =>
-          satResult.sat2_world_history || satResult.sat2_world_history === 0
-      )
-      .map((satResult) => satResult.studentId);
-    let oldOrder = template.order.get();
+  // "click #sat-2_world-history"(event, template) {
+  //   let satResults = SatResults.find(
+  //     {},
+  //     {
+  //       sort: { sat2_world_history: -1 },
+  //       fields: { studentId: 1, sat2_world_history: 1, _id: 0 },
+  //     }
+  //   ).fetch();
+  //   let order = satResults
+  //     .filter(
+  //       (satResult) =>
+  //         satResult.sat2_world_history || satResult.sat2_world_history === 0
+  //     )
+  //     .map((satResult) => satResult.studentId);
+  //   let oldOrder = template.order.get();
 
-    if (JSON.stringify(order) === JSON.stringify(oldOrder)) {
-      template.order.set(order.reverse());
-    } else {
-      template.order.set(order);
-    }
-  },
-  "click #sat-2_math-1"(event, template) {
-    let satResults = SatResults.find(
-      {},
-      {
-        sort: { sat2_math1: -1 },
-        fields: { studentId: 1, sat2_math1: 1, _id: 0 },
-      }
-    ).fetch();
-    let order = satResults
-      .filter((satResult) => satResult.sat2_math1 || satResult.sat2_math1 === 0)
-      .map((satResult) => satResult.studentId);
-    let oldOrder = template.order.get();
+  //   if (JSON.stringify(order) === JSON.stringify(oldOrder)) {
+  //     template.order.set(order.reverse());
+  //   } else {
+  //     template.order.set(order);
+  //   }
+  // },
+  // "click #sat-2_math-1"(event, template) {
+  //   let satResults = SatResults.find(
+  //     {},
+  //     {
+  //       sort: { sat2_math1: -1 },
+  //       fields: { studentId: 1, sat2_math1: 1, _id: 0 },
+  //     }
+  //   ).fetch();
+  //   let order = satResults
+  //     .filter((satResult) => satResult.sat2_math1 || satResult.sat2_math1 === 0)
+  //     .map((satResult) => satResult.studentId);
+  //   let oldOrder = template.order.get();
 
-    if (JSON.stringify(order) === JSON.stringify(oldOrder)) {
-      template.order.set(order.reverse());
-    } else {
-      template.order.set(order);
-    }
-  },
-  "click #sat-2_math-2"(event, template) {
-    let satResults = SatResults.find(
-      {},
-      {
-        sort: { sat2_math2: -1 },
-        fields: { studentId: 1, sat2_math2: 1, _id: 0 },
-      }
-    ).fetch();
-    let order = satResults
-      .filter((satResult) => satResult.sat2_math2 || satResult.sat2_math2 === 0)
-      .map((satResult) => satResult.studentId);
-    let oldOrder = template.order.get();
+  //   if (JSON.stringify(order) === JSON.stringify(oldOrder)) {
+  //     template.order.set(order.reverse());
+  //   } else {
+  //     template.order.set(order);
+  //   }
+  // },
+  // "click #sat-2_math-2"(event, template) {
+  //   let satResults = SatResults.find(
+  //     {},
+  //     {
+  //       sort: { sat2_math2: -1 },
+  //       fields: { studentId: 1, sat2_math2: 1, _id: 0 },
+  //     }
+  //   ).fetch();
+  //   let order = satResults
+  //     .filter((satResult) => satResult.sat2_math2 || satResult.sat2_math2 === 0)
+  //     .map((satResult) => satResult.studentId);
+  //   let oldOrder = template.order.get();
 
-    if (JSON.stringify(order) === JSON.stringify(oldOrder)) {
-      template.order.set(order.reverse());
-    } else {
-      template.order.set(order);
-    }
-  },
-  "click #sat-2_biology"(event, template) {
-    let satResults = SatResults.find(
-      {},
-      {
-        sort: { sat2_biology: -1 },
-        fields: { studentId: 1, sat2_biology: 1, _id: 0 },
-      }
-    ).fetch();
-    let order = satResults
-      .filter(
-        (satResult) => satResult.sat2_biology || satResult.sat2_biology === 0
-      )
-      .map((satResult) => satResult.studentId);
-    let oldOrder = template.order.get();
+  //   if (JSON.stringify(order) === JSON.stringify(oldOrder)) {
+  //     template.order.set(order.reverse());
+  //   } else {
+  //     template.order.set(order);
+  //   }
+  // },
+  // "click #sat-2_biology"(event, template) {
+  //   let satResults = SatResults.find(
+  //     {},
+  //     {
+  //       sort: { sat2_biology: -1 },
+  //       fields: { studentId: 1, sat2_biology: 1, _id: 0 },
+  //     }
+  //   ).fetch();
+  //   let order = satResults
+  //     .filter(
+  //       (satResult) => satResult.sat2_biology || satResult.sat2_biology === 0
+  //     )
+  //     .map((satResult) => satResult.studentId);
+  //   let oldOrder = template.order.get();
 
-    if (JSON.stringify(order) === JSON.stringify(oldOrder)) {
-      template.order.set(order.reverse());
-    } else {
-      template.order.set(order);
-    }
-  },
-  "click #sat-2_chemistry"(event, template) {
-    let satResults = SatResults.find(
-      {},
-      {
-        sort: { sat2_chemistry: -1 },
-        fields: { studentId: 1, sat2_chemistry: 1, _id: 0 },
-      }
-    ).fetch();
-    let order = satResults
-      .filter(
-        (satResult) =>
-          satResult.sat2_chemistry || satResult.sat2_chemistry === 0
-      )
-      .map((satResult) => satResult.studentId);
-    let oldOrder = template.order.get();
+  //   if (JSON.stringify(order) === JSON.stringify(oldOrder)) {
+  //     template.order.set(order.reverse());
+  //   } else {
+  //     template.order.set(order);
+  //   }
+  // },
+  // "click #sat-2_chemistry"(event, template) {
+  //   let satResults = SatResults.find(
+  //     {},
+  //     {
+  //       sort: { sat2_chemistry: -1 },
+  //       fields: { studentId: 1, sat2_chemistry: 1, _id: 0 },
+  //     }
+  //   ).fetch();
+  //   let order = satResults
+  //     .filter(
+  //       (satResult) =>
+  //         satResult.sat2_chemistry || satResult.sat2_chemistry === 0
+  //     )
+  //     .map((satResult) => satResult.studentId);
+  //   let oldOrder = template.order.get();
 
-    if (JSON.stringify(order) === JSON.stringify(oldOrder)) {
-      template.order.set(order.reverse());
-    } else {
-      template.order.set(order);
-    }
-  },
-  "click #sat-2_physics"(event, template) {
-    let satResults = SatResults.find(
-      {},
-      {
-        sort: { sat2_physics: -1 },
-        fields: { studentId: 1, sat2_physics: 1, _id: 0 },
-      }
-    ).fetch();
-    let order = satResults
-      .filter(
-        (satResult) => satResult.sat2_physics || satResult.sat2_physics === 0
-      )
-      .map((satResult) => satResult.studentId);
-    let oldOrder = template.order.get();
+  //   if (JSON.stringify(order) === JSON.stringify(oldOrder)) {
+  //     template.order.set(order.reverse());
+  //   } else {
+  //     template.order.set(order);
+  //   }
+  // },
+  // "click #sat-2_physics"(event, template) {
+  //   let satResults = SatResults.find(
+  //     {},
+  //     {
+  //       sort: { sat2_physics: -1 },
+  //       fields: { studentId: 1, sat2_physics: 1, _id: 0 },
+  //     }
+  //   ).fetch();
+  //   let order = satResults
+  //     .filter(
+  //       (satResult) => satResult.sat2_physics || satResult.sat2_physics === 0
+  //     )
+  //     .map((satResult) => satResult.studentId);
+  //   let oldOrder = template.order.get();
 
-    if (JSON.stringify(order) === JSON.stringify(oldOrder)) {
-      template.order.set(order.reverse());
-    } else {
-      template.order.set(order);
-    }
-  },
-  "click #sat-2_total"(event, template) {
-    let satResults = SatResults.find(
-      {},
-      {
-        sort: { sat2_total: -1 },
-        fields: { studentId: 1, sat2_total: 1, _id: 0 },
-      }
-    ).fetch();
-    let order = satResults
-      .filter((satResult) => satResult.sat2_total || satResult.sat2_total === 0)
-      .map((satResult) => satResult.studentId);
-    let oldOrder = template.order.get();
+  //   if (JSON.stringify(order) === JSON.stringify(oldOrder)) {
+  //     template.order.set(order.reverse());
+  //   } else {
+  //     template.order.set(order);
+  //   }
+  // },
+  // "click #sat-2_total"(event, template) {
+  //   let satResults = SatResults.find(
+  //     {},
+  //     {
+  //       sort: { sat2_total: -1 },
+  //       fields: { studentId: 1, sat2_total: 1, _id: 0 },
+  //     }
+  //   ).fetch();
+  //   let order = satResults
+  //     .filter((satResult) => satResult.sat2_total || satResult.sat2_total === 0)
+  //     .map((satResult) => satResult.studentId);
+  //   let oldOrder = template.order.get();
 
-    if (JSON.stringify(order) === JSON.stringify(oldOrder)) {
-      template.order.set(order.reverse());
-    } else {
-      template.order.set(order);
-    }
-  },
+  //   if (JSON.stringify(order) === JSON.stringify(oldOrder)) {
+  //     template.order.set(order.reverse());
+  //   } else {
+  //     template.order.set(order);
+  //   }
+  // },
   "click #ielts_listening"(event, template) {
     let ieltsResults = IeltsResults.find(
       {},
@@ -519,13 +519,13 @@ Template.adminSatResults.events({
       "Reading & Writing (SAT-1)",
       "Math (SAT-1)",
       "Total (SAT-1)",
-      "Math-1 (SAT-2)",
-      "Math-2 (SAT-2)",
-      "Physics (SAT-2)",
-      "Chemistry (SAT-2)",
-      "Biology (SAT-2)",
-      "World History (SAT-2)",
-      "Total (SAT-2)",
+      // "Math-1 (SAT-2)",
+      // "Math-2 (SAT-2)",
+      // "Physics (SAT-2)",
+      // "Chemistry (SAT-2)",
+      // "Biology (SAT-2)",
+      // "World History (SAT-2)",
+      // "Total (SAT-2)",
       "Listening (IELTS)",
       "Reading (IELTS)",
       "Writing (IELTS)",
@@ -567,30 +567,30 @@ Template.adminSatResults.events({
           dataRow.push(satResult.sat1_total);
         else dataRow.push("");
 
-        if (satResult.sat2_math1 || satResult.sat2_math1 === 0)
-          dataRow.push(satResult.sat2_math1);
-        else dataRow.push("");
-        if (satResult.sat2_math2 || satResult.sat2_math2 === 0)
-          dataRow.push(satResult.sat2_math2);
-        else dataRow.push("");
-        if (satResult.sat2_physics || satResult.sat2_physics === 0)
-          dataRow.push(satResult.sat2_physics);
-        else dataRow.push("");
-        if (satResult.sat2_chemistry || satResult.sat2_chemistry === 0)
-          dataRow.push(satResult.sat2_chemistry);
-        else dataRow.push("");
-        if (satResult.sat2_biology || satResult.sat2_biology === 0)
-          dataRow.push(satResult.sat2_biology);
-        else dataRow.push("");
-        if (satResult.sat2_world_history || satResult.sat2_world_history === 0)
-          dataRow.push(satResult.sat2_world_history);
-        else dataRow.push("");
+        // if (satResult.sat2_math1 || satResult.sat2_math1 === 0)
+        //   dataRow.push(satResult.sat2_math1);
+        // else dataRow.push("");
+        // if (satResult.sat2_math2 || satResult.sat2_math2 === 0)
+        //   dataRow.push(satResult.sat2_math2);
+        // else dataRow.push("");
+        // if (satResult.sat2_physics || satResult.sat2_physics === 0)
+        //   dataRow.push(satResult.sat2_physics);
+        // else dataRow.push("");
+        // if (satResult.sat2_chemistry || satResult.sat2_chemistry === 0)
+        //   dataRow.push(satResult.sat2_chemistry);
+        // else dataRow.push("");
+        // if (satResult.sat2_biology || satResult.sat2_biology === 0)
+        //   dataRow.push(satResult.sat2_biology);
+        // else dataRow.push("");
+        // if (satResult.sat2_world_history || satResult.sat2_world_history === 0)
+        //   dataRow.push(satResult.sat2_world_history);
+        // else dataRow.push("");
 
-        if (satResult.sat2_total || satResult.sat2_total === 0)
-          dataRow.push(satResult.sat2_total);
-        else dataRow.push("");
+        // if (satResult.sat2_total || satResult.sat2_total === 0)
+        //   dataRow.push(satResult.sat2_total);
+        // else dataRow.push("");
       } else {
-        dataRow.push[("", "", "", "", "", "", "", "", "", "")];
+        dataRow.push("", "", "");
       }
 
       if (ieltsResult) {
