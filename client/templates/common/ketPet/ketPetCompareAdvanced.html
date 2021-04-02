@@ -1,0 +1,182 @@
+<template name="ketPetCompareAdvanced">
+    <div class="row">
+        <div class="col-md-12">
+            <h4 style="text-align: center; padding-bottom: 15pt">KET-PET Салыстыру</h4>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-inline">
+                        <div class="form-group" style="margin-right: 15pt">
+
+                          <label style="margin-left: 10pt;">Емтихан таңдаңыз</label>
+                          <select class="form-control" name='grade' id='grade'>
+                              <option value="7">KET 7 cынып</option>
+                              <option value="8">PET 8 cынып</option>
+                          </select>
+
+                          <label style="margin-left: 10pt;">Жыл таңдаңыз</label>
+                          <select class="form-control" id="previousYear">
+                              {{#each academicYear in academicYears}}
+                                {{#if isCurrentYear academicYear}}
+                                <option value="{{academicYear}}" selected>{{academicYear}}</option>
+                                {{else}}
+                                <option value="{{academicYear}}">{{academicYear}}</option>
+                                {{/if}}
+                              {{/each}}
+                          </select>
+
+                          <label style="margin-left: 10pt;">Тоқсан таңдаңыз</label>
+                          <select class="form-control" id="previousPeriod">
+                              <option value="2">2 тоқсан</option>
+                              <option value="4">4 тоқсан</option>
+                          </select>
+
+                        <label style="margin-left: 10pt;">Жыл таңдаңыз</label>
+                          <select class="form-control" id="currentYear">
+                              {{#each academicYear in academicYears}}
+                                {{#if isCurrentYear academicYear}}
+                                <option value="{{academicYear}}" selected>{{academicYear}}</option>
+                                {{else}}
+                                <option value="{{academicYear}}">{{academicYear}}</option>
+                                {{/if}}
+                              {{/each}}
+                          </select>
+
+                          <label style="margin-left: 10pt;">Тоқсан таңдаңыз</label>
+                          <select class="form-control" id="currentPeriod">
+                              <option value="2">2 тоқсан</option>
+                              <option value="4">4 тоқсан</option>
+                          </select>
+
+                        </div>
+
+                        <div class="checkbox">
+                            <label style="margin-left: 10pt; "><input id="showNumbers" type="checkbox"> Сандарды көрсету</label>
+                        </div>
+
+                        <div class="form-group" style="float: right">
+                            <a class="btn btn-success" id="export">Export</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            {{#if Template.subscriptionsReady}}
+
+            <div  class="table table-responsive" id="out">
+              <table style="margin-top: 15pt" class="table table-striped table-bordered">
+
+                <thead>
+                    <tr class="bts-header">
+                        <th>#</th>
+                        <th style="text-align:center" id="sortTotal">Мектеп ID</th>
+                        <th style="text-align:center; border-right: 1pt solid darkgrey" id="school_name">Мектеп аты</th>
+                        <th style="text-align:center; border-right: 1pt solid darkgrey" id="total_number" colspan="2">Қатысушылар саны</th>
+                        <th style="text-align:center; border-right: 1pt solid darkgrey" id="fail" colspan="3">Fail</th>
+                        {{#if isGrade7}}
+                        <th style="text-align:center; border-right: 1pt solid darkgrey" id="a1" colspan="2">A1</th>
+                        <th style="text-align:center; border-right: 1pt solid darkgrey" id="a2_and_above" colspan="2">A2 and above</th>
+                        {{else}}
+                        <th style="text-align:center; border-right: 1pt solid darkgrey" id="a2" colspan="2">A2</th>
+                        <th style="text-align:center; border-right: 1pt solid darkgrey" id="b1_and_above" colspan="2">B1 and above</th>
+                        {{/if}}
+                    </tr>
+                </thead>
+                
+                <tbody>
+                    <tr>
+                        <th></th>
+                        <th></th>
+                        <th style="border-right: 1pt solid darkgrey"></th>
+                        {{#if isGrade7}}
+                        <th class="subheader" name="total_number_previous_7" style="text-align: center">{{{previous}}}</th>
+                        <th class="subheader" name="total_number_current_7" style="text-align: center; border-right: 1pt solid darkgrey">{{{current}}}</th>
+                        <th class="subheader" name="fail_number_previous_7" style="text-align: center">{{{previous}}}</th>
+                        <th class="subheader" name="fail_number_current_7" style="text-align:center; border-right: 1pt solid darkgrey">{{{current}}}</th>
+                        <th class="subheader" name="fail_number_difference_7" style="text-align:center; border-right: 1pt solid darkgrey;">Айырмашылық</th>
+                        <th class="subheader" name="a1_number_previous" style="text-align: center">{{{previous}}}</th>
+                        <th class="subheader" name="a1_number_current" style="text-align:center; border-right: 1pt solid darkgrey">{{{current}}}</th>
+                        <th class="subheader" name="a2_and_above_number_previous" style="text-align: center">{{{previous}}}</th>
+                        <th class="subheader" name="a2_and_above_number_current" style="text-align:center; border-right: 1pt solid darkgrey">{{{current}}}</th>
+                        {{else}}
+                        <th class="subheader" name="total_number_previous_8" style="text-align: center">{{{previous}}}</th>
+                        <th class="subheader" name="total_number_current_8" style="text-align: center; border-right: 1pt solid darkgrey">{{{current}}}</th>
+                        <th class="subheader" name="fail_percentage_previous_8" style="text-align: center">{{{previous}}}</th>
+                        <th class="subheader" name="fail_percentage_current_8" style="text-align:center">{{{current}}}</th>
+                        <th class="subheader" name="fail_percentage_difference_7" style="text-align:center; border-right: 1pt solid darkgrey;">Айырмашылық</th>
+                        <th class="subheader" name="a2_number_previous" style="text-align: center">{{{previous}}}</th>
+                        <th class="subheader" name="a2_number_current" style="text-align:center; border-right: 1pt solid darkgrey">{{{current}}}</th>
+                        <th class="subheader" name="b1_and_above_number_previous" style="text-align: center">{{{previous}}}</th>
+                        <th class="subheader" name="b1_and_above_number_current" style="text-align:center; border-right: 1pt solid darkgrey">{{{current}}}</th>
+                        {{/if}}
+                    </tr>
+                    {{#each results}}
+                    <tr>
+                        <td>{{math @index "+" 1}}</td>
+                        <td style="text-align:center;">{{schoolId}}</td>
+                        <td style="border-right: 1pt solid darkgrey">{{school}}</td>
+                        <td style="text-align: center;">{{totalNumberPrevious}}</td>
+                        <td style="text-align: center; border-right: 1pt solid darkgrey">{{totalNumberCurrent}}</td>
+                        
+                        {{#if isShowNumbers}}
+                            <td style="text-align: center;">{{failNumberPrevious}}</td>
+                            <td style="text-align: center; border-right: 1pt solid darkgrey">{{failNumberCurrent}}</td>
+
+                            {{#if isValidNumber failNumberDifference}}
+                            <td style="text-align: center; border-right: 1pt solid darkgrey; {{setGradientStyle failNumberDifference 'number'}}">{{failNumberDifference}}</td>
+                            {{else}} <td style="border-right: 1pt solid darkgrey"></td> {{/if}}
+
+                            <td style="text-align: center;">{{a1NumberPrevious}}</td>
+                            <td style="text-align: center; border-right: 1pt solid darkgrey">{{a1NumberCurrent}}</td>
+                            <td style="text-align: center;">{{a2AndAboveNumberPrevious}}</td>
+                            <td style="text-align: center; border-right: 1pt solid darkgrey">{{a2AndAboveNumberCurrent}}</td>
+                        
+                        {{else}}
+                            {{#if isValidNumber failPercentagePrevious}}
+                            <td style="text-align: center;">{{round "2" failPercentagePrevious}} %</td>
+                            {{else}} 
+                            <td></td> 
+                            {{/if}}
+                            {{#if isValidNumber failPercentageCurrent}}
+                            <td style="text-align: center; border-right: 1pt solid darkgrey">{{round "2" failPercentageCurrent}} %</td>
+                            {{else}} 
+                            <td style="border-right: 1pt solid darkgrey"></td> 
+                            {{/if}}
+                            {{#if isValidNumber failPercentageDifference}}
+                            <td style="text-align: center; border-right: 1pt solid darkgrey; {{setGradientStyle failPercentageDifference 'percentage'}}">{{round "2" failPercentageDifference}} %</td>
+                            {{else}} <td style="border-right: 1pt solid darkgrey"></td> {{/if}}
+                        
+                            {{#if isValidNumber a1PercentagePrevious}}
+                            <td style="text-align: center;">{{round "2" a1PercentagePrevious}} %</td>
+                            {{else}}
+                            <td></td>
+                            {{/if}}
+                            {{#if isValidNumber a1PercentageCurrent}}
+                            <td style="text-align: center; border-right: 1pt solid darkgrey">{{round "2" a1PercentageCurrent}} %</td>
+                            {{else}}
+                            <td style="text-align: center; border-right: 1pt solid darkgrey"></td>
+                            {{/if}}
+                            {{#if isValidNumber a2AndAbovePercentagePrevious}}
+                            <td style="text-align: center;">{{round "2" a2AndAbovePercentagePrevious}} %</td>
+                            {{else}}
+                            <td></td>
+                            {{/if}}
+                            {{#if isValidNumber a2AndAbovePercentageCurrent}}
+                            <td style="text-align: center; border-right: 1pt solid darkgrey">{{round "2" a2AndAbovePercentageCurrent}} %</td> 
+                            {{else}}
+                            <td style="text-align: center; border-right: 1pt solid darkgrey"></td>
+                            {{/if}}
+                        {{/if}}
+                        
+                    </tr>
+                    {{/each}}
+                </tbody>
+              </table>
+            </div>
+
+
+            {{else}}
+            <p>Loading...</p>
+            {{/if}}
+        </div>
+    </div>
+</template>

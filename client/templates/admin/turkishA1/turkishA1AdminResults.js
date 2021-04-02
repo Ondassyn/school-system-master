@@ -7,7 +7,7 @@ import XLSX from "xlsx";
 Template.turkishA1AdminResults.onCreated(function () {
   let template = this;
   Session.setDefault("Sort", { total: -1 });
-  document.title = "Түрік тілі A1 Нәтижелері";
+  document.title = "Түрік тілі A1 7 сынып нәтижелері";
   template.state = new ReactiveVar("results");
   template.school = new ReactiveVar("all");
   template.subscribe("schools");

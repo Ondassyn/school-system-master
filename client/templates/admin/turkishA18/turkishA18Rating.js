@@ -1,22 +1,22 @@
 import { Template } from "meteor/templating";
 import { Session } from "meteor/session";
-import "./turkishA1Rating.html";
+import "./turkishA18Rating.html";
 import { Meteor } from "meteor/meteor";
 import XLSX from "xlsx";
 
-Template.turkishA1Rating.onCreated(function () {
+Template.turkishA18Rating.onCreated(function () {
   let template = this;
   Session.setDefault("Sort", { totalAverage: -1 });
-  document.title = "Түрік тілі A1 7 сынып рейтинг";
+  document.title = "Түрік тілі A1 8 сынып рейтинг";
   template.subscribe("schools");
   template.autorun(() => {
-    template.subscribe("turkishA1Ratings", academicYear.get());
+    template.subscribe("turkishA18Ratings", academicYear.get());
   });
 });
 
-Template.turkishA1Rating.helpers({
+Template.turkishA18Rating.helpers({
   results() {
-    let results = TurkishA1Ratings.find(
+    let results = TurkishA18Ratings.find(
       {},
       { sort: Session.get("Sort") }
     ).fetch();
@@ -45,7 +45,7 @@ var sortReadingAverage = -1;
 var sortWritingAverage = -1;
 var sortSpeakingAverage = -1;
 
-Template.turkishA1Rating.events({
+Template.turkishA18Rating.events({
   "click #export"(event, template) {
     document.getElementById("out").innerHTML;
     var data = [];
@@ -61,7 +61,7 @@ Template.turkishA1Rating.events({
     ];
 
     data.push(headers);
-    var ratings = TurkishA1Ratings.find(
+    var ratings = TurkishA18Ratings.find(
       {},
       { sort: Session.get("Sort") }
     ).fetch();

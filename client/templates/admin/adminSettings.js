@@ -219,6 +219,18 @@ Template.adminSettings.events({
     });
   },
 
+  "click #totalKetPetRating4"(event, template) {
+    Meteor.call("KetPet.totalRating4", academicYear.get(), function (err) {
+      if (err) {
+        alert(err.reason);
+        SUIBlock.unblock();
+      } else {
+        SUIBlock.unblock();
+        alert("Жасалды");
+      }
+    });
+  },
+
   "click #reCalc"() {
     SUIBlock.block("Саналуда...");
     Meteor.call("UbtResults.reCalcRating", academicYear.get(), function (err) {

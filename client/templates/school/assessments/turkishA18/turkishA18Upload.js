@@ -1,24 +1,24 @@
 import { Template } from "meteor/templating";
 import { ReactiveVar } from "meteor/reactive-var";
-import "./turkishA1Upload.html";
+import "./turkishA18Upload.html";
 import { ReactiveDict } from "meteor/reactive-dict";
 import XLSX from "xlsx";
 
-Template.turkishA1Upload.onCreated(function () {
+Template.turkishA18Upload.onCreated(function () {
   let template = this;
-  document.title = "Түрік тілі A1 7 сынып жүктеу";
+  document.title = "Түрік тілі A1 8 сынып жүктеу";
   template.errors = new ReactiveVar(false);
   template.results = new ReactiveVar([]);
   template.isXlsx = new ReactiveVar(false);
   template.subscribe("schools");
-  template.subscribe("gradeStudents", "7");
+  template.subscribe("gradeStudents", "8");
   template.autorun(() => {
-    template.subscribe("turkishA1Keys", academicYear.get());
-    template.subscribe("turkishA1SchoolResults", academicYear.get());
+    template.subscribe("turkishA18Keys", academicYear.get());
+    template.subscribe("turkishA18SchoolResults", academicYear.get());
   });
 });
 
-Template.turkishA1Upload.helpers({
+Template.turkishA18Upload.helpers({
   results() {
     return Template.instance().results.get();
   },
@@ -27,14 +27,14 @@ Template.turkishA1Upload.helpers({
   },
 });
 
-Template.turkishA1Upload.events({
+Template.turkishA18Upload.events({
   "click #save_txt"(event, template) {
     event.preventDefault();
 
     if (template.results.get().length > 0) {
       SUIBlock.block("Жүктелуде...");
       Meteor.call(
-        "TurkishA1Results.UploadTxt",
+        "TurkishA18Results.UploadTxt",
         academicYear.get(),
         template.results.get(),
         function (err) {
@@ -45,7 +45,7 @@ Template.turkishA1Upload.events({
             template.results.set([]);
             SUIBlock.unblock();
             alert("Сақталды");
-            FlowRouter.redirect("/school/turkishA1/results");
+            FlowRouter.redirect("/school/turkishA18/results");
           }
         }
       );
@@ -61,7 +61,7 @@ Template.turkishA1Upload.events({
       SUIBlock.block("Жүктелуде...");
 
       Meteor.call(
-        "TurkishA1Results.UploadXlsx",
+        "TurkishA18Results.UploadXlsx",
         academicYear.get(),
         template.results.get(),
         function (err) {
@@ -73,7 +73,7 @@ Template.turkishA1Upload.events({
             SUIBlock.unblock();
             bootbox.alert("Сақталды");
 
-            FlowRouter.redirect("/school/turkishA1/results");
+            FlowRouter.redirect("/school/turkishA18/results");
           }
         }
       );
@@ -109,7 +109,7 @@ Template.turkishA1Upload.events({
     ).fetch();
 
     students.forEach((student) => {
-      let result = TurkishA1Results.findOne({ studentId: student.studentId });
+      let result = TurkishA18Results.findOne({ studentId: student.studentId });
       let content = [
         student.studentId,
         student.grade + student.division,
@@ -132,7 +132,7 @@ Template.turkishA1Upload.events({
     Meteor.call("download", data, (err, wb) => {
       if (err) throw err;
 
-      let sName = "TurkishA1 " + school.secondaryName + " example.xlsx";
+      let sName = "TurkishA18 " + school.secondaryName + " example.xlsx";
       XLSX.writeFile(wb, sName);
     });
   },
@@ -199,7 +199,7 @@ Template.turkishA1Upload.events({
             isValid: true,
           };
 
-          let variant = TurkishA1Keys.findOne({
+          let variant = TurkishA18Keys.findOne({
             variant: studObj.variant,
             academicYear: academicYear.get(),
           });
@@ -247,6 +247,6 @@ Template.turkishA1Upload.events({
   },
 });
 
-Template.turkishA1Upload.onRendered(function () {
+Template.turkishA18Upload.onRendered(function () {
   this.$('[data-toggle="tooltip"]').tooltip({ trigger: "hover" });
 });

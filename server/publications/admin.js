@@ -80,6 +80,29 @@ Meteor.publish("turkishA1Ratings", function (academicYear) {
   return this.ready();
 });
 
+Meteor.publish("turkishA18Keys", function (academicYear) {
+  if (this.userId) {
+    return TurkishA18Keys.find({ academicYear });
+  }
+  return this.ready();
+});
+
+Meteor.publish("turkishA18AdminResults", function (academicYear, schoolId) {
+  if (!schoolId) return;
+  if (this.userId) {
+    if (schoolId === "all") return TurkishA18Results.find({ academicYear });
+    return TurkishA18Results.find({ academicYear, schoolId });
+  }
+  return this.ready();
+});
+
+Meteor.publish("turkishA18Ratings", function (academicYear) {
+  if (this.userId) {
+    return TurkishA18Ratings.find({ academicYear });
+  }
+  return this.ready();
+});
+
 Meteor.publish("btsLevels", function (academicYear, quarter) {
   if (this.userId) {
     return BtsLevels.find({ academicYear: academicYear, quarter: quarter });
@@ -382,6 +405,13 @@ Meteor.publish(
     return this.ready();
   }
 );
+
+Meteor.publish("adminKetPetRatingsCompareAdvanced", function () {
+  if (this.userId) {
+    return KetPetRatings.find({});
+  }
+  return this.ready();
+});
 
 Meteor.publish("examinationActivityLog", function () {
   return ExaminationActivityLog.find({});

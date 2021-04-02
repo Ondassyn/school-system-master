@@ -1,23 +1,40 @@
 import { Template } from "meteor/templating";
 import { ReactiveVar } from "meteor/reactive-var";
 import { Meteor } from "meteor/meteor";
-import "./turkishA1Results.html";
+import "./turkishA18AdminResults.html";
 import XLSX from "xlsx";
 
-Template.turkishA1Results.onCreated(function () {
+Template.turkishA18AdminResults.onCreated(function () {
   let template = this;
   Session.setDefault("Sort", { total: -1 });
-  document.title = "Түрік тілі A1 7 сынып нәтижелері";
+  document.title = "Түрік тілі A1 8 сынып нәтижелері";
   template.state = new ReactiveVar("results");
-
+  template.school = new ReactiveVar("all");
+  template.subscribe("schools");
   template.autorun(() => {
-    template.subscribe("turkishA1SchoolResults", academicYear.get());
+    template.subscribe(
+      "turkishA18AdminResults",
+      academicYear.get(),
+      template.school.get()
+    );
   });
 });
 
-Template.turkishA1Results.helpers({
+Template.turkishA18AdminResults.helpers({
+  schools() {
+    return Schools.find({}, { sort: { shortName: 1 } });
+  },
   results() {
-    return TurkishA1Results.find({}, { sort: Session.get("Sort") });
+    let results = TurkishA18Results.find(
+      {},
+      { sort: Session.get("Sort") }
+    ).fetch();
+    results.map((result) => {
+      result["school"] = Schools.findOne({
+        schoolId: result.schoolId,
+      }).shortName;
+    });
+    return results;
   },
 });
 
@@ -27,10 +44,13 @@ var sortReading = -1;
 var sortWriting = -1;
 var sortSpeaking = -1;
 
-Template.turkishA1Results.events({
+Template.turkishA18AdminResults.events({
+  "change #school"(event, template) {
+    template.school.set(event.target.value);
+  },
   "click #export"(event, template) {
     const html = document.getElementById("out").innerHTML;
-    var resultStore = TurkishA1Results.find(
+    var resultStore = TurkishA18Results.find(
       {},
       { sort: Session.get("Sort") }
     ).fetch();

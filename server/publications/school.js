@@ -49,3 +49,12 @@ Meteor.publish("turkishA1SchoolResults", function (academicYear) {
   }
   return this.ready();
 });
+
+Meteor.publish("turkishA18SchoolResults", function (academicYear) {
+  if (this.userId) {
+    let school = Schools.findOne({ userId: this.userId });
+    if (!school) school = Schools.findOne({ coordinatorId: this.userId });
+    return TurkishA18Results.find({ academicYear, schoolId: school.schoolId });
+  }
+  return this.ready();
+});
