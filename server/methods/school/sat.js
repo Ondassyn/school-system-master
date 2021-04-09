@@ -47,6 +47,8 @@ Meteor.methods({
           ? Number(editItem.sat2_total)
           : "";
 
+        satResult.updatedAt = new Date();
+
         SatResults.update({ academicYear, studentId }, { $set: satResult });
         ExaminationActivityLog.insert({
           createdAt: new Date(),
@@ -65,6 +67,7 @@ Meteor.methods({
           academicYear,
           grade,
           schoolId,
+          createdAt: new Date(),
           sat1_english: editItem.sat1_english
             ? Number(editItem.sat1_english)
             : "",
@@ -135,6 +138,8 @@ Meteor.methods({
           ? Number(editItem.ielts_total)
           : "";
 
+        ieltsResult.updatedAt = new Date();
+
         IeltsResults.update({ academicYear, studentId }, { $set: ieltsResult });
         ExaminationActivityLog.insert({
           createdAt: new Date(),
@@ -153,6 +158,7 @@ Meteor.methods({
           academicYear,
           grade,
           schoolId,
+          createdAt: new Date(),
           listening: editItem.ielts_listening
             ? Number(editItem.ielts_listening)
             : "",

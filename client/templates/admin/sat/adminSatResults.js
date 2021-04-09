@@ -114,6 +114,8 @@ Template.adminSatResults.helpers({
         academicYear: academicYear.get(),
         studentId: student.studentId,
       });
+
+      let updatedAt;
       if (satResult) {
         isCertified = true;
         returnObject.sat1english = satResult.sat1_english;
@@ -138,6 +140,9 @@ Template.adminSatResults.helpers({
         // returnObject.sat2chemistry = satResult.sat2_chemistry;
         // returnObject.sat2physics = satResult.sat2_physics;
         // returnObject.sat2total = satResult.sat2_total;
+
+        if (satResult.updatedAt) updatedAt = satResult.updatedAt;
+        else updatedAt = satResult.createdAt;
       }
 
       let ieltsResult = IeltsResults.findOne({
@@ -171,7 +176,30 @@ Template.adminSatResults.helpers({
           ieltsTotalTotal += ieltsResult.total;
           ieltsTotalN++;
         }
+
+        if (updatedAt) {
+          if (ieltsResult.updatedAt) {
+            if (ieltsResult.updatedAt > updatedAt) {
+              updatedAt = ieltsResult.updatedAt;
+            }
+          } else if (ieltsResult.createdAt) {
+            if (ieltsResult.createdAt > updatedAt) {
+              updatedAt = ieltsResult.createdAt;
+            }
+          }
+        } else {
+          if (ieltsResult.updatedAt) updatedAt = ieltsResult.updatedAt;
+          else updatedAt = ieltsResult.createdAt;
+        }
       }
+
+      if (updatedAt)
+        returnObject.updatedAt =
+          updatedAt.getUTCDate() +
+          "/" +
+          (updatedAt.getUTCMonth() + 1) +
+          "/" +
+          updatedAt.getUTCFullYear();
 
       if (showCertified) {
         if (isCertified) returnList.push(returnObject);

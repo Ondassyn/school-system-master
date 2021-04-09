@@ -87,26 +87,25 @@
                         <th></th>
                         <th></th>
                         <th style="border-right: 1pt solid darkgrey"></th>
-                        {{#if isGrade7}}
-                        <th class="subheader" name="total_number_previous_7" style="text-align: center">{{{previous}}}</th>
-                        <th class="subheader" name="total_number_current_7" style="text-align: center; border-right: 1pt solid darkgrey">{{{current}}}</th>
-                        <th class="subheader" name="fail_number_previous_7" style="text-align: center">{{{previous}}}</th>
-                        <th class="subheader" name="fail_number_current_7" style="text-align:center; border-right: 1pt solid darkgrey">{{{current}}}</th>
-                        <th class="subheader" name="fail_number_difference_7" style="text-align:center; border-right: 1pt solid darkgrey;">Айырмашылық</th>
+                        <th class="subheader" name="total_number_previous" style="text-align: center">{{{previous}}}</th>
+                        <th class="subheader" name="total_number_current" style="text-align: center; border-right: 1pt solid darkgrey">{{{current}}}</th>
+                        {{#if isShowNumbers}}
+                        
+                        <th class="subheader" name="fail_number_previous" style="text-align: center">{{{previous}}}</th>
+                        <th class="subheader" name="fail_number_current" style="text-align:center; border-right: 1pt solid darkgrey">{{{current}}}</th>
+                        <th class="subheader" name="fail_number_difference" style="text-align:center; border-right: 1pt solid darkgrey;">Айырмашылық</th>
                         <th class="subheader" name="a1_number_previous" style="text-align: center">{{{previous}}}</th>
                         <th class="subheader" name="a1_number_current" style="text-align:center; border-right: 1pt solid darkgrey">{{{current}}}</th>
                         <th class="subheader" name="a2_and_above_number_previous" style="text-align: center">{{{previous}}}</th>
                         <th class="subheader" name="a2_and_above_number_current" style="text-align:center; border-right: 1pt solid darkgrey">{{{current}}}</th>
                         {{else}}
-                        <th class="subheader" name="total_number_previous_8" style="text-align: center">{{{previous}}}</th>
-                        <th class="subheader" name="total_number_current_8" style="text-align: center; border-right: 1pt solid darkgrey">{{{current}}}</th>
-                        <th class="subheader" name="fail_percentage_previous_8" style="text-align: center">{{{previous}}}</th>
-                        <th class="subheader" name="fail_percentage_current_8" style="text-align:center">{{{current}}}</th>
-                        <th class="subheader" name="fail_percentage_difference_7" style="text-align:center; border-right: 1pt solid darkgrey;">Айырмашылық</th>
-                        <th class="subheader" name="a2_number_previous" style="text-align: center">{{{previous}}}</th>
-                        <th class="subheader" name="a2_number_current" style="text-align:center; border-right: 1pt solid darkgrey">{{{current}}}</th>
-                        <th class="subheader" name="b1_and_above_number_previous" style="text-align: center">{{{previous}}}</th>
-                        <th class="subheader" name="b1_and_above_number_current" style="text-align:center; border-right: 1pt solid darkgrey">{{{current}}}</th>
+                        <th class="subheader" name="fail_percentage_previous" style="text-align: center">{{{previous}}}</th>
+                        <th class="subheader" name="fail_percentage_current" style="text-align:center">{{{current}}}</th>
+                        <th class="subheader" name="fail_percentage_difference" style="text-align:center; border-right: 1pt solid darkgrey;">Айырмашылық</th>
+                        <th class="subheader" name="a1_percentage_previous" style="text-align: center">{{{previous}}}</th>
+                        <th class="subheader" name="a1_percentage_current" style="text-align:center; border-right: 1pt solid darkgrey">{{{current}}}</th>
+                        <th class="subheader" name="a2_and_above_percentage_previous" style="text-align: center">{{{previous}}}</th>
+                        <th class="subheader" name="a2_and_above_percentage_current" style="text-align:center; border-right: 1pt solid darkgrey">{{{current}}}</th>
                         {{/if}}
                     </tr>
                     {{#each results}}

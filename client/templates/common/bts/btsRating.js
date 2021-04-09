@@ -36,7 +36,8 @@ Template.btsRating.helpers({
     return FlowRouter.getParam("btsNo");
   },
   btsNo3() {
-    return FlowRouter.getParam("btsNo") == "3";
+    // return FlowRouter.getParam("btsNo") == "3";
+    return false;
   },
   results() {
     var schoolStore = new Map();

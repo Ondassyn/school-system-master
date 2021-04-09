@@ -421,30 +421,22 @@ Template.ketPetCompareAdvanced.helpers({
 });
 
 let dict = {
-  total_number_previous_7: "sCount7Grade",
-  total_number_current_7: "sCount7Grade",
-  total_number_previous_8: "sCount8Grade",
-  total_number_current_8: "sCount8Grade",
-  fail_number_previous_7: "grade7Fail",
-  fail_number_current_7: "grade7Fail",
-  fail_number_previous_8: "grade8Fail",
-  fail_number_current_8: "grade8Fail",
-  a1_number_previous: "grade7A1",
-  a1_number_current: "grade7A1",
-  a2_pass_number_previous: "grade7PassA2",
-  a2_pass_number_current: "grade7PassA2",
-  a2_merit_number_previous: "grade7MeritA2",
-  a2_merit_number_current: "grade7MeritA2",
-  b1_distinction_number_previous: "grade7DistB1",
-  b1_distinction_number_current: "grade7DistB1",
-  a2_number_previous: "grade8A2",
-  a2_number_current: "grade8A2",
-  b1_pass_number_previous: "grade8PassB1",
-  b1_pass_number_current: "grade8PassB1",
-  b1_merit_number_previous: "grade8MeritB1",
-  b1_merit_number_current: "grade8MeritB1",
-  b2_distinction_number_previous: "grade8DistB2",
-  b2_distinction_number_current: "grade8DistB2",
+  total_number_previous: 0,
+  total_number_current: 1,
+  fail_number_previous: 2,
+  fail_number_current: 3,
+  fail_number_difference: 4,
+  fail_percentage_previous: 5,
+  fail_percentage_current: 6,
+  fail_percentage_difference: 7,
+  a1_number_previous: 8,
+  a1_number_current: 9,
+  a1_percentage_previous: 10,
+  a1_percentage_current: 11,
+  a2_and_above_number_previous: 12,
+  a2_and_above_number_current: 13,
+  a2_and_above_percentage_previous: 14,
+  a2_and_above_percentage_current: 15,
 };
 
 Template.ketPetCompareAdvanced.events({
@@ -468,54 +460,19 @@ Template.ketPetCompareAdvanced.events({
   },
   "click .subheader"(event, template) {
     let name = event.target.getAttribute("name");
-    let grade = template.grade.get();
     let ratings;
     let order;
-    if (name.includes("percentage")) {
-      let relevantIndex = -1;
-      if (name.includes("difference")) {
-        relevantIndex = 6;
-      } else if (name.includes("previous")) {
-        relevantIndex = 4;
-      } else if (name.includes("current")) {
-        relevantIndex = 5;
-      }
 
-      order = [];
-      out
-        .filter(
-          (o) => o.outArray[relevantIndex] || o.outArray[relevantIndex] === 0
-        )
-        .sort((a, b) => b.outArray[relevantIndex] - a.outArray[relevantIndex])
-        .map((o) => order.push(o.schoolId));
-    } else {
-      if (name.includes("previous")) {
-        ratings = KetPetRatings.find(
-          {
-            academicYear: template.previousYear.get(),
-            examPeriod: template.previousPeriod.get(),
-          },
-          {
-            sort: { [dict[name]]: -1 },
-            fields: { schoolId: 1, [dict[name]]: 1, _id: 0 },
-          }
-        ).fetch();
-      } else {
-        ratings = KetPetRatings.find(
-          {
-            academicYear: template.currentYear.get(),
-            examPeriod: template.currentPeriod.get(),
-          },
-          {
-            sort: { [dict[name]]: -1 },
-            fields: { schoolId: 1, [dict[name]]: 1, _id: 0 },
-          }
-        ).fetch();
-      }
-      order = ratings
-        .filter((rating) => rating[dict[name]] || rating[dict[name]] === 0)
-        .map((rating) => rating.schoolId);
-    }
+    let relevantIndex = dict[name];
+
+    order = [];
+    out
+      .filter(
+        (o) => o.outArray[relevantIndex] || o.outArray[relevantIndex] === 0
+      )
+      .sort((a, b) => b.outArray[relevantIndex] - a.outArray[relevantIndex])
+      .map((o) => order.push(o.schoolId));
+
     let oldOrder = template.order.get();
     if (JSON.stringify(order) === JSON.stringify(oldOrder)) {
       template.order.set(order.reverse());

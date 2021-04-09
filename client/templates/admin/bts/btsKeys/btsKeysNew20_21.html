@@ -37,12 +37,12 @@
               {{#if grade7 }}
                 {{#if day1 }}
 
-                  {{#if btsNo1_or_2 }}
+                  {{#if btsNo1_or_2_or_3 }}
                     {{> math}}
                     {{> kazakh_lang_kaz}}
                     {{> kazakh_lang_rus}}
                     {{> geography}}
-                    <div class="form-group">
+                    <!-- <div class="form-group">
                       <label for="name">Математика Бонус</label>
                       <input type="text" class="form-control" name="mathematicBonus" value="{{keys.mathematicBonus}}">
                     </div>
@@ -57,7 +57,7 @@
                     <div class="form-group">
                       <label for="name">География Бонус</label>
                       <input type="text" class="form-control" name="geographyBonus" value="{{keys.geographyBonus}}">
-                    </div>
+                    </div> -->
                     <!-- {{> russian_lang}} -->
                   {{else}} <!-- BTS No 3-->
                     {{> math}}
@@ -80,7 +80,7 @@
                       {{> physics}}
                       {{> biology}}
 
-                      <div class="form-group">
+                      <!-- <div class="form-group">
                         <label for="name">Математика Бонус</label>
                         <input type="text" class="form-control" name="mathematicBonus" value="{{keys.mathematicBonus}}">
                       </div>
@@ -91,7 +91,7 @@
                       <div class="form-group">
                           <label for="name">Биология Бонус</label>
                           <input type="text" class="form-control" name="biologyBonus" value="{{keys.biologyBonus}}">
-                      </div>
+                      </div> -->
                   {{else}} <!-- grade 8 or 9, day 2 -->
                     {{> geography}}
                     {{> physics}}
@@ -104,7 +104,7 @@
                       {{> math}}
                       {{> physics}}
                       {{> chemistry}}
-                      <div class="form-group">
+                      <!-- <div class="form-group">
                         <label for="name">Математика Бонус</label>
                         <input type="text" class="form-control" name="mathematicBonus" value="{{keys.mathematicBonus}}">
                       </div>
@@ -115,7 +115,7 @@
                       <div class="form-group">
                           <label for="name">Химия Бонус</label>
                           <input type="text" class="form-control" name="chemistryBonus" value="{{keys.chemistryBonus}}">
-                      </div>
+                      </div> -->
                   {{ else}}
                   {{#if grade10 }}
                     {{#if day1 }}
@@ -128,7 +128,7 @@
                       {{> chemistry}}
                       {{> biology}}
                       {{> world_history}}
-                      <div class="form-group">
+                      <!-- <div class="form-group">
                         <label for="name">Математика Бонус</label>
                         <input type="text" class="form-control" name="mathematicBonus" value="{{keys.mathematicBonus}}">
                       </div>
@@ -151,7 +151,7 @@
                       <div class="form-group">
                         <label for="name">Дүние тарихы Бонус</label>
                         <input type="text" class="form-control" name="world_historyBonus" value="{{keys.world_historyBonus}}">
-                      </div>
+                      </div> -->
                     </div>
                     {{else}}
                         <div class="form-group">

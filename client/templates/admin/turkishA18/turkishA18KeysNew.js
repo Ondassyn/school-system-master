@@ -12,7 +12,7 @@ Template.turkishA18KeysNew.events({
     event.preventDefault();
     let variant = template.find("[name=variant]").value;
     let listening = template.find("[name=listening]").value;
-    let reading = template.find("[name=listening]").value;
+    let reading = template.find("[name=reading]").value;
 
     Meteor.call(
       "TurkishA18Keys.Insert",

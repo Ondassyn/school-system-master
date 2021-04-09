@@ -40,8 +40,10 @@
                 <thead>
                     <tr class="sat-header">
                         <th>#</th>
+                        <th style="text-align: center">Жаңартылды</th>
                         <th>Сынып</th>
                         <th style="border-right: 1pt solid darkgrey">Аты-жөні</th>
+
                         {{#if isSat1Hidden}}
                         <th style="text-align: center; border-right: 1pt solid darkgrey">
                             <span id="sat1-expand" class="glyphicon glyphicon-plus"></span>
@@ -76,6 +78,7 @@
                 </thead>
                 <tbody>
                     <tr>
+                        <th></th>
                         <th></th>
                         <th></th>
                         <th style="border-right: 1pt solid darkgrey"></th>
@@ -117,6 +120,7 @@
 
                     <tr>
                       <td>{{math @index "+" 1}}</td>
+                      <td style="text-align: center">{{updatedAt}}</td>
                       <td>{{grade}} {{division}}</td>
                       <td style="border-right: 1pt solid darkgrey">{{surname}} {{name}} </td>
 
