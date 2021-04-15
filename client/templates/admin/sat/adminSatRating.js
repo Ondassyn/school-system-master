@@ -49,6 +49,8 @@ Template.adminSatRating.helpers({
         school: school.shortName,
       };
 
+      let latestDate;
+
       let outArray = [];
 
       let sat1_n = 0;
@@ -79,6 +81,20 @@ Template.adminSatRating.helpers({
             sat1_total_n++;
           }
           sat1_n++;
+
+          if (result.updatedAt) {
+            if (latestDate) {
+              if (result.updatedAt > latestDate) latestDate = result.updatedAt;
+            } else {
+              latestDate = result.updatedAt;
+            }
+          } else {
+            if (latestDate) {
+              if (result.createdAt > latestDate) latestDate = result.createdAt;
+            } else {
+              latestDate = result.createdAt;
+            }
+          }
         });
 
         if (sat1_math_n) {
@@ -136,7 +152,22 @@ Template.adminSatRating.helpers({
             total_total += result.total;
             total_n++;
           }
+
           ielts_n++;
+
+          if (result.updatedAt) {
+            if (latestDate) {
+              if (result.updatedAt > latestDate) latestDate = result.updatedAt;
+            } else {
+              latestDate = result.updatedAt;
+            }
+          } else {
+            if (latestDate) {
+              if (result.createdAt > latestDate) latestDate = result.createdAt;
+            } else {
+              latestDate = result.createdAt;
+            }
+          }
         });
 
         if (listening_n) {
@@ -164,6 +195,15 @@ Template.adminSatRating.helpers({
       }
 
       if (hasAnyResults) {
+        if (latestDate) {
+          returnObject.updatedAt =
+            latestDate.getUTCDate() +
+            "/" +
+            (latestDate.getUTCMonth() + 1) +
+            "/" +
+            latestDate.getUTCFullYear();
+          outArray[10] = returnObject.updatedAt;
+        }
         returnList.push(returnObject);
         let index = out.findIndex((o) => o.schoolId === school.schoolId);
         if (index === -1) out.push({ schoolId: school.schoolId, outArray });
@@ -190,6 +230,7 @@ let dict = {
   writing: 7,
   speaking: 8,
   ielts_total: 9,
+  updated_n: 10,
 };
 
 Template.adminSatRating.events({

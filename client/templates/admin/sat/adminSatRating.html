@@ -26,6 +26,7 @@
                     
                         <th style="text-align: center; border-right: 1pt solid darkgrey" colspan="4">Sat</th>
                         <th style="text-align: center; border-right: 1pt solid darkgrey" colspan="6">Ielts</th>
+                        <th class="subheader" name="updated_at" style="text-align: center; border-right: 1pt solid darkgrey">Жаңартылды</th>    
                     </tr>
                 </thead>
                 <tbody>
@@ -42,6 +43,7 @@
                         <th class="subheader" name="writing" style="font-weight: lighter; font-size: small; text-align:center;">Writing</th>
                         <th class="subheader" name="speaking" style="font-weight: lighter; font-size: small; text-align:center;">Speaking</th>
                         <th class="subheader" name="ielts_total" style="font-weight: lighter; font-size: small; text-align:center; border-right: 1pt solid darkgrey">Total</th>
+                        <th style="border-right: 1pt solid darkgrey"></th>
                     </tr>
                     {{#each results}}
                     <tr>
@@ -57,6 +59,8 @@
                         <td style="text-align: center;">{{writing}}</td>
                         <td style="text-align: center;">{{speaking}}</td>
                         <td style="text-align: center; border-right: 1pt solid darkgrey">{{ielts_total}}</td>
+                        <td style="text-align: center; border-right: 1pt solid darkgrey">{{updatedAt}}</td>
+                        
                     </tr>
 
                     {{/each}}
