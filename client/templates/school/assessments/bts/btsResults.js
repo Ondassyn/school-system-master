@@ -100,6 +100,7 @@ Template.btsResults.events({
         "Жалпы",
         "Математика",
         "Қазақ тілі",
+        "География",
       ];
 
       data.push(headers);
@@ -112,6 +113,7 @@ Template.btsResults.events({
         let total = btsStore[i].total;
         let mathematic = btsStore[i].mathematic;
         let kazakh_lang = btsStore[i].kazakh_lang;
+        let geography = btsStore[i].geography;
         // let russian_lang = btsStore[i].russian_lang;
 
         let content = [
@@ -124,6 +126,7 @@ Template.btsResults.events({
           total,
           mathematic,
           kazakh_lang,
+          geography,
         ];
 
         data.push(content);
