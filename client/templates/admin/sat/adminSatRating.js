@@ -3,6 +3,7 @@ import { Session } from "meteor/session";
 import "./adminSatRating.html";
 import { Meteor } from "meteor/meteor";
 import XLSX from "xlsx";
+import { has } from "core-js/fn/reflect";
 
 Template.adminSatRating.onCreated(function () {
   let template = this;
@@ -68,19 +69,24 @@ Template.adminSatRating.helpers({
         let sat1_total_n = 0;
 
         satResults.map((result) => {
+          let hasActualValues = false;
           if (result.sat1_math) {
             sat1_math_total += result.sat1_math;
             sat1_math_n++;
+            hasActualValues = true;
           }
           if (result.sat1_english) {
             sat1_english_total += result.sat1_english;
             sat1_english_n++;
+            hasActualValues = true;
           }
           if (result.sat1_total) {
             sat1_total_total += result.sat1_total;
             sat1_total_n++;
+            hasActualValues = true;
           }
-          sat1_n++;
+
+          if (hasActualValues) sat1_n++;
 
           if (result.updatedAt) {
             if (latestDate) {
@@ -132,28 +138,34 @@ Template.adminSatRating.helpers({
         let total_n = 0;
 
         ieltsResults.map((result) => {
+          let hasActualValues = false;
           if (result.listening) {
             listening_total += result.listening;
             listening_n++;
+            hasActualValues = true;
           }
           if (result.reading) {
             reading_total += result.reading;
             reading_n++;
+            hasActualValues = true;
           }
           if (result.writing) {
             writing_total += result.writing;
             writing_n++;
+            hasActualValues = true;
           }
           if (result.speaking) {
             speaking_total += result.speaking;
             speaking_n++;
+            hasActualValues = true;
           }
           if (result.total) {
             total_total += result.total;
             total_n++;
+            hasActualValues = true;
           }
 
-          ielts_n++;
+          if (hasActualValues) ielts_n++;
 
           if (result.updatedAt) {
             if (latestDate) {
@@ -230,7 +242,7 @@ let dict = {
   writing: 7,
   speaking: 8,
   ielts_total: 9,
-  updated_n: 10,
+  updated_at: 10,
 };
 
 Template.adminSatRating.events({

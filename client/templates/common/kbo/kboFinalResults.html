@@ -7,8 +7,8 @@
                         {{> academicYear}}
                         <label for=""  style="margin-left: 10pt">Сынып</label>
                         <select class="form-control" id="grade" style="margin-right: 10pt">
-                            <option value="" selected>Жалпы</option>
-                            <option value="7">7 cынып</option>
+                            <!-- <option value="" selected>Жалпы</option> -->
+                            <option value="7" selected>7 cынып</option>
                             <option value="8">8 cынып</option>
                             <option value="9">9 cынып</option>
                             <option value="10">10 cынып</option>
@@ -16,7 +16,7 @@
                         </select>
                         <label for=""  style="margin-left: 10pt">Пән</label>
                         <select  class="form-control"  id="subjectId" style="margin-right: 10pt">
-                            <option value="01">Алгебра</option>
+                            <option value="01" selected>Алгебра</option>
                             <option value="02">Физика</option>
                             <option value="03">Химия</option>
                             <option value="04">Биология</option>
@@ -50,10 +50,10 @@
                         <th>Аты</th>
                         <th>Жөні</th>
                         <th>Сыныбы</th>
-                        <th id="sortKbo1">КБО-1</th>
-                        <th id="sortKbo2">КБО-2</th>
-                        <th id="sortKbo3">КБО-3</th>
-                        <th id="sortFinal">Нәтиже</th>
+                        <th id="sortKbo1">КБО-1 (%)</th>
+                        <th id="sortKbo2">КБО-2 (%)</th>
+                        <th id="sortKbo3">КБО-3 (%)</th>
+                        <th id="sortFinal">Нәтиже (%)</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -66,10 +66,10 @@
                         <td>{{name}}</td>
                         <td>{{surname}}</td>
                         <td>{{grade}}</td>
-                        <td>{{kbo1}}</td>
-                        <td>{{kbo2}}</td>
-                        <td>{{kbo3}}</td>
-                        <td>{{round 2 total}}</td>
+                        <td>{{round 0 kbo1}}</td>
+                        <td>{{round 0 kbo2}}</td>
+                        <td>{{round 0 kbo3}}</td>
+                        <td>{{round 1 total}}</td>
                     </tr>
                     {{/each}}
                 </tbody>
