@@ -18,11 +18,13 @@ Meteor.publish("students", function () {
 
 Meteor.publish("schoolGradeStudents", function (schoolId, grade) {
   if (this.userId) {
-    if (schoolId && grade && grade === "all")
-      return Students.find({ schoolId });
-    return schoolId && grade
-      ? Students.find({ schoolId, grade })
-      : this.ready();
+    if (schoolId && grade) {
+      if (schoolId === "all" && grade === "all") return Students.find({});
+      else if (grade === "all") return Students.find({ schoolId });
+      else if (schoolId === "all") return Students.find({ grade });
+      else return Students.find({ schoolId, grade });
+    }
+    return this.ready();
   }
   return this.ready();
 });

@@ -1,12 +1,12 @@
 import { Template } from "meteor/templating";
 import { ReactiveVar } from "meteor/reactive-var";
-import "./olympiadAllRegionRating.html";
+import "./olympiadAllRepublicRating.html";
 
-Template.olympiadAllRegionRating.onCreated(function () {
+Template.olympiadAllRepublicRating.onCreated(function () {
   let template = this;
-  Session.setDefault("Sort", { totalPoint: -1 });
+  Session.setDefault("Sort", { totalPointRepublic: -1 });
   template.subject = new ReactiveVar("all");
-  document.title = "Облыстық олимпиада рейтинг";
+  document.title = "Республикалық олимпиада рейтинг";
   template.subscribe("schools");
   template.subscribe("subjects");
   // template.subscribe('olympiads')
@@ -21,7 +21,7 @@ var totalGold = 0;
 var totalSilver = 0;
 var totalBronze = 0;
 
-Template.olympiadAllRegionRating.helpers({
+Template.olympiadAllRepublicRating.helpers({
   schools() {
     return Schools.find({}, { sort: { schoolId: 1 } });
   },
@@ -40,7 +40,7 @@ Template.olympiadAllRegionRating.helpers({
     let cursorKboRatings = OlympiadRatings.find({
       grade: "all",
       subjectId: "all",
-      regTotalOlymp: { $gt: 0 },
+      natTotalOlymp: { $gt: 0 },
     }).fetch();
 
     schools.forEach((school) => {
@@ -59,7 +59,7 @@ Template.olympiadAllRegionRating.helpers({
     let subject = new RegExp(Template.instance().subject.get());
 
     return OlympiadRatings.find(
-      { grade: "all", subjectId: subject, regTotalOlymp: { $gt: 0 } },
+      { grade: "all", subjectId: subject, natTotalOlymp: { $gt: 0 } },
       { sort: Session.get("Sort") }
     );
   },
@@ -77,10 +77,10 @@ Template.olympiadAllRegionRating.helpers({
     ).fetch();
 
     olympiadRatings.forEach((rating) => {
-      totalOfMedals += rating.regTotalOlymp;
-      totalGold += rating.regGoldOlymp;
-      totalSilver += rating.regSilverOlymp;
-      totalBronze += rating.regBronzeOlymp;
+      totalOfMedals += rating.natTotalOlymp;
+      totalGold += rating.natGoldOlymp;
+      totalSilver += rating.natSilverOlymp;
+      totalBronze += rating.natBronzeOlymp;
     });
 
     return totalOfMedals;
@@ -95,7 +95,7 @@ Template.olympiadAllRegionRating.helpers({
     ).fetch();
 
     olympiadRatings.forEach((rating) => {
-      totalGold += rating.regGoldOlymp;
+      totalGold += rating.natGoldOlymp;
     });
     return totalGold;
   },
@@ -109,7 +109,7 @@ Template.olympiadAllRegionRating.helpers({
     ).fetch();
 
     olympiadRatings.forEach((rating) => {
-      totalSilver += rating.regSilverOlymp;
+      totalSilver += rating.natSilverOlymp;
     });
     return totalSilver;
   },
@@ -123,7 +123,7 @@ Template.olympiadAllRegionRating.helpers({
     ).fetch();
 
     olympiadRatings.forEach((rating) => {
-      totalBronze += rating.regBronzeOlymp;
+      totalBronze += rating.natBronzeOlymp;
     });
 
     return totalBronze;
@@ -133,7 +133,7 @@ Template.olympiadAllRegionRating.helpers({
   },
 });
 
-Template.olympiadAllRegionRating.events({
+Template.olympiadAllRepublicRating.events({
   "change #select"(event, template) {
     template.subject.set(event.target.value);
   },
@@ -147,18 +147,18 @@ Template.olympiadAllRegionRating.events({
     }
   },
   "click #totalMedal"(event, template) {
-    Session.set("Sort", { regTotalOlymp: -1 });
+    Session.set("Sort", { natTotalOlymp: -1 });
   },
   "click #goldMedal"(event, template) {
-    Session.set("Sort", { regGoldOlymp: -1 });
+    Session.set("Sort", { natGoldOlymp: -1 });
   },
   "click #silverMedal"(event, template) {
-    Session.set("Sort", { regSilverOlymp: -1 });
+    Session.set("Sort", { natSilverOlymp: -1 });
   },
   "click #bronzeMedal"(event, template) {
-    Session.set("Sort", { regBronzeOlymp: -1 });
+    Session.set("Sort", { natBronzeOlymp: -1 });
   },
-  "click #totalPoint"(event, template) {
-    Session.set("Sort", { totalPoint: -1 });
+  "click #totalPointRepublic"(event, template) {
+    Session.set("Sort", { totalPointRepublic: -1 });
   },
 });

@@ -652,8 +652,8 @@ Meteor.methods({
                 }
                 if (result.medal == "gold") {
                   olympiadRating.natGoldOlymp++;
-                  olympiadTotalRating.natSilverOlymp++;
-                  olympiadGradeTotalRating.natSilverOlymp++;
+                  olympiadTotalRating.natGoldOlymp++;
+                  olympiadGradeTotalRating.natGoldOlymp++;
 
                   olympiadRating.natTotalOlymp++;
                   olympiadTotalRating.natTotalOlymp++;
@@ -682,8 +682,8 @@ Meteor.methods({
                 }
                 if (result.medal == "gold") {
                   olympiadRating.natJunGoldOlymp++;
-                  olympiadTotalRating.natJunSilverOlymp++;
-                  olympiadGradeTotalRating.natJunSilverOlymp++;
+                  olympiadTotalRating.natJunGoldOlymp++;
+                  olympiadGradeTotalRating.natJunGooldOlymp++;
 
                   olympiadRating.natJunTotalOlymp++;
                   olympiadTotalRating.natJunTotalOlymp++;
@@ -1049,9 +1049,14 @@ Meteor.methods({
       });
 
       olympiadGradeTotalRating["totalPoint"] =
-        olympiadGradeTotalRating.regGoldOlymp * 4 +
+        olympiadGradeTotalRating.regGoldOlymp * 3 +
         olympiadGradeTotalRating.regSilverOlymp * 2 +
         olympiadGradeTotalRating.regBronzeOlymp;
+
+      olympiadGradeTotalRating["totalPointRepublic"] =
+        olympiadGradeTotalRating.natGoldOlymp * 3 +
+        olympiadGradeTotalRating.natSilverOlymp * 2 +
+        olympiadGradeTotalRating.natBronzeOlymp;
 
       let sameGradeTotalRating = OlympiadRatings.findOne({
         academicYear: academicYear,

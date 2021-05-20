@@ -398,7 +398,12 @@ Meteor.publish("adminIeltsAllResults", function (grade) {
 });
 
 Meteor.publish("adminUbtOfficialResults", function (schoolId, period) {
-  if (schoolId) return UbtOfficialResults.find({ schoolId, period });
+  if (schoolId) {
+    if (schoolId === "all") {
+      return UbtOfficialResults.find({ period });
+    }
+    return UbtOfficialResults.find({ schoolId, period });
+  }
   return this.ready();
 });
 

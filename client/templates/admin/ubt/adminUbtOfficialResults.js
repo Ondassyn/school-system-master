@@ -6,7 +6,7 @@ import XLSX from "xlsx";
 Template.adminUbtOfficialResults.onCreated(function () {
   let template = this;
   document.title = "ҰБТ ресми нәтижелері";
-  template.schoolId = new ReactiveVar("033");
+  template.schoolId = new ReactiveVar("all");
   template.showCertified = new ReactiveVar(false);
   template.order = new ReactiveVar([]);
   template.period = new ReactiveVar("january");
