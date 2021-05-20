@@ -41,20 +41,28 @@ Meteor.publish("schoolUbtOfficialResults", function (period) {
   return this.ready();
 });
 
-Meteor.publish("turkishA1SchoolResults", function (academicYear) {
+Meteor.publish("turkishA1SchoolResults", function (academicYear, no) {
   if (this.userId) {
     let school = Schools.findOne({ userId: this.userId });
     if (!school) school = Schools.findOne({ coordinatorId: this.userId });
-    return TurkishA1Results.find({ academicYear, schoolId: school.schoolId });
+    return TurkishA1Results.find({
+      academicYear,
+      schoolId: school.schoolId,
+      no,
+    });
   }
   return this.ready();
 });
 
-Meteor.publish("turkishA18SchoolResults", function (academicYear) {
+Meteor.publish("turkishA18SchoolResults", function (academicYear, no) {
   if (this.userId) {
     let school = Schools.findOne({ userId: this.userId });
     if (!school) school = Schools.findOne({ coordinatorId: this.userId });
-    return TurkishA18Results.find({ academicYear, schoolId: school.schoolId });
+    return TurkishA18Results.find({
+      academicYear,
+      schoolId: school.schoolId,
+      no,
+    });
   }
   return this.ready();
 });

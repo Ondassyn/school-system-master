@@ -10,12 +10,14 @@ Template.turkishA1AdminResults.onCreated(function () {
   document.title = "Түрік тілі A1 7 сынып нәтижелері";
   template.state = new ReactiveVar("results");
   template.school = new ReactiveVar("all");
+  template.no = new ReactiveVar("");
   template.subscribe("schools");
   template.autorun(() => {
     template.subscribe(
       "turkishA1AdminResults",
       academicYear.get(),
-      template.school.get()
+      template.school.get(),
+      template.no.get()
     );
   });
 });
@@ -47,6 +49,9 @@ var sortSpeaking = -1;
 Template.turkishA1AdminResults.events({
   "change #school"(event, template) {
     template.school.set(event.target.value);
+  },
+  "change #no"(event, template) {
+    template.no.set(event.target.value);
   },
   "click #export"(event, template) {
     const html = document.getElementById("out").innerHTML;

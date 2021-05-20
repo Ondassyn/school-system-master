@@ -2,15 +2,22 @@ import { Template } from "meteor/templating";
 import { Session } from "meteor/session";
 import "./turkishA1Rating.html";
 import { Meteor } from "meteor/meteor";
+import { ReactiveVar } from "meteor/reactive-var";
 import XLSX from "xlsx";
 
 Template.turkishA1Rating.onCreated(function () {
   let template = this;
   Session.setDefault("Sort", { totalAverage: -1 });
   document.title = "Түрік тілі A1 7 сынып рейтинг";
+  template.no = new ReactiveVar("");
+
   template.subscribe("schools");
   template.autorun(() => {
-    template.subscribe("turkishA1Ratings", academicYear.get());
+    template.subscribe(
+      "turkishA1Ratings",
+      academicYear.get(),
+      template.no.get()
+    );
   });
 });
 
@@ -46,6 +53,9 @@ var sortWritingAverage = -1;
 var sortSpeakingAverage = -1;
 
 Template.turkishA1Rating.events({
+  "change #no"(event, template) {
+    template.no.set(event.target.value);
+  },
   "click #export"(event, template) {
     document.getElementById("out").innerHTML;
     var data = [];

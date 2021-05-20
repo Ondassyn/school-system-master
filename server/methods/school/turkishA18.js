@@ -3,7 +3,7 @@ import { uploadXlsx } from "../../modules/turkishA18/uploadXlsx";
 // import { calculateRating } from "../../modules/bts/rating20_21";
 
 Meteor.methods({
-  "TurkishA18Results.UploadTxt": function (academicYear, results) {
+  "TurkishA18Results.UploadTxt": function (academicYear, no, results) {
     bts = Configs.findOne({
       _id: "turkishA18Upload",
     });
@@ -18,12 +18,12 @@ Meteor.methods({
     if (!school) school = Schools.findOne({ coordinatorId: this.userId });
 
     if (school) {
-      uploadTxt(academicYear, school.schoolId, results);
+      uploadTxt(academicYear, school.schoolId, no, results);
       // calculateRating(academicYear,btsNo,day,school.schoolId)
     }
   },
 
-  "TurkishA18Results.UploadXlsx": function (academicYear, results) {
+  "TurkishA18Results.UploadXlsx": function (academicYear, no, results) {
     if (
       !Roles.userIsInRole(this.userId, "school") &&
       !Roles.userIsInRole(this.userId, "schoolCoordinator")
@@ -37,7 +37,7 @@ Meteor.methods({
     if (!school) school = Schools.findOne({ coordinatorId: this.userId });
 
     if (school) {
-      uploadXlsx(academicYear, school.schoolId, results);
+      uploadXlsx(academicYear, school.schoolId, no, results);
     }
   },
 });

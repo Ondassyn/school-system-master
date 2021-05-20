@@ -6,7 +6,13 @@
               <h4>Өзгерту</h4>
 							<h5>Жыл: {{keys.academicYear}}</h5>
 							<h5 style="padding-bottom: 20pt">Вариант: {{keys.variant}}</h5>
-                            <div class="form-group">
+              <label for="no">Нөмірі</label>
+              <select class="form-control" name="no" id="no">
+                <option value="">-</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+              </select>
+                            <div style="margin-top: 20pt;" class="form-group">
                                 <label for="name">Түрік тілі</label>
                                 <input type="text" class="form-control" name="listening" value="{{keys.listening}}">
                                 <input type="text" class="form-control" name="reading" value="{{keys.reading}}">

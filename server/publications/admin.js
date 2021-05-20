@@ -57,48 +57,50 @@ Meteor.publish("turkishKeys", function (academicYear) {
   return this.ready();
 });
 
-Meteor.publish("turkishA1Keys", function (academicYear) {
+Meteor.publish("turkishA1Keys", function (academicYear, no) {
   if (this.userId) {
+    if (no) return TurkishA1Keys.find({ academicYear, no });
     return TurkishA1Keys.find({ academicYear });
   }
   return this.ready();
 });
 
-Meteor.publish("turkishA1AdminResults", function (academicYear, schoolId) {
+Meteor.publish("turkishA1AdminResults", function (academicYear, schoolId, no) {
   if (!schoolId) return;
   if (this.userId) {
-    if (schoolId === "all") return TurkishA1Results.find({ academicYear });
-    return TurkishA1Results.find({ academicYear, schoolId });
+    if (schoolId === "all") return TurkishA1Results.find({ academicYear, no });
+    return TurkishA1Results.find({ academicYear, schoolId, no });
   }
   return this.ready();
 });
 
-Meteor.publish("turkishA1Ratings", function (academicYear) {
+Meteor.publish("turkishA1Ratings", function (academicYear, no) {
   if (this.userId) {
-    return TurkishA1Ratings.find({ academicYear });
+    return TurkishA1Ratings.find({ academicYear, no });
   }
   return this.ready();
 });
 
-Meteor.publish("turkishA18Keys", function (academicYear) {
+Meteor.publish("turkishA18Keys", function (academicYear, no) {
   if (this.userId) {
+    if (no) return TurkishA18Keys.find({ academicYear, no });
     return TurkishA18Keys.find({ academicYear });
   }
   return this.ready();
 });
 
-Meteor.publish("turkishA18AdminResults", function (academicYear, schoolId) {
+Meteor.publish("turkishA18AdminResults", function (academicYear, schoolId, no) {
   if (!schoolId) return;
   if (this.userId) {
-    if (schoolId === "all") return TurkishA18Results.find({ academicYear });
-    return TurkishA18Results.find({ academicYear, schoolId });
+    if (schoolId === "all") return TurkishA18Results.find({ academicYear, no });
+    return TurkishA18Results.find({ academicYear, schoolId, no });
   }
   return this.ready();
 });
 
-Meteor.publish("turkishA18Ratings", function (academicYear) {
+Meteor.publish("turkishA18Ratings", function (academicYear, no) {
   if (this.userId) {
-    return TurkishA18Ratings.find({ academicYear });
+    return TurkishA18Ratings.find({ academicYear, no });
   }
   return this.ready();
 });

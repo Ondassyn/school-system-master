@@ -1,7 +1,7 @@
 import { check } from "../multipleChoiceChecker";
 import { parseAnswerKey } from "../multipleChoiceChecker";
 
-export const uploadTxt = (academicYear, schoolId, results) => {
+export const uploadTxt = (academicYear, schoolId, no, results) => {
   _.each(results, (studentObj) => {
     //console.log(studentObj.keys)
     let student = Students.findOne({
@@ -13,15 +13,17 @@ export const uploadTxt = (academicYear, schoolId, results) => {
     let answerKey = TurkishA18Keys.findOne({
       academicYear: academicYear,
       variant: studentObj.variant,
+      no: no,
     });
 
-    if (!student || student.schoolId != schoolId || !answerKey) return;
+    if (!student || student.schoolId != schoolId || !answerKey || !no) return;
 
     // creating student details for storing in db
     let studentRecord = {
       academicYear: academicYear,
       studentId: student.studentId,
       schoolId: schoolId,
+      no: no,
       name: student.name,
       surname: student.surname,
       grade: student.grade,
@@ -38,13 +40,14 @@ export const uploadTxt = (academicYear, schoolId, results) => {
     );
     studentRecord["reading_preliminary"] = check(
       parseAnswerKey(answerKey.reading),
-      studentObj.keys.slice(100, 250)
+      studentObj.keys.slice(125, 250)
     );
 
     let recordInDb = TurkishA18Results.findOne({
       academicYear: academicYear,
       studentId: student.studentId,
       schoolId: schoolId,
+      no: no,
     });
 
     if (recordInDb) {

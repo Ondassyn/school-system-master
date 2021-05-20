@@ -10,11 +10,16 @@ Template.turkishA1Upload.onCreated(function () {
   template.errors = new ReactiveVar(false);
   template.results = new ReactiveVar([]);
   template.isXlsx = new ReactiveVar(false);
+  template.no = new ReactiveVar("");
   template.subscribe("schools");
   template.subscribe("gradeStudents", "7");
   template.autorun(() => {
-    template.subscribe("turkishA1Keys", academicYear.get());
-    template.subscribe("turkishA1SchoolResults", academicYear.get());
+    template.subscribe("turkishA1Keys", academicYear.get(), template.no.get());
+    template.subscribe(
+      "turkishA1SchoolResults",
+      academicYear.get(),
+      template.no.get()
+    );
   });
 });
 
@@ -28,6 +33,9 @@ Template.turkishA1Upload.helpers({
 });
 
 Template.turkishA1Upload.events({
+  "change #no"(event, template) {
+    template.no.set(event.target.value);
+  },
   "click #save_txt"(event, template) {
     event.preventDefault();
 
@@ -36,6 +44,7 @@ Template.turkishA1Upload.events({
       Meteor.call(
         "TurkishA1Results.UploadTxt",
         academicYear.get(),
+        template.no.get(),
         template.results.get(),
         function (err) {
           if (err) {
@@ -63,6 +72,7 @@ Template.turkishA1Upload.events({
       Meteor.call(
         "TurkishA1Results.UploadXlsx",
         academicYear.get(),
+        template.no.get(),
         template.results.get(),
         function (err) {
           if (err) {
@@ -138,6 +148,11 @@ Template.turkishA1Upload.events({
   },
 
   "change #xlsx_upload"(event, template) {
+    if (!template.no.get()) {
+      alert("Парақты жаңартыңыз және емтихан нөмірін таңдаңыз");
+      return;
+    }
+
     template.isXlsx.set(true);
     const file = event.currentTarget.files[0];
     const reader = new FileReader();
@@ -202,6 +217,7 @@ Template.turkishA1Upload.events({
           let variant = TurkishA1Keys.findOne({
             variant: studObj.variant,
             academicYear: academicYear.get(),
+            no: template.no.get(),
           });
           let student = Students.findOne({
             studentId: parseInt(studObj.studentId),
@@ -222,13 +238,17 @@ Template.turkishA1Upload.events({
             studObj.isValid = false;
             template.errors.set(true);
             alert(
-              "Окушының варианты дұрыс емес \n" +
+              "Окушының варианты дұрыс емес немесе емтихан нөмірін таңдауыңыз керек \n" +
                 studObj.studentId +
                 " " +
                 studObj.name +
                 " " +
                 studObj.surname
             );
+          } else if (!template.no.get()) {
+            studObj.isValid = false;
+            template.errors.set(true);
+            alert("Емтихан нөмірін таңдауыңыз керек");
           }
           res.push(studObj);
         }

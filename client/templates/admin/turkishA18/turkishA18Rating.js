@@ -2,6 +2,7 @@ import { Template } from "meteor/templating";
 import { Session } from "meteor/session";
 import "./turkishA18Rating.html";
 import { Meteor } from "meteor/meteor";
+import { ReactiveVar } from "meteor/reactive-var";
 import XLSX from "xlsx";
 
 Template.turkishA18Rating.onCreated(function () {
@@ -9,8 +10,13 @@ Template.turkishA18Rating.onCreated(function () {
   Session.setDefault("Sort", { totalAverage: -1 });
   document.title = "Түрік тілі A1 8 сынып рейтинг";
   template.subscribe("schools");
+  template.no = new ReactiveVar("");
   template.autorun(() => {
-    template.subscribe("turkishA18Ratings", academicYear.get());
+    template.subscribe(
+      "turkishA18Ratings",
+      academicYear.get(),
+      template.no.get()
+    );
   });
 });
 
@@ -46,6 +52,9 @@ var sortWritingAverage = -1;
 var sortSpeakingAverage = -1;
 
 Template.turkishA18Rating.events({
+  "change #no"(event, template) {
+    template.no.set(event.target.value);
+  },
   "click #export"(event, template) {
     document.getElementById("out").innerHTML;
     var data = [];

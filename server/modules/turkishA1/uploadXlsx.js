@@ -1,4 +1,4 @@
-export const uploadXlsx = (academicYear, schoolId, results) => {
+export const uploadXlsx = (academicYear, schoolId, no, results) => {
   let totalListening = 0;
   let totalReading = 0;
   let totalWriting = 0;
@@ -9,13 +9,14 @@ export const uploadXlsx = (academicYear, schoolId, results) => {
   if (results) {
     _.each(results, (result) => {
       let student = Students.findOne({ studentId: parseInt(result.studentId) });
-      if (!student || student.schoolId != schoolId) {
+      if (!student || student.schoolId != schoolId || !no) {
         return;
       }
 
       let studentRecord = TurkishA1Results.findOne({
         academicYear,
         schoolId,
+        no,
         studentId: student.studentId,
       });
       if (studentRecord) {
@@ -90,6 +91,7 @@ export const uploadXlsx = (academicYear, schoolId, results) => {
           academicYear: academicYear,
           studentId: student.studentId,
           schoolId: schoolId,
+          no: no,
           name: student.name,
           surname: student.surname,
           grade: student.grade,
@@ -162,6 +164,7 @@ export const uploadXlsx = (academicYear, schoolId, results) => {
     let ratingRecord = {
       academicYear,
       schoolId,
+      no,
       listeningAverage: totalListening / n,
       readingAverage: totalReading / n,
       writingAverage: totalWriting / n,
@@ -173,6 +176,7 @@ export const uploadXlsx = (academicYear, schoolId, results) => {
     let ratingRecordInDb = TurkishA1Ratings.findOne({
       academicYear,
       schoolId,
+      no,
     });
 
     if (ratingRecordInDb) {

@@ -3,11 +3,15 @@ import { ReactiveVar } from "meteor/reactive-var";
 import "./turkishA1KeysNew.html";
 Template.turkishA1KeysNew.onCreated(function () {
   let template = this;
+  template.no = new ReactiveVar("");
 });
 
 Template.turkishA1KeysNew.helpers({});
 
 Template.turkishA1KeysNew.events({
+  "change #no"(event, template) {
+    template.no.set(event.target.value);
+  },
   "click #save"(event, template) {
     event.preventDefault();
     let variant = template.find("[name=variant]").value;
@@ -18,6 +22,7 @@ Template.turkishA1KeysNew.events({
       "TurkishA1Keys.Insert",
       academicYear.get(),
       variant,
+      template.no.get(),
       listening,
       reading,
       function (err) {

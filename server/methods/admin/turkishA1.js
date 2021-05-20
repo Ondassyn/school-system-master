@@ -3,7 +3,13 @@ import { recheck } from "../../modules/turkish/recheck";
 import { calculateObj } from "../../modules/bts/calculateObj";
 
 Meteor.methods({
-  "TurkishA1Keys.Insert": function (academicYear, variant, listening, reading) {
+  "TurkishA1Keys.Insert": function (
+    academicYear,
+    variant,
+    no,
+    listening,
+    reading
+  ) {
     if (!this.userId || !Roles.userIsInRole(this.userId, ["admin"]))
       throw new Meteor.Error(401, "Please login as administrator");
 
@@ -11,6 +17,7 @@ Meteor.methods({
     let sameVariant = TurkishA1Keys.findOne({
       academicYear,
       variant,
+      no,
     });
     if (sameVariant)
       throw new Meteor.Error(
@@ -20,6 +27,7 @@ Meteor.methods({
     let keysId = TurkishA1Keys.insert({
       academicYear,
       variant,
+      no,
       listening,
       reading,
     });

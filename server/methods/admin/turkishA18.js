@@ -6,6 +6,7 @@ Meteor.methods({
   "TurkishA18Keys.Insert": function (
     academicYear,
     variant,
+    no,
     listening,
     reading
   ) {
@@ -16,6 +17,7 @@ Meteor.methods({
     let sameVariant = TurkishA18Keys.findOne({
       academicYear,
       variant,
+      no,
     });
     if (sameVariant)
       throw new Meteor.Error(
@@ -25,6 +27,7 @@ Meteor.methods({
     let keysId = TurkishA18Keys.insert({
       academicYear,
       variant,
+      no,
       listening,
       reading,
     });

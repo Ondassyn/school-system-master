@@ -10,12 +10,14 @@ Template.turkishA18AdminResults.onCreated(function () {
   document.title = "Түрік тілі A1 8 сынып нәтижелері";
   template.state = new ReactiveVar("results");
   template.school = new ReactiveVar("all");
+  template.no = new ReactiveVar("");
   template.subscribe("schools");
   template.autorun(() => {
     template.subscribe(
       "turkishA18AdminResults",
       academicYear.get(),
-      template.school.get()
+      template.school.get(),
+      template.no.get()
     );
   });
 });
@@ -45,6 +47,9 @@ var sortWriting = -1;
 var sortSpeaking = -1;
 
 Template.turkishA18AdminResults.events({
+  "change #no"(event, template) {
+    template.no.set(event.target.value);
+  },
   "change #school"(event, template) {
     template.school.set(event.target.value);
   },
