@@ -118,6 +118,7 @@ export const upload = (academicYear, schoolId, grade, examPeriod, results) => {
         academicYear: academicYear,
         studentId: student.studentId,
         schoolId: schoolId,
+        examPeriod: examPeriod,
       });
 
       if (recordInDb) {

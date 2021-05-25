@@ -374,16 +374,36 @@ Meteor.publish(
 );
 
 Meteor.publish("adminSatResults", function (schoolId, grade) {
-  if (schoolId && grade && grade === "all")
-    return SatResults.find({ schoolId });
-  if (schoolId && grade) return SatResults.find({ schoolId, grade });
+  if (this.userId) {
+    if (schoolId && grade) {
+      if (schoolId === "all" && grade === "all") {
+        return SatResults.find({ grade: { $in: ["10", "11"] } });
+      } else if (schoolId === "all") {
+        return SatResults.find({ grade });
+      } else if (grade === "all") {
+        return SatResults.find({ schoolId, grade: { $in: ["10", "11"] } });
+      } else {
+        return SatResults.find({ schoolId, grade });
+      }
+    }
+  }
   return this.ready();
 });
 
 Meteor.publish("adminIeltsResults", function (schoolId, grade) {
-  if (schoolId && grade && grade === "all")
-    return IeltsResults.find({ schoolId });
-  if (schoolId && grade) return IeltsResults.find({ schoolId, grade });
+  if (this.userId) {
+    if (schoolId && grade) {
+      if (schoolId === "all" && grade === "all") {
+        return IeltsResults.find({ grade: { $in: ["10", "11"] } });
+      } else if (schoolId === "all") {
+        return IeltsResults.find({ grade });
+      } else if (grade === "all") {
+        return IeltsResults.find({ schoolId, grade: { $in: ["10", "11"] } });
+      } else {
+        return IeltsResults.find({ schoolId, grade });
+      }
+    }
+  }
   return this.ready();
 });
 

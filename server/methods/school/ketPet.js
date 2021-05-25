@@ -23,6 +23,7 @@ Meteor.methods({
   "KetPet.totalRating": function (academicYear) {
     let recordInRating = KetPetRatings.find({
       academicYear: academicYear,
+      examPeriod: "2",
     }).fetch();
 
     recordInRating.forEach((school) => {
@@ -133,6 +134,7 @@ Meteor.methods({
   "KetPet.totalRating4": function (academicYear) {
     let recordInRating = KetPetRatings.find({
       academicYear: academicYear,
+      examPeriod: "4",
     }).fetch();
 
     recordInRating.forEach((school) => {

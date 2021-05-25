@@ -7,7 +7,7 @@ Template.adminSatResults.onCreated(function () {
   let template = this;
   document.title = "SAT-IELTS Нәтижелері";
   template.grade = new ReactiveVar("all");
-  template.schoolId = new ReactiveVar("033");
+  template.schoolId = new ReactiveVar("all");
   template.showCertified = new ReactiveVar(false);
   template.order = new ReactiveVar([]);
   template.isSat1Hidden = new ReactiveVar(false);

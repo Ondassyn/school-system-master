@@ -49,6 +49,7 @@ Template.ketPetUpload.events({
   "click #save"(event, template) {
     event.preventDefault();
 
+    let errorFlag = false;
     if (template.results.get().length > 0) {
       SUIBlock.block("Жүктелуде...");
 
@@ -61,16 +62,47 @@ Template.ketPetUpload.events({
         function (err) {
           if (err) {
             bootbox.alert(err.reason);
+            errorFlag = true;
             SUIBlock.unblock();
           } else {
             template.results.set([]);
+            // SUIBlock.unblock();
+            // bootbox.alert("Сақталды");
+
+            // FlowRouter.redirect("/school/ketPet/results");
+          }
+        }
+      );
+
+      if (!errorFlag) {
+        Meteor.call("KetPet.totalRating", academicYear.get(), function (err) {
+          if (err) {
+            bootbox.alert(err.reason);
+            errorFlag = true;
+            // SUIBlock.unblock();
+          } else {
+            // template.results.set([]);
+            // SUIBlock.unblock();
+            // bootbox.alert("Сақталды");
+            // FlowRouter.redirect("/school/ketPet/results");
+          }
+        });
+      }
+
+      if (!errorFlag) {
+        Meteor.call("KetPet.totalRating4", academicYear.get(), function (err) {
+          if (err) {
+            bootbox.alert(err.reason);
+            SUIBlock.unblock();
+          } else {
+            // template.results.set([]);
             SUIBlock.unblock();
             bootbox.alert("Сақталды");
 
             FlowRouter.redirect("/school/ketPet/results");
           }
-        }
-      );
+        });
+      }
 
       return;
     }
