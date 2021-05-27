@@ -79,10 +79,7 @@ Meteor.methods({
             ? Number(editItem.kazakh_russian_literature)
             : "";
 
-        UbtOfficialResults.update(
-          { academicYear, studentId },
-          { $set: ubtResult }
-        );
+        UbtOfficialResults.update({ _id: ubtResult._id }, { $set: ubtResult });
         ExaminationActivityLog.insert({
           createdAt: new Date(),
           userRole: "admin",
