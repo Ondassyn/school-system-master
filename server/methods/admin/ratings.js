@@ -1058,6 +1058,16 @@ Meteor.methods({
         olympiadGradeTotalRating.natSilverOlymp * 2 +
         olympiadGradeTotalRating.natBronzeOlymp;
 
+      olympiadGradeTotalRating["totalPointRepublicJunior"] =
+        olympiadGradeTotalRating.natJunGoldOlymp * 3 +
+        olympiadGradeTotalRating.natJunSilverOlymp * 2 +
+        olympiadGradeTotalRating.natJunBronzeOlymp;
+
+      olympiadGradeTotalRating["totalPointRegionJunior"] =
+        olympiadGradeTotalRating.regJunGoldOlymp * 3 +
+        olympiadGradeTotalRating.regJunSilverOlymp * 2 +
+        olympiadGradeTotalRating.regJunBronzeOlymp;
+
       let sameGradeTotalRating = OlympiadRatings.findOne({
         academicYear: academicYear,
         schoolId: school.schoolId,

@@ -180,7 +180,6 @@ Meteor.methods({
           if (studentLevel == "Pass(A2)") ratingRecord.grade7PassA2++;
           if (studentLevel == "A1") {
             ratingRecord.grade7A1++;
-            ratingRecord.grade7Fail++;
           }
           if (studentLevel == "Fail") ratingRecord.grade7Fail++;
 
@@ -195,7 +194,6 @@ Meteor.methods({
           if (studentLevel == "Pass(B1)") ratingRecord.grade8PassB1++;
           if (studentLevel == "A2") {
             ratingRecord.grade8A2++;
-            ratingRecord.grade8Fail++;
           }
           if (studentLevel == "Fail") ratingRecord.grade8Fail++;
 
