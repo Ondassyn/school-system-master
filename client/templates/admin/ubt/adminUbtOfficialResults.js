@@ -14,18 +14,57 @@ Template.adminUbtOfficialResults.onCreated(function () {
   template.subscribe("schools");
 
   template.autorun(() => {
-    template.subscribe("schoolGradeStudents", template.schoolId.get(), "11");
+    template.subscribe("schoolUbtStudents", template.schoolId.get());
     template.subscribe(
       "adminUbtOfficialResults",
+      academicYear.get(),
       template.schoolId.get(),
+      template.period.get()
+    );
+
+    template.subscribe(
+      "adminUbtOfficialRatings",
+      academicYear.get(),
       template.period.get()
     );
   });
 });
 
 Template.adminUbtOfficialResults.helpers({
-  schools() {
-    return Schools.find({}, { sort: { shortName: 1 } }).fetch();
+  // schools() {
+  //   return Schools.find({}, { sort: { shortName: 1 } }).fetch();
+  // },
+  isActiveSchool(schoolId) {
+    return Template.instance().schoolId.get() === schoolId;
+  },
+  schoolRatingsBefore() {
+    let schoolId = Template.instance().schoolId.get();
+    let ratings = UbtOfficialRatings.find({}).fetch();
+    let results = [];
+    for (let i = 0; i < ratings.length; i++) {
+      ratings[i].name = Schools.findOne({
+        schoolId: ratings[i].schoolId,
+      }).shortName;
+      results.push(ratings[i]);
+      if (ratings[i].schoolId === schoolId) break;
+    }
+    return results;
+  },
+  schoolRatingsAfter() {
+    let schoolId = Template.instance().schoolId.get();
+    let ratings = UbtOfficialRatings.find({}).fetch();
+    let results = [];
+    let writeFlag = false;
+    for (let i = 0; i < ratings.length; i++) {
+      if (writeFlag) {
+        ratings[i].name = Schools.findOne({
+          schoolId: ratings[i].schoolId,
+        }).shortName;
+        results.push(ratings[i]);
+      }
+      if (ratings[i].schoolId === schoolId) writeFlag = true;
+    }
+    return results;
   },
   results() {
     let returnList = [];
@@ -121,10 +160,39 @@ var saveItem = function (template) {
     editItem
   );
 
+  Meteor.call(
+    "Ubt.calculateRating",
+    academicYear.get(),
+    template.period.get(),
+    template.schoolId.get(),
+    (err, res) => {
+      if (err) {
+        bootbox.alert(err.reason);
+      }
+    }
+  );
+
   Session.set("editItemId", null);
 };
 
 Template.adminUbtOfficialResults.events({
+  "click .bg-info": function (event, template) {
+    event.preventDefault();
+    if (template.schoolId.get() === event.target.id) {
+      template.schoolId.set("all");
+    } else {
+      template.schoolId.set(event.target.id);
+    }
+  },
+  "click .par": function (event, template) {
+    console.log(event.target);
+    if (template.schoolId.get() === event.target.id) {
+      template.schoolId.set("all");
+    } else {
+      template.schoolId.set(event.target.id);
+    }
+    console.log(template.schoolId.get());
+  },
   "click .editItem": function () {
     Session.set("editItemId", this.studentId);
   },
@@ -535,6 +603,25 @@ Template.adminUbtOfficialResults.events({
       let sName = academicYear.get() + "_UBT_" + schoolId + ".xlsx";
       XLSX.writeFile(wb, sName);
     });
+  },
+
+  "click #calculate"(event, template) {
+    SUIBlock.block("Жүктелуде...");
+    Meteor.call(
+      "Ubt.calculateRating",
+      academicYear.get(),
+      template.period.get(),
+      template.schoolId.get(),
+      (err, res) => {
+        if (err) {
+          bootbox.alert(err.reason);
+          SUIBlock.unblock();
+        } else {
+          SUIBlock.unblock();
+          bootbox.alert("Сақталды");
+        }
+      }
+    );
   },
 });
 

@@ -3,6 +3,7 @@ import { ReactiveVar } from "meteor/reactive-var";
 import "./schoolStudents.html";
 import Greeting from "./Greeting.js";
 import XLSX from "xlsx";
+import { is } from "core-js/core/object";
 
 Template.schoolStudents.onCreated(function () {
   let template = this;
@@ -11,6 +12,7 @@ Template.schoolStudents.onCreated(function () {
   template.surname_search = new ReactiveVar("");
   template.grade_search = new ReactiveVar("");
   template.division_search = new ReactiveVar("");
+  template.iins = new ReactiveVar([]);
   template.subscribe("schoolStudents");
   template.subscribe("kboSubjects");
   template.subscribe("subjects");
@@ -107,13 +109,14 @@ Template.schoolStudents.events({
   },
 
   "click #export"(event, template) {
-    document.getElementById("out").innerHTML;
+    // document.getElementById("out").innerHTML;
     var data = [];
     var headers = [
       "#",
       "Оқушы ID",
       "Сыныбы",
       "Аты-жөні",
+      "ИИН",
       "Toбы",
       "Олимпиада пәні",
       "БТС таңдау пәндері",
@@ -149,6 +152,7 @@ Template.schoolStudents.events({
       let studentClass = studentList[i].grade + studentList[i].division;
       let studentInfo =
         studentList[i].surname + " " + studentList[i].name.trim();
+      let studentIin = studentList[i].iin;
       let studentLanguageGroup = studentList[i].languageGroup;
 
       let studentBtsElective = btsElectiveList[
@@ -168,6 +172,7 @@ Template.schoolStudents.events({
         studentId,
         studentClass,
         studentInfo,
+        studentIin,
         studentLanguageGroup,
         studentOlympiad,
         studentBtsElective,
@@ -260,6 +265,35 @@ Template.schoolStudents.events({
         }
       });
     }
+  },
+  "click .mb-2"(event, template) {
+    event.preventDefault();
+    let studentId = "" + this.studentId;
+    let iins = template.iins.get();
+    if (!iins.some((i) => i.studentId === studentId)) return;
+    const iin = iins.find((i) => i.studentId === studentId).iin;
+    // SUIBlock.block("Жүктелуде...");
+    Meteor.call("Student.updateIin", +studentId, iin, function (err) {
+      if (err) {
+        alert(err.reason);
+        // SUIBlock.unblock();
+      } else {
+        alert("Сакталды!");
+        // SUIBlock.unblock();
+      }
+    });
+  },
+  "change #input"(event, template) {
+    let studentId = event.target.name;
+    let iin = event.target.value;
+
+    let iins = template.iins.get();
+    if (iins.some((i) => i.studentId === studentId)) {
+      iins.find((i) => i.studentId === studentId).iin = iin;
+    } else {
+      iins.push({ studentId, iin });
+    }
+    template.iins.set(iins);
   },
 });
 

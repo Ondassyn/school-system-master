@@ -29,6 +29,15 @@ Meteor.publish("schoolGradeStudents", function (schoolId, grade) {
   return this.ready();
 });
 
+Meteor.publish("schoolUbtStudents", function (schoolId) {
+  if (this.userId) {
+    if (schoolId) {
+      if (schoolId !== "all") return Students.find({ schoolId, grade: "11" });
+    }
+  }
+  return this.ready();
+});
+
 Meteor.publish("schoolSatStudents", function (schoolId, grade) {
   if (this.userId) {
     if (schoolId && grade) {

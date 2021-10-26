@@ -23,6 +23,7 @@
                                   <th style="text-align: center; width: 50pt">Сыныбы</th>
                                   <th>Тегі</th>
                                   <th>Аты</th>
+                                  <th style="text-align: center;">ИИН</th> 
                                   <th style="text-align: center;">Тобы</th>
                               </tr>
                           </thead>
@@ -32,6 +33,7 @@
                                   <td style="text-align: center;">{{grade}}{{division}}</td>
                                   <td>{{surname}}</td>
                                   <td>{{name}}</td>
+                                  <td style="text-align: center;">{{iin}}</td>
                                   <td style="text-align: center;">{{languageGroup}}</td>
                               </tr>
                               {{/each}}
@@ -58,6 +60,10 @@
                 <div class="form-group">
                   <label for="surname">Жөні</label>
                   <input type="text" class="form-control" placeholder="Жөні" name="surname">
+                </div>
+                <div class="form-group">
+                  <label for="iin">ИИН</label>
+                  <input type="text" class="form-control" placeholder="ИИН" name="iin">
                 </div>
                 <div class="form-group">
                     <div class="form-inline">

@@ -171,9 +171,15 @@ Template.turkishA1Upload.events({
         }
       });
     };
+
     reader.readAsBinaryString(file);
   },
   "change #txt_upload"(event, template) {
+    if (!template.no.get()) {
+      alert("Парақты жаңартыңыз және емтихан нөмірін таңдаңыз");
+      return;
+    }
+
     template.isXlsx.set(false);
 
     function handleFiles(files) {

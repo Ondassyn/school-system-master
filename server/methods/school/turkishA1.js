@@ -27,9 +27,9 @@ Meteor.methods({
     if (
       !Roles.userIsInRole(this.userId, "school") &&
       !Roles.userIsInRole(this.userId, "schoolCoordinator")
-    )
+    ) {
       throw new Meteor.Error("access-denied", "Access denied!");
-
+    }
     let school = Schools.findOne({
       userId: this.userId,
     });

@@ -8,13 +8,13 @@
                         <div class="form-group" style="margin-right: 15pt">
                         {{> academicYear}}
 
-                        <label for="" style="margin-left: 10pt; ">Мектеп</label>
+                        <!-- <label for="" style="margin-left: 10pt; ">Мектеп</label>
                         <select class="form-control" id="school">
                             <option value="all">Жалпы</option>
                             {{#each schools}}
                             <option value="{{schoolId}}">{{shortName}}</option>
                             {{/each}}
-                        </select>
+                        </select> -->
 
                         <label for="" style="margin-left: 10pt; ">Кезең</label>
                         <select class="form-control" id="period">
@@ -30,6 +30,10 @@
 
                         </div>
 
+                        <!-- <div class="form-group" style="float: right">
+                            <a class="btn btn-success" id="calculate">Calculate</a>
+                        </div> -->
+
                         <div class="form-group" style="float: right">
                             <a class="btn btn-success" id="download">Download</a>
                         </div>
@@ -38,7 +42,7 @@
             </div>
             {{#if Template.subscriptionsReady}}
 
-            <table style="margin-top: 15pt" class="table table-striped table-bordered table-hover table-responsive table-condensed">
+            <table style="margin-top: 15pt" class="table table-bordered table-hover table-responsive table-condensed">
                 <thead>
                     <tr class="sat-header">
                         <th>#</th>
@@ -64,10 +68,39 @@
                     </tr>
                 </thead>
                 <tbody>
+
+                    {{#each schoolRatingsBefore}}
+                        <tr class="bg-info" style="cursor: pointer;">
+                            <td id="{{schoolId}}" style="text-align: center;">
+                                {{#if isActiveSchool schoolId}}
+                                    <i class="fa fa-arrow-up" id={{schoolId}}></i>
+                                {{else}}
+                                    <a class="fa fa-arrow-down"   id={{schoolId}}></a>
+                                {{/if}}</td>
+                            <td id="{{schoolId}}" style="border-right: 1pt solid darkgrey" colspan="2">{{name}}</td>
+
+                            <td id="{{schoolId}}" style="text-align: center; border-right: 1pt solid darkgrey">{{#if total}}{{round "2" total}}{{/if}}</td>
+                            <td id="{{schoolId}}" style="text-align: center">{{#if math_literacy}}{{round "2" math_literacy}}{{/if}}</td>
+                            <td id="{{schoolId}}" style="text-align: center">{{#if reading_literacy}}{{round "2" reading_literacy}}{{/if}}</td>
+                            <td id="{{schoolId}}" style="text-align: center; border-right: 1pt solid darkgrey">{{#if kazakh_history}}{{round "2" kazakh_history}}{{/if}}</td>
+    
+                            <td id="{{schoolId}}" style="text-align: center">{{#if algebra}}{{round "2" algebra}}{{/if}}</td>
+                            <td id="{{schoolId}}" style="text-align: center">{{#if physics}}{{round "2" physics}}{{/if}}</td>
+                            <td id="{{schoolId}}" style="text-align: center">{{#if chemistry}}{{round "2" chemistry}}{{/if}}</td>
+                            <td id="{{schoolId}}" style="text-align: center">{{#if biology}}{{round "2" biology}}{{/if}}</td>
+                            <td id="{{schoolId}}" style="text-align: center">{{#if geography}}{{round "2" geography}}{{/if}}</td>
+                            <td id="{{schoolId}}" style="text-align: center">{{#if foreign_language}}{{round "2" foreign_language}}{{/if}}</td>
+                            <td id="{{schoolId}}" style="text-align: center">{{#if world_history}}{{round "2" world_history}}{{/if}}</td>
+                            <td id="{{schoolId}}" style="text-align: center">{{#if community_rights}}{{round "2" community_rights}}{{/if}}</td>
+                            <td id="{{schoolId}}" style="text-align: center">{{#if kazakh_russian_language}}{{round "2" kazakh_russian_language}}{{/if}}</td>
+                            <td id="{{schoolId}}" style="text-align: center">{{#if kazakh_russian_literature}}{{round "2" kazakh_russian_literature}}{{/if}}</td>
+                            
+                        </tr>
+                    {{/each}}
                     
                   {{#each results}}
 
-                    <tr>
+                    <tr style="background-color: white;">
                       <td>{{math @index "+" 1}}</td>
                       <td>{{grade}} {{division}}</td>
                       <td style="border-right: 1pt solid darkgrey">{{surname}} {{name}} </td>
@@ -121,6 +154,35 @@
 
                     </tr>
                   {{/each}}
+
+                  {{#each schoolRatingsAfter}}
+                        <tr class="bg-info" style="cursor: pointer;">
+                            <td id="{{schoolId}}" style="text-align: center;">
+                                {{#if isActiveSchool schoolId}}
+                                    <a class="fa fa-arrow-down"></a>
+                                {{else}}
+                                    <a class="fa fa-arrow-up"></a>
+                                {{/if}}</td>
+                            <td id="{{schoolId}}" style="border-right: 1pt solid darkgrey" colspan="2">{{name}}</td>
+
+                            <td id="{{schoolId}}" style="text-align: center; border-right: 1pt solid darkgrey">{{#if total}}{{round "2" total}}{{/if}}</td>
+                            <td id="{{schoolId}}" style="text-align: center">{{#if math_literacy}}{{round "2" math_literacy}}{{/if}}</td>
+                            <td id="{{schoolId}}" style="text-align: center">{{#if reading_literacy}}{{round "2" reading_literacy}}{{/if}}</td>
+                            <td id="{{schoolId}}" style="text-align: center; border-right: 1pt solid darkgrey">{{#if kazakh_history}}{{round "2" kazakh_history}}{{/if}}</td>
+    
+                            <td id="{{schoolId}}" style="text-align: center">{{#if algebra}}{{round "2" algebra}}{{/if}}</td>
+                            <td id="{{schoolId}}" style="text-align: center">{{#if physics}}{{round "2" physics}}{{/if}}</td>
+                            <td id="{{schoolId}}" style="text-align: center">{{#if chemistry}}{{round "2" chemistry}}{{/if}}</td>
+                            <td id="{{schoolId}}" style="text-align: center">{{#if biology}}{{round "2" biology}}{{/if}}</td>
+                            <td id="{{schoolId}}" style="text-align: center">{{#if geography}}{{round "2" geography}}{{/if}}</td>
+                            <td id="{{schoolId}}" style="text-align: center">{{#if foreign_language}}{{round "2" foreign_language}}{{/if}}</td>
+                            <td id="{{schoolId}}" style="text-align: center">{{#if world_history}}{{round "2" world_history}}{{/if}}</td>
+                            <td id="{{schoolId}}" style="text-align: center">{{#if community_rights}}{{round "2" community_rights}}{{/if}}</td>
+                            <td id="{{schoolId}}" style="text-align: center">{{#if kazakh_russian_language}}{{round "2" kazakh_russian_language}}{{/if}}</td>
+                            <td id="{{schoolId}}" style="text-align: center">{{#if kazakh_russian_literature}}{{round "2" kazakh_russian_literature}}{{/if}}</td>
+                            
+                        </tr>
+                    {{/each}}
 
                 </tbody>
             </table>

@@ -115,6 +115,23 @@
                             {{/if}}
                        </tr>
 
+                       <tr>
+                        <td>{{coordinatorAccount}}</td>
+                        <td>{{coordinatorPassword}}</td>
+
+                        {{#if editingCoordinator}}
+                          <td><input type="text" id="editCoordinatorPassword" placeholder="enter new password"></td>
+                          <td>
+                            <button id="saveItemCoordinator" class=" btn btn-success">Save</button>
+                            <button id="cancelItemCoordinator" class=" btn btn-default">Cancel</button>
+                          </td>
+
+                        {{else}}
+                          <td id="editCoordinator"><button class="btn btn-warning">Баптау</button></td>
+                          <!-- {{#if coordinatorAccount}} {{else}}<td id="addCoordinator"><button class="btn btn-primary">Енгізу</button></td> {{/if}} -->
+                        {{/if}}
+                   </tr>
+
                        {{else}}
                          <tr><td>Admin:     </td><td><button  id="addAdmin" class="btn btn-primary">Енгізу</button></td></tr>
                          <tr><td>Edlight: </td><td><button id="addEdlight" class="btn btn-primary">Енгізу</button></td></tr>

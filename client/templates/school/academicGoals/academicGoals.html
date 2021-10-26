@@ -1,0 +1,1702 @@
+<template name="academicGoals">
+    <div class="row">
+        <div class="col-md-12">
+            <h4 style="text-align: center; padding-bottom: 15pt">Академиялық мақсаттар</h4>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-inline">
+                        <div class="form-group" style="margin-right: 15pt">
+                        {{> academicYear}}
+
+                        </div>
+
+                        <!-- <div class="form-group" style="float: right">
+                            <a class="btn btn-success" id="download">Download</a>
+                        </div> -->
+                    </div>
+                </div>
+            </div>
+            {{#if Template.subscriptionsReady}}
+
+            <table style="margin-top: 15pt" class="table table-striped table-bordered table-hover table-responsive table-condensed">
+                <thead>
+                    <tr class="sat-header">
+                        <th style="border-bottom: 1pt solid darkgrey">#</th>
+                        <th style="border-bottom: 1pt solid darkgrey">Мақсаттар</th>
+                        <th style="border-bottom: 1pt solid darkgrey">Суб-мақсаттар</th>
+                        <th style="border-bottom: 1pt solid darkgrey">Мерзім</th>
+                        <th style="border-bottom: 1pt solid darkgrey">Сипаттама</th>
+                        <th style="text-align: center; border-bottom: 1pt solid darkgrey">Орындалған</th>
+                        <th style="text-align: center; border-bottom: 1pt solid darkgrey">Мақсат</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    
+
+                    <tr>
+                      <td style="border-bottom: 1pt solid darkgrey" rowspan="4">1</td>
+                      <td style="border-bottom: 1pt solid darkgrey" rowspan="4">Әлемнің ең үздік 100 yниверситетіне оқушыларды дайындау</td>
+                      <td rowspan="2">
+                        1.1 Түрлі халықаралық рейтингтер бойынша үздік танылған университеттерге түсуге 11 сынып оқушыларын ынталандыру, жан-жақты қолдау көрсету
+                        <button type="button" class="btn btn-light btn-sm" data-toggle="tooltip" data-html="true" data-placement="bottom" 
+                          title="Ағымдық қадағалау механизмі: 11 сынып оқушыларының CommonApp, UCAS үшін қажетті құжаттардың (SAT, IELTS, AP Score, Essay, Recommendation letter, extracurriculars) дайындалуы және толтырлуын қадағалау. Ерте және негізгі кезеңге (early and regular application) тапсыратын оқушыларды мектептің кәсіби бағдар берушісі қыркүйек айында анықтайды, бөлек қадағалайды. 
+                          
+Түсініктемесі: CommonApp, UCAS - аталмыш университеттерге өтінім беру үшін арналған платформалар. Бұл платформаға мектеп туралы ақпараттар  (school profile), оқушының жетістіктерін растайтын құжаттар (ұсыныс хаттар, табельдер, т.б.) мен оқушының жеке басына қатысты басқа да ақпарат (эсселер, т.б.)енгізіледі. Бұл платформамен лицейдің кәсіби бағдар берушісі (КББ) жұмыс істейді. Мектеп туралы ақпаратты (school profile) БЖО және КББ бірге дайындайды.
+                        ">
+                          <i class="fa fa-info"></i>
+                        </button>
+                      </td>
+                      <td >Жартыжылдық индикатор</td>
+                      <td >Мамандығы бойынша 100 үздік университеттерге құжат тапсырған оқушылардың саны</td>
+
+                    
+                    {{#with goalObject "1111"}}
+                      {{#if editing id}}
+
+                        <td style="text-align: center"><input type="text" style="width: 30pt" id="editCompleted" value="{{completed}}"></td>
+                        <td style="text-align: center;"><input type="text" style="width: 30pt" id="editTarget" value="{{target}}"></td>
+                        
+                        <td>
+                          <button class="saveItem btn btn-success" name={{id}}>Save</button>
+                          <button class="cancelItem btn btn-default">Cancel</button>
+                        </td>
+
+                      {{else}}
+
+                        <td style="text-align: center">{{completed}}</td>
+                        <td style="text-align: center; ">{{target}}</td>
+                        
+                        <td><button class="editItem btn btn-primary" name={{id}}>Edit</button>
+                        </td>
+
+                    {{/if}}
+                    {{/with}}
+                    </tr>
+
+                    <tr>
+                        <td>Жылдық индикатор</td>
+                        <td>Мамандығы бойынша 100 үздік университеттерден шақырту алған оқушылардың саны</td>
+  
+                        {{#with goalObject "1121"}}
+                        {{#if editing id}}
+  
+                          <td style="text-align: center"><input type="text" style="width: 30pt" id="editCompleted" value="{{completed}}"></td>
+                          <td style="text-align: center;"><input type="text" style="width: 30pt" id="editTarget" value="{{target}}"></td>
+                          
+                          <td>
+                            <button class="saveItem btn btn-success" name={{id}}>Save</button>
+                            <button class="cancelItem btn btn-default">Cancel</button>
+                          </td>
+  
+                        {{else}}
+  
+                          <td style="text-align: center">{{completed}}</td>
+                          <td style="text-align: center;">{{target}}</td>
+                          
+                          <td><button class="editItem btn btn-primary" name={{id}}>Edit</button>
+                          </td>
+  
+                      {{/if}}
+                      {{/with}}
+                      </tr>
+
+
+                    <tr>
+                      <td style="border-bottom: 1pt solid darkgrey" rowspan="2">
+                        1.2 Түрлі халықаралық рейтингтер бойынша үздік танылған университеттерге түсуге 10 сынып оқушыларын ынталандыру, жан-жақты қолдау көрсету
+                        <button class="btn btn-light btn-sm" data-toggle="tooltip" data-placement="bottom" 
+                          title="Ағымдық қадағалау механизмі: 10 сынып оқушыларының SAT, IELTS, AP курстарына қатысуларын, әлеуметтік және ғылыми жобалар жасауын (икемді дағдыларын дамытуларын) қадағалау.
+
+Түсініктемесі: Икемді дағдылар - көптеген өмірлік жағдайларда адамға қажет және пайдалы болуы мүмкін әлеуметтік-психологиялық дағдылар.">
+                          <i class="fa fa-info"></i>
+                        </button>
+                      </td>
+                      <td>
+                        Жартыжылдық индикатор
+                      </td>
+                      <td>
+                        Осы университеттерге түсу үшін жүйелі, сапалы дайындалып жатқан оқушылардың саны
+                        <button class="btn btn-light btn-sm" data-toggle="tooltip" data-placement="bottom" 
+                        title="Түсініктемесі: 
+SAT, IELTS тесттеріне дайындалып, жоғары нәтиже көрсетіп жатқан; AP курстарын алып жатқан; сондай-ақ әлеуметтік/ғылыми жоба жасап жатқан оқушылардың саны
+                        ">
+                          <i class="fa fa-info"></i>
+                        </button>
+                      </td>
+
+                    
+                    {{#with goalObject "1211"}}
+                      {{#if editing id}}
+
+                        <td style="text-align: center"><input type="text" style="width: 30pt" id="editCompleted" value="{{completed}}"></td>
+                        <td style="text-align: center;"><input type="text" style="width: 30pt" id="editTarget" value="{{target}}"></td>
+                        
+                        <td>
+                          <button class="saveItem btn btn-success" name={{id}}>Save</button>
+                          <button class="cancelItem btn btn-default">Cancel</button>
+                        </td>
+
+                      {{else}}
+
+                        <td style="text-align: center">{{completed}}</td>
+                        <td style="text-align: center;">{{target}}</td>
+                        
+                        <td><button class="editItem btn btn-primary" name={{id}}>Edit</button>
+                        </td>
+
+                    {{/if}}
+                    {{/with}}
+                    </tr>
+
+                    <tr>
+                      <td style="border-bottom: 1pt solid darkgrey">
+                        Жылдық индикатор
+                      </td>
+                      <td style="border-bottom: 1pt solid darkgrey">
+                        Осы университеттерге түсу үшін жүйелі, сапалы дайындалып жатқан оқушылардың саны
+                        <button class="btn btn-light btn-sm" data-toggle="tooltip" data-placement="bottom" 
+                        title="Түсініктемесі: 
+SAT, IELTS тесттеріне дайындалып, жоғары нәтиже көрсетіп жатқан; AP курстарын алып жатқан; сондай-ақ әлеуметтік/ғылыми жоба жасап жатқан оқушылардың саны
+                        ">
+                          <i class="fa fa-info"></i>
+                        </button>
+                      </td>
+
+                      {{#with goalObject "1221"}}
+                      {{#if editing id}}
+
+                        <td style="text-align: center; border-bottom: 1pt solid darkgrey"><input type="text" style="width: 30pt" id="editCompleted" value="{{completed}}"></td>
+                        <td style="text-align: center; border-bottom: 1pt solid darkgrey"><input type="text" style="width: 30pt" id="editTarget" value="{{target}}"></td>
+                        
+                        <td>
+                          <button class="saveItem btn btn-success" name={{id}}>Save</button>
+                          <button class="cancelItem btn btn-default">Cancel</button>
+                        </td>
+
+                      {{else}}
+
+                        <td style="text-align: center; border-bottom: 1pt solid darkgrey">{{completed}}</td>
+                        <td style="text-align: center; border-bottom: 1pt solid darkgrey">{{target}}</td>
+                        
+                        <td><button class="editItem btn btn-primary" name={{id}}>Edit</button>
+                        </td>
+
+                    {{/if}}
+                    {{/with}}
+                    </tr>
+
+
+                    <tr>
+                      <td style="border-bottom: 1pt solid darkgrey" rowspan="3">2</td>
+                      <td style="border-bottom: 1pt solid darkgrey" rowspan="3">
+                        Пәндік олимпиадаларға дайындау
+                        <button class="btn btn-light btn-sm" data-toggle="tooltip" data-placement="bottom" 
+                        title="Түсініктемесі: 
+                        - Оқушыларды жүйелі түрде пәндік олимпиадаларға бағыттау және дайындау. 
+                        - Жалпы 3 индикатор бар:
+                        - Облыстық олимпиадада жүлделі орындар саны
+                        - Республикалық олимпиада жүлделі орындар саны
+                        - КБО финал олимпиадасында жүлделі орындар саны
+                        
+Ағымдық қадағалау механизмі: 
+                        1) Әр ай соңында OPE (Olimpiad Preparation Exam) және КБО сынақтарының нәтижелерін талқылау. 
+                        2) Екі аптада бір рет мектептердегі олимпиадаға дайындық жұмысының есебін талқылау.
+                        
+Түсініктемесі:
+Edlight Academy мамандары айда бір рет олимпиада сұрақтарын жіберіп отырады (оқу жылы ішінде 4 рет OPE және 3 рет КБО). Лицейлер жүйелі түрде сол сұрақтарды оқушыларға берулері, және артынан нәтижелерін талдаулары қажет. 
+                        
+Олимпиадаға дайындық жұмысының есеп формасы tests.bilik сайтында толтырылады. Лицейлер алдымен сол формамен танысып, екі аптада бір рет сол форманы толтырулары қажет. Қор мамандары 1 айда бір рет есеп формаларының қорытындыларын талқылайды. 
+                        ">
+                          <i class="fa fa-info"></i>
+                        </button>
+                      </td>
+                      <td style="border-bottom: 1pt solid darkgrey" rowspan="3">
+                      </td>
+                      <td >Жартыжылдық индикатор</td>
+                      <td >Облыстық олимпиадада жүлделі орындар саны</td>
+
+                    
+                    {{#with goalObject "2111"}}
+                      {{#if editing id}}
+
+                        <td style="text-align: center"><input type="text" style="width: 30pt" id="editCompleted" value="{{completed}}"></td>
+                        <td style="text-align: center;"><input type="text" style="width: 30pt" id="editTarget" value="{{target}}"></td>
+                        
+                        <td>
+                          <button class="saveItem btn btn-success" name={{id}}>Save</button>
+                          <button class="cancelItem btn btn-default">Cancel</button>
+                        </td>
+
+                      {{else}}
+
+                        <td style="text-align: center">{{completed}}</td>
+                        <td style="text-align: center; ">{{target}}</td>
+                        
+                        <td><button class="editItem btn btn-primary" name={{id}}>Edit</button>
+                        </td>
+
+                    {{/if}}
+                    {{/with}}
+                    </tr>
+
+                    <tr>
+                        <td style="border-bottom: 1pt solid darkgrey" rowspan="2">Жылдық индикатор</td>
+                        <td>Республикалық олимпиадада жүлделі орындар саны</td>
+  
+                        {{#with goalObject "2121"}}
+                        {{#if editing id}}
+  
+                          <td style="text-align: center"><input type="text" style="width: 30pt" id="editCompleted" value="{{completed}}"></td>
+                          <td style="text-align: center;"><input type="text" style="width: 30pt" id="editTarget" value="{{target}}"></td>
+                          
+                          <td>
+                            <button class="saveItem btn btn-success" name={{id}}>Save</button>
+                            <button class="cancelItem btn btn-default">Cancel</button>
+                          </td>
+  
+                        {{else}}
+  
+                          <td style="text-align: center">{{completed}}</td>
+                          <td style="text-align: center;">{{target}}</td>
+                          
+                          <td><button class="editItem btn btn-primary" name={{id}}>Edit</button>
+                          </td>
+  
+                      {{/if}}
+                      {{/with}}
+                      </tr>
+
+                    <tr>
+                      <td style="border-bottom: 1pt solid darkgrey">
+                        КБО финал олимпиадасында жүлделі орындар саны
+                      </td>
+
+                      {{#with goalObject "2122"}}
+                      {{#if editing id}}
+
+                        <td style="text-align: center; border-bottom: 1pt solid darkgrey"><input type="text" style="width: 30pt" id="editCompleted" value="{{completed}}"></td>
+                        <td style="text-align: center; border-bottom: 1pt solid darkgrey"><input type="text" style="width: 30pt" id="editTarget" value="{{target}}"></td>
+                        
+                        <td>
+                          <button class="saveItem btn btn-success" name={{id}}>Save</button>
+                          <button class="cancelItem btn btn-default">Cancel</button>
+                        </td>
+
+                      {{else}}
+
+                        <td style="text-align: center; border-bottom: 1pt solid darkgrey">{{completed}}</td>
+                        <td style="text-align: center; border-bottom: 1pt solid darkgrey">{{target}}</td>
+                        
+                        <td><button class="editItem btn btn-primary" name={{id}}>Edit</button>
+                        </td>
+
+                    {{/if}}
+                    {{/with}}
+                    </tr>
+
+
+                    <tr>
+                      <td style="border-bottom: 1pt solid darkgrey" rowspan="4">3</td>
+                      <td style="border-bottom: 1pt solid darkgrey" rowspan="4">Оқушыларды жоғарғы оқу орнына дайындау</td>
+                      <td rowspan="2">
+                        3.1 Қазақстанда немесе шетелде оқуды қалайтын оқушыларды сапалы (safe) және үздік ЖОО-ларға бағыттау және грант алуларына қолдау көрсету
+                        <button class="btn btn-light btn-sm" data-toggle="tooltip" data-placement="bottom" 
+                          title="Ағымдық қадағалау механизмі: Екі аптада бір рет кәсіби бағдар берушының атқарған жұмысы туралы есеп.
+
+Түсініктемесі: Қыркүйек айында лицейлер шетелге тапсыратын 11-сынып оқушылардың тізімін жасайды. КББ-лар оларды бағыттайды және дайындығын бақылайды. Екі аптада бір рет google sheet арқылы есеп формасын толтырады. Есеп ақпан айына дейін алынады.">
+                          <i class="fa fa-info"></i>
+                        </button>
+                      </td>
+                      <td >Жартыжылдық индикатор</td>
+                      <td >
+                        АҚШ, Канада, Европа, Оңтүстік Корея және Гонконг университеттеріне құжат тапсырған оқушылардың саны.
+                        <button class="btn btn-light btn-sm" data-toggle="tooltip" data-placement="bottom" 
+                          title="Түсініктемесі: АҚШ, Канада, Европа оқу орындарына оқуға түсу үшін көбінесе желтоқсан айының соңына дейін, Оңтүстік Корея және Гонгконг наурыз айына дейін құжат қабылдайды. Оқушылар қаңтар айына дейін құжаттарын тапсырып үлгерулері қажет."
+                          >
+                          <i class="fa fa-info"></i>
+                        </button>
+                      </td>
+
+                    
+                    {{#with goalObject "3111"}}
+                      {{#if editing id}}
+
+                        <td style="text-align: center"><input type="text" style="width: 30pt" id="editCompleted" value="{{completed}}"></td>
+                        <td style="text-align: center;"><input type="text" style="width: 30pt" id="editTarget" value="{{target}}"></td>
+                        
+                        <td>
+                          <button class="saveItem btn btn-success" name={{id}}>Save</button>
+                          <button class="cancelItem btn btn-default">Cancel</button>
+                        </td>
+
+                      {{else}}
+
+                        <td style="text-align: center">{{completed}}</td>
+                        <td style="text-align: center; ">{{target}}</td>
+                        
+                        <td><button class="editItem btn btn-primary" name={{id}}>Edit</button>
+                        </td>
+
+                    {{/if}}
+                    {{/with}}
+                    </tr>
+
+                    <tr>
+                        <td>Жылдық индикатор</td>
+                        <td>
+                          Қазақстандық немесе шетел университеттеріне грант алған оқушылардың саны.
+                          <button class="btn btn-light btn-sm" data-toggle="tooltip" data-placement="bottom" 
+                          title="Түсініктемесі: Толық грант алған оқушылар саны."
+                          >
+                          <i class="fa fa-info"></i>
+                        </button>
+                        </td>
+  
+                        {{#with goalObject "3121"}}
+                        {{#if editing id}}
+  
+                          <td style="text-align: center"><input type="text" style="width: 30pt" id="editCompleted" value="{{completed}}"></td>
+                          <td style="text-align: center;"><input type="text" style="width: 30pt" id="editTarget" value="{{target}}"></td>
+                          
+                          <td>
+                            <button class="saveItem btn btn-success" name={{id}}>Save</button>
+                            <button class="cancelItem btn btn-default">Cancel</button>
+                          </td>
+  
+                        {{else}}
+  
+                          <td style="text-align: center">{{completed}}</td>
+                          <td style="text-align: center;">{{target}}</td>
+                          
+                          <td><button class="editItem btn btn-primary" name={{id}}>Edit</button>
+                          </td>
+  
+                      {{/if}}
+                      {{/with}}
+                      </tr>
+
+
+                    <tr>
+                      <td style="border-bottom: 1pt solid darkgrey" rowspan="2">
+                        3.2 Оқушыларды ҰБТ сынағында жоғары ұпай алуларына және нәтижесінде грантқа түсулері үшін бағыттау
+                        <button class="btn btn-light btn-sm" data-toggle="tooltip" data-placement="bottom" 
+                          title="Ағымдық қадағалау механизмі: Әр айда U-STUDY орталығында оқушылардың жазған байқау сынағының нәтижелері.
+
+                          Түсініктемесі: Айда бір рет лицейлердің барлық 11 сынып оқушылар бірдей байқау ҰБТ сынағын жазады. Лицейлер сол сынақтарға ҰБТ тапсыратын оқушылардың барлығын қатыстырулары қажет.
+                          ">
+                          <i class="fa fa-info"></i>
+                        </button>
+                      </td>
+                      <td>
+                        Жартыжылдық индикатор
+                      </td>
+                      <td>
+                        ҰБТ-ға дайындық сынағынан 97 ұпайдан жоғары алған оқушылардың саны
+                        <button class="btn btn-light btn-sm" data-toggle="tooltip" data-placement="bottom" 
+                        title="Түсініктемесі: Қыркүйек айындағы байқау ҰБТ емтиханы және оқушылардың үлгерімі нәтижесінде 97 ұпайдан жоғары алатын оқушылардың саны анықталады. Соның негізінде жартыжылдыққа мақсат қойылады.
+
+Жартыжылдық бағалау механизмі: ҰБТ жауаптыларымен жүйелі жиналыстар жасау, оқушыларды жеке жеке бағыттау, бақылау және мақсат қою. Кемінде 2 аптада бір рет байқау ҰБТлар жасау. Тоқсандық демалыстарда ҰБТға дайындық лагерлерін ұйымдастыру.">
+                          <i class="fa fa-info"></i>
+                        </button>
+                      </td>
+
+                    
+                    {{#with goalObject "3211"}}
+                      {{#if editing id}}
+
+                        <td style="text-align: center"><input type="text" style="width: 30pt" id="editCompleted" value="{{completed}}"></td>
+                        <td style="text-align: center;"><input type="text" style="width: 30pt" id="editTarget" value="{{target}}"></td>
+                        
+                        <td>
+                          <button class="saveItem btn btn-success" name={{id}}>Save</button>
+                          <button class="cancelItem btn btn-default">Cancel</button>
+                        </td>
+
+                      {{else}}
+
+                        <td style="text-align: center">{{completed}}</td>
+                        <td style="text-align: center;">{{target}}</td>
+                        
+                        <td><button class="editItem btn btn-primary" name={{id}}>Edit</button>
+                        </td>
+
+                    {{/if}}
+                    {{/with}}
+                    </tr>
+
+                    <tr>
+                      <td style="border-bottom: 1pt solid darkgrey">
+                        Жылдық индикатор
+                      </td>
+                      <td style="border-bottom: 1pt solid darkgrey">
+                        ҰБТ сынағынан 112 ұпайдан (80%) жоғары алған оқушылардың саны.
+                        <button class="btn btn-light btn-sm" data-toggle="tooltip" data-placement="bottom" 
+                        title="Түсініктемесі: Ресми ҰБТ-лардан ең жоғары ұпай жинаған ҰБТ есепке алынады (Наурыз-Маусым). Жыл соңында 112 ұпайдан жоғары алатын оқушылар саны болжанады және мақсат ретінде жазылады. 
+
+Жылдық бағалау механизмі: Кемінде 2 аптада бір рет ҰБТ жауаптысы, сынып жетекшілері, БЖОмен жиналыс жасау. Оқушыларға жүйелі ҰБТ дайындық сабақтарын ұйымдастыру және жүелі түрде байқау ҰБТнәтижелерін талдау. Аптада бір рет байқау ҰБТ сынақтарын өткізу және айлық байқау ҰБТларға оқушыларды қатыстыру. Тоқсандық демалыстарда ҰБТға дайындық лагерлерін ұйымдастыру.">
+                          <i class="fa fa-info"></i>
+                        </button>
+                      </td>
+
+                      {{#with goalObject "3221"}}
+                      {{#if editing id}}
+
+                        <td style="text-align: center; border-bottom: 1pt solid darkgrey"><input type="text" style="width: 30pt" id="editCompleted" value="{{completed}}"></td>
+                        <td style="text-align: center; border-bottom: 1pt solid darkgrey"><input type="text" style="width: 30pt" id="editTarget" value="{{target}}"></td>
+                        
+                        <td>
+                          <button class="saveItem btn btn-success" name={{id}}>Save</button>
+                          <button class="cancelItem btn btn-default">Cancel</button>
+                        </td>
+
+                      {{else}}
+
+                        <td style="text-align: center; border-bottom: 1pt solid darkgrey">{{completed}}</td>
+                        <td style="text-align: center; border-bottom: 1pt solid darkgrey">{{target}}</td>
+                        
+                        <td><button class="editItem btn btn-primary" name={{id}}>Edit</button>
+                        </td>
+
+                    {{/if}}
+                    {{/with}}
+                    </tr>
+                    
+
+                    <tr>
+                      <td style="border-bottom: 1pt solid darkgrey" rowspan="8">4</td>
+                      <td style="border-bottom: 1pt solid darkgrey" rowspan="8">Оқушылардың ағылшын тілін меңгеру деңгейін көтеру</td>
+                      <td rowspan="6">
+                        4.1 7, 8 және 9 сынып оқушыларының ағылшын тілі бойынша тілдік білім мен төрт дағдыларды (оқылым, жазылым, айтылым, тыңдалым) меңгеру деңгейін жоғарылату
+                        <button class="btn btn-light btn-sm" data-toggle="tooltip" data-placement="bottom" 
+                          title="Ағымдық қадағалау механизмі: 
+                          1) Әр тоқсан соңында оқушылардан оқылым (reading), тыңдалым (listening) және жазылым (writing) дағдылары бойынша сынақ алынады.
+                          2) Әдіскер, БЖО-лар КЕТ-РЕТ сабақтарының жүргізілуін қадағалайды және жалпы ағылшын тілі пәні сабақтарына қатысады.
+                          
+Түсініктемесі: Сынақтар орталықтан жіберіледі. Мұғалімдер сынақ кітапшаларын өздері тексеріп, қорытындысын пән әдіскеріне жібереді.">
+                          <i class="fa fa-info"></i>
+                        </button>
+                      </td>
+                      <td rowspan="3">Жартыжылдық индикатор</td>
+                      <td >
+                        КЕТ - 7-сыныптар PASS алған оқушылар саны
+                        <button class="btn btn-light btn-sm" data-toggle="tooltip" data-placement="bottom" 
+                          title="Түсініктемесі: 'Pass' шкаласы: 70-84
+'Pass with Merit' шкаласы: 85-89
+'Pass with Distinction' шкаласы: 90-100 
+                          
+Жартыжылдық бағалау механизмі: EDLIGHT компаниясының өткізетін KET-PET сынағы."
+                          >
+                          <i class="fa fa-info"></i>
+                        </button>
+                      </td>
+
+                    
+                    {{#with goalObject "4111"}}
+                      {{#if editing id}}
+
+                        <td style="text-align: center"><input type="text" style="width: 30pt" id="editCompleted" value="{{completed}}"></td>
+                        <td style="text-align: center;"><input type="text" style="width: 30pt" id="editTarget" value="{{target}}"></td>
+                        
+                        <td>
+                          <button class="saveItem btn btn-success" name={{id}}>Save</button>
+                          <button class="cancelItem btn btn-default">Cancel</button>
+                        </td>
+
+                      {{else}}
+
+                        <td style="text-align: center">{{completed}}</td>
+                        <td style="text-align: center; ">{{target}}</td>
+                        
+                        <td><button class="editItem btn btn-primary" name={{id}}>Edit</button>
+                        </td>
+
+                    {{/if}}
+                    {{/with}}
+                    </tr>
+
+                    <tr>
+                      <td >
+                        КЕТ - 8-сыныптар PASS алған оқушылар саны
+                        <button class="btn btn-light btn-sm" data-toggle="tooltip" data-placement="bottom" 
+                          title="Түсініктемесі: 'Pass' шкаласы: 70-84
+'Pass with Merit' шкаласы: 85-89
+'Pass with Distinction' шкаласы: 90-100 
+                          
+Жартыжылдық бағалау механизмі: EDLIGHT компаниясының өткізетін KET-PET сынағы."
+                          >
+                          <i class="fa fa-info"></i>
+                        </button>
+                      </td>
+
+                    
+                    {{#with goalObject "4112"}}
+                      {{#if editing id}}
+
+                        <td style="text-align: center"><input type="text" style="width: 30pt" id="editCompleted" value="{{completed}}"></td>
+                        <td style="text-align: center;"><input type="text" style="width: 30pt" id="editTarget" value="{{target}}"></td>
+                        
+                        <td>
+                          <button class="saveItem btn btn-success" name={{id}}>Save</button>
+                          <button class="cancelItem btn btn-default">Cancel</button>
+                        </td>
+
+                      {{else}}
+
+                        <td style="text-align: center">{{completed}}</td>
+                        <td style="text-align: center; ">{{target}}</td>
+                        
+                        <td><button class="editItem btn btn-primary" name={{id}}>Edit</button>
+                        </td>
+
+                    {{/if}}
+                    {{/with}}
+                    </tr>
+
+                    <tr>
+                      <td >
+                        КЕТ - 9-сыныптар PASS алған оқушылар саны
+                        <button class="btn btn-light btn-sm" data-toggle="tooltip" data-placement="bottom" 
+                          title="Түсініктемесі: 'Pass' шкаласы: 70-84
+'Pass with Merit' шкаласы: 85-89
+'Pass with Distinction' шкаласы: 90-100 
+                          
+Жартыжылдық бағалау механизмі: EDLIGHT компаниясының өткізетін KET-PET сынағы."
+                          >
+                          <i class="fa fa-info"></i>
+                        </button>
+                      </td>
+
+                    
+                    {{#with goalObject "4113"}}
+                      {{#if editing id}}
+
+                        <td style="text-align: center"><input type="text" style="width: 30pt" id="editCompleted" value="{{completed}}"></td>
+                        <td style="text-align: center;"><input type="text" style="width: 30pt" id="editTarget" value="{{target}}"></td>
+                        
+                        <td>
+                          <button class="saveItem btn btn-success" name={{id}}>Save</button>
+                          <button class="cancelItem btn btn-default">Cancel</button>
+                        </td>
+
+                      {{else}}
+
+                        <td style="text-align: center">{{completed}}</td>
+                        <td style="text-align: center; ">{{target}}</td>
+                        
+                        <td><button class="editItem btn btn-primary" name={{id}}>Edit</button>
+                        </td>
+
+                    {{/if}}
+                    {{/with}}
+                    </tr>
+
+                    <tr>
+                      <td rowspan="3">Жылдық индикатор</td>
+                      <td >
+                        КЕТ - 7-сыныптар PASS алған оқушылар саны
+                        <button class="btn btn-light btn-sm" data-toggle="tooltip" data-placement="bottom" 
+                          title="Түсініктемесі: 'Pass' шкаласы: 70-84
+'Pass with Merit' шкаласы: 85-89
+'Pass with Distinction' шкаласы: 90-100 
+                          
+Жылдық бағалау механизмі: EDLIGHT компаниясының өткізетін KET-PET сынағы."
+                          >
+                          <i class="fa fa-info"></i>
+                        </button>
+                      </td>
+
+                    
+                    {{#with goalObject "4121"}}
+                      {{#if editing id}}
+
+                        <td style="text-align: center"><input type="text" style="width: 30pt" id="editCompleted" value="{{completed}}"></td>
+                        <td style="text-align: center;"><input type="text" style="width: 30pt" id="editTarget" value="{{target}}"></td>
+                        
+                        <td>
+                          <button class="saveItem btn btn-success" name={{id}}>Save</button>
+                          <button class="cancelItem btn btn-default">Cancel</button>
+                        </td>
+
+                      {{else}}
+
+                        <td style="text-align: center">{{completed}}</td>
+                        <td style="text-align: center; ">{{target}}</td>
+                        
+                        <td><button class="editItem btn btn-primary" name={{id}}>Edit</button>
+                        </td>
+
+                    {{/if}}
+                    {{/with}}
+                    </tr>
+
+                    <tr>
+                      <td >
+                        КЕТ - 8-сыныптар PASS алған оқушылар саны
+                        <button class="btn btn-light btn-sm" data-toggle="tooltip" data-placement="bottom" 
+                          title="Түсініктемесі: 'Pass' шкаласы: 70-84
+'Pass with Merit' шкаласы: 85-89
+'Pass with Distinction' шкаласы: 90-100 
+                          
+Жылдық бағалау механизмі: EDLIGHT компаниясының өткізетін KET-PET сынағы."
+                          >
+                          <i class="fa fa-info"></i>
+                        </button>
+                      </td>
+
+                    
+                    {{#with goalObject "4122"}}
+                      {{#if editing id}}
+
+                        <td style="text-align: center"><input type="text" style="width: 30pt" id="editCompleted" value="{{completed}}"></td>
+                        <td style="text-align: center;"><input type="text" style="width: 30pt" id="editTarget" value="{{target}}"></td>
+                        
+                        <td>
+                          <button class="saveItem btn btn-success" name={{id}}>Save</button>
+                          <button class="cancelItem btn btn-default">Cancel</button>
+                        </td>
+
+                      {{else}}
+
+                        <td style="text-align: center">{{completed}}</td>
+                        <td style="text-align: center; ">{{target}}</td>
+                        
+                        <td><button class="editItem btn btn-primary" name={{id}}>Edit</button>
+                        </td>
+
+                    {{/if}}
+                    {{/with}}
+                    </tr>
+
+                    <tr>
+                      <td >
+                        КЕТ - 9-сыныптар PASS алған оқушылар саны
+                        <button class="btn btn-light btn-sm" data-toggle="tooltip" data-placement="bottom" 
+                          title="Түсініктемесі: 'Pass' шкаласы: 70-84
+'Pass with Merit' шкаласы: 85-89
+'Pass with Distinction' шкаласы: 90-100 
+                          
+Жылдық бағалау механизмі: EDLIGHT компаниясының өткізетін KET-PET сынағы."
+                          >
+                          <i class="fa fa-info"></i>
+                        </button>
+                      </td>
+
+                    
+                    {{#with goalObject "4123"}}
+                      {{#if editing id}}
+
+                        <td style="text-align: center"><input type="text" style="width: 30pt" id="editCompleted" value="{{completed}}"></td>
+                        <td style="text-align: center;"><input type="text" style="width: 30pt" id="editTarget" value="{{target}}"></td>
+                        
+                        <td>
+                          <button class="saveItem btn btn-success" name={{id}}>Save</button>
+                          <button class="cancelItem btn btn-default">Cancel</button>
+                        </td>
+
+                      {{else}}
+
+                        <td style="text-align: center">{{completed}}</td>
+                        <td style="text-align: center; ">{{target}}</td>
+                        
+                        <td><button class="editItem btn btn-primary" name={{id}}>Edit</button>
+                        </td>
+
+                    {{/if}}
+                    {{/with}}
+                    </tr>
+
+
+                    <tr>
+                      <td style="border-bottom: 1pt solid darkgrey" rowspan="2">
+                        4.2 10 және 11 сынып оқушыларының ағылшын тілі бойынша тілдік білім мен төрт дағдыларды (оқылым, жазылым, айтылым, тыңдалым) меңгеру деңгейін жоғарылату
+                        <button class="btn btn-light btn-sm" data-toggle="tooltip" data-placement="bottom" 
+                          title="Ағымдық қадағалау механизмі: 
+                          1) Әр тоқсан соңында оқылым (reading) және тыңдалым (listening) дағдылары бойынша сынақ алынады.
+                          2) 10 сынып оқушыларына IELTS байқау сынағы болады.
+                          
+Түсініктемесі: Сынақтар орталықтан жіберіледі. Мұғалімдер өздері тексереді және порталға жүктейді.
+                          ">
+                          <i class="fa fa-info"></i>
+                        </button>
+                      </td>
+                      <td>
+                        Жартыжылдық индикатор
+                      </td>
+                      <td>
+                        Ресми IELTS-тан 7 ұпайдан жоғары алған оқушылардың саны (10-11 сынып оқушылар)
+                        <button class="btn btn-light btn-sm" data-toggle="tooltip" data-placement="bottom" 
+                        title="Жартыжылдық бағалау механизмі: EDLIGHT компаниясының өткізетін IELTS сынағы.
+                        ">
+                          <i class="fa fa-info"></i>
+                        </button>
+                      </td>
+
+                    
+                    {{#with goalObject "4211"}}
+                      {{#if editing id}}
+
+                        <td style="text-align: center"><input type="text" style="width: 30pt" id="editCompleted" value="{{completed}}"></td>
+                        <td style="text-align: center;"><input type="text" style="width: 30pt" id="editTarget" value="{{target}}"></td>
+                        
+                        <td>
+                          <button class="saveItem btn btn-success" name={{id}}>Save</button>
+                          <button class="cancelItem btn btn-default">Cancel</button>
+                        </td>
+
+                      {{else}}
+
+                        <td style="text-align: center">{{completed}}</td>
+                        <td style="text-align: center;">{{target}}</td>
+                        
+                        <td><button class="editItem btn btn-primary" name={{id}}>Edit</button>
+                        </td>
+
+                    {{/if}}
+                    {{/with}}
+                    </tr>
+
+                    <tr>
+                      <td style="border-bottom: 1pt solid darkgrey">
+                        Жылдық индикатор
+                      </td>
+                      <td style="border-bottom: 1pt solid darkgrey">
+                        Ресми IELTS-тан 7 ұпайдан жоғары алған оқушылардың саны (10-11 сынып оқушылар)
+                        <button class="btn btn-light btn-sm" data-toggle="tooltip" data-placement="bottom" 
+                        title="Жылдық бағалау механизмі: Ресми IELTS
+
+Түсініктемесі: Оқушылардың ресми IELTS сынағына қатысып, сертификат алуы.
+                        ">
+                          <i class="fa fa-info"></i>
+                        </button>
+                      </td>
+
+                      {{#with goalObject "4221"}}
+                      {{#if editing id}}
+
+                        <td style="text-align: center; border-bottom: 1pt solid darkgrey"><input type="text" style="width: 30pt" id="editCompleted" value="{{completed}}"></td>
+                        <td style="text-align: center; border-bottom: 1pt solid darkgrey"><input type="text" style="width: 30pt" id="editTarget" value="{{target}}"></td>
+                        
+                        <td>
+                          <button class="saveItem btn btn-success" name={{id}}>Save</button>
+                          <button class="cancelItem btn btn-default">Cancel</button>
+                        </td>
+
+                      {{else}}
+
+                        <td style="text-align: center; border-bottom: 1pt solid darkgrey">{{completed}}</td>
+                        <td style="text-align: center; border-bottom: 1pt solid darkgrey">{{target}}</td>
+                        
+                        <td><button class="editItem btn btn-primary" name={{id}}>Edit</button>
+                        </td>
+
+                    {{/if}}
+                    {{/with}}
+                    </tr>
+
+
+                    <tr>
+                      <td style="border-bottom: 1pt solid darkgrey" rowspan="2">5</td>
+                      <td style="border-bottom: 1pt solid darkgrey" rowspan="2">
+                        SAT сынақтарына дайындау
+                        <button class="btn btn-light btn-sm" data-toggle="tooltip" data-placement="bottom" 
+                          title="Түсініктемесі: SAT Reasoning сынағына 10 және 11 сынып оқушылары қатыса алады. Бұл сынақ шетелдік оқу орындарына түсу үшін қажетті. Сынақтың максималды ұпайы 1600, лицейлер оқушыларға кемінде 1300 ұпай мақсат қояды. 
+                          
+Ағымдық қадағалау механизмі: 1) “Eduvation” компаниясынан сатып алынатын SAT байқау сынағының нәтижесі. 
+2) Оқушыларға SAT Reasoning сынағына дайындық курстары.
+                          
+Түсініктемесі: “Eduvation” компаниясы ресми SAT Reasoning форматында байқау сынақтары жасай алады. Сынақ нәтижелерін талдау жүйесі де бар. Академиялық жоспарда оқу жылы ішінде екі рет SAT байқау сынағын ұйымдастыру жоспарланған. Лицей әкімшілігі оқушылардың сол емтихандарға бағыттаулары және дайындаулары қажет. 
+Қажетті мамандары бар немесе сырттан курстармен келісе алатын лицейлер оқушыларға жүйелі түрде SAT reasoning дайындық курстарын ұйымдастырулары керек.
+                          ">
+                          <i class="fa fa-info"></i>
+                        </button>
+                      </td>
+                      <td style="border-bottom: 1pt solid darkgrey" rowspan="2">
+                      </td>
+                      <td >Жартыжылдық индикатор</td>
+                      <td >
+                        SAT Reasoning сынағынан 1300 ұпайдан жоғары алған оқушылардың саны
+                        <button class="btn btn-light btn-sm" data-toggle="tooltip" data-placement="bottom" 
+                          title="Түсініктемесі: SAT reasoning сынағынан 1300 ұпайдан жоғары алатын оқушылар саны.
+
+Жартыжылдық бағалау механизмі: Байқау SAT Reasoning және ресми SAT Reasoning емтихандарында 1300 ұпайдан жоғары ала алатын оқушылар саны.
+                          ">
+                          <i class="fa fa-info"></i>
+                        </button>
+                      </td>
+
+                    
+                    {{#with goalObject "5111"}}
+                      {{#if editing id}}
+
+                        <td style="text-align: center"><input type="text" style="width: 30pt" id="editCompleted" value="{{completed}}"></td>
+                        <td style="text-align: center;"><input type="text" style="width: 30pt" id="editTarget" value="{{target}}"></td>
+                        
+                        <td>
+                          <button class="saveItem btn btn-success" name={{id}}>Save</button>
+                          <button class="cancelItem btn btn-default">Cancel</button>
+                        </td>
+
+                      {{else}}
+
+                        <td style="text-align: center">{{completed}}</td>
+                        <td style="text-align: center; ">{{target}}</td>
+                        
+                        <td><button class="editItem btn btn-primary" name={{id}}>Edit</button>
+                        </td>
+
+                    {{/if}}
+                    {{/with}}
+                      </tr>
+
+                    <tr>
+                      <td style="border-bottom: 1pt solid darkgrey">
+                        Жылдық индикатор
+                      </td>
+                      <td style="border-bottom: 1pt solid darkgrey">
+                        SAT Reasoning сынағынан 1300 ұпайдан жоғары алған оқушылардың саны
+                        <button class="btn btn-light btn-sm" data-toggle="tooltip" data-placement="bottom" 
+                        title="Түсініктемесі: SAT reasoning сынағынан 1300 ұпайдан жоғары алатын оқушылар саны.
+
+Жылдық бағалау механизмі: Байқау SAT Reasoning және ресми SAT Reasoning емтихандарында 1300 ұпайдан жоғары ала алатын оқушылар саны.">
+                          <i class="fa fa-info"></i>
+                        </button>
+                      </td>
+
+                      {{#with goalObject "5121"}}
+                      {{#if editing id}}
+
+                        <td style="text-align: center; border-bottom: 1pt solid darkgrey"><input type="text" style="width: 30pt" id="editCompleted" value="{{completed}}"></td>
+                        <td style="text-align: center; border-bottom: 1pt solid darkgrey"><input type="text" style="width: 30pt" id="editTarget" value="{{target}}"></td>
+                        
+                        <td>
+                          <button class="saveItem btn btn-success" name={{id}}>Save</button>
+                          <button class="cancelItem btn btn-default">Cancel</button>
+                        </td>
+
+                      {{else}}
+
+                        <td style="text-align: center; border-bottom: 1pt solid darkgrey">{{completed}}</td>
+                        <td style="text-align: center; border-bottom: 1pt solid darkgrey">{{target}}</td>
+                        
+                        <td><button class="editItem btn btn-primary" name={{id}}>Edit</button>
+                        </td>
+
+                    {{/if}}
+                    {{/with}}
+                    </tr>
+
+
+                    <tr>
+                      <td style="border-bottom: 1pt solid darkgrey" rowspan="2">6</td>
+                      <td style="border-bottom: 1pt solid darkgrey" rowspan="2">
+                        Оқушылардың икемді дағдыларын дамыту
+                        <button class="btn btn-light btn-sm" data-toggle="tooltip" data-placement="bottom" 
+                          title="Түсініктемесі: Оқушылардың икемді дағдыларын (soft skills) түрлі жобалар арқылы дамыту көзделуде.
+
+Ағымдық қадағалау механизмі: Оқушылардың бір тоқсанда аяқтаған жобаларының саны алынады.
+                          ">
+                          <i class="fa fa-info"></i>
+                        </button>
+                      </td>
+                      <td style="border-bottom: 1pt solid darkgrey" rowspan="2">
+                      </td>
+                      <td >Жартыжылдық индикатор</td>
+                      <td >
+                        Қоғамға пайдалы жобалардың саны
+                        <button class="btn btn-light btn-sm" data-toggle="tooltip" data-placement="bottom" 
+                          title="Түсініктемесі:
+- мерізімі кемінде екі ай;
+- әлеуметтік әсері болады;
+- кемінде екі адам қатысады;
+- жобаның презентациясы болады;
+- оқушының белгілі бір дағдысы дамиды.
+
+Жартыжылдық бағалау механизмі: Жоқ
+                          ">
+                          <i class="fa fa-info"></i>
+                        </button>
+                      </td>
+
+                    
+                    {{#with goalObject "6111"}}
+                      {{#if editing id}}
+
+                        <td style="text-align: center"><input type="text" style="width: 30pt" id="editCompleted" value="{{completed}}"></td>
+                        <td style="text-align: center;"><input type="text" style="width: 30pt" id="editTarget" value="{{target}}"></td>
+                        
+                        <td>
+                          <button class="saveItem btn btn-success" name={{id}}>Save</button>
+                          <button class="cancelItem btn btn-default">Cancel</button>
+                        </td>
+
+                      {{else}}
+
+                        <td style="text-align: center">{{completed}}</td>
+                        <td style="text-align: center; ">{{target}}</td>
+                        
+                        <td><button class="editItem btn btn-primary" name={{id}}>Edit</button>
+                        </td>
+
+                    {{/if}}
+                    {{/with}}
+                      </tr>
+
+                    <tr>
+                      <td style="border-bottom: 1pt solid darkgrey">
+                        Жылдық индикатор
+                      </td>
+                      <td style="border-bottom: 1pt solid darkgrey">
+                        Қоғамға пайдалы жобалардың саны
+                        <button class="btn btn-light btn-sm" data-toggle="tooltip" data-placement="bottom" 
+                        title="Түсініктемесі: 
+- мерізімі кемінде екі ай;
+- әлеуметтік әсері болады;
+- кемінде екі адам қатысады;
+- жобаның презентациясы болады;
+- оқушының белгілі бір дағдысы дамиды.
+
+Жылдық бағалау механизмі: Жобалар презентациясы
+                        ">
+                          <i class="fa fa-info"></i>
+                        </button>
+                      </td>
+
+                      {{#with goalObject "6121"}}
+                      {{#if editing id}}
+
+                        <td style="text-align: center; border-bottom: 1pt solid darkgrey"><input type="text" style="width: 30pt" id="editCompleted" value="{{completed}}"></td>
+                        <td style="text-align: center; border-bottom: 1pt solid darkgrey"><input type="text" style="width: 30pt" id="editTarget" value="{{target}}"></td>
+                        
+                        <td>
+                          <button class="saveItem btn btn-success" name={{id}}>Save</button>
+                          <button class="cancelItem btn btn-default">Cancel</button>
+                        </td>
+
+                      {{else}}
+
+                        <td style="text-align: center; border-bottom: 1pt solid darkgrey">{{completed}}</td>
+                        <td style="text-align: center; border-bottom: 1pt solid darkgrey">{{target}}</td>
+                        
+                        <td><button class="editItem btn btn-primary" name={{id}}>Edit</button>
+                        </td>
+
+                    {{/if}}
+                    {{/with}}
+                    </tr>
+
+                    <tr>
+                      <td style="border-bottom: 1pt solid darkgrey" rowspan="8">7</td>
+                      <td style="border-bottom: 1pt solid darkgrey" rowspan="8">
+                        Оқушылардың оқу мақсаттарын меңгеруі
+                        <button class="btn btn-light btn-sm" data-toggle="tooltip" data-placement="bottom" 
+                          title="Түсініктемесі: Оқу жылы ішінде 4 рет, әр тоқсанның соңғы аптасының дүйсенбі күні (немесе одан бұрыңғы аптаның жұма күні) БТС жоспарланған. БТС нәтижесі ретінде оқушыларға баға қойылуы керек. БТС нәтижелері оқушылардың оқу мақсаттарын меңгеру деңгейін анықтау үшін қолданылады. 
+Ағымдық қадағалау механизмі: 
+1) БТС нәтижелері. 
+2) Директор, БЖО, ТЖО және әдіскерлердің мұғалімдердің сабақтарына қатысуы. Аптасына кем дегенде екі рет Lesson Planning Hours-тардың болуы 
+
+Түсініктемесі: Сабақ сапасын жақсарту мақсатында лицейлер Lesson Planning Hours сағаттарын сабақ кестесіне қойып, оның жүйелі жүргізілуін бақылаулары қажет. Лицей әкімшілігі жүйелі түрде мұғалімдердің сабақтарына қатысып кері байланыс берулері керек. 
+                          ">
+                          <i class="fa fa-info"></i>
+                        </button>
+                      </td>
+                      <td style="border-bottom: 1pt solid darkgrey" rowspan="8">
+                      </td>
+                      <td rowspan="4">Жартыжылдық индикатор</td>
+                      <td >
+                        БТС пәндері бойынша шекті ұпай (PASS) алған оқушылар саны - 7 сынып
+                        <button class="btn btn-light btn-sm" data-toggle="tooltip" data-placement="bottom" 
+                          title="Түсініктемесі: БТС-тан PASS алу деген:
+7-сыныптар: 4 сабақтан (жалпы 5 пән)
+8-сыныптар: 4 сабақтан (жалпы 6 пән)
+9-сыныптар: 4 сабақтан (жалпы 6 пән)
+10-сыныптар: 2 сабақтан (жалпы 3 пән)
+50%-дан көп ұпай алулары керек. 
+Жартыжылдық индикаторды есептегенде 2-ші БТС негізге алынады. 
+
+Жартыжылдық бағалау механизмі: Лицейдің 1-ші БТС орташа ұпай көрсеткіштері
+                          ">
+                          <i class="fa fa-info"></i>
+                        </button>
+                      </td>
+
+                    
+                    {{#with goalObject "7111"}}
+                      {{#if editing id}}
+
+                        <td style="text-align: center"><input type="text" style="width: 30pt" id="editCompleted" value="{{completed}}"></td>
+                        <td style="text-align: center;"><input type="text" style="width: 30pt" id="editTarget" value="{{target}}"></td>
+                        
+                        <td>
+                          <button class="saveItem btn btn-success" name={{id}}>Save</button>
+                          <button class="cancelItem btn btn-default">Cancel</button>
+                        </td>
+
+                      {{else}}
+
+                        <td style="text-align: center">{{completed}}</td>
+                        <td style="text-align: center; ">{{target}}</td>
+                        
+                        <td><button class="editItem btn btn-primary" name={{id}}>Edit</button>
+                        </td>
+
+                    {{/if}}
+                    {{/with}}
+                    </tr>
+
+                    <tr>
+                      <td >
+                          БТС пәндері бойынша шекті ұпай (PASS) алған оқушылар саны - 8 сынып
+                          <button class="btn btn-light btn-sm" data-toggle="tooltip" data-placement="bottom" 
+                            title="Түсініктемесі: БТС-тан PASS алу деген:
+  7-сыныптар: 4 сабақтан (жалпы 5 пән)
+  8-сыныптар: 4 сабақтан (жалпы 6 пән)
+  9-сыныптар: 4 сабақтан (жалпы 6 пән)
+  10-сыныптар: 2 сабақтан (жалпы 3 пән)
+  50%-дан көп ұпай алулары керек. 
+  Жартыжылдық индикаторды есептегенде 2-ші БТС негізге алынады. 
+  
+  Жартыжылдық бағалау механизмі: Лицейдің 1-ші БТС орташа ұпай көрсеткіштері
+                            ">
+                            <i class="fa fa-info"></i>
+                          </button>
+                        </td>
+  
+                      
+                      {{#with goalObject "7112"}}
+                        {{#if editing id}}
+  
+                          <td style="text-align: center"><input type="text" style="width: 30pt" id="editCompleted" value="{{completed}}"></td>
+                          <td style="text-align: center;"><input type="text" style="width: 30pt" id="editTarget" value="{{target}}"></td>
+                          
+                          <td>
+                            <button class="saveItem btn btn-success" name={{id}}>Save</button>
+                            <button class="cancelItem btn btn-default">Cancel</button>
+                          </td>
+  
+                        {{else}}
+  
+                          <td style="text-align: center">{{completed}}</td>
+                          <td style="text-align: center; ">{{target}}</td>
+                          
+                          <td><button class="editItem btn btn-primary" name={{id}}>Edit</button>
+                          </td>
+  
+                      {{/if}}
+                      {{/with}}
+                    </tr>
+
+                    <tr>
+                      <td >
+                          БТС пәндері бойынша шекті ұпай (PASS) алған оқушылар саны - 9 сынып
+                          <button class="btn btn-light btn-sm" data-toggle="tooltip" data-placement="bottom" 
+                            title="Түсініктемесі: БТС-тан PASS алу деген:
+  7-сыныптар: 4 сабақтан (жалпы 5 пән)
+  8-сыныптар: 4 сабақтан (жалпы 6 пән)
+  9-сыныптар: 4 сабақтан (жалпы 6 пән)
+  10-сыныптар: 2 сабақтан (жалпы 3 пән)
+  50%-дан көп ұпай алулары керек. 
+  Жартыжылдық индикаторды есептегенде 2-ші БТС негізге алынады. 
+  
+  Жартыжылдық бағалау механизмі: Лицейдің 1-ші БТС орташа ұпай көрсеткіштері
+                            ">
+                            <i class="fa fa-info"></i>
+                          </button>
+                        </td>
+  
+                      
+                      {{#with goalObject "7113"}}
+                        {{#if editing id}}
+  
+                          <td style="text-align: center"><input type="text" style="width: 30pt" id="editCompleted" value="{{completed}}"></td>
+                          <td style="text-align: center;"><input type="text" style="width: 30pt" id="editTarget" value="{{target}}"></td>
+                          
+                          <td>
+                            <button class="saveItem btn btn-success" name={{id}}>Save</button>
+                            <button class="cancelItem btn btn-default">Cancel</button>
+                          </td>
+  
+                        {{else}}
+  
+                          <td style="text-align: center">{{completed}}</td>
+                          <td style="text-align: center; ">{{target}}</td>
+                          
+                          <td><button class="editItem btn btn-primary" name={{id}}>Edit</button>
+                          </td>
+  
+                      {{/if}}
+                      {{/with}}
+                    </tr>
+
+                    <tr>
+                      <td >
+                          БТС пәндері бойынша шекті ұпай (PASS) алған оқушылар саны - 10 сынып
+                          <button class="btn btn-light btn-sm" data-toggle="tooltip" data-placement="bottom" 
+                            title="Түсініктемесі: БТС-тан PASS алу деген:
+  7-сыныптар: 4 сабақтан (жалпы 5 пән)
+  8-сыныптар: 4 сабақтан (жалпы 6 пән)
+  9-сыныптар: 4 сабақтан (жалпы 6 пән)
+  10-сыныптар: 2 сабақтан (жалпы 3 пән)
+  50%-дан көп ұпай алулары керек. 
+  Жартыжылдық индикаторды есептегенде 2-ші БТС негізге алынады. 
+  
+  Жартыжылдық бағалау механизмі: Лицейдің 1-ші БТС орташа ұпай көрсеткіштері
+                            ">
+                            <i class="fa fa-info"></i>
+                          </button>
+                        </td>
+  
+                      
+                      {{#with goalObject "7114"}}
+                        {{#if editing id}}
+  
+                          <td style="text-align: center"><input type="text" style="width: 30pt" id="editCompleted" value="{{completed}}"></td>
+                          <td style="text-align: center;"><input type="text" style="width: 30pt" id="editTarget" value="{{target}}"></td>
+                          
+                          <td>
+                            <button class="saveItem btn btn-success" name={{id}}>Save</button>
+                            <button class="cancelItem btn btn-default">Cancel</button>
+                          </td>
+  
+                        {{else}}
+  
+                          <td style="text-align: center">{{completed}}</td>
+                          <td style="text-align: center; ">{{target}}</td>
+                          
+                          <td><button class="editItem btn btn-primary" name={{id}}>Edit</button>
+                          </td>
+  
+                      {{/if}}
+                      {{/with}}
+                    </tr>
+
+                    <tr>
+                      <td style="border-bottom: 1pt solid darkgrey" rowspan="4">Жылдық индикатор</td>
+                      <td >
+                        БТС пәндері бойынша шекті ұпай (PASS) алған оқушылар саны - 7 сынып
+                        <button class="btn btn-light btn-sm" data-toggle="tooltip" data-placement="bottom" 
+                          title="Түсініктемесі: БТС-тан PASS алу деген:
+7-сыныптар: 4 сабақтан (жалпы 5 пән)
+8-сыныптар: 4 сабақтан (жалпы 6 пән)
+9-сыныптар: 4 сабақтан (жалпы 6 пән)
+10-сыныптар: 2 сабақтан (жалпы 3 пән)
+50%-дан көп ұпай алулары керек. 
+Жартыжылдық индикаторды есептегенде 2-ші БТС негізге алынады. 
+
+Жартыжылдық бағалау механизмі: Лицейдің 1-ші БТС орташа ұпай көрсеткіштері
+                          ">
+                          <i class="fa fa-info"></i>
+                        </button>
+                      </td>
+
+                    
+                    {{#with goalObject "7121"}}
+                      {{#if editing id}}
+
+                        <td style="text-align: center"><input type="text" style="width: 30pt" id="editCompleted" value="{{completed}}"></td>
+                        <td style="text-align: center;"><input type="text" style="width: 30pt" id="editTarget" value="{{target}}"></td>
+                        
+                        <td>
+                          <button class="saveItem btn btn-success" name={{id}}>Save</button>
+                          <button class="cancelItem btn btn-default">Cancel</button>
+                        </td>
+
+                      {{else}}
+
+                        <td style="text-align: center">{{completed}}</td>
+                        <td style="text-align: center; ">{{target}}</td>
+                        
+                        <td><button class="editItem btn btn-primary" name={{id}}>Edit</button>
+                        </td>
+
+                    {{/if}}
+                    {{/with}}
+                      </tr>
+
+                      <tr>
+                        <td >
+                          БТС пәндері бойынша шекті ұпай (PASS) алған оқушылар саны - 8 сынып
+                          <button class="btn btn-light btn-sm" data-toggle="tooltip" data-placement="bottom" 
+                            title="Түсініктемесі: БТС-тан PASS алу деген:
+  7-сыныптар: 4 сабақтан (жалпы 5 пән)
+  8-сыныптар: 4 сабақтан (жалпы 6 пән)
+  9-сыныптар: 4 сабақтан (жалпы 6 пән)
+  10-сыныптар: 2 сабақтан (жалпы 3 пән)
+  50%-дан көп ұпай алулары керек. 
+  Жартыжылдық индикаторды есептегенде 2-ші БТС негізге алынады. 
+  
+  Жартыжылдық бағалау механизмі: Лицейдің 1-ші БТС орташа ұпай көрсеткіштері
+                            ">
+                            <i class="fa fa-info"></i>
+                          </button>
+                        </td>
+  
+                      
+                      {{#with goalObject "7122"}}
+                        {{#if editing id}}
+  
+                          <td style="text-align: center"><input type="text" style="width: 30pt" id="editCompleted" value="{{completed}}"></td>
+                          <td style="text-align: center;"><input type="text" style="width: 30pt" id="editTarget" value="{{target}}"></td>
+                          
+                          <td>
+                            <button class="saveItem btn btn-success" name={{id}}>Save</button>
+                            <button class="cancelItem btn btn-default">Cancel</button>
+                          </td>
+  
+                        {{else}}
+  
+                          <td style="text-align: center">{{completed}}</td>
+                          <td style="text-align: center; ">{{target}}</td>
+                          
+                          <td><button class="editItem btn btn-primary" name={{id}}>Edit</button>
+                          </td>
+  
+                      {{/if}}
+                      {{/with}}
+                        </tr>
+
+                        <tr>
+                          <td >
+                            БТС пәндері бойынша шекті ұпай (PASS) алған оқушылар саны - 9 сынып
+                            <button class="btn btn-light btn-sm" data-toggle="tooltip" data-placement="bottom" 
+                              title="Түсініктемесі: БТС-тан PASS алу деген:
+    7-сыныптар: 4 сабақтан (жалпы 5 пән)
+    8-сыныптар: 4 сабақтан (жалпы 6 пән)
+    9-сыныптар: 4 сабақтан (жалпы 6 пән)
+    10-сыныптар: 2 сабақтан (жалпы 3 пән)
+    50%-дан көп ұпай алулары керек. 
+    Жартыжылдық индикаторды есептегенде 2-ші БТС негізге алынады. 
+    
+    Жартыжылдық бағалау механизмі: Лицейдің 1-ші БТС орташа ұпай көрсеткіштері
+                              ">
+                              <i class="fa fa-info"></i>
+                            </button>
+                          </td>
+    
+                        
+                        {{#with goalObject "7123"}}
+                          {{#if editing id}}
+    
+                            <td style="text-align: center"><input type="text" style="width: 30pt" id="editCompleted" value="{{completed}}"></td>
+                            <td style="text-align: center;"><input type="text" style="width: 30pt" id="editTarget" value="{{target}}"></td>
+                            
+                            <td>
+                              <button class="saveItem btn btn-success" name={{id}}>Save</button>
+                              <button class="cancelItem btn btn-default">Cancel</button>
+                            </td>
+    
+                          {{else}}
+    
+                            <td style="text-align: center">{{completed}}</td>
+                            <td style="text-align: center; ">{{target}}</td>
+                            
+                            <td><button class="editItem btn btn-primary" name={{id}}>Edit</button>
+                            </td>
+    
+                        {{/if}}
+                        {{/with}}
+                          </tr>
+
+                          <tr>
+                            <td style="border-bottom: 1pt solid darkgrey">
+                              БТС пәндері бойынша шекті ұпай (PASS) алған оқушылар саны - 10 сынып
+                              <button class="btn btn-light btn-sm" data-toggle="tooltip" data-placement="bottom" 
+                                title="Түсініктемесі: БТС-тан PASS алу деген:
+      7-сыныптар: 4 сабақтан (жалпы 5 пән)
+      8-сыныптар: 4 сабақтан (жалпы 6 пән)
+      9-сыныптар: 4 сабақтан (жалпы 6 пән)
+      10-сыныптар: 2 сабақтан (жалпы 3 пән)
+      50%-дан көп ұпай алулары керек. 
+      Жартыжылдық индикаторды есептегенде 2-ші БТС негізге алынады. 
+      
+      Жартыжылдық бағалау механизмі: Лицейдің 1-ші БТС орташа ұпай көрсеткіштері
+                                ">
+                                <i class="fa fa-info"></i>
+                              </button>
+                            </td>
+      
+                          
+                          {{#with goalObject "7124"}}
+                            {{#if editing id}}
+      
+                              <td style="text-align: center; border-bottom: 1pt solid darkgrey"><input type="text" style="width: 30pt" id="editCompleted" value="{{completed}}"></td>
+                              <td style="text-align: center; border-bottom: 1pt solid darkgrey"><input type="text" style="width: 30pt" id="editTarget" value="{{target}}"></td>
+                              
+                              <td>
+                                <button class="saveItem btn btn-success" name={{id}}>Save</button>
+                                <button class="cancelItem btn btn-default">Cancel</button>
+                              </td>
+      
+                            {{else}}
+      
+                              <td style="text-align: center; border-bottom: 1pt solid darkgrey">{{completed}}</td>
+                              <td style="text-align: center; border-bottom: 1pt solid darkgrey">{{target}}</td>
+                              
+                              <td><button class="editItem btn btn-primary" name={{id}}>Edit</button>
+                              </td>
+      
+                          {{/if}}
+                          {{/with}}
+                            </tr>
+
+                            <tr>
+                              <td style="border-bottom: 1pt solid darkgrey" rowspan="4">8</td>
+                              <td style="border-bottom: 1pt solid darkgrey" rowspan="4">Мұғалімдерді кәсіби жетілдіру</td>
+                              <td rowspan="2">
+                                8.1 Мұғалімдердің біліктілік санаттарын алуы (санаты жоқтарға) және көтеруі
+                                <button class="btn btn-light btn-sm" data-toggle="tooltip" data-placement="bottom" 
+                                  title="Ағымдық қадағалау механизмі: Мұғалімдердің санаттарының көтеруілуін қадағалау.
+
+Түсініктемесі: Директорлар мұғалімдердің санаттарын бір деңгей жоғары көтеру мақсатында жұмыс жасайды.
+                                  ">
+                                  <i class="fa fa-info"></i>
+                                </button>
+                              </td>
+                              <td >Жартыжылдық индикатор</td>
+                              <td >
+                                Санатын бір деңгей жоғары көтерген мұғалім саны
+                                <button class="btn btn-light btn-sm" data-toggle="tooltip" data-placement="bottom" 
+                                  title="Жартыжылдық бағалау механизмі: Мұғалімдердің санаттарының көтеруілуін қадағалау.
+                                  ">
+                                  <i class="fa fa-info"></i>
+                                </button>
+                              </td>
+        
+                            
+                            {{#with goalObject "8111"}}
+                              {{#if editing id}}
+        
+                                <td style="text-align: center"><input type="text" style="width: 30pt" id="editCompleted" value="{{completed}}"></td>
+                                <td style="text-align: center;"><input type="text" style="width: 30pt" id="editTarget" value="{{target}}"></td>
+                                
+                                <td>
+                                  <button class="saveItem btn btn-success" name={{id}}>Save</button>
+                                  <button class="cancelItem btn btn-default">Cancel</button>
+                                </td>
+        
+                              {{else}}
+        
+                                <td style="text-align: center">{{completed}}</td>
+                                <td style="text-align: center; ">{{target}}</td>
+                                
+                                <td><button class="editItem btn btn-primary" name={{id}}>Edit</button>
+                                </td>
+        
+                            {{/if}}
+                            {{/with}}
+                            </tr>
+        
+                            <tr>
+                                <td>Жылдық индикатор</td>
+                                <td>
+                                  Санатын бір деңгей жоғары көтерген мұғалім саны
+                                  <button class="btn btn-light btn-sm" data-toggle="tooltip" data-placement="bottom" 
+                                  title="Жылдық бағалау механизмі: Жоқ
+                                  ">
+                                  <i class="fa fa-info"></i>
+                                </button>
+                              </td>
+          
+                                {{#with goalObject "8121"}}
+                                {{#if editing id}}
+          
+                                  <td style="text-align: center"><input type="text" style="width: 30pt" id="editCompleted" value="{{completed}}"></td>
+                                  <td style="text-align: center;"><input type="text" style="width: 30pt" id="editTarget" value="{{target}}"></td>
+                                  
+                                  <td>
+                                    <button class="saveItem btn btn-success" name={{id}}>Save</button>
+                                    <button class="cancelItem btn btn-default">Cancel</button>
+                                  </td>
+          
+                                {{else}}
+          
+                                  <td style="text-align: center">{{completed}}</td>
+                                  <td style="text-align: center;">{{target}}</td>
+                                  
+                                  <td><button class="editItem btn btn-primary" name={{id}}>Edit</button>
+                                  </td>
+          
+                              {{/if}}
+                              {{/with}}
+                              </tr>
+        
+        
+                            <tr>
+                              <td style="border-bottom: 1pt solid darkgrey" rowspan="2">
+                                8.2 Жас мамандармен жұмыс
+                                <button class="btn btn-light btn-sm" data-toggle="tooltip" data-placement="bottom" 
+                                  title="Ағымдық қадағалау механизмі: 
+    1) Жас мамандардың жеке даму жоспарын қадағалау.
+    2) Басқа мұғалімдердің сабақтарына қатыстыру.
+    3) Әкімшіліктің жас мамандардың сабақтарына қатысып, кері байланыс беру.
+    4) Семинарларға қатыстыру
+    
+    Түсініктемесі: Жас маманның жеке даму жоспарының формасы беріледі. Жас маман форманы БЖО-мен/тәжірибелі тәлімгермен/пән әдіскерімен ақылдаса отыра толтырады.
+                                  ">
+                                  <i class="fa fa-info"></i>
+                                </button>
+                              </td>
+                              <td>
+                                Жартыжылдық индикатор
+                              </td>
+                              <td>
+                                Жартыжылдық жеке даму жоспарын сапалы орындап жатқан жас маман саны
+                                <button class="btn btn-light btn-sm" data-toggle="tooltip" data-placement="bottom" 
+                                title="Түсініктемесі: Жеке жоспарда жартыжылдықта атқарылуы тиіс жұмыстардың орындалуы.
+
+Жартыжылдық бағалау механизмі:
+1) Жас мамандардың жеке даму жоспарын қадағалау.
+2) Басқа мұғалімдердің сабақтарына қатыстыру.
+3) Әкімшіліктің жас мамандардың сабақтарына қатысып, кері байланыс беру.
+4) Семинарларға қатыстыру
+                                ">
+                                  <i class="fa fa-info"></i>
+                                </button>
+                              </td>
+        
+                            
+                            {{#with goalObject "8211"}}
+                              {{#if editing id}}
+        
+                                <td style="text-align: center"><input type="text" style="width: 30pt" id="editCompleted" value="{{completed}}"></td>
+                                <td style="text-align: center;"><input type="text" style="width: 30pt" id="editTarget" value="{{target}}"></td>
+                                
+                                <td>
+                                  <button class="saveItem btn btn-success" name={{id}}>Save</button>
+                                  <button class="cancelItem btn btn-default">Cancel</button>
+                                </td>
+        
+                              {{else}}
+        
+                                <td style="text-align: center">{{completed}}</td>
+                                <td style="text-align: center;">{{target}}</td>
+                                
+                                <td><button class="editItem btn btn-primary" name={{id}}>Edit</button>
+                                </td>
+        
+                            {{/if}}
+                            {{/with}}
+                            </tr>
+        
+                            <tr>
+                              <td style="border-bottom: 1pt solid darkgrey">
+                                Жылдық индикатор
+                              </td>
+                              <td style="border-bottom: 1pt solid darkgrey">
+                                Жылдық жеке даму жоспарын сапалы орындап жатқан жас маман саны
+                                <button class="btn btn-light btn-sm" data-toggle="tooltip" data-placement="bottom" 
+                                title="Түсініктемесі: Жеке жоспарда оқу жылы соңында атқарылуы тиіс жұмыстардың бітуі
+
+Жылдық бағалау механизмі: Сертификат
+                                ">
+                                  <i class="fa fa-info"></i>
+                                </button>
+                              </td>
+        
+                              {{#with goalObject "8221"}}
+                              {{#if editing id}}
+        
+                                <td style="text-align: center; border-bottom: 1pt solid darkgrey"><input type="text" style="width: 30pt" id="editCompleted" value="{{completed}}"></td>
+                                <td style="text-align: center; border-bottom: 1pt solid darkgrey"><input type="text" style="width: 30pt" id="editTarget" value="{{target}}"></td>
+                                
+                                <td>
+                                  <button class="saveItem btn btn-success" name={{id}}>Save</button>
+                                  <button class="cancelItem btn btn-default">Cancel</button>
+                                </td>
+        
+                              {{else}}
+        
+                                <td style="text-align: center; border-bottom: 1pt solid darkgrey">{{completed}}</td>
+                                <td style="text-align: center; border-bottom: 1pt solid darkgrey">{{target}}</td>
+                                
+                                <td><button class="editItem btn btn-primary" name={{id}}>Edit</button>
+                                </td>
+        
+                            {{/if}}
+                            {{/with}}
+                            </tr>
+        
+
+                        
+                            <tr>
+                              <td style="border-bottom: 1pt solid darkgrey" rowspan="4">9</td>
+                              <td style="border-bottom: 1pt solid darkgrey" rowspan="4">Оқушылардың жан-жақты дамуы</td>
+                              <td rowspan="2">
+                                9.1 Оқушылардың лицейде немесе лицейден тыс жерде үйірмелерге қатысуы
+                                <button class="btn btn-light btn-sm" data-toggle="tooltip" data-placement="bottom" 
+                                  title="Ағымдық қадағалау механизмі: Оқушылардың жүйелі түрде үйірмелерге қатысуы қадағаланады.
+                                  ">
+                                  <i class="fa fa-info"></i>
+                                </button>
+                              </td>
+                              <td >Жартыжылдық индикатор</td>
+                              <td >
+                                Қалалық, республикалық, халықаралық жарыстарда 1-2-3 орын диплом саны
+                                <button class="btn btn-light btn-sm" data-toggle="tooltip" data-placement="bottom" 
+                                  title="Түсініктемесі: Үйірмеге қатысты жетістікті растауын қадағалау 
+
+Жартыжылдық бағалау механизмі: Жоқ
+                                  ">
+                                  <i class="fa fa-info"></i>
+                                </button>
+                              </td>
+        
+                            
+                            {{#with goalObject "9111"}}
+                              {{#if editing id}}
+        
+                                <td style="text-align: center"><input type="text" style="width: 30pt" id="editCompleted" value="{{completed}}"></td>
+                                <td style="text-align: center;"><input type="text" style="width: 30pt" id="editTarget" value="{{target}}"></td>
+                                
+                                <td>
+                                  <button class="saveItem btn btn-success" name={{id}}>Save</button>
+                                  <button class="cancelItem btn btn-default">Cancel</button>
+                                </td>
+        
+                              {{else}}
+        
+                                <td style="text-align: center">{{completed}}</td>
+                                <td style="text-align: center; ">{{target}}</td>
+                                
+                                <td><button class="editItem btn btn-primary" name={{id}}>Edit</button>
+                                </td>
+        
+                            {{/if}}
+                            {{/with}}
+                            </tr>
+        
+                            <tr>
+                                <td>Жылдық индикатор</td>
+                                <td>
+                                  Қалалық, республикалық, халықаралық жарыстарда 1-2-3 орын диплом саны
+                                  <button class="btn btn-light btn-sm" data-toggle="tooltip" data-placement="bottom" 
+                                  title="Түсініктемесі: Үйірмеге қатысты жетістікті растауын қадағалау.
+
+Жылдық бағалау механизмі: Жоқ
+                                  ">
+                                  <i class="fa fa-info"></i>
+                                </button>
+                              </td>
+          
+                                {{#with goalObject "9121"}}
+                                {{#if editing id}}
+          
+                                  <td style="text-align: center"><input type="text" style="width: 30pt" id="editCompleted" value="{{completed}}"></td>
+                                  <td style="text-align: center;"><input type="text" style="width: 30pt" id="editTarget" value="{{target}}"></td>
+                                  
+                                  <td>
+                                    <button class="saveItem btn btn-success" name={{id}}>Save</button>
+                                    <button class="cancelItem btn btn-default">Cancel</button>
+                                  </td>
+          
+                                {{else}}
+          
+                                  <td style="text-align: center">{{completed}}</td>
+                                  <td style="text-align: center;">{{target}}</td>
+                                  
+                                  <td><button class="editItem btn btn-primary" name={{id}}>Edit</button>
+                                  </td>
+          
+                              {{/if}}
+                              {{/with}}
+                              </tr>
+        
+        
+                            <tr>
+                              <td style="border-bottom: 1pt solid darkgrey" rowspan="2">
+                                9.2 Лицейдегі үйірмелердің қызметі
+                                <button class="btn btn-light btn-sm" data-toggle="tooltip" data-placement="bottom" 
+                                  title="Ағымдық қадағалау механизмі: Үйірмелердің жүйелі түрде жұмыс істеуі.
+
+Түсініктемесі: Белгілі өтетін орны, қажетті жабдықтаудың, жетекшінің, т.б. болуы. Үйірменің белгілі жоспары мен мақсатының болуы.">
+                                  <i class="fa fa-info"></i>
+                                </button>
+                              </td>
+                              <td>
+                                Жартыжылдық индикатор
+                              </td>
+                              <td>
+                                Кемінде 5 оқушы қатысатын үйірме саны
+                                <button class="btn btn-light btn-sm" data-toggle="tooltip" data-placement="bottom" 
+                                title="Жартыжылдық бағалау механизмі: Жартыжылдық есеп алу
+
+Түсініктемесі: Есеп қорытындысы бойынша ұсыныстар мен тапсырмалардың берілуі. 
+                                ">
+                                  <i class="fa fa-info"></i>
+                                </button>
+                              </td>
+        
+                            
+                            {{#with goalObject "9211"}}
+                              {{#if editing id}}
+        
+                                <td style="text-align: center"><input type="text" style="width: 30pt" id="editCompleted" value="{{completed}}"></td>
+                                <td style="text-align: center;"><input type="text" style="width: 30pt" id="editTarget" value="{{target}}"></td>
+                                
+                                <td>
+                                  <button class="saveItem btn btn-success" name={{id}}>Save</button>
+                                  <button class="cancelItem btn btn-default">Cancel</button>
+                                </td>
+        
+                              {{else}}
+        
+                                <td style="text-align: center">{{completed}}</td>
+                                <td style="text-align: center;">{{target}}</td>
+                                
+                                <td><button class="editItem btn btn-primary" name={{id}}>Edit</button>
+                                </td>
+        
+                            {{/if}}
+                            {{/with}}
+                            </tr>
+        
+                            <tr>
+                              <td style="border-bottom: 1pt solid darkgrey">
+                                Жылдық индикатор
+                              </td>
+                              <td style="border-bottom: 1pt solid darkgrey">
+                                Кемінде 5 оқушы қатысатын үйірме саны
+                                <button class="btn btn-light btn-sm" data-toggle="tooltip" data-placement="bottom" 
+                                title="Жылдық бағалау механизмі: Жылдық есеп алу
+
+Түсініктемесі: Есеп қорытындысы бойынша жасалған жоспар мен қойылған мақсаттардың іске асуы талқылау, келесі оқу жылына ұсыныс әзірлеу.
+                                ">
+                                  <i class="fa fa-info"></i>
+                                </button>
+                              </td>
+        
+                              {{#with goalObject "9221"}}
+                              {{#if editing id}}
+        
+                                <td style="text-align: center; border-bottom: 1pt solid darkgrey"><input type="text" style="width: 30pt" id="editCompleted" value="{{completed}}"></td>
+                                <td style="text-align: center; border-bottom: 1pt solid darkgrey"><input type="text" style="width: 30pt" id="editTarget" value="{{target}}"></td>
+                                
+                                <td>
+                                  <button class="saveItem btn btn-success" name={{id}}>Save</button>
+                                  <button class="cancelItem btn btn-default">Cancel</button>
+                                </td>
+        
+                              {{else}}
+        
+                                <td style="text-align: center; border-bottom: 1pt solid darkgrey">{{completed}}</td>
+                                <td style="text-align: center; border-bottom: 1pt solid darkgrey">{{target}}</td>
+                                
+                                <td><button class="editItem btn btn-primary" name={{id}}>Edit</button>
+                                </td>
+        
+                            {{/if}}
+                            {{/with}}
+                            </tr>
+
+                            
+
+
+                </tbody>
+            </table>
+
+            {{else}}
+            <p>Loading...</p>
+            {{/if}}
+        </div>
+    </div>
+</template>

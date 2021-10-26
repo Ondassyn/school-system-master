@@ -419,13 +419,27 @@ Meteor.publish("adminIeltsAllResults", function (grade) {
   return this.ready();
 });
 
-Meteor.publish("adminUbtOfficialResults", function (schoolId, period) {
-  if (schoolId) {
-    if (schoolId === "all") {
-      return UbtOfficialResults.find({ period });
+Meteor.publish("adminAcademicGoals", function (academicYear) {
+  return AcademicGoals.find({ academicYear });
+});
+
+Meteor.publish(
+  "adminUbtOfficialResults",
+  function (academicYear, schoolId, period) {
+    if (schoolId) {
+      if (schoolId === "all") {
+        return UbtOfficialResults.find({ academicYear, period });
+      }
+      return UbtOfficialResults.find({ academicYear, schoolId, period });
     }
-    return UbtOfficialResults.find({ schoolId, period });
+    return this.ready();
   }
+);
+
+Meteor.publish("adminUbtOfficialRatings", function (academicYear, period) {
+  if (academicYear && period)
+    return UbtOfficialRatings.find({ academicYear, period });
+
   return this.ready();
 });
 

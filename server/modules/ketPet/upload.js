@@ -49,7 +49,7 @@ export const upload = (academicYear, schoolId, grade, examPeriod, results) => {
           parseInt(total50) + parseInt(totalL25) + parseInt(totalS25);
         studentRecord.total = parseFloat(studentRecord.total);
 
-        if (studentRecord.total >= 90 && studentRecord.total <= 100) {
+        if (studentRecord.total >= 90) {
           studentRecord.level = "Pass with Distinction(B1)";
         } else if (studentRecord.total >= 85 && studentRecord.total <= 89) {
           studentRecord.level = "Pass with Merit(A2)";
@@ -98,7 +98,7 @@ export const upload = (academicYear, schoolId, grade, examPeriod, results) => {
           parseInt(total50) + parseInt(totalL25) + parseInt(totalS25);
         studentRecord.total = parseFloat(studentRecord.total);
 
-        if (studentRecord.total >= 90 && studentRecord.total <= 100) {
+        if (studentRecord.total >= 90) {
           studentRecord.level = "Pass with Distinction(B2)";
         } else if (studentRecord.total >= 85 && studentRecord.total <= 89) {
           studentRecord.level = "Pass with Merit(B1)";
@@ -132,7 +132,7 @@ export const upload = (academicYear, schoolId, grade, examPeriod, results) => {
       total7Grade = total7Grade / count7Grade;
       //ket
       var level7Ket;
-      if (total7Grade >= 90 && total7Grade <= 100) {
+      if (total7Grade >= 90) {
         level7Ket = "Pass with Distinction(B1)";
       } else if (total7Grade >= 85 && total7Grade <= 89) {
         level7Ket = "Pass with Merit(A2)";
@@ -155,7 +155,7 @@ export const upload = (academicYear, schoolId, grade, examPeriod, results) => {
     } else if (grade == "8") {
       total8Grade = total8Grade / count8Grade;
       var level8Pet;
-      if (total8Grade >= 90 && total8Grade <= 100) {
+      if (total8Grade >= 90) {
         level8Pet = "Pass with Distinction(B2)";
       } else if (total8Grade >= 85 && total8Grade <= 89) {
         level8Pet = "Pass with Merit(B1)";

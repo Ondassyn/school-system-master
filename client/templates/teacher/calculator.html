@@ -48,6 +48,16 @@
             </div>
 
             <div class="form-group" style="margin-top: 20pt; width: 80%">
+                <label for="form-head">{{_ "question20"}}</label>
+                <select class="form-control" id="select" name="foreigner">
+                    <option disabled="disabled" selected="selected" value="{{teacher.foreigner}}">
+                        {{teacher.foreigner}}</option>
+                    <option value="yes">{{_ "question20_option1"}}</option>
+                    <option value="no">{{_ "question20_option2"}}</option>
+                </select>
+            </div>
+
+            <div class="form-group" style="margin-top: 20pt; width: 80%">
                 <label for="kids_6">{{_ "question3"}}</label>
                 <input type="text" id="input" class="form-control" placeholder={{_ "enter_number"}} name="kids_6" value="{{teacher.kids_6}}">
             
@@ -272,6 +282,10 @@
                     <tr>
                         <td>{{_ "value14"}}</td>
                         <td style="text-align: right">{{value14}}</td>
+                    </tr>
+                    <tr>
+                        <td>{{_ "value15"}}</td>
+                        <td style="text-align: right">{{value15}}</td>
                     </tr>
                     <tr>
                         <td>{{_ "value11"}}</td>

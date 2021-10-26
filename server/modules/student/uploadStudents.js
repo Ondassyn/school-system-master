@@ -1,27 +1,26 @@
+export const uploadStudents = (results) => {
+  _.each(results, (studentObj) => {
+    let name = studentObj.name;
+    let surname = studentObj.surname;
+    let grade = studentObj.grade;
+    let division = studentObj.division;
+    let iin = studentObj.iin;
+    let languageGroup = studentObj.languageGroup;
 
-export const uploadStudents = (academicYear,schoolId,results) => {
-
-    _.each(results,(studentObj) => {
-
-      let name          = studentObj.name
-      let surname       = studentObj.surname
-      let grade         = studentObj.grade
-      let division      = studentObj.division
-      let languageGroup = studentObj.languageGroup
-
-      if (name && surname && grade && division) {
-          Meteor.call('Student.insert',{
-              name:name,
-              surname:surname,
-              grade:grade,
-              division:division,
-              olympiad:'free',
-              joba:'free',
-              languageGroup:languageGroup
-          })
-      }
-      // FlowRouter.redirect('/school/students')
-      /*
+    if (name && surname && grade && division) {
+      Meteor.call("Student.insert", {
+        name: name,
+        surname: surname,
+        iin,
+        grade: grade,
+        division: division,
+        olympiad: "free",
+        joba: "free",
+        languageGroup: languageGroup,
+      });
+    }
+    // FlowRouter.redirect('/school/students')
+    /*
         let student = Students.findOne({studentId:parseInt(studentObj.studentId)});
 
         if (!student || student.schoolId != schoolId){
@@ -65,6 +64,5 @@ export const uploadStudents = (academicYear,schoolId,results) => {
         } else {
             UhdResults.insert(studentRecord)
         }*/
-    })
-
-}
+  });
+};

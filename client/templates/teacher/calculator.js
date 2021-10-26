@@ -65,9 +65,11 @@ const TAT_1 = 5600;
 const TAT_2 = 8400;
 const TAT_3 = 11200;
 const TAT_4 = 14000;
-const KINDERGARDEN_COEFFICIENT = 0.2;
+const KINDERGARDEN_COEFFICIENT = 0.25;
+const KINDERGARDEN = 60000;
 const ROTATION = 0.25;
 const OCCUPIED_CHILD = 30000;
+const FOREIGNER = 45000;
 
 Template.calculator.onCreated(function () {
   let template = this;
@@ -93,6 +95,7 @@ Template.calculator.onCreated(function () {
   template.age = new ReactiveVar("");
   template.gender = new ReactiveVar("");
   template.occupiedChildren = new ReactiveVar("");
+  template.foreigner = new ReactiveVar("");
 });
 
 Template.calculator.helpers({
@@ -376,15 +379,19 @@ Template.calculator.helpers({
     let rotation = Template.instance().rotation.get();
     let kindergarden = Template.instance().kindergarden.get();
 
-    let specialPosition = Template.instance().specialPosition.get();
-    if (specialPosition === "trainee" || specialPosition === "intern") return 0;
+    if (!kindergarden) return 0;
 
-    if (rotation === "yes") {
-      if (+kindergarden * KINDERGARDEN_COEFFICIENT > 20000) return 20000;
-      else return +kindergarden * KINDERGARDEN_COEFFICIENT;
+    let specialPosition = Template.instance().specialPosition.get();
+
+    if (
+      rotation === "yes" ||
+      specialPosition === "trainee" ||
+      specialPosition === "intern"
+    ) {
+      return +kindergarden * KINDERGARDEN_COEFFICIENT + KINDERGARDEN;
     }
 
-    return 0;
+    return KINDERGARDEN;
   },
   value14: function () {
     let occupiedChildren = Template.instance().occupiedChildren.get();
@@ -394,6 +401,11 @@ Template.calculator.helpers({
 
     if (occupiedChildren) return occupiedChildren * OCCUPIED_CHILD;
     return 0;
+  },
+  value15: function () {
+    let foreigner = Template.instance().foreigner.get();
+    if (foreigner !== "yes") return 0;
+    return FOREIGNER;
   },
   value11: function () {
     let specialPosition = Template.instance().specialPosition.get();
@@ -472,6 +484,7 @@ Template.calculator.events({
     template.tat.set(template.find("[name=tat]").value);
     template.rotation.set(template.find("[name=rotation]").value);
     template.formmaster.set(template.find("[name=formHead]").value);
+    template.foreigner.set(template.find("[name=foreigner]").value);
   },
   "change #radio_male"(event, template) {
     template.gender.set(event.target.value);

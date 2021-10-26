@@ -1,0 +1,286 @@
+<template name="adminAcademicGoals">
+
+  <div>{{> React component=Main}}</div>
+    <!-- <div class="row">
+        <div class="col-md-12">
+            <h4 style="text-align: center; padding-bottom: 15pt">Академиялық мақсаттар</h4>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-inline">
+                        <div class="form-group" style="margin-right: 15pt">
+                        {{> academicYear}}
+
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+            {{#if Template.subscriptionsReady}}
+
+            <div class="table-responsive-xl">
+            <table id="dtHorizontalExample" style="margin-top: 15pt" class="table table-striped table-bordered table-hover table-condensed" cellspacing="0"
+            width="100%">
+                <thead>
+                    <tr class="sat-header">
+                        <th >#</th>
+                        <th>Мақсаттар</th>
+
+                        <th style="text-align: center; border-right: 1pt solid darkgrey" colspan="8">Әлемнің ең үздік 100 yниверситетіне оқушыларды дайындау</th>
+                        <th style="text-align: center; border-right: 1pt solid darkgrey" colspan="6">Пәндік олимпиадаларға дайындау</th>
+                        <th style="text-align: center; border-right: 1pt solid darkgrey" colspan="8">Оқушыларды жоғарғы оқу орнына дайындау</th>
+                        <th style="text-align: center; border-right: 1pt solid darkgrey" colspan="16">Оқушылардың ағылшын тілін меңгеру деңгейін көтеру</th>
+                        <th style="text-align: center; border-right: 1pt solid darkgrey" colspan="4">SAT сынақтарына дайындау</th>
+                        <th style="text-align: center; border-right: 1pt solid darkgrey" colspan="4">Оқушылардың икемді дағдыларын дамыту</th>
+                        <th style="text-align: center; border-right: 1pt solid darkgrey" colspan="16">Оқушылардың оқу мақсаттарын меңгеруі</th>
+                        <th style="text-align: center; border-right: 1pt solid darkgrey" colspan="8">Мұғалімдерді кәсіби жетілдіру</th>
+                        <th style="text-align: center; border-right: 1pt solid darkgrey" colspan="8">Оқушылардың жан-жақты дамуы</th>
+
+
+                    </tr>
+                </thead>
+                <tbody>
+
+                    <tr>
+                        <th ></th>
+                        <th>Суб-мақсаттар</th>
+                        <th style="text-align: center" colspan="4">Түрлі халықаралық рейтингтер бойынша үздік танылған университеттерге түсуге 11 сынып оқушыларын ынталандыру, жан-жақты қолдау көрсету</th>
+                        <th style="text-align: center; border-right: 1pt solid darkgrey" colspan="4">Түрлі халықаралық рейтингтер бойынша үздік танылған университеттерге түсуге 10 сынып оқушыларын ынталандыру, жан-жақты қолдау көрсету</th>
+                        <th style="border-right: 1pt solid darkgrey" colspan="6"></th>
+                        <th style="text-align: center" colspan="4">Қазақстанда немесе шетелде оқуды қалайтын оқушыларды сапалы (safe) және үздік ЖОО-ларға бағыттау және грант алуларына қолдау көрсету</th>
+                        <th style="text-align: center; border-right: 1pt solid darkgrey" colspan="4">Оқушыларды ҰБТ сынағында жоғары ұпай алуларына және нәтижесінде грантқа түсулері үшін бағыттау</th>
+                        <th style="text-align: center" colspan="12">7, 8 және 9 сынып оқушыларының ағылшын тілі бойынша тілдік білім мен төрт дағдыларды (оқылым, жазылым, айтылым, тыңдалым) меңгеру деңгейін жоғарылату</th>
+                        <th style="text-align: center; border-right: 1pt solid darkgrey" colspan="4">10 және 11 сынып оқушыларының ағылшын тілі бойынша тілдік білім мен төрт дағдыларды (оқылым, жазылым, айтылым, тыңдалым) меңгеру деңгейін жоғарылату</th>
+                        <th style="text-align: center; border-right: 1pt solid darkgrey" colspan="4"></th>
+                        <th style="text-align: center; border-right: 1pt solid darkgrey" colspan="4"></th>
+                        <th style="text-align: center; border-right: 1pt solid darkgrey" colspan="16"></th>
+                        <th style="text-align: center" colspan="4">Мұғалімдердің біліктілік санаттарын алуы (санаты жоқтарға) және көтеруі</th>
+                        <th style="text-align: center; border-right: 1pt solid darkgrey" colspan="4">Жас мамандармен жұмыс</th>
+                        <th style="text-align: center" colspan="4">Оқушылардың лицейде немесе лицейден тыс жерде үйірмелерге қатысуы</th>
+                        <th style="text-align: center; border-right: 1pt solid darkgrey" colspan="4">Лицейдегі үйірмелердің қызметі</th>
+
+                    </tr>
+                    
+                    <tr>
+                        <th ></th>
+                        <th>Мерзім</th>
+                        <th style="text-align: center" colspan="2">Жартыжылдық индикатор</th>
+                        <th style="text-align: center; " colspan="2">Жылдық индикатор</th>
+                        <th style="text-align: center" colspan="2">Жартыжылдық индикатор</th>
+                        <th style="text-align: center; border-right: 1pt solid darkgrey" colspan="2">Жылдық индикатор</th>
+                        <th style="text-align: center" colspan="2">Жартыжылдық индикатор</th>
+                        <th style="text-align: center; border-right: 1pt solid darkgrey" colspan="4">Жылдық индикатор</th>
+                        <th style="text-align: center" colspan="2">Жартыжылдық индикатор</th>
+                        <th style="text-align: center; " colspan="2">Жылдық индикатор</th>
+                        <th style="text-align: center" colspan="2">Жартыжылдық индикатор</th>
+                        <th style="text-align: center; border-right: 1pt solid darkgrey" colspan="2">Жылдық индикатор</th>
+                        <th style="text-align: center" colspan="6">Жартыжылдық индикатор</th>
+                        <th style="text-align: center; " colspan="6">Жылдық индикатор</th>
+                        <th style="text-align: center" colspan="2">Жартыжылдық индикатор</th>
+                        <th style="text-align: center; border-right: 1pt solid darkgrey" colspan="2">Жылдық индикатор</th>
+                        <th style="text-align: center" colspan="2">Жартыжылдық индикатор</th>
+                        <th style="text-align: center; border-right: 1pt solid darkgrey" colspan="2">Жылдық индикатор</th>
+                        <th style="text-align: center" colspan="2">Жартыжылдық индикатор</th>
+                        <th style="text-align: center; border-right: 1pt solid darkgrey" colspan="2">Жылдық индикатор</th>
+                        <th style="text-align: center" colspan="8">Жартыжылдық индикатор</th>
+                        <th style="text-align: center; border-right: 1pt solid darkgrey" colspan="8">Жылдық индикатор</th>
+                        <th style="text-align: center" colspan="2">Жартыжылдық индикатор</th>
+                        <th style="text-align: center; " colspan="2">Жылдық индикатор</th>
+                        <th style="text-align: center" colspan="2">Жартыжылдық индикатор</th>
+                        <th style="text-align: center; border-right: 1pt solid darkgrey" colspan="2">Жылдық индикатор</th>
+                        <th style="text-align: center" colspan="2">Жартыжылдық индикатор</th>
+                        <th style="text-align: center; " colspan="2">Жылдық индикатор</th>
+                        <th style="text-align: center" colspan="2">Жартыжылдық индикатор</th>
+                        <th style="text-align: center; border-right: 1pt solid darkgrey" colspan="2">Жылдық индикатор</th>
+                
+                    </tr>
+                       
+                    <tr>
+                        <th></th>
+                        <th></th>
+                        <th style="text-align: center; " id="1">Орындалған</th>
+                        <th style="text-align: center; " id="2">Мақсат</th>
+                        <th style="text-align: center; " id="3">Орындалған</th>
+                        <th style="text-align: center; " id="4">Мақсат</th>
+                        <th style="text-align: center; " id="5">Орындалған</th>
+                        <th style="text-align: center; " id="6">Мақсат</th>
+                        <th style="text-align: center; " id="7">Орындалған</th>
+                        <th style="text-align: center; border-right: 1pt solid darkgrey" id="8">Мақсат</th>
+                        <th style="text-align: center; " id="9">Орындалған</th>
+                        <th style="text-align: center; " id="10">Мақсат</th>
+                        <th style="text-align: center; " id="11">Орындалған</th>
+                        <th style="text-align: center; " id="12">Мақсат</th>
+                        <th style="text-align: center; " id="13">Орындалған</th>
+                        <th style="text-align: center; border-right: 1pt solid darkgrey" id="14">Мақсат</th>
+                        <th style="text-align: center; " id="15">Орындалған</th>
+                        <th style="text-align: center; " id="16">Мақсат</th>
+                        <th style="text-align: center; " id="17">Орындалған</th>
+                        <th style="text-align: center; " id="18">Мақсат</th>
+                        <th style="text-align: center; " id="19">Орындалған</th>
+                        <th style="text-align: center; " id="20">Мақсат</th>
+                        <th style="text-align: center; " id="21">Орындалған</th>
+                        <th style="text-align: center; border-right: 1pt solid darkgrey" id="22">Мақсат</th>
+                        <th style="text-align: center; " id="23">Орындалған</th>
+                        <th style="text-align: center; " id="24">Мақсат</th>
+                        <th style="text-align: center; " id="25">Орындалған</th>
+                        <th style="text-align: center; " id="26">Мақсат</th>
+                        <th style="text-align: center; " id="27">Орындалған</th>
+                        <th style="text-align: center; " id="28">Мақсат</th>
+                        <th style="text-align: center; " id="29">Орындалған</th>
+                        <th style="text-align: center; " id="30">Мақсат</th>
+                        <th style="text-align: center; " id="31">Орындалған</th>
+                        <th style="text-align: center; " id="32">Мақсат</th>
+                        <th style="text-align: center; " id="33">Орындалған</th>
+                        <th style="text-align: center; " id="34">Мақсат</th>
+                        <th style="text-align: center; " id="35">Орындалған</th>
+                        <th style="text-align: center; " id="36">Мақсат</th>
+                        <th style="text-align: center; " id="37">Орындалған</th>
+                        <th style="text-align: center; border-right: 1pt solid darkgrey" id="38">Мақсат</th>
+                        <th style="text-align: center; " id="39">Орындалған</th>
+                        <th style="text-align: center; " id="40">Мақсат</th>
+                        <th style="text-align: center; " id="41">Орындалған</th>
+                        <th style="text-align: center; border-right: 1pt solid darkgrey" id="42">Мақсат</th>
+                        <th style="text-align: center; " id="43">Орындалған</th>
+                        <th style="text-align: center; " id="44">Мақсат</th>
+                        <th style="text-align: center; " id="45">Орындалған</th>
+                        <th style="text-align: center; border-right: 1pt solid darkgrey" id="46">Мақсат</th>
+                        <th style="text-align: center; " id="47">Орындалған</th>
+                        <th style="text-align: center; " id="48">Мақсат</th>
+                        <th style="text-align: center; " id="49">Орындалған</th>
+                        <th style="text-align: center; " id="50">Мақсат</th>
+                        <th style="text-align: center; " id="51">Орындалған</th>
+                        <th style="text-align: center; " id="52">Мақсат</th>
+                        <th style="text-align: center; " id="53">Орындалған</th>
+                        <th style="text-align: center; " id="54">Мақсат</th>
+                        <th style="text-align: center; " id="55">Орындалған</th>
+                        <th style="text-align: center; " id="56">Мақсат</th>
+                        <th style="text-align: center; " id="57">Орындалған</th>
+                        <th style="text-align: center; " id="58">Мақсат</th>
+                        <th style="text-align: center; " id="59">Орындалған</th>
+                        <th style="text-align: center; " id="60">Мақсат</th>
+                        <th style="text-align: center; " id="61">Орындалған</th>
+                        <th style="text-align: center; border-right: 1pt solid darkgrey" id="62">Мақсат</th>
+                        <th style="text-align: center; " id="63">Орындалған</th>
+                        <th style="text-align: center; " id="64">Мақсат</th>
+                        <th style="text-align: center; " id="65">Орындалған</th>
+                        <th style="text-align: center; " id="66">Мақсат</th>
+                        <th style="text-align: center; " id="67">Орындалған</th>
+                        <th style="text-align: center; " id="68">Мақсат</th>
+                        <th style="text-align: center; " id="69">Орындалған</th>
+                        <th style="text-align: center; border-right: 1pt solid darkgrey" id="70">Мақсат</th>
+                        <th style="text-align: center; " id="71">Орындалған</th>
+                        <th style="text-align: center; " id="72">Мақсат</th>
+                        <th style="text-align: center; " id="73">Орындалған</th>
+                        <th style="text-align: center; " id="74">Мақсат</th>
+                        <th style="text-align: center; " id="75">Орындалған</th>
+                        <th style="text-align: center; " id="76">Мақсат</th>
+                        <th style="text-align: center; " id="77">Орындалған</th>
+                        <th style="text-align: center; border-right: 1pt solid darkgrey" id="78">Мақсат</th>
+
+                    </tr>
+                    
+                  {{#each results}}
+
+                    <tr>
+                      <td>{{math @index "+" 1}}</td>
+                      <td>{{sName}}</td>
+                      <td style="text-align: center; ">{{goal1111_completed}}</td>
+                      <td style="text-align: center; ">{{goal1111_target}}</td>
+                      <td style="text-align: center; ">{{goal1121_completed}}</td>
+                      <td style="text-align: center; ">{{goal1121_target}}</td>
+                      <td style="text-align: center; ">{{goal1211_completed}}</td>
+                      <td style="text-align: center; ">{{goal1211_target}}</td>
+                      <td style="text-align: center; ">{{goal1221_completed}}</td>
+                      <td style="text-align: center; border-right: 1pt solid darkgrey">{{goal1221_target}}</td>
+
+                      <td style="text-align: center; ">{{goal2111_completed}}</td>
+                      <td style="text-align: center; ">{{goal2111_target}}</td>
+                      <td style="text-align: center; ">{{goal2121_completed}}</td>
+                      <td style="text-align: center; ">{{goal2121_target}}</td>
+                      <td style="text-align: center; ">{{goal2122_completed}}</td>
+                      <td style="text-align: center; border-right: 1pt solid darkgrey">{{goal2122_target}}</td>
+
+                      <td style="text-align: center; ">{{goal3111_completed}}</td>
+                      <td style="text-align: center; ">{{goal3111_target}}</td>
+                      <td style="text-align: center; ">{{goal3121_completed}}</td>
+                      <td style="text-align: center; ">{{goal3121_target}}</td>
+                      <td style="text-align: center; ">{{goal3211_completed}}</td>
+                      <td style="text-align: center; ">{{goal3211_target}}</td>
+                      <td style="text-align: center; ">{{goal3221_completed}}</td>
+                      <td style="text-align: center; border-right: 1pt solid darkgrey">{{goal3221_target}}</td>
+
+                      <td style="text-align: center; ">{{goal4111_completed}}</td>
+                      <td style="text-align: center; ">{{goal4111_target}}</td>
+                      <td style="text-align: center; ">{{goal4112_completed}}</td>
+                      <td style="text-align: center; ">{{goal4112_target}}</td>
+                      <td style="text-align: center; ">{{goal4113_completed}}</td>
+                      <td style="text-align: center; ">{{goal4113_target}}</td>
+                      <td style="text-align: center; ">{{goal4121_completed}}</td>
+                      <td style="text-align: center; ">{{goal4121_target}}</td>
+                      <td style="text-align: center; ">{{goal4122_completed}}</td>
+                      <td style="text-align: center; ">{{goal4122_target}}</td>
+                      <td style="text-align: center; ">{{goal4123_completed}}</td>
+                      <td style="text-align: center; ">{{goal4123_target}}</td>
+                      <td style="text-align: center; ">{{goal4211_completed}}</td>
+                      <td style="text-align: center; ">{{goal4211_target}}</td>
+                      <td style="text-align: center; ">{{goal4221_completed}}</td>
+                      <td style="text-align: center; border-right: 1pt solid darkgrey">{{goal4221_target}}</td>
+
+                      <td style="text-align: center; ">{{goal5111_completed}}</td>
+                      <td style="text-align: center; ">{{goal5111_target}}</td>
+                      <td style="text-align: center; ">{{goal5121_completed}}</td>
+                      <td style="border-right: 1pt solid darkgrey">{{goal5121_target}}</td>
+
+                      <td style="text-align: center; ">{{goal6111_completed}}</td>
+                      <td style="text-align: center; ">{{goal6111_target}}</td>
+                      <td style="text-align: center; ">{{goal6121_completed}}</td>
+                      <td style="text-align: center; border-right: 1pt solid darkgrey">{{goal6121_target}}</td>
+
+                      <td style="text-align: center; ">{{goal7111_completed}}</td>
+                      <td style="text-align: center; ">{{goal7111_target}}</td>
+                      <td style="text-align: center; ">{{goal7112_completed}}</td>
+                      <td style="text-align: center; ">{{goal7112_target}}</td>
+                      <td style="text-align: center; ">{{goal7113_completed}}</td>
+                      <td style="text-align: center; ">{{goal7113_target}}</td>
+                      <td style="text-align: center; ">{{goal7114_completed}}</td>
+                      <td style="text-align: center; ">{{goal7114_target}}</td>
+                      <td style="text-align: center; ">{{goal7121_completed}}</td>
+                      <td style="text-align: center; ">{{goal7121_target}}</td>
+                      <td style="text-align: center; ">{{goal7122_completed}}</td>
+                      <td style="text-align: center; ">{{goal7122_target}}</td>
+                      <td style="text-align: center; ">{{goal7123_completed}}</td>
+                      <td style="text-align: center; ">{{goal7123_target}}</td>
+                      <td style="text-align: center; ">{{goal7124_completed}}</td>
+                      <td style="text-align: center; border-right: 1pt solid darkgrey">{{goal7124_target}}</td>
+
+                      <td style="text-align: center; ">{{goal8111_completed}}</td>
+                      <td style="text-align: center; ">{{goal8111_target}}</td>
+                      <td style="text-align: center; ">{{goal8121_completed}}</td>
+                      <td style="text-align: center; ">{{goal8121_target}}</td>
+                      <td style="text-align: center; ">{{goal8211_completed}}</td>
+                      <td style="text-align: center; ">{{goal8211_target}}</td>
+                      <td style="text-align: center; ">{{goal8221_completed}}</td>
+                      <td style="text-align: center; border-right: 1pt solid darkgrey">{{goal8221_target}}</td>
+
+                      <td style="text-align: center; ">{{goal9111_completed}}</td>
+                      <td style="text-align: center; ">{{goal9111_target}}</td>
+                      <td style="text-align: center; ">{{goal9121_completed}}</td>
+                      <td style="text-align: center; ">{{goal9121_target}}</td>
+                      <td style="text-align: center; ">{{goal9211_completed}}</td>
+                      <td style="text-align: center; ">{{goal9211_target}}</td>
+                      <td style="text-align: center; ">{{goal9221_completed}}</td>
+                      <td style="text-align: center; border-right: 1pt solid darkgrey">{{goal9221_target}}</td>
+
+                    </tr>
+                  {{/each}}
+
+                </tbody>
+            </table>
+            </div>
+
+            {{else}}
+            <p>Loading...</p>
+            {{/if}}
+        </div>
+    </div> -->
+</template>

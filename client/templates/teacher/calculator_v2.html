@@ -1,0 +1,397 @@
+<template name="calculator_v2">
+    <div class="container-fluid">
+        <h3 style="text-align: center">{{_ "title"}}</h3>
+        <div class="col-md-6 col-md-offset-3" style="margin-left: 0%">
+
+            <div class="form-group" style="margin-top: 20pt; width: 80%">
+                <label for="name">{{_ "question1"}}</label>
+                <input type="text"  class="form-control" placeholder={{_ "enter_number"}} id="input" name="workExperience" value={{teacher.workExperience}}>
+            </div>
+
+            <div class="form-group" style="margin-top: 20pt; width: 80%">
+                <label for="name">{{_ "question17"}}</label>
+                <form>
+                    <input type="radio" id="radio_male" name="gender" value="male">
+                    <label for="male" style="font-weight: lighter">{{_ "question17_option1"}}</label><br>
+                    <input type="radio" id="radio_female" name="gender" value="female">
+                    <label for="female" style="font-weight: lighter">{{_ "question17_option2"}}</label><br>
+                </form>
+            </div>
+
+            <div class="form-group" style="margin-top: 20pt; width: 80%">
+                <label for="name">{{_ "question18"}}</label>
+                <input type="text"  class="form-control" placeholder={{_ "enter_number"}} id="input" name="age" value={{teacher.age}}>
+            </div>
+
+            <div class="form-group" style="margin-top: 20pt; width: 80%">
+                <label for="specialPosition">{{_ "question2"}}</label>
+                <select class="form-control" id="select" name="specialPosition">
+                    <option disabled="disabled" selected="selected" value="{{teacher.specialPosition}}">
+                        {{teacher.specialPosition}}</option>
+                        <!-- <option value="general-director">{{_ "question2_option6"}}</option>
+                        <option value="vice-general-director">{{_ "question2_option7"}}</option> -->
+                        <option value="head">{{_ "question2_option1"}}</option>
+                    <option value="vice-head">{{_ "question2_option2"}}</option>
+                    <option value="dorm-head">{{_ "question2_option3"}}</option>
+                    <option value="intern">{{_ "question2_option4"}}</option>
+                    <option value="trainee">{{_ "question2_option5"}}</option>
+                    <option value="">{{_ "option_none"}}</option>
+                </select>
+            </div>
+
+            <div class="form-group" style="margin-top: 20pt; width: 80%">
+                <label for="qualification">{{_ "question_qualification"}}</label>
+                <select class="form-control" id="select" name="qualification">
+                    <option disabled="disabled" selected="selected" value="{{teacher.qualification}}">
+                        {{teacher.qualification}}</option>
+                    <option value="moderator">{{_ "question_qualification_option1"}}</option>
+                    <option value="expert">{{_ "question_qualification_option2"}}</option>
+                    <option value="researcher">{{_ "question_qualification_option3"}}</option>
+                    <option value="master-teacher">{{_ "question_qualification_option4"}}</option>
+                    <option value="">{{_ "option_none"}}</option>
+                </select>
+            </div>
+
+            <div class="form-group" style="margin-top: 20pt; width: 80%">
+                <label for="additionalPosition">{{_ "question_additional_position"}}</label>
+                <select class="form-control" id="select" name="additionalPosition">
+                    <option disabled="disabled" selected="selected" value="{{teacher.additionalPosition}}">
+                        {{teacher.additional_position}}</option>
+                    <option value="vocational-guidance">{{_ "question_additional_position_option1"}}</option>
+                    <option value="form-head">{{_ "question_additional_position_option2"}}</option>
+                    <option value="both">{{_ "question_additional_position_option3"}}</option>
+                    <option value="">{{_ "option_none"}}</option>
+                </select>
+            </div>
+
+            <div class="form-group" style="margin-top: 20pt; width: 80%">
+                <label for="form-head">{{_ "question20"}}</label>
+                <select class="form-control" id="select" name="foreigner">
+                    <option disabled="disabled" selected="selected" value="{{teacher.foreigner}}">
+                        {{teacher.foreigner}}</option>
+                    <option value="yes">{{_ "question20_option1"}}</option>
+                    <option value="no">{{_ "question20_option2"}}</option>
+                </select>
+            </div>
+
+            <div class="form-group" style="margin-top: 20pt; width: 80%">
+                <label for="kids_6">{{_ "question3"}}</label>
+                <input type="text" id="input" class="form-control" placeholder={{_ "enter_number"}} name="kids_6" value="{{teacher.kids_6}}">
+            </div>
+
+            <div class="form-group" style="width: 80%">
+                <label for="kids_7_16">{{_ "question4"}}</label>
+                <input type="text" id="input" class="form-control" placeholder={{_ "enter_number"}} name="kids_7_16" value="{{teacher.kids_7_16}}">
+            </div>
+
+            <div class="form-group" style="width: 80%">
+                <label for="kids_17_22">{{_ "question5"}}</label>
+                <input type="text" id="input" class="form-control" placeholder={{_ "enter_number"}} name="kids_17_22" value="{{teacher.kids_17_22}}">
+            </div>
+
+            <div class="form-group" style="margin-top: 20pt; width: 80%">
+                <label for="academicDegree">{{_ "question6"}}</label>
+                <select class="form-control" id="select" name="academicDegree">
+                    <option disabled="disabled" selected="selected" value="{{teacher.academicDegree}}">
+                        {{teacher.academicDegree}}</option>
+                    <option value="college">{{_ "question6_option5"}}</option>
+                    <option value="bachelor">{{_ "question6_option1"}}</option>
+                    <option value="master">{{_ "question6_option2"}}</option>
+                    <option value="phd">{{_ "question6_option3"}}</option>
+                    <option value="doctor">{{_ "question6_option4"}}</option>
+                    <option value="">{{_ "option_none"}}</option>
+                </select>
+            </div>
+
+            <div class="form-group" style="margin-top: 20pt; width: 80%">
+                <label for="maritalStatus">{{_ "question7"}}</label>
+                <select class="form-control" id="select" name="maritalStatus">
+                    <option disabled="disabled" selected="selected" value="{{teacher.maritalStatus}}">
+                        {{teacher.maritalStatus}}</option>
+                    <option value="married">{{_ "question7_option1"}}</option>
+                    <option value="widowed-divorced">{{_ "question7_option3"}}</option>
+                    <option value="single">{{_ "question7_option4"}}</option>
+                </select>
+            </div>
+
+            <div class="form-group" style="margin-top: 20pt; width: 80%">
+                <label for="workingSpouse">{{_ "question_working_spouse"}}</label>
+                <select class="form-control" id="select" name="workingSpouse">
+                    <option disabled="disabled" selected="selected" value="{{teacher.workingSpouse}}">
+                        {{teacher.workingSpouse}}</option>
+                    <option value="yes">{{_ "yes"}}</option>
+                    <option value="no">{{_ "no"}}</option>
+                </select>
+            </div>
+
+            <div class="form-group" style="margin-top: 20pt; width: 80%">
+                <label for="city">{{_ "question_city"}}</label>
+                <select class="form-control" id="select" name="city">
+                    <option disabled="disabled" selected="selected" value="{{teacher.city}}">
+                        {{teacher.city}}</option>
+                    <option value="Ақтау">Ақтау</option>
+                    <option value="Ақтөбе">Ақтөбе</option>
+                    <option value="Алматы">Алматы</option>
+                    <option value="Арыс">Арыс</option>
+                    <option value="Атырау">Атырау</option>
+                    <option value="Бурабай">Бурабай</option>
+                    <option value="Екібастұз">Екібастұз</option>
+                    <option value="Есік">Есік</option>
+                    <option value="Жаңаөзен">Жаңаөзен</option>
+                    <option value="Жезқазған">Жезқазған</option>
+                    <option value="Кентау">Кентау</option>
+                    <option value="Көкшетау">Көкшетау</option>
+                    <option value="Қарағанды">Қарағанды</option>
+                    <option value="Қостанай">Қостанай</option>
+                    <option value="Құлсары">Құлсары</option>
+                    <option value="Қызылорда">Қызылорда</option>
+                    <option value="Нұр-Сұлтан">Нұр-Сұлтан</option>
+                    <option value="Орал">Орал</option>
+                    <option value="Өскемен">Өскемен</option>
+                    <option value="Павлодар">Павлодар</option>
+                    <option value="Петропавл">Петропавл</option>
+                    <option value="Семей">Семей</option>
+                    <option value="Талдықорған">Талдықорған</option>
+                    <option value="Тараз">Тараз</option>
+                    <option value="Түркістан">Түркістан</option>
+                    <option value="Шымкент">Шымкент</option>
+                
+                    <option value="none">{{_ "option_none"}}</option>
+                </select>
+            </div>
+
+            <div class="form-group" style="margin-top: 20pt; width: 80%">
+                <label for="hasHouse">{{_ "question_has_house"}}</label>
+                <select class="form-control" id="select" name="hasHouse">
+                    <option disabled="disabled" selected="selected" value="{{teacher.hasHouse}}">
+                        {{teacher.hasHouse}}</option>
+                    <option value="yes">{{_ "question_has_house_option1"}}</option>
+                    <option value="yes-with-mortgage">{{_ "question_has_house_option2"}}</option>
+                    <option value="no">{{_ "question_has_house_option3"}}</option>
+                </select>
+            </div>
+
+            <div class="form-group" style="width: 80%">
+                <label for="celtaTesol">{{_ "question_celta_tesol_question"}}</label>
+                <select id="select" class="form-control" name="celtaTesol">
+                    <option disabled="disabled" selected="selected" value="{{teacher.celtaTesol}}">
+                        {{teacher.celtaTesol}}</option>
+                    <option value="celta">CELTA</option>
+                    <option value="tesol">TESOL</option>
+                    <option value="">{{_ "option_none"}}</option>
+                </select>
+            </div>
+
+            <div class="form-group" style="width: 80%">
+                <label for="ielts">{{_ "question11"}}</label>
+                <select id="select" class="form-control" name="ielts">
+                    <option disabled="disabled" selected="selected" value="{{teacher.ielts}}">
+                        {{teacher.ielts}}</option>
+                    <option value="4.0">4.0</option>
+                    <option value="4.5">4.5</option>
+                    <option value="5.0">5.0</option>
+                    <option value="5.5">5.5</option>
+                    <option value="6.0">6.0</option>
+                    <option value="6.5">6.5</option>
+                    <option value="7.0">7.0</option>
+                    <option value="7.5">7.5</option>
+                    <option value="8.0">8.0</option>
+                    <option value="8.5">8.5</option>
+                    <option value="9.0">9.0</option>
+                    <option value="">{{_ "option_none"}}</option>
+                </select>
+            </div>
+
+            <div class="form-group" style="width: 80%">
+                <label for="job">{{_ "question_job"}}</label>
+                <select id="select" class="form-control" name="job">
+                    <option disabled="disabled" selected="selected" value="{{teacher.job}}">
+                        {{teacher.job}}</option>
+                    <option value="english">{{_ "question_job_english"}}</option>
+                    <option value="biology">{{_ "question_job_biology"}}</option>
+                    <!-- <option value="accountant">{{_ "question_job_accountant"}}</option> -->
+                    <!-- <option value="educator">{{_ "question_job_educator"}}</option> -->
+                    <option value="geography">{{_ "question_job_geography"}}</option>
+                    <!-- <option value="primary">{{_ "question_job_primary"}}</option> -->
+                    <option value="head">{{_ "question_job_head"}}</option>
+                    <option value="russian">{{_ "question_job_russian"}}</option>
+                    <!-- <option value="financier">{{_ "question_job_financier"}}</option> -->
+                    <!-- <option value="law">{{_ "question_job_law"}}</option> -->
+                    <!-- <option value="self-knowledge">{{_ "question_job_self_knowledge"}}</option> -->
+                    <!-- <option value="religion">{{_ "question_job_religion"}}</option> -->
+                    <!-- <option value="designer">{{_ "question_job_designer"}}</option> -->
+                    <!-- <option value="lawyer">{{_ "question_job_lawyer"}}</option> -->
+                    <!-- <option value="head-turkish">{{_ "question_job_head_turkish"}}</option> -->
+                    <option value="vice-head">{{_ "question_job_vice_head"}}</option>
+                    <!-- <option value="journalist">{{_ "question_job_journalist"}}</option> -->
+                    <option value="dorm-head">{{_ "question_job_dorm_head"}}</option>
+                    <!-- <option value="caretaker">{{_ "question_job_caretaker"}}</option> -->
+                    <!-- <option value="art">{{_ "question_job_art"}}</option> -->
+                    <!-- <option value="intellectum">{{_ "question_job_intellectum"}}</option> -->
+                    <option value="cs">{{_ "question_job_cs"}}</option>
+                    <option value="history">{{_ "question_job_history"}}</option>
+                    <!-- <option value="kazakh-history">{{_ "question_job_kazakh_history"}}</option> -->
+                    <!-- <option value="sz">{{_ "question_job_sz"}}</option> -->
+                    <option value="kazakh">{{_ "question_job_kazakh"}}</option>
+                    <!-- <option value="form-master">{{_ "question_job_form_master"}}</option> -->
+                    <!-- <option value="curator">{{_ "question_job_curator"}}</option> -->
+                    <option value="math">{{_ "question_job_math"}}</option>
+                    <!-- <option value="translator">{{_ "question_job_translator"}}</option> -->
+                    <!-- <option value="vocational-guidance">{{_ "question_job_vocational_guidance"}}</option> -->
+                    <!-- <option value="psychology">{{_ "question_job_psychology"}}</option> -->
+                    <!-- <option value="communication">{{_ "question_job_communication"}}</option> -->
+                    <option value="mof">{{_ "question_job_mof"}}</option>
+                    <!-- <option value="technology">{{_ "question_job_technology"}}</option> -->
+                    <option value="turkish">{{_ "question_job_turkish"}}</option>
+                    <!-- <option value="primary">{{_ "question_job_primary"}}</option> -->
+                    <option value="physics">{{_ "question_job_physics"}}</option>
+                    <option value="pe">{{_ "question_job_pe"}}</option>
+                    <option value="chemistry">{{_ "question_job_chemistry"}}</option>
+                    <option value="economy">{{_ "question_job_economy"}}</option>
+                    <option value="another">{{_ "another"}}</option>
+
+                    <!-- <option value="">{{_ "option_none"}}</option> -->
+                </select>
+            </div>
+
+            <div class="form-group" style="margin-top: 20pt; width: 80%">
+                <label for="tat">{{_ "question_tat"}}</label>
+                <input type="text"  class="form-control" placeholder={{_ "enter_number"}} id="input" name="tat" value={{teacher.tat}}>
+            </div>
+
+            <div class="form-group" style="margin-top: 20pt; width: 80%">
+                <label for="additionalHours">{{_ "question_additional_hours"}}</label>
+                <input type="text"  class="form-control" placeholder={{_ "enter_number"}} id="input" name="additionalHours" value={{teacher.additionalHours}}>
+            </div>
+
+            <div class="form-group" style="margin-top: 20pt; width: 80%">
+                <label for="rotation">{{_ "question13"}}</label>
+                <select class="form-control" id="select" name="rotation">
+                    <option disabled="disabled" selected="selected" value="{{teacher.rotation}}">
+                        {{teacher.rotation}}</option>
+                    <option value="yes">{{_ "question13_option1"}}</option>
+                    <option value="no">{{_ "question13_option2"}}</option>
+                </select>
+            </div>
+
+            <div class="form-group" style="margin-top: 20pt; width: 80%">
+                <label for="kindergardenFee">{{_ "question14"}}</label>
+                <input type="text" id="input" class="form-control" placeholder={{_ "enter_number"}} name="kindergardenFee" value="{{teacher.kindergardenFee}}">
+            </div>
+
+            <div class="form-group" style="margin-top: 20pt; width: 80%">
+                <label for="prolongation">{{_ "question_prolongation"}}</label>
+                <input type="text" id="input" class="form-control" placeholder={{_ "enter_number"}} name="prolongation" value="{{teacher.prolongation}}">
+            </div>
+
+            <div class="form-group" style="margin-top: 20pt; width: 80%">
+                <label for="currentSalary">{{_ "question15"}}</label>
+                <input type="text" id="input" class="form-control" placeholder={{_ "enter_number"}} name="currentSalary" value="{{teacher.currentSalary}}">
+            </div>
+
+            <!-- <div class="form-group">
+                <button class="btn btn-primary" id="calculate">Рассчитать</button>
+            </div> -->
+
+            <table style="margin-top: 40pt" class="table table-striped">
+                <!-- <thead>
+                    <tr class="bts-header">
+                        <th>#</th>
+                        <th>Мұғалім ID</th>
+                        <th>Аты-жөні</th>
+                        <th>Пәні</th>
+                        <th>Лауазымы</th>
+                        <th style="text-align: center">Академ дәреже</th>
+                        <th style="text-align: center">Тәжірибе</th>
+                        <th style="text-align: center">Категория</th>
+                        <th style="text-align: center">IELTS</th>
+                        <th></th>
+                    </tr>
+                </thead> -->
+                <tbody>
+                    <tr>
+                        <td>{{_ "livelihood_estimate"}}</td>
+                        <td style="text-align: right">{{livelihood_estimate}}</td>
+                    </tr>
+                    <tr>
+                        <td>{{_ "kindergarden_estimate"}}</td>
+                        <td style="text-align: right">{{kindergarden_estimate}}</td>
+                    </tr>
+                    <tr>
+                        <td>{{_ "prolongation_estimate"}}</td>
+                        <td style="text-align: right">{{prolongation_estimate}}</td>
+                    </tr>
+                    <tr>
+                        <td>{{_ "foreigner_estimate"}}</td>
+                        <td style="text-align: right">{{foreigner_estimate}}</td>
+                    </tr>
+                    <tr>
+                        <td>{{_ "experience_estimate"}}</td>
+                        <td style="text-align: right">{{experience_estimate}}</td>
+                    </tr>
+                    <tr>
+                        <td>{{_ "special_position_estimate"}}</td>
+                        <td style="text-align: right">{{special_position_estimate}}</td>
+                    </tr>
+                    <tr>
+                        <td>{{_ "education_estimate"}}</td>
+                        <td style="text-align: right">{{education_estimate}}</td>
+                    </tr>
+                    <tr>
+                        <td>{{_ "qualification_estimate"}}</td>
+                        <td style="text-align: right">{{qualification_estimate}}</td>
+                    </tr>
+                    <tr>
+                        <td>{{_ "additional_position_estimate"}}</td>
+                        <td style="text-align: right">{{additional_position_estimate}}</td>
+                    </tr>
+                    <tr>
+                        <td>{{_ "english_estimate"}}</td>
+                        <td style="text-align: right">{{english_estimate}}</td>
+                    </tr>
+                    <tr>
+                        <td>{{_ "tat_estimate"}}</td>
+                        <td style="text-align: right">{{tat_estimate}}</td>
+                    </tr>
+                    <tr>
+                        <td>{{_ "additional_hours_estimate"}}</td>
+                        <td style="text-align: right">{{additional_hours_estimate}}</td>
+                    </tr>
+                    <tr>
+                        <td>{{_ "old_salary"}}</td>
+                        <td style="text-align: right">{{old_salary}}</td>
+                    </tr>
+
+                    <tr style="font-weight:bold">
+                        <td>{{_ "total"}}</td>
+                        <td style="text-align: right">{{total}}</td>
+                    </tr>
+                    
+                </tbody>
+            </table>
+
+            <div class="form-group" style="margin-top: 20pt; width: 100%">
+                {{#if isCurrentLanguageKz}}
+                <!-- <h5>{{_ "link_description"}}<a href="https://cdn-121.anonfiles.com/P3ZdQ2x3p0/f08f3d54-1607692822/%D0%9F%D1%80%D0%B0%D0%B2%D0%B8%D0%BB%D0%B0%20%D1%81%D1%82%D0%B8%D0%BF%D0%B5%D0%BD%D0%B4%D0%B8%D0%B8%20%D0%9A%D3%A9%D1%88%D0%B1%D0%B0%D1%81%D1%88%D1%8B%20%D2%B1%D1%81%D1%82%D0%B0%D0%B7%20%D0%BA%D0%B0%D0%B7-%D1%80%D1%83%D1%81-1-18.pdf" 
+                    target="_parent">«Көшбасшы ұстаз» шәкіртақы бағдарламасы туралы ережесін</a> қараңыз</h5> -->
+                <!-- <h5>{{_ "link_description"}}<a href="https://cdn.filesend.jp/private/nL9O2O_W4mFH51kR27gcMvC1tFD9tc562xepvhCY8oK2l1Nlihls_7_ulrRSr4I6/%D0%9F%D1%80%D0%B0%D0%B2%D0%B8%D0%BB%D0%B0%20%D1%81%D1%82%D0%B8%D0%BF%D0%B5%D0%BD%D0%B4%D0%B8%D0%B8%20%D0%9A%D3%A9%D1%88%D0%B1%D0%B0%D1%81%D1%88%D1%8B%20%D2%B1%D1%81%D1%82%D0%B0%D0%B7%20%D0%BA%D0%B0%D0%B7-%D1%80%D1%83%D1%81-1-18.pdf" 
+                    target="_parent">«Көшбасшы ұстаз» шәкіртақы бағдарламасы туралы ережесін</a> қараңыз</h5> -->
+                    <h5>{{_ "link_description"}}<a href="https://drive.google.com/file/d/1PQSHMUQF7MZ2DXlHFk1ZKgEaIcKV9shR/view?usp=sharing" 
+                        target="_blank">«Көшбасшы ұстаз» шәкіртақы бағдарламасы туралы ережесін</a> қараңыз</h5>
+                {{else}}
+                <!-- <h5>{{_ "link_description"}}<a href="https://cdn-141.anonfiles.com/xfheRdx6pe/1f30d4e7-1607692944/%D0%9F%D1%80%D0%B0%D0%B2%D0%B8%D0%BB%D0%B0%20%D1%81%D1%82%D0%B8%D0%BF%D0%B5%D0%BD%D0%B4%D0%B8%D0%B8%20%D0%9A%D3%A9%D1%88%D0%B1%D0%B0%D1%81%D1%88%D1%8B%20%D2%B1%D1%81%D1%82%D0%B0%D0%B7%20%D0%BA%D0%B0%D0%B7-%D1%80%D1%83%D1%81-19-37.pdf" 
+                    target="_parent">правилами Стипендиальной программы "Көшбасшы ұстаз"</a></h5> -->
+                <!-- <h5>{{_ "link_description"}}<a href="https://cdn.filesend.jp/private/SQQ1ixGC70qmAYxR3NT-6Zy32RRR5ExzKUWBVcyk1dG9ZFcb1PZutpDQ9844R6q3/%D0%9F%D1%80%D0%B0%D0%B2%D0%B8%D0%BB%D0%B0%20%D1%81%D1%82%D0%B8%D0%BF%D0%B5%D0%BD%D0%B4%D0%B8%D0%B8%20%D0%9A%D3%A9%D1%88%D0%B1%D0%B0%D1%81%D1%88%D1%8B%20%D2%B1%D1%81%D1%82%D0%B0%D0%B7%20%D0%BA%D0%B0%D0%B7-%D1%80%D1%83%D1%81-19-37.pdf" 
+                    target="_parent">правилами стипендиальной программы "Көшбасшы ұстаз"</a></h5> -->
+                    <h5>{{_ "link_description"}}<a href="https://drive.google.com/file/d/1p3y3W-4Klcjps9d3i4o2-DcP9kiF028f/view?usp=sharing" 
+                        target="_blank">правилами стипендиальной программы "Көшбасшы ұстаз"</a></h5>
+                
+                    
+                {{/if}}
+            </div>
+
+        </div>
+    </div>
+
+
+</template>

@@ -40,6 +40,7 @@
                         <th>Оқушы ID</th>
                         <th>Сыныбы</th>
                         <th name="sInfo">Аты-жөні</th>
+                        <th style="text-align: center;">ИИН</th>
                         <th>Toбы</th>
                         <th>Олимпиада пәні</th>
                         <th>БТС таңдау пәндері</th>
@@ -58,6 +59,16 @@
                         <td>{{studentId}}</td>
                         <td>{{grade}}{{division}}</td>
                         <td>{{surname}} {{name}}</td>
+                        <td>
+                            <form class="form-inline">
+                                <div class="col-sm-10">
+                                    <input type="text"  class="form-control" id="input" name={{studentId}} value={{iin}}>
+                                </div>
+                                    <button class="btn mb-2" data-toggle="tooltip" data-placement="bottom" title="ИИН сақтау">
+                                        <i class="fa fa-floppy-o"></i>
+                                    </button>
+                            </form>
+                        </td>
                         <td style="width: 30pt">{{languageGroup}}</td>
                         <td>
                             <select class="form-control" name="subjectId" id="kboSubject">

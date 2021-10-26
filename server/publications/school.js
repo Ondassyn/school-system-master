@@ -21,6 +21,16 @@ Meteor.publish("schoolSatResults", function (grade) {
   return this.ready();
 });
 
+Meteor.publish("schoolAcademicGoals", function (academicYear, schoolId) {
+  if (this.userId) {
+    let school = Schools.findOne({ userId: this.userId });
+    if (!school) school = Schools.findOne({ coordinatorId: this.userId });
+    if (school)
+      return AcademicGoals.find({ academicYear, schoolId: school.schoolId });
+  }
+  return this.ready();
+});
+
 Meteor.publish("schoolIeltsResults", function (grade) {
   if (this.userId) {
     let school = Schools.findOne({ userId: this.userId });

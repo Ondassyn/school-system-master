@@ -12,6 +12,10 @@
                 <input type="text" class="form-control" placeholder="Жөні" name="surname" value="{{student.surname}}">
               </div>
               <div class="form-group">
+                <label for="iin">ИИН</label>
+                <input type="text" class="form-control" placeholder="ИИН" name="iin" value="{{student.iin}}">
+              </div>
+              <div class="form-group">
                   <div class="form-inline">
                       <div class="form-group">
                           <label for="surname">Сыныбы:</label>
@@ -24,8 +28,8 @@
               <div class="form-group">
                   <label for="surname">Тобы:</label>
                   <select class="form-control" name="languageGroup">
-                    <option value="kaz" {{selector "languageGroup" "kaz"}}>Қазақ тобы</option>
-                    <option value="rus" {{selector "languageGroup" "rus"}}>Орыс тобы</option>
+                    <option value="Қазақ тобы" {{selector "languageGroup" "Қазақ тобы"}}>Қазақ тобы</option>
+                    <option value="Орыс тобы" {{selector "languageGroup" "Орыс тобы"}}>Орыс тобы</option>
                   </select>
               </div>
               <!-- adding elective course 1

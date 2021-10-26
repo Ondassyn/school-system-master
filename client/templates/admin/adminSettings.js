@@ -14,6 +14,7 @@ Template.adminSettings.onCreated(function () {
   // template.subscribe('kboGenelResults',academicYear.get())
   Session.set("editItemAdmin", null);
   Session.set("editItemEdlight", null);
+  Session.set("editItemCoordinator", null);
   Session.equals("editSchoolAccount", null);
   template.autorun(() => {
     // template.subscribe("configAccounts")
@@ -56,6 +57,9 @@ Template.adminSettings.helpers({
 
   editingEdlight() {
     return Session.equals("editItemEdlight", this._id);
+  },
+  editingCoordinator() {
+    return Session.equals("editItemCoordinator", this._id);
   },
 
   editingSchoolAccount() {
@@ -172,8 +176,16 @@ Template.adminSettings.events({
     Session.set("editItemEdlight", this._id);
   },
 
+  "click #editCoordinator": function () {
+    Session.set("editItemCoordinator", this._id);
+  },
+
   "click #cancelItemEdlight": function () {
     Session.set("editItemEdlight", null);
+  },
+
+  "click #cancelItemCoordinator": function () {
+    Session.set("editItemCoordinator", null);
   },
 
   "click #addEdlight"(event, template) {
@@ -202,6 +214,21 @@ Template.adminSettings.events({
           alert(err.reason);
         } else {
           Session.set("editItemEdlight", null);
+          alert("Сақталды");
+        }
+      });
+  },
+
+  "click #saveItemCoordinator"(event, template) {
+    event.preventDefault();
+    let passwordTxt = template.find("[id=editCoordinatorPassword]").value;
+
+    if (confirm("Are you sure, Admin?"))
+      Meteor.call("editCoordinatorPassword", passwordTxt, (err, res) => {
+        if (err) {
+          alert(err.reason);
+        } else {
+          Session.set("editItemCoordinator", null);
           alert("Сақталды");
         }
       });

@@ -67,13 +67,19 @@ Blaze.registerHelper("getCategoryStylе", function (total) {
     return "white-space: nowrap;";
   }
 
-  if (total >= 55) {
+  if (total >= 50) {
     return "text-align: center; white-space: nowrap; background-color: #b2fab4";
-  } else if (total >= 40 && total < 55) {
-    return "text-align: center; white-space: nowrap; background-color: #ffff8b";
   } else {
     return "text-align: center; white-space: nowrap; background-color: #ff867c";
   }
+
+  // if (total >= 55) {
+  //   return "text-align: center; white-space: nowrap; background-color: #b2fab4";
+  // } else if (total >= 40 && total < 55) {
+  //   return "text-align: center; white-space: nowrap; background-color: #ffff8b";
+  // } else {
+  //   return "text-align: center; white-space: nowrap; background-color: #ff867c";
+  // }
 });
 
 Blaze.registerHelper("getStylе", function (point) {
@@ -81,13 +87,19 @@ Blaze.registerHelper("getStylе", function (point) {
   if (!point || point == 0.0) {
     return "white-space: nowrap;";
   }
-  if (point >= 11) {
+  if (point >= 10) {
     return "white-space: nowrap; background-color: #b2fab4";
-  } else if (point >= 8 && point < 11) {
-    return "white-space: nowrap; background-color: #ffff8b";
   } else {
     return "white-space: nowrap; background-color: #ff867c";
   }
+
+  // if (point >= 11) {
+  //   return "white-space: nowrap; background-color: #b2fab4";
+  // } else if (point >= 8 && point < 11) {
+  //   return "white-space: nowrap; background-color: #ffff8b";
+  // } else {
+  //   return "white-space: nowrap; background-color: #ff867c";
+  // }
 });
 
 // Blaze.registerHelper("getOpeStyle", function(points, threshold) {
@@ -199,5 +211,5 @@ let year = date.getFullYear();
 let nextYear = year + 1;
 
 // academicYear = new ReactiveVar(year+'-'+nextYear)
-academicYear = new ReactiveVar("2020-2021");
-previousYear = new ReactiveVar("2019-2020");
+academicYear = new ReactiveVar("2021-2022");
+previousYear = new ReactiveVar("2020-2021");
